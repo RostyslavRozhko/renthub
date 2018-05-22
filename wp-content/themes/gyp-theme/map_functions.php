@@ -309,6 +309,7 @@
         });
                 
         submit.addEventListener('click', () => {
+          jQuery('.address-input__container').hide()
         	if (currPlace.placeId && arr.length < 1) {
             let newMarker = new google.maps.Marker({
               map: map,
@@ -371,6 +372,7 @@
                             type: 'button',
                             val: "<?php _e('Delete', 'prokkat'); ?>",
                             click: function(e){
+                              jQuery('.address-input__container').show()
                               let index = pos
                                 arr.splice(index, 1)
                                 IDs.streets.splice(index, 1)

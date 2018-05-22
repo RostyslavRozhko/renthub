@@ -1196,6 +1196,8 @@ padding: 0 30px;
 }
 
 .search-list__banner {
+  min-height: 377px;
+  box-sizing: border-box;
   margin-bottom: 30px;
   width: 24%;
   background-image: url('img/banner-desktop.png');
@@ -2189,6 +2191,8 @@ padding: 0 30px;
 }
 
 .contact-ad__author-text {
+  display: flex;
+  flex-direction: column;
   flex: auto;
 }
 
@@ -4281,6 +4285,10 @@ label.error {
 
 
 @media (max-width: 1024px) {
+  .search-list__cate-container, .search-list__banner {
+    width: 32%;
+  }
+
   .header__popup__container {
     margin-right: 10px
   }
@@ -4439,7 +4447,7 @@ label.error {
   }
 
   .search-list__cate-container, .search-list__banner {
-    width: 32%;
+    width: 49%;
   }
 
   .page-container .content {
@@ -4551,6 +4559,7 @@ label.error {
     background-image: url('img/banner-mobile.png');
     background-size: cover;
     height: 107px;
+    min-height: 107px;
     box-sizing: border-box;
     padding: 20px;
     flex-direction: row;

@@ -11,7 +11,6 @@
 	  'cc_title',
 	  'cc_description',
       'cc_category',
-      'cc_title_rus',
 	  'cc_price',
       'cc_price_week',
       'cc_price_more',
@@ -57,7 +56,6 @@
     update_post_meta( $pid, 'cc_address_list', $posted['cc_address_list'] );
       update_post_meta( $pid, 'cc_city_id', $posted['cc_city_id'] );
       update_post_meta( $pid, 'cc_locations', $posted['cc_locations'] );
-      update_post_meta( $pid, 'cc_title_rus', $posted['cc_title_rus'] );
 
     update_post_meta( $pid, 'cc_state', $posted['cc_state'] );
 
@@ -174,17 +172,10 @@
     <form name="edit_post_form" id="edit_post_form" method="post" enctype="multipart/form-data">
     <div class="add__step add__step__container">  
     <div class="input-wrp input-wrp_block add__block">    
-          <div class="form__title req"><?php _e('Ad Title (ukr)', 'prokkat'); ?></div>
+          <div class="form__title req"><?php _e('Ad Title', 'prokkat'); ?></div>
           <div class="input-wrp input-wrp_block">
               <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
               <input type="text" id="title" class="input_add" name="cc_title" placeholder="<?php _e('Please enter title', 'prokkat') ?>" value="<?php echo $ad->post_title; ?>" />
-          </div>
-      </div>
-      <div class="input-wrp input-wrp_block add__block">    
-          <div class="form__title req"><?php _e('Ad Title (russian)', 'prokkat'); ?></div>
-          <div class="input-wrp input-wrp_block">
-              <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
-              <input type="text" id="cc_title_rus" class="input_add" name="cc_title_rus" placeholder="<?php _e('Please enter title', 'prokkat') ?>" value="<?php echo get_post_meta($pid, 'cc_title_rus', true); ?>" />
           </div>
       </div>
 

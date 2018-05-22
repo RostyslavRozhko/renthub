@@ -20,7 +20,7 @@
 
       usort($terms, function($a, $b)
       {
-          return strcmp($b->term_id, $a->term_id);
+          return strcmp($a->term_id, $b->term_id);
       });
 
       $parent = array_slice($terms, 0, 1)[0];
@@ -96,20 +96,8 @@
         <a href="<?php echo site_url(); ?>">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/house.svg" >
         </a>
-            <!-- <a href="<?php echo get_term_link( $parent->term_id ); ?>"><?php echo $parent->name; ?></a>
-            <a href="<?php echo get_term_link( $subcat->term_id ); ?>"><?php echo $subcat->name; ?></a> -->
-            <?php
-            foreach($terms as $term){
-                $pll_term_id = pll_get_term($term->term_id);
-                if($pll_term_id == false || $pll_term_id == $term->term_id) {
-                    echo '<a href="'.esc_url( get_term_link( $term->term_id )) .'">'.$term->name.'</a>';
-                } else {
-                    $term = get_term($pll_term_id, CUSTOM_CAT_TYPE);
-                    $name = $term->name;
-                    echo '<a href="'.esc_url( get_term_link( $pll_term_id)) .'">'.$name.'</a>';
-                }
-            };
-            ?>
+            <a href="<?php echo get_term_link( $parent->term_id ); ?>"><?php echo $parent->name; ?></a>
+            <a href="<?php echo get_term_link( $subcat->term_id ); ?>"><?php echo $subcat->name; ?></a>
         </div>
         <div class="advert">
 		
@@ -204,18 +192,23 @@
                     <h3><?php _e('Description', 'prokkat'); ?></h3>
                     <?php the_content(); ?>
                 </div>
-                <div class="filters-values">
-                    <?php 
-                        $filters = get_field('filters', 'cate_' . $subcat->term_id);
-                        foreach ($filters as $filter) {
-                            $filter_name = $filter->name;
-                        ?>
-                            <div class="filters-values__item">
-                                <div class="filters-values__item__name"><?php echo $filter_name; ?></div>
-                                <div class="filters-values__item__value"><?php echo get_post_meta($post->ID, $filter_name, true); ?></div>
-                            </div>
-                        <?php } ?>
-                </div>
+                <?php 
+                $filters = get_field('filters', 'cate_' . $subcat->term_id);
+                debug_to_console(json_encode($subcat));
+                if($filters) : ?>
+                    <div class="filters-values">
+                        <?php 
+                            
+                            foreach ($filters as $filter) {
+                                $filter_name = $filter->name;
+                            ?>
+                                <div class="filters-values__item">
+                                    <div class="filters-values__item__name"><?php echo $filter_name; ?></div>
+                                    <div class="filters-values__item__value"><?php echo get_post_meta($post->ID, $filter_name, true); ?></div>
+                                </div>
+                            <?php } ?>
+                    </div>
+                <?php endif; ?>
                 <div class="soc-wrap">
 				<?php echo do_shortcode('[supsystic-social-sharing id="1"]'); ?>
                 </div>
@@ -280,13 +273,8 @@
                             <img class="contact-ad__author-photo" src="<?php echo $ava; ?>" />
                             <div class="contact-ad__author-text">
                                 <?php echo the_author_posts_link(); ?>
-                                <?php
-                                    $udata = get_userdata($author_id);
-                                    $registered = $udata->user_registered;
-                                    $registered = date('d.m.Y', $registered);?>
-                                    <span style="color:#63666c; display:block; font-weight: 100; font-size: 14px">Дата реєстрації <?php echo $registered ?></span>
-                                    <a class="single__state" data-state="<?php echo $state; ?>"></a>
-                                    <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
+                                <a class="single__state" data-state="<?php echo $state; ?>"></a>
+                                <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
                             </div>
                         </div>
                     </div>

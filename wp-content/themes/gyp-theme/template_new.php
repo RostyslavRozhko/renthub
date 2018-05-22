@@ -10,7 +10,6 @@ function cc_submit_form_process() {
 
     $fields = array(
         'cc_title',
-        'cc_title_rus',
         'cc_description',
         'cc_category',
         'cc_price',
@@ -120,7 +119,6 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
               add_post_meta($post_id, 'cc_address_list', $posted['cc_address_list'], true);
                 add_post_meta($post_id, 'cc_city_id', $posted['cc_city_id'], true);
                 add_post_meta($post_id, 'cc_locations', $posted['cc_locations'], true);
-                add_post_meta($post_id, 'cc_title_rus', $posted['cc_title_rus'], true);
 			  if( isset($posted['custom-price']) )
                 add_post_meta($post_id, 'custom-price', $posted['custom-price'], true);
 			  else {
@@ -229,18 +227,10 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
                         <div class="add__form-item clearfix">
                         <div class="step__title"><?php _e('Ad description', 'prokkat') ?><span class="add__step-num">1</span></div>
                             <div class="input-wrp input-wrp_block add__block">    
-                                <div class="form__title req"><?php _e('Ad Title (ukr)', 'prokkat'); ?></div>
+                                <div class="form__title req"><?php _e('Ad Title', 'prokkat'); ?></div>
                                 <div class="input-wrp input-wrp_block">
                                     <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
                                     <input type="text" id="title" class="input_add" name="cc_title" placeholder="<?php _e('Please enter title', 'prokkat') ?>">
-                                </div>
-                            </div>
-
-                            <div class="input-wrp input-wrp_block add__block">    
-                                <div class="form__title req"><?php _e('Ad Title (russian)', 'prokkat'); ?></div>
-                                <div class="input-wrp input-wrp_block">
-                                    <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
-                                    <input type="text" id="title" class="input_add" name="cc_title_rus" placeholder="<?php _e('Please enter title', 'prokkat') ?>">
                                 </div>
                             </div>
 

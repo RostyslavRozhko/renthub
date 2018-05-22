@@ -264,7 +264,7 @@
     <?php endif; ?>
   </div>
 
-  <div class="active-title"><span><?php single_cat_title(); ?></span><span class="items-count"> (<?php echo get_cate_count($current_id, $main_cat); ?>)</span></div>
+  <div class="active-title"><span><?php single_cat_title(); ?></span><span class="items-count"> <?php $count = get_cate_count($current_id, $main_cat); if($count) { echo '('.$count.')'; } ?></span></div>
   <div class="container-results">
     <?php if(!$main_cat && $filters) : ?>
       <div class="menu-cat_grid">
@@ -332,7 +332,7 @@
               <?php 
                 $categories = get_categories(array(
                     'taxonomy' => 'cate',
-                    'hide_empty' => true,
+                    'hide_empty' => false,
                     'parent'=> $parent,
                 )); 
                 $counter = 0;
@@ -348,8 +348,8 @@
                     <img src="<?php echo get_wp_term_image($cat_id); ?>" class="search-list__cate-img">
                   </a>
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
-                  <div class="search-list__cate-price"><?php echo max_price($cat_id); ?> грн/доба</div>
-                  <div class="search-list__cate-num">Пропозицій (<?php echo $count; ?>)</div>
+                  <div class="search-list__cate-price"><?php echo max_price($cat_id); ?> грн/день</div>
+                  <div class="search-list__cate-num">Предложений (<?php echo $count; ?>)</div>
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-text">Детальніше</a>
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-arrow"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg"></a>
               </div>
