@@ -1,0 +1,140 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+$call-ico-name: 'call-ico';
+$call-ico-x: 0px;
+$call-ico-y: 0px;
+$call-ico-offset-x: 0px;
+$call-ico-offset-y: 0px;
+$call-ico-width: 41px;
+$call-ico-height: 41px;
+$call-ico-total-width: 82px;
+$call-ico-total-height: 82px;
+$call-ico-image: '../img/sprite.png';
+$call-ico: (0px, 0px, 0px, 0px, 41px, 41px, 82px, 82px, '../img/sprite.png', 'call-ico', );
+$search-ico-input-name: 'search-ico-input';
+$search-ico-input-x: 61px;
+$search-ico-input-y: 41px;
+$search-ico-input-offset-x: -61px;
+$search-ico-input-offset-y: -41px;
+$search-ico-input-width: 20px;
+$search-ico-input-height: 20px;
+$search-ico-input-total-width: 82px;
+$search-ico-input-total-height: 82px;
+$search-ico-input-image: '../img/sprite.png';
+$search-ico-input: (61px, 41px, -61px, -41px, 20px, 20px, 82px, 82px, '../img/sprite.png', 'search-ico-input', );
+$search-ico-name: 'search-ico';
+$search-ico-x: 41px;
+$search-ico-y: 0px;
+$search-ico-offset-x: -41px;
+$search-ico-offset-y: 0px;
+$search-ico-width: 41px;
+$search-ico-height: 41px;
+$search-ico-total-width: 82px;
+$search-ico-total-height: 82px;
+$search-ico-image: '../img/sprite.png';
+$search-ico: (41px, 0px, -41px, 0px, 41px, 41px, 82px, 82px, '../img/sprite.png', 'search-ico', );
+$sweet-ico-name: 'sweet-ico';
+$sweet-ico-x: 0px;
+$sweet-ico-y: 41px;
+$sweet-ico-offset-x: 0px;
+$sweet-ico-offset-y: -41px;
+$sweet-ico-width: 41px;
+$sweet-ico-height: 41px;
+$sweet-ico-total-width: 82px;
+$sweet-ico-total-height: 82px;
+$sweet-ico-image: '../img/sprite.png';
+$sweet-ico: (0px, 41px, 0px, -41px, 41px, 41px, 82px, 82px, '../img/sprite.png', 'sweet-ico', );
+$target-ico-name: 'target-ico';
+$target-ico-x: 41px;
+$target-ico-y: 41px;
+$target-ico-offset-x: -41px;
+$target-ico-offset-y: -41px;
+$target-ico-width: 20px;
+$target-ico-height: 22px;
+$target-ico-total-width: 82px;
+$target-ico-total-height: 82px;
+$target-ico-image: '../img/sprite.png';
+$target-ico: (41px, 41px, -41px, -41px, 20px, 22px, 82px, 82px, '../img/sprite.png', 'target-ico', );
+$spritesheet-width: 82px;
+$spritesheet-height: 82px;
+$spritesheet-image: '../img/sprite.png';
+$spritesheet-sprites: ($call-ico, $search-ico-input, $search-ico, $sweet-ico, $target-ico, );
+$spritesheet: (82px, 82px, '../img/sprite.png', $spritesheet-sprites, );
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

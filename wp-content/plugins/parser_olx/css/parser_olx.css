@@ -1,0 +1,14 @@
+.content_count {
+	display: none;
+	font-weight: bold;
+	margin: 0 0px;
+}
+.loading {
+	display: none;
+	margin: 0 15px;
+	width: 40px;
+    position: relative;
+}
+#count {
+	display: inline;
+}
