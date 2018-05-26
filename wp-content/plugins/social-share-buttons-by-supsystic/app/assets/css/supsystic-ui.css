@@ -1,5 +1,5 @@
 @import "libraries/bootstrap/bootstrap.min.css";
-@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 @import "chosen.min.css";
 
@@ -338,10 +338,10 @@ input[type=checkbox] + label:before {
   display: inline-block;
 }
 
-input[type=checkbox] + label:before { content: "\f096"; } 
-input[type=checkbox] + label:before { letter-spacing: 10px; } 
+input[type=checkbox] + label:before { content: "\f096"; }
+input[type=checkbox] + label:before { letter-spacing: 10px; }
 
-input[type=checkbox]:checked + label:before { content: "\f046"; } 
+input[type=checkbox]:checked + label:before { content: "\f046"; }
 input[type=checkbox]:checked + label:before { letter-spacing: 5px; } */
 
 .swrHtaccessPre {

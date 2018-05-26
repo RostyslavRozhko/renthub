@@ -68,7 +68,7 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
                     }
 
                     if (empty($newData[$key])) {
-                        NextendSocialLoginAdminNotices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
+                        \NSL\Notices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
                     }
                     break;
             }
@@ -106,9 +106,8 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
      * @param $key
      *
      * @return string
-     * @throws Exception
      */
-    protected function getAuthUserData($key) {
+    public function getAuthUserData($key) {
 
         switch ($key) {
             case 'id':
@@ -129,7 +128,10 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
     }
 
     public function syncProfile($user_id, $provider, $access_token) {
-        $this->saveUserData($user_id, 'profile_picture', $this->getAuthUserData('picture'));
+        if ($this->needUpdateAvatar($user_id)) {
+            $this->updateAvatar($user_id, $this->getAuthUserData('picture'));
+        }
+
         $this->saveUserData($user_id, 'access_token', $access_token);
     }
 
@@ -190,10 +192,34 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
 
     public function adminDisplaySubView($subview) {
         if ($subview == 'import' && $this->settings->get('legacy') == 1) {
-            $this->renderAdmin('import', false);
-        } else {
-            parent::adminDisplaySubView($subview);
+            $this->admin->render('import', false);
+
+            return true;
         }
+
+        return parent::adminDisplaySubView($subview);
+    }
+
+    public function deleteLoginPersistentData() {
+        parent::deleteLoginPersistentData();
+
+        if ($this->client !== null) {
+            $this->client->deleteLoginPersistentData();
+        }
+    }
+
+    public function getAvatar($user_id) {
+
+        if (!$this->isUserConnected($user_id)) {
+            return false;
+        }
+
+        $picture = $this->getUserData($user_id, 'profile_picture');
+        if (!$picture || $picture == '') {
+            return false;
+        }
+
+        return $picture;
     }
 }
 

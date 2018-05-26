@@ -1,8 +1,10 @@
 <?php
 defined('ABSPATH') || die();
-/** @var $this NextendSocialProvider */
+/** @var $this NextendSocialProviderAdmin */
 
-$settings = $this->settings;
+$provider = $this->getProvider();
+
+$settings = $provider->settings;
 
 $isPRO = apply_filters('nsl-pro', false);
 
@@ -50,7 +52,23 @@ NextendSocialLoginAdmin::showProBox();
                                   value="never" <?php if ($settings->get('ask_user') == 'never') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
                         <span><?php _e('Never, generate automatically', 'nextend-facebook-connect'); ?></span></label><br>
                     <label><input type="radio" name="ask_user"
+                                  value="when-empty" <?php if ($settings->get('ask_user') == 'when-empty') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
+                        <span><?php _e('When username is empty or invalid', 'nextend-facebook-connect'); ?></span></label><br>
+                    <label><input type="radio" name="ask_user"
                                   value="always" <?php if ($settings->get('ask_user') == 'always') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
+                        <span><?php _e('Always', 'nextend-facebook-connect'); ?></span></label><br>
+                </fieldset>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row"><?php _e('Ask Password on registration', 'nextend-facebook-connect'); ?></th>
+            <td>
+                <fieldset>
+                    <label><input type="radio" name="ask_password"
+                                  value="never" <?php if ($settings->get('ask_password') == 'never') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
+                        <span><?php _e('Never', 'nextend-facebook-connect'); ?></span></label><br>
+                    <label><input type="radio" name="ask_password"
+                                  value="always" <?php if ($settings->get('ask_password') == 'always') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
                         <span><?php _e('Always', 'nextend-facebook-connect'); ?></span></label><br>
                 </fieldset>
             </td>

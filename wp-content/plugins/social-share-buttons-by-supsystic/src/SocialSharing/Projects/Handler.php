@@ -158,9 +158,6 @@ class SocialSharing_Projects_Handler
         self::$listenProjects[] = $projectId;
 
         switch ($this->project->get('where_to_show')) {
-            case SocialSharing_Projects_Project::POSITION_WIDGET:
-                $this->action('widgets_init', 'applyWidgetCallback');
-                break;
             case SocialSharing_Projects_Project::POSITION_SIDEBAR:
                 $this->action('wp_footer', 'applySidebarCallback');
                 break;
@@ -170,7 +167,7 @@ class SocialSharing_Projects_Handler
 
                 $this->filter('the_content', 'applyContentCallback');
                 $this->filter('the_excerpt', 'applyContentCallback');
-                
+
                 /* fix for AMP and FBIA */
                 add_action('amp_post_template_head', array($this, 'addedStylesForAMP'));
 
@@ -236,19 +233,6 @@ class SocialSharing_Projects_Handler
         $this->listen();
 
         return null;
-    }
-
-    /**
-     * Callback method to add project's widget to the widgets list.
-     */
-    public function applyWidgetCallback()
-    {
-        global $wp_widget_factory;
-
-        $className = 'SocialSharing_Projects_Widget';
-        $widget = $className.'_'.$this->project->getId();
-
-        $wp_widget_factory->widgets[$widget] = new $className($this);
     }
 
     /**

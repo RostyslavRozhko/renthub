@@ -18,7 +18,7 @@ class SupsysticSocialSharing
         $pluginName = 'sss';
         $pluginTitleName = 'Social Share by Supsystic';
         $pluginSlug = 'supsystic-social-sharing';
-        $environment = new Rsc_Environment($pluginName, '1.9.5', $pluginPath);
+        $environment = new Rsc_Environment($pluginName, '1.9.7', $pluginPath);
 
         /* Configure */
         $environment->configure(

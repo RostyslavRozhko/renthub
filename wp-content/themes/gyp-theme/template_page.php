@@ -4,7 +4,7 @@
  */
 get_header(); 
 $city_id = get_field('city_id') ? get_field('city_id') : 'ChIJBUVa4U7P1EAR_kYBF9IxSXY';
-$city_name = get_field('city_name') ? get_field('city_name') : 'Київ';
+$city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 ?>
 <section class="header-section">
     <div class="container">

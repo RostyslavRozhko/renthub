@@ -108,15 +108,7 @@
 		  <?php endif; ?>
 
             <div class="title title_grid">
-                <div class="title_advert"><?php 
-                    $title_rus = get_post_meta($post->ID, 'cc_title_rus', true);
-                    $lang = ( pll_current_language() != 'uk' ) ? '-'.pll_current_language() : '';
-                    if($lang == '-ru') {
-                        echo $title_rus;
-                    } else {
-                        echo the_title(); 
-                    }
-                ?></div>
+                <div class="title_advert"><?php echo the_title(); ?></div>
             </div>
 			
 			    <?php  if( $main_img && file_url_exists( $main_img )) : ?>
@@ -194,17 +186,16 @@
                 </div>
                 <?php 
                 $filters = get_field('filters', 'cate_' . $subcat->term_id);
-                debug_to_console(json_encode($subcat));
                 if($filters) : ?>
                     <div class="filters-values">
                         <?php 
-                            
                             foreach ($filters as $filter) {
                                 $filter_name = $filter->name;
+                                debug_to_console(json_encode(get_post_meta($post->ID, $filter->slug, true)));
                             ?>
                                 <div class="filters-values__item">
                                     <div class="filters-values__item__name"><?php echo $filter_name; ?></div>
-                                    <div class="filters-values__item__value"><?php echo get_post_meta($post->ID, $filter_name, true); ?></div>
+                                    <div class="filters-values__item__value"><?php echo get_post_meta($post->ID, $filter->slug, true); ?></div>
                                 </div>
                             <?php } ?>
                     </div>

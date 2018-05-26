@@ -4,7 +4,7 @@ Tags: social login, facebook, google, twitter, linkedin, register, login, social
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 3.0.4
+Stable tag: 3.0.7
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,7 +45,7 @@ Providers are the services which the visitors can use to register and log in to 
 #### Additional features in the [Pro addon](https://nextendweb.com/social-login/)
 
 * WooCommerce compatibility
-* Pro providers: LinkedIn and more coming soon
+* Pro providers: LinkedIn, Amazon, VKontakte VK.com and more coming soon
 * Configure whether email address should be asked on registration at each provider
 * Configure whether username should be asked on registration at each provider
 * Choose from icons or wide buttons
@@ -111,6 +111,32 @@ Unfortunately, currently there are no BuddyPress specific settings. However your
 2. Nextend Social Login and Register in the profile page for account linking
 
 == Changelog ==
+
+= 3.0.7 =
+* Feature: AJAX compatibility
+* Feature: Default Redirect URL
+* Feature: Twitter screen name as username
+* Fix: SocialRabbit compatibility
+
+* PRO: New provider - [VKontakte - vk.com](https://nextendweb.com/nextend-social-login-docs/provider-vkontakte/)
+* PRO: New provider - [Amazon](https://nextendweb.com/nextend-social-login-docs/provider-amazon/)
+* PRO: New provider -  [UserPro Login and Register support.](https://nextendweb.com/nextend-social-login-docs/global-settings-userpro/)
+
+= 3.0.6 =
+* Avatars are stored in your media library as Facebook blocked the url access
+* Code improvements
+* PHP and WordPress version check
+* Improved template-parts
+* Fix: Login and redirect cleanup
+* Fix: Socialize theme
+
+* PRO: Sync Facebook fields
+* PRO: Force to ask password and username when enabled
+* PRO: MemberPress integration
+
+= 3.0.5 =
+* Session cookie name changed to properly work on Pantheon hosting. It can be changed with Can be changed with nsl_session_name filter and NSL_SESSION_NAME constant.
+* Fix for Hide my WP plugin @see https://codecanyon.net/item/hide-my-wp-amazing-security-plugin-for-wordpress/4177158
 
 = 3.0.4 =
 * Remove whitespaces from username

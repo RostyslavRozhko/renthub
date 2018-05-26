@@ -34,6 +34,7 @@ class SocialSharing_Projects_Module extends SocialSharing_Core_BaseModule
 
         add_action('init', array($this, 'wpInitCallback'));
 	    add_action( 'wp_enqueue_scripts',array($this, 'localizeData'));
+		add_action('widgets_init', array($this, 'applyWidgetCallback'));
     }
 
     public function localizeData()
@@ -282,6 +283,17 @@ class SocialSharing_Projects_Module extends SocialSharing_Core_BaseModule
         }
 	}
 
+	/**
+     * Callback method to add pluggin's widget to the widgets list.
+     */
+	public function applyWidgetCallback()
+	{
+		global $wp_widget_factory;
+
+		$className = 'SocialSharing_Projects_Widget';
+		$wp_widget_factory->widgets[$className] = new $className($this);
+	}
+
     public function handleProject($project)
     {
         $handler = $this->createHandler(
@@ -318,7 +330,7 @@ class SocialSharing_Projects_Module extends SocialSharing_Core_BaseModule
 
             return null;
         }
-        
+
         if (array_key_exists('place', $attributes) && array_key_exists('extra', $attributes)) {
             $project->settings['where_to_show'] = $attributes['place'];
             $project->settings['where_to_show_extra'] = $attributes['extra'];

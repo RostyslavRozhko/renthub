@@ -54,6 +54,12 @@ abstract class NextendSocialOauth2 extends NextendSocialAuth {
         $this->redirect_uri = $redirect_uri;
     }
 
+    /*
+     * Adds response_type, client_id, redirect_uri and state as query parameter in the Authorization Url.
+     * client_id can be found in the App when you create one
+     * redirect_uri is the url you wish to be redirected after you entered you login credentials
+     * state is a randomly generated string
+     */
     public function createAuthUrl() {
 
         $args = array(
@@ -71,15 +77,27 @@ abstract class NextendSocialOauth2 extends NextendSocialAuth {
         return add_query_arg($args, $this->endpointAuthorization);
     }
 
+    /**
+     * @param $scopes
+     * Connects an array of scopes with whitespace.
+     *
+     * @return string
+     */
     protected function formatScopes($scopes) {
-        return implode(' ', $scopes);
+        return implode(' ', array_unique($scopes));
     }
 
     /**
      * @return bool|false|string
+     * If the code that was sent by the selected provider and the state is valid,
+     * we can make a request for an accessToken with wp_remote_post().
+     * The result contains HTTP headers and content.
+     *
+     * Returns the accessToken with which we can make certain requests for their user profile data.
      * @throws Exception
      */
     public function authenticate() {
+
         if (isset($_GET['code'])) {
             if (!$this->validateState()) {
                 throw  new Exception('Unable to validate CSRF state');
@@ -134,8 +152,17 @@ abstract class NextendSocialOauth2 extends NextendSocialAuth {
         }
     }
 
+    public function deleteLoginPersistentData() {
+        \NSL\Persistent\Persistent::delete($this->providerID . '_state');
+    }
+
+    /**
+     * If the stored state is the same as the state we have received from the remote Provider, it is valid.
+     *
+     * @return bool
+     */
     protected function validateState() {
-        $this->state = NextendSocialLoginPersistentAnonymous::get($this->providerID . '_state');
+        $this->state = \NSL\Persistent\Persistent::get($this->providerID . '_state');
         if ($this->state === false) {
             return false;
         }
@@ -151,24 +178,35 @@ abstract class NextendSocialOauth2 extends NextendSocialAuth {
         return false;
     }
 
+    /**
+     * Returns the stored state for the current provider.
+     *
+     * @return bool|mixed|null|string
+     */
     protected function getState() {
-        $this->state = NextendSocialLoginPersistentAnonymous::get($this->providerID . '_state');
-        if ($this->state === false) {
+        $this->state = \NSL\Persistent\Persistent::get($this->providerID . '_state');
+        if ($this->state === null) {
             $this->state = $this->generateRandomState();
 
-            NextendSocialLoginPersistentAnonymous::set($this->providerID . '_state', $this->state);
+            \NSL\Persistent\Persistent::set($this->providerID . '_state', $this->state);
         }
 
         return $this->state;
     }
 
+    /**
+     * Generates a random string, which will be needed for the remote provider.
+     * It will be stored for a time.
+     *
+     * @return bool|string
+     */
     protected function generateRandomState() {
 
         if (function_exists('random_bytes')) {
             return $this->bytesToString(random_bytes(self::CSRF_LENGTH));
         }
 
-        if (class_exists('mcrypt_create_iv')) {
+        if (function_exists('mcrypt_create_iv')) {
             /** @noinspection PhpDeprecationInspection */
             $binaryString = mcrypt_create_iv(self::CSRF_LENGTH, MCRYPT_DEV_URANDOM);
 
@@ -216,13 +254,10 @@ abstract class NextendSocialOauth2 extends NextendSocialAuth {
         $http_args = array(
             'timeout'    => 15,
             'user-agent' => 'WordPress',
-            'headers'    => array(
-                'Authorization' => 'Bearer ' . $this->access_token_data['access_token']
-            ),
             'body'       => array_merge($this->defaultRestParams, $data)
         );
 
-        $request = wp_remote_get($this->endpointRestAPI . $path, $http_args);
+        $request = wp_remote_get($this->endpointRestAPI . $path, $this->extendHttpArgs($http_args));
 
         if (is_wp_error($request)) {
 
@@ -239,5 +274,20 @@ abstract class NextendSocialOauth2 extends NextendSocialAuth {
         }
 
         return $result;
+    }
+
+    /**
+     * @param $http_args
+     * Puts additional data into the http header.
+     * Used for getting access to the resources with a bearer token.
+     *
+     * @return mixed
+     */
+    protected function extendHttpArgs($http_args) {
+        $http_args['headers'] = array(
+            'Authorization' => 'Bearer ' . $this->access_token_data['access_token']
+        );
+
+        return $http_args;
     }
 }

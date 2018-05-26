@@ -68,7 +68,7 @@ class NextendSocialProviderTwitter extends NextendSocialProvider {
                     }
 
                     if (empty($newData[$key])) {
-                        NextendSocialLoginAdminNotices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
+                        \NSL\Notices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
                     }
                     break;
             }
@@ -111,9 +111,8 @@ class NextendSocialProviderTwitter extends NextendSocialProvider {
      * @param $key
      *
      * @return string
-     * @throws Exception
      */
-    protected function getAuthUserData($key) {
+    public function getAuthUserData($key) {
 
         switch ($key) {
             case 'id':
@@ -122,17 +121,27 @@ class NextendSocialProviderTwitter extends NextendSocialProvider {
                 return !empty($this->authUserData['email']) ? $this->authUserData['email'] : '';
             case 'name':
                 return $this->authUserData['name'];
+            case 'username':
+                return $this->authUserData['screen_name'];
             case 'first_name':
-                return '';
+                $name = explode(' ', $this->getAuthUserData('name'), 2);
+
+                return isset($name[0]) ? $name[0] : '';
             case 'last_name':
-                return '';
+                $name = explode(' ', $this->getAuthUserData('name'), 2);
+
+                return isset($name[1]) ? $name[1] : '';
         }
 
         return parent::getAuthUserData($key);
     }
 
     public function syncProfile($user_id, $provider, $access_token) {
-        $this->saveUserData($user_id, 'profile_picture', $this->authUserData['profile_image_url_https']);
+
+        if ($this->needUpdateAvatar($user_id)) {
+            $this->updateAvatar($user_id, $this->authUserData['profile_image_url_https']);
+        }
+
         $this->saveUserData($user_id, 'access_token', $access_token);
     }
 
@@ -193,10 +202,34 @@ class NextendSocialProviderTwitter extends NextendSocialProvider {
 
     public function adminDisplaySubView($subview) {
         if ($subview == 'import' && $this->settings->get('legacy') == 1) {
-            $this->renderAdmin('import', false);
-        } else {
-            parent::adminDisplaySubView($subview);
+            $this->admin->render('import', false);
+
+            return true;
         }
+
+        return parent::adminDisplaySubView($subview);
+    }
+
+    public function deleteLoginPersistentData() {
+        parent::deleteLoginPersistentData();
+
+        if ($this->client !== null) {
+            $this->client->deleteLoginPersistentData();
+        }
+    }
+
+    public function getAvatar($user_id) {
+
+        if (!$this->isUserConnected($user_id)) {
+            return false;
+        }
+
+        $picture = $this->getUserData($user_id, 'profile_picture');
+        if (!$picture || $picture == '') {
+            return false;
+        }
+
+        return $picture;
     }
 }
 

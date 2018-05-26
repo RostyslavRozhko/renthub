@@ -15,6 +15,48 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
 
     protected $popupHeight = 175;
 
+    protected $sync_fields = array(
+        'age_range' => array(
+            'label' => 'Age range',
+            'node'  => 'me'
+        ),
+        'birthday'  => array(
+            'label' => 'Birthday',
+            'node'  => 'me',
+            'scope' => 'user_birthday'
+        ),
+        'link'      => array(
+            'label' => 'Profile link',
+            'node'  => 'me',
+        ),
+        'locale'    => array(
+            'label' => 'Locale',
+            'node'  => 'me'
+        ),
+        'timezone'  => array(
+            'label' => 'Timezone',
+            'node'  => 'me',
+        ),
+        'currency'  => array(
+            'label' => 'Currency',
+            'node'  => 'me',
+        ),
+        'hometown'  => array(
+            'label' => 'Hometown',
+            'node'  => 'me',
+            'scope' => 'user_hometown'
+        ),
+        'location'  => array(
+            'label' => 'Location',
+            'node'  => 'me',
+            'scope' => 'user_location'
+        ),
+        'gender'    => array(
+            'label' => 'Gender',
+            'node'  => 'me',
+        )
+    );
+
     public function __construct() {
         $this->id    = 'facebook';
         $this->label = 'Facebook';
@@ -106,7 +148,7 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
                     }
 
                     if (empty($newData[$key])) {
-                        NextendSocialLoginAdminNotices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
+                        \NSL\Notices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
                     }
                     break;
             }
@@ -136,11 +178,25 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
      */
     protected function getCurrentUserInfo() {
 
+        $fields       = array(
+            'id',
+            'name',
+            'email',
+            'first_name',
+            'last_name',
+            'picture.type(large)'
+        );
+        $extra_fields = apply_filters('nsl_facebook_me_fields', array());
+
         return $this->getClient()
-                    ->get('/me?fields=id,name,email,first_name,last_name');
+                    ->get('/me?fields=' . implode(',', array_merge($fields, $extra_fields)));
     }
 
-    protected function getAuthUserData($key) {
+    public function getMe() {
+        return $this->authUserData;
+    }
+
+    public function getAuthUserData($key) {
 
         switch ($key) {
             case 'id':
@@ -159,15 +215,21 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
     }
 
     public function syncProfile($user_id, $provider, $access_token) {
-        $this->saveUserData($user_id, 'profile_picture', 'https://graph.facebook.com/' . $this->getAuthUserData('id') . '/picture?type=large');
+        if ($this->needUpdateAvatar($user_id)) {
+
+            $profilePicture = $this->authUserData['picture'];
+            if (!empty($profilePicture) && !empty($profilePicture['data'])) {
+                if (isset($profilePicture['data']['is_silhouette']) && !$profilePicture['data']['is_silhouette']) {
+                    $this->updateAvatar($user_id, $profilePicture['data']['url']);
+                }
+            }
+
+        }
         $this->saveUserData($user_id, 'access_token', $access_token);
     }
 
     protected function saveUserData($user_id, $key, $data) {
         switch ($key) {
-            case 'profile_picture':
-                update_user_meta($user_id, 'fb_profile_picture', $data);
-                break;
             case 'access_token':
                 update_user_meta($user_id, 'fb_user_access_token', $data);
                 break;
@@ -179,9 +241,6 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
 
     protected function getUserData($user_id, $key) {
         switch ($key) {
-            case 'profile_picture':
-                return get_user_meta($user_id, 'fb_profile_picture', true);
-                break;
             case 'access_token':
                 return get_user_meta($user_id, 'fb_user_access_token', true);
                 break;
@@ -248,9 +307,19 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
 
     public function adminDisplaySubView($subview) {
         if ($subview == 'import' && $this->settings->get('legacy') == 1) {
-            $this->renderAdmin('import', false);
-        } else {
-            parent::adminDisplaySubView($subview);
+            $this->admin->render('import', false);
+
+            return true;
+        }
+
+        return parent::adminDisplaySubView($subview);
+    }
+
+    public function deleteLoginPersistentData() {
+        parent::deleteLoginPersistentData();
+
+        if ($this->client !== null) {
+            $this->client->deleteLoginPersistentData();
         }
     }
 }

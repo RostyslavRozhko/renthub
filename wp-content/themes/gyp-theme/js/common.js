@@ -363,13 +363,7 @@ $(document).ready(function () {
 
   
     $('.fancybox, .link_del').fancybox({
-        title:false,
-        height: 500
     });
-
-    $('.fancybox, delete-ad').fancybox({
-        height: 500
-    })
 
     $('.btn_nodel').click(function(e){
         e.preventDefault();

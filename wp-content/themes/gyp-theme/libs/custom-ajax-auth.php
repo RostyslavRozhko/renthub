@@ -123,7 +123,6 @@ function auth_user_login($user_login, $password, $login)
 	  echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong email or password.', 'prokkat')));
     } else {
       wp_set_current_user($user_signon->ID);
-      setcookie('yeah', 'value', time() + (86400 * 30), "/");
       echo json_encode(array('loggedin'=>true, 'message'=>__($login.' successful, redirecting...', 'prokkat')));
     }
 	die();

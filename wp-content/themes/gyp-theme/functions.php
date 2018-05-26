@@ -220,10 +220,9 @@ add_action('init','add_cors_http_header');
 
       $url = add_query_arg(array('search_loc' => $this->city_id, 'address' => $this->city_name), esc_attr($item->url));
 
-      $output .= $indent . '';
       $attributes .= ! empty( $item->url )        ? ' href="'. $url .'"' : '';
       $item_output .= '<li>';
-      $item_output .= '<a'. $attributes .'>';
+      $item_output .= '<a>';
       $item_output .= '<img src="'. get_wp_term_image($item->object_id) .'" >';
       $item_output .= '<span>' . $city_title . '</span>';
       $item_output .= '</a>';
@@ -694,7 +693,19 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
     // handle file upload
     $status = wp_handle_upload($_FILES[$imgid . 'async-upload'], array('test_form' => true, 'action' => 'plupload_action'));
-	
+    $filename = $status['file'];
+    $attachment = array(
+        'post_mime_type' => $status['type'],
+        'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+        'post_content' => '',
+        'post_status' => 'inherit',
+        'guid' => $status['url']
+    );
+    $attachment_id = wp_insert_attachment( $attachment, $status['url'] );
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+    $attachment_data = wp_generate_attachment_metadata( $attachment_id, $filename );
+    wp_update_attachment_metadata( $attachment_id, $attachment_data );
+
 	//  Resize imagewal
 	if( $imgid == "ava" ) {
       $img_url = get_user_meta( $_POST["user_id"], 'user_avatar', true);
@@ -723,11 +734,43 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
       delete_user_meta( $current_user->ID, 'user_avatar' );
     }
 	else {
+    $id = get_attachment_url($_POST["img_url"]);
+    wp_delete_attachment($id);
 	  delete_images( $_POST["img_url"] );
 	}
   }
   add_action('wp_ajax_delete_image', "delete_image_ajax");
   
+
+  function get_attachment_url( $attachment_url = '' ) {
+ 
+    global $wpdb;
+    $attachment_id = false;
+   
+    // If there is no url, return.
+    if ( '' == $attachment_url )
+      return;
+   
+    // Get the upload directory paths
+    $upload_dir_paths = wp_upload_dir();
+   
+    // Make sure the upload path base directory exists in the attachment URL, to verify that we're working with a media library image
+    if ( false !== strpos( $attachment_url, $upload_dir_paths['baseurl'] ) ) {
+   
+      // If this is the URL of an auto-generated thumbnail, get the URL of the original image
+      $attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $attachment_url );
+   
+      // Remove the upload path base directory from the attachment URL
+      $attachment_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $attachment_url );
+   
+      // Finally, run a custom database query to get the attachment ID from the modified attachment URL
+      $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url ) );
+   
+    }
+   
+    return $attachment_id;
+  }
+
   
   function my_photo_markup( $id, $svalue='', $width=800, $height=800 )
   { ?>
@@ -1060,12 +1103,7 @@ function pll_title($post_id=false) {
     global $post;
     $post_id = $post->ID;
   }
-  $lang = ( pll_current_language() != 'uk' ) ? pll_current_language() : '';
-  if($lang == 'ru') {
-      return get_post_meta($post_id, 'cc_title_rus', true);
-  } else {
-      return get_the_title( $post_id );
-  }
+  return get_the_title( $post_id );
 }
   
 /**
@@ -1079,12 +1117,7 @@ function pll_title($post_id=false) {
     }
     mb_internal_encoding("UTF-8");
     $max_length = 20;
-    $lang = ( pll_current_language() != 'uk' ) ? '-'.pll_current_language() : '';
-    if($lang == '-ru') {
-        $title = get_post_meta($post->ID, 'cc_title_rus', true);
-    } else {
-        $title = get_the_title( $post_id );
-    }
+    $title = get_the_title( $post_id );
     $str = mb_substr($title, 0, $max_length);
     if (strlen($title) > $max_length) $str .= "...";
     return $str;

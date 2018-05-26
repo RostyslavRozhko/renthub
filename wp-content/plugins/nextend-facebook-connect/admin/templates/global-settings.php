@@ -8,7 +8,9 @@ $allowedSubviews = array(
     'login-form',
     'woocommerce',
     'comment',
-    'buddypress'
+    'buddypress',
+    'memberpress',
+    'userpro'
 );
 
 $subview = (!empty($_GET['subview']) && in_array($_GET['subview'], $allowedSubviews)) ? $_GET['subview'] : 'general';
@@ -33,6 +35,10 @@ if (!NextendSocialLoginAdmin::isPro()) {
            class="nsl-admin-nav-tab<?php if ($subview === 'comment'): ?> nsl-admin-nav-tab-active<?php endif; ?>"><?php _e('Comment', 'nextend-facebook-connect'); ?><?php echo $proBadge; ?></a>
         <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('buddypress'); ?>"
            class="nsl-admin-nav-tab<?php if ($subview === 'buddypress'): ?> nsl-admin-nav-tab-active<?php endif; ?>">BuddyPress<?php echo $proBadge; ?></a>
+        <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('memberpress'); ?>"
+           class="nsl-admin-nav-tab<?php if ($subview === 'memberpress'): ?> nsl-admin-nav-tab-active<?php endif; ?>">MemberPress<?php echo $proBadge; ?></a>
+        <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('userpro'); ?>"
+           class="nsl-admin-nav-tab<?php if ($subview === 'userpro'): ?> nsl-admin-nav-tab-active<?php endif; ?>">UserPro<?php echo $proBadge; ?></a>
     </div>
     <form method="post" action="<?php echo admin_url('admin-post.php'); ?>" novalidate="novalidate">
 

@@ -2,7 +2,7 @@
 Contributors: supsystic.com
 Tags: share counter, social media share, social network share, social share, social share buttons, social sharing, facebook like, facebook share, facebook share button, like, share buttons, share links, sharebar, social buttons, facebook, facebook integration, facebook connect, google+, twitter, twitter share, linkedin share, pinterest button, button, share
 Tested up to: 4.9.5
-Stable tag: 1.9.5
+Stable tag: 1.9.7
 
 Social share buttons to increase social traffic and popularity. Social sharing to Facebook like and share, Twitter, Pinterest and other social networks
 
@@ -198,6 +198,15 @@ Here you can set when to show social share buttons:
 
 
 == Changelog ==
+
+= 1.9.7 / 15.05.2018 =
+ * Fixed displaying of social buttons with horizontal type of Supsystic Gallery
+ * Upgraded FontAwesome to version 4.7.0
+ * Fixed widget
+
+= 1.9.6 / 17.04.2018 =
+ * Fixed issue with display social buttons
+ * Minor issue fix
 
 = 1.9.5 / 04.04.2018 =
  * Fix issue with multisite installation
