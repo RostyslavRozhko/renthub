@@ -363,6 +363,8 @@ $(document).ready(function () {
 
   
     $('.fancybox, .link_del').fancybox({
+        padding: 0,
+        titleShow: false
     });
 
     $('.btn_nodel').click(function(e){

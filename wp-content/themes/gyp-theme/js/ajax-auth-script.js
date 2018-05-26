@@ -262,13 +262,15 @@ jQuery(document).ready(function ($) {
     }
 
     function openBox(content) {
-        // $.fancybox.open({
-        //     padding: [30, 60, 30, 60],
-        //     width: 250,
-        //     height: 30,
-        //     content: content,
-        //     closeBtn: false
-        // });
+        $.fancybox.open({
+            padding: [30, 60, 30, 60],
+            autoDimensions: false,
+            width: 250,
+            height: 40,
+            content: content,
+            closeBtn: false,
+            wrapCSS: 'error-mess'
+        });
     }
 
     function showTab(name, phone_number) {
