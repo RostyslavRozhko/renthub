@@ -263,7 +263,7 @@
                         <div class="author-side__name">
                             <img class="contact-ad__author-photo" src="<?php echo $ava; ?>" />
                             <div class="contact-ad__author-text">
-                                <?php echo the_author_posts_link(); ?>
+                                <?php echo the_author_meta('nickname');//echo the_author_posts_link(); ?>
                                 <a class="single__state" data-state="<?php echo $state; ?>"></a>
                                 <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
                             </div>
@@ -312,7 +312,8 @@
 <?php
   query_posts(array(
     'post_type' => POST_TYPE,
-    'posts_per_page' => -1,
+    //'posts_per_page' => -1,
+    'posts_per_page' => 10,
     'author' => $author_id
   ));
   $count = 0;

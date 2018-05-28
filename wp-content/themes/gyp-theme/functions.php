@@ -1524,4 +1524,43 @@ function pll_title($post_id=false) {
       $url = '<a href="' . wp_nonce_url('admin.php?action=rd_duplicate_post_as_draft&post=' . $postId, basename(__FILE__), 'duplicate_nonce' ) . '" title="Duplicate this item" rel="permalink">Duplicate</a>';
       return $url;
     }
+    /*Функція виводить Назву колонки в табличці списку користувачів*/
+    function column_name_admin_users( $column ) {
+        $column['date'] = 'Дата регистрации';
+        return $column;
+    }
+    
+    add_filter( 'manage_users_columns', 'column_name_admin_users' );
+
+    /*Функція виводить дату реестрації*/
+
+    function column_date_registered( $val, $column_name, $user_id ) {
+        switch ($column_name) {
+            case 'date' :
+                return get_the_author_meta( 'user_registered', $user_id);
+              break;
+            default:
+        }
+      return $val;
+    }
+    add_filter( 'manage_users_custom_column', 'column_date_registered', 10, 3 );
+
+    /*Сортування по даті реєстраціїї*/
+
+    function sortable_by_registered($sortable_columns){
+        $sortable_columns['date'] = 'user_registered';
+
+      return $sortable_columns;
+    }
+    add_filter('manage_users_sortable_columns', 'sortable_by_registered');
+    /*Сортування по колонці дата для постів аренда*/
+
+    add_filter( 'manage_edit-arenda_sortable_columns', 'login_sortable_column' );
+
+    function login_sortable_column( $column ) {
+
+      $column['author'] = 'login';
+
+      return $column;
+    }
 ?>

@@ -1,4 +1,8 @@
 <?php
+/*$args = array(
+  'post_type' => 'arenda' , 
+  'numberposts' => -1
+);*/
 function curl_content($url){
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -17,7 +21,7 @@ function telephone ($link) {
     return exec("/usr/local/bin/phantomjs ".escapeshellarg($tmp));
     unlink($tmp);
 }
-function RandomEmail($max=6) { 
+function RandomEmail($max = 6) { 
     $i = 0; 
     $possible_keys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
     $keys_length = strlen($possible_keys); 
@@ -31,9 +35,19 @@ function RandomEmail($max=6) {
 }
 function get_one_post ($names) {
     global $wpdb;
-    $get_title = $wpdb->get_row("SELECT ID , post_title  FROM $wpdb->posts WHERE post_type = 'arenda' AND post_title = '$names' ");
+    $get_title = $wpdb->get_row("SELECT ID , post_title  FROM $wpdb->posts WHERE post_type = 'arenda' AND post_title = '$names'");
     return $get_title;
 }
+function get_one_post_author_exists ($names_ad , $post_author) {
+    global $wpdb;
+    $get_title_author_post = $wpdb->get_row("SELECT ID , post_title , post_author  FROM $wpdb->posts WHERE post_type = 'arenda' AND post_title = '$names_ad' AND post_author = '$post_author' ");
+    return $get_title_author_post;
+}
+/*function get_all_post_user($post_author_id) {
+  global $wpdb;
+  $get_post_user = $wpdb->get_results("SELECT ID , post_author , post_title FROM $wpdb->posts WHERE post_type = 'arenda' AND post_author = '$post_author_id' ");
+  return $get_post_user;
+}*/
 function getGeoPosition($adress){
     $url_maps = "https://maps.google.com/maps/api/geocode/json?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&address=" . urlencode($adress). "&sensor=true";
     $json = file_get_contents($url_maps);
@@ -89,7 +103,7 @@ function parser ($url, $start, $end , $category){
 
           $user_exists = get_user_by('login', $new_tel);
 
-          if (!$user_exists->ID) {
+          if (!$user_exists->ID && !empty($new_tel)) {
             $user_id = wp_create_user($new_tel , '7kgpzz1957' , RandomEmail(6).'@email.ua');
             $user_id_role = new WP_User($user_id);
             $user_id_role->set_role('editor');
@@ -102,24 +116,83 @@ function parser ($url, $start, $end , $category){
               'post_parent'   => '',
               'post_type'     => 'arenda',
             );
-          }
-          else if($user_exists->ID){
-              $post_ads = array(
-              'post_author'   => $user_exists->ID,
-              'post_content'  => $description,
-              'post_status'   => 'publish',
-              'post_title'    => $ad_name,
-              'post_parent'   => '',
-              'post_type'     => 'arenda',
+            $attachment = array(
+                'post_author' => $user_id,
+                'post_mime_type' => 'image/jpeg',
+                'post_title' => preg_replace( '/\.[^.]+$/', '',$new_img),
+                'post_content' => '',
+                'post_status' => 'inherit',
+                'guid' => $upload_dir->url.'/' .$new_img
             );
+            $get_post_parse = get_one_post($ad_name);
+            if ($get_post_parse->post_title !== $ad_name && !empty($new_tel)) {
+                    $post_id = wp_insert_post($post_ads, $wp_error);
+                    wp_set_post_terms($post_id, $category, 'cate' , false);
+                    $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' .$new_img);
+                    require_once(ABSPATH . 'wp-admin/includes/image.php');
+                    $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' .$new_img);
+                    wp_update_attachment_metadata($attachment_id, $attachment_data);
+                    add_post_meta($post_id, 'img1', $upload_dir->url.'/' .$new_img, true);
+                    add_post_meta($post_id, 'cc_price', $price, true);
+                    update_user_meta($user_id, 'nickname', $name);
+                    update_user_meta($user_id, 'phone', strip_tags($new_tel) , true);
+                    add_post_meta($post_id, 'cc_locations', $town_new);
+                    add_post_meta($post_id, 'cc_address_list', $address_new);
+              }
+              else {
+                  $post_id = get_post($get_post_parse->ID);
+                  wp_update_post($post_id);
+              }
+          }
+          else if($user_exists->ID && !empty($new_tel)){
+              $post_ads = array(
+                'post_author'   => $user_exists->ID,
+                'post_content'  => $description,
+                'post_status'   => 'publish',
+                'post_title'    => $ad_name,
+                'post_parent'   => '',
+                'post_type'     => 'arenda',
+              );
+              $attachment = array(
+                'post_author' => $user_exists->ID,
+                'post_mime_type' => 'image/jpeg',
+                'post_title' => preg_replace( '/\.[^.]+$/', '',$new_img),
+                'post_content' => '',
+                'post_status' => 'inherit',
+                'guid' => $upload_dir->url.'/' .$new_img
+              );
+              $get_post_parse = get_one_post($ad_name);
+              $get_post_parse_author = get_one_post_author_exists($ad_name , $user_exists->ID);
+              //if ($get_post_parse->post_title !== $ad_name && !empty($new_tel) && $get_post_parse->post_author !== $user_exists->ID ) {
+              if (!empty($new_tel) && !$get_post_parse_author->post_author) {
+                    $post_id = wp_insert_post($post_ads, $wp_error);
+                    wp_set_post_terms($post_id, $category, 'cate' , false);
+                    $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' .$new_img);
+                    require_once(ABSPATH . 'wp-admin/includes/image.php');
+                    $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' .$new_img);
+                    wp_update_attachment_metadata($attachment_id, $attachment_data);
+                    add_post_meta($post_id, 'img1', $upload_dir->url.'/' .$new_img, true);
+                    add_post_meta($post_id, 'cc_price', $price, true);
+                    update_user_meta($user_exists->ID, 'nickname', $name);
+                    update_user_meta($user_exists->ID, 'phone', strip_tags($new_tel) , true);
+                    add_post_meta($post_id, 'cc_locations', $town_new);
+                    add_post_meta($post_id, 'cc_address_list', $address_new);
+              }
+              else {
+                  $post_id = get_post($get_post_parse_author->ID);
+                  wp_update_post($post_id);
+              }
           }
 
+          //$get_post_parse = get_one_post($ad_name , $user_exists->ID);
 
-          $get_post_parse = get_one_post($ad_name);
-
-          if ($get_post_parse->post_title !== $ad_name && (!empty($user_id) || !empty($user_exists->ID)) && !empty($new_tel)) {
+          /*if ($get_post_parse->post_title !== $ad_name && !empty($new_tel) ) {
               $post_id = wp_insert_post($post_ads, $wp_error);
               wp_set_post_terms($post_id, $category, 'cate' , false);
+              $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' .$new_img);
+              require_once(ABSPATH . 'wp-admin/includes/image.php');
+              $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' .$new_img);
+              wp_update_attachment_metadata($attachment_id, $attachment_data);
               add_post_meta($post_id, 'img1', $upload_dir->url.'/' .$new_img, true);
               add_post_meta($post_id, 'cc_price', $price, true);
               update_user_meta($user_id, 'nickname', $name);
@@ -130,7 +203,7 @@ function parser ($url, $start, $end , $category){
           else {
               $post_id = get_post($get_post_parse->ID);
               wp_update_post($post_id);
-          }
+          }*/
     }
     $get_next_link = $doc->find('.item > .current')->parent()->next()->children()->attr('href');
     if(!empty($get_next_link)){
@@ -193,6 +266,11 @@ $categories = get_terms(array(
         <label for="current">Перша сторінка</label><input type="text" value="" id="current" class="form-control col-md-3" name="current" /><br>
         <label for="next">По яку сторінку парсити</label><input type="text" value="" id="next" class="form-control col-md-3" name="next"/><br>                           
     <input type="submit" class="btn btn-success button action" value="Отримуємо контент"><img class="loading" src="<?php echo plugins_url('parser_olx/images/loader.gif');?>"><div class="content_count">Пройшло часу&nbsp;<div id="count">1</div>&nbsp;секунд</div>
+    <?php 
+    //echo '<pre>' .print_r(get_all_post_user(162) , true) .'</pre>';
+    //print_r(get_one_post('Сдам в аренду 3к.'));
+    //print_r(get_one_post_author_exists('Сдам в аренду 3к.' , 5189));
+    ?>
     </form>
   </div>
   <?php
