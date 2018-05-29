@@ -218,10 +218,10 @@ add_action('init','add_cors_http_header');
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
       $city_title = $item->title;
       $city_title .=  ' ' .$this->city_name;
+      $item_output = ""
 
       $url = add_query_arg(array('search_loc' => $this->city_id, 'address' => $this->city_name), esc_attr($item->url));
 
-      $attributes .= ! empty( $item->url )        ? ' href="'. $url .'"' : '';
       $item_output .= '<li>';
       $item_output .= '<a>';
       $item_output .= '<img src="'. get_wp_term_image($item->object_id) .'" >';
