@@ -350,7 +350,7 @@
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
                   <div class="search-list__cate-price"><?php echo max_price($cat_id); ?> грн/день</div>
                   <div class="search-list__cate-num">Предложений (<?php echo $count; ?>)</div>
-                  <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-text">Детальніше</a>
+                  <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-text">Подробнее</a>
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-arrow"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg"></a>
               </div>
               <?php if($counter == 2) : 
@@ -473,11 +473,11 @@
           </div>
 	    <?php
           endwhile;
-          echo '<div>';
+          echo '<div class="paginator">';
           echo paginate_links( array(
             'mid_size'  => 2,
-            'prev_text' => __( 'Back', 'prokkat' ),
-            'next_text' => __( 'Onward', 'prokkat' ),
+            'prev_text' => '<i class="fas fa-angle-left"></i>',
+            'next_text' => '<i class="fas fa-angle-right"></i>',
           ) ); 
           echo '</div>';
           wp_reset_postdata();

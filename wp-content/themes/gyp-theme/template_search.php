@@ -328,8 +328,8 @@
                       <?php
                         echo paginate_links( array(
                           'mid_size'  => 2,
-                          'prev_text' => __( 'Back', 'prokkat' ),
-                          'next_text' => __( 'Onward', 'prokkat' ),
+                          'prev_text' => '<i class="fas fa-angle-left"></i>',
+                          'next_text' => '<i class="fas fa-angle-right"></i>',
                         ) );
                         wp_reset_postdata();
                       ?>

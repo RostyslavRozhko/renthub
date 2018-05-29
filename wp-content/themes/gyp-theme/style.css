@@ -4243,6 +4243,42 @@ label.error {
 
 .paginator {
   margin-top: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.paginator .page-numbers {
+  margin: 0 5px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #f4f6f9;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  vertical-align: middle;
+  font-weight: bold;
+  color: #63666c;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.paginator .page-numbers:hover {
+  background-color: #ffd400;
+  color: #0a0f19;
+}
+
+.paginator .page-numbers.current {
+  background-color: #3e4658;
+  color: white;
+}
+
+.paginator .page-numbers.next {
+  float: right;
+}
+
+.paginator .page-numbers.prev {
+  float: left;
 }
 
 .maps-wrp {
