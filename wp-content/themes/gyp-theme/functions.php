@@ -6,6 +6,7 @@
   //require_once( get_template_directory() . '/admin/dynamic-image.php' );
   require_once( ABSPATH . '/wp-admin/includes/template.php' );
   require_once( get_stylesheet_directory() . '/map_functions.php' );
+  require_once( get_stylesheet_directory() . '/search-section.php' );
   require_once( get_stylesheet_directory() . '/messages_functions.php' );
   require_once( get_stylesheet_directory() . '/libs/custom-ajax-auth.php' );
   require_once( get_stylesheet_directory() . '/gateways/liqpay/liqpay-ipn.php' );

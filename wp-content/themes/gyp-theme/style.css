@@ -264,10 +264,41 @@ h3, p {
   font-family: 'Fira Sans', sans-serif;
 }
 
+.header-category-cities {
+  width: calc(100% - 2px);
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  z-index: 30;
+  box-sizing: border-box;
+}
+
+.header-category-city {
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.14;
+  letter-spacing: normal;
+  text-align: left;
+  color: #295fcc;
+  cursor: pointer;
+}
+
+.header-category-city:hover {
+  text-decoration: underline;
+}
+
 .search-icon-input {
+  position: absolute;
   top: 15px;
+  left: 15px;
   width: 20px;
   height: 20px;
+  z-index: 10;
 }
 
 .search-icon {
@@ -391,6 +422,13 @@ padding: 0 30px;
   background-color: #ffffff;
   font-weight: bold;
   color: #0a0f19;
+  position: relative;
+}
+
+.input-arrow-down {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .input_srch-header::placeholder {
@@ -897,6 +935,7 @@ padding: 0 30px;
 
 .form_srch-header .input-wrp_grid {
   flex: 2;
+  overflow: visible;
 }
 
 .form_srch-header .header__search-input {
@@ -3127,7 +3166,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .search-list__desc {
-  min-width: 516px;
   margin: 5px 0;
   font-size: 14px;
   color: #63666c;
@@ -4187,6 +4225,15 @@ input[list="select_options"] {
 
 .input_modal.valid {
   border-color: #7ee617;
+}
+
+.input_srch-header-btn:focus {
+  border: solid 1px #e6e6e6;
+  box-shadow: none;
+}
+
+.input_srch-header-btn {
+  cursor: pointer;
 }
 
 .error-mess .fancybox-inner {

@@ -112,7 +112,7 @@
 
       ?>
 
-<?php include_once("header-categories.php"); ?>
+<?php search_header_main(); ?>
 
 <div style="position: relative">
 <?php
@@ -256,7 +256,7 @@
               </a>
             </div>
             <div class="search-list__title">
-              <a href="<?php the_permalink() ?>"><?php echo the_title($post_id); ?></a>
+              <a href="<?php the_permalink() ?>"><?php echo pll_title($post_id); ?></a>
               <div class="search-list__desc"><?php echo content_excerpt(); ?></div>
               <div class="search-list__title-city">
                 <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >

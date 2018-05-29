@@ -787,4 +787,32 @@ $(document).ready(function () {
 
         document.location.href = href
     })
+
+    $('.input_srch-header-btn').keypress(function(e) {
+        return false
+    });
+
+    $('.input_srch-header-btn').click(function(e) {
+        e.preventDefault()
+        const cities = $('.header-category-cities')
+        if(cities.css('display') == 'none'){
+            cities.show()
+        } else {
+            cities.hide()
+        }
+    })
+
+    $('.header-category-city').click(function(e) {
+        e.preventDefault()
+        console.log('click')
+        const city = $(this)
+        const name = city.text()
+        const id = city.data('id')
+        
+        $('#s_addresss').val(name)
+        $('#s_city_id').val(id)
+
+        $('.header-category-cities').hide()
+    })
+
 });
