@@ -1,0 +1,2586 @@
+# Copyright (C) 2013 Classicraft Theme
+# This file is distributed under the same license as the WordPress package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Classicraft Theme 1.0\n"
+"Report-Msgid-Bugs-To: admin@inkthemes.comPOT-Creation-Date: 2012-10-12 12:47:23+00:00\n"
+"POT-Creation-Date: 2012-10-12 12:47:23+00:00\n"
+"PO-Revision-Date: 2018-03-23 16:17+0200\n"
+"Last-Translator: \n"
+"Language-Team: Inkthemes\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Contacts"
+msgstr "Контакти"
+
+msgid "Sign in"
+msgstr "Увійти"
+
+msgid "This ad is no longer actual"
+msgstr "Дане оголошення вже не актуальне"
+
+msgid "Delete dialogue"
+msgstr "Видалити діалог"
+
+msgid "Dialogue was successfully deleted!"
+msgstr "Діалог був успішно видалений!"
+
+msgid "No permission!"
+msgstr "Немає дозволу!"
+
+msgid "Invalid Token!"
+msgstr "Неприпустимий маркер!"
+
+msgid "Invalid Token. Please try again!"
+msgstr "Неприпустимий маркер. Будь ласка спробуйте ще раз!"
+
+msgid "Your or Recipients Message Box Is Full!"
+msgstr "Ваша скринька повідомлень або одержувача заповнена!"
+
+msgid "Your Message Box Is Full! Please delete some messages."
+msgstr "Ваша скринька повідомлень заповнена! Будь ласка, видаліть кілька повідомлень."
+
+msgid "You do not have permission to send this message!"
+msgstr "У вас немає дозволу на відправку цього повідомлення!"
+
+msgid "You cannot send messages because you are blocked by administrator!"
+msgstr "Ви не можете відправляти повідомлення, тому що ви заблоковані адміністратором!"
+
+msgid "Please wait at least more 1 хв. to send another message!"
+msgstr "Будь ласка, зачекайте принаймні 1 хвилину, щоб відправити ще одне повідомлення!"
+
+msgid "Message text"
+msgstr "Текст повідомлення"
+
+msgid "New message"
+msgstr "Нове повідомлення"
+
+msgid "You have no messages."
+msgstr "У вас ще немає повідомлень."
+
+msgid "Open"
+msgstr "Відкрити"
+
+msgid "Last message from:"
+msgstr "Останнє повідомлення від:"
+
+msgid "Correspondence with "
+msgstr "Переписка з "
+
+msgid "Log in to write message."
+msgstr "Увійдіть, щоб написати повідомлення."
+
+msgid "Sending message..."
+msgstr "Відправлення повідомлення..."
+
+msgid "Message successfully sent."
+msgstr "Повідомлення надіслано успішно."
+
+msgid "You signed up as a manufacturer, so you can add ads with your sweets.<br />Our visitors will become your regular customers."
+msgstr "Ви зареєструвались як виробник, тому можете додавати оголошення з Власними солодощами.<br />Наші відвідувачі станусь Вашими постійними клієнтами."
+
+msgid "My messages"
+msgstr "Мої повідомлення"
+
+msgid "Later"
+msgstr "Пізніше"
+
+msgid "Checkout"
+msgstr "Перейти до оплати"
+
+msgid "Latest ads"
+msgstr "Останні оголошення"
+
+msgid "Please upload at least 1 photo."
+msgstr "Будь ласка, завантажте щонайменше 1 фото."
+
+msgid "Check your email to continue activation!"
+msgstr "Перевірте свою пошту для продовження активації!"
+
+msgid "Error"
+msgstr "Помилка"
+
+msgid "Your account is already activated."
+msgstr "Ваш обліковий запис вже активовано."
+
+msgid "View phone: "
+msgstr "Переглянуло телефон: "
+
+msgid "Ecco"
+msgstr "Еко"
+
+msgid "Quality Control"
+msgstr "Якість Перевірена"
+
+msgid "Free Delivery"
+msgstr "Доставка"
+
+msgid "Main image"
+msgstr "Головне зображення"
+
+msgid "Make the main"
+msgstr "Зробити головним"
+
+msgid "Select photo"
+msgstr "Вибрати фото"
+
+msgid "Select taste"
+msgstr "Оберіть смак"
+
+msgid "Select event"
+msgstr "Оберіть подію"
+
+msgid "Your account has been successfully activated."
+msgstr "Ваш обліковий запис успішно активовано."
+
+msgid "Thanks, your email was sent successfully."
+msgstr "Дякуємо, Ваше повідомлення було успішно відправлене."
+
+msgid "Subcategory"
+msgstr "Підкатегорія"
+
+msgid "The maximum number of photos:"
+msgstr "Максимальна кількість фото:"
+
+msgid "Your account is not activated."
+msgstr "Ваш обліковий запис не активовано."
+
+msgid "Renew"
+msgstr "Поновити"
+
+msgid "Delete"
+msgstr "Видалити"
+
+msgid "Make Premium"
+msgstr "Зробити Преміум"
+
+msgid "Want to add a new ad?"
+msgstr "Бажаєте додати нове оголошення?"
+
+msgid "Archive is empty"
+msgstr "Архів порожній"
+
+msgid "Which event your ad belongs to"
+msgstr "До якої події належить ваше оголошення"
+
+msgid "Select the taste of the product"
+msgstr "Оберіть смак виробу"
+
+msgid "Product category"
+msgstr "Категорія виробу"
+
+msgid "Start typing the name of the city"
+msgstr "Почніть вводити назву міста"
+
+msgid "Enter your city"
+msgstr "Введіть назву міста"
+
+msgid "Price by agreement"
+msgstr "Ціна договірна"
+
+msgid "Price for"
+msgstr "Ціна за"
+
+msgid "kg"
+msgstr "кг"
+
+msgid "tm"
+msgstr "шт"
+
+msgid "Congratulations, your ad has been published"
+msgstr "Вітаємо, Ваше оголошення опубліковане"
+
+msgid "New message on Sweetico"
+msgstr "Нове повідомлення на сайті Prokkat"
+
+msgid "Welcome to Prokkat!"
+msgstr "Вітаємо Вас на Prokkat!"
+
+msgid "Check your email address for you new password."
+msgstr "Перевірте свою адресу електронної пошти. Ми відправили Вам лист з новим паролем."
+
+msgid "Your new password"
+msgstr "Ваш новий пароль"
+
+msgid "Your new password is: "
+msgstr "Ваш новий пароль: "
+
+msgid "Change password"
+msgstr "Змінити пароль"
+
+msgid "Change profile picture:"
+msgstr "Змінити зображення профілю:"
+
+msgid "Your message has been sent"
+msgstr "Ваше повідомлення було відправлено"
+
+msgid "Wrong answer."
+msgstr "Відповідь неправильна."
+
+msgid "Enter the answer"
+msgstr "Введіть відповідь"
+
+msgid "Ask the manufacturer"
+msgstr "Задати запитання власнику"
+
+msgid "I agree to the terms of the <a target='_blank' href='%s'>license</a>."
+msgstr "Я погоджуюсь на умови <a target='_blank' href='%s'>ліцензії</a>."
+
+msgid "Password again"
+msgstr "Повторіть пароль"
+
+msgid "min."
+msgstr "мін."
+
+msgid "or"
+msgstr "або"
+
+msgid "Sign in with Facebook"
+msgstr "Увійдіть з Facebook"
+
+msgid "Sign in to your account"
+msgstr "Увійдіть у свій обліковий запис"
+
+msgid "Add Premium features!"
+msgstr "Додати Преміум можливості!"
+
+msgid "Please try another search phrase or go back to the main page."
+msgstr "Будь ласка, спробуйте іншу пошукову фразу або ж поверніться на головну сторінку."
+
+msgid "Sorry, at Sweetico there is no ads for your request!"
+msgstr "Вибачте, на Sweetico немає жодного оголошення за Вашим запитом!"
+
+msgid "Sorry, at Prokkat there is no ads for your request!"
+msgstr "Вибачте, на Prokkat немає жодного оголошення за Вашим запитом!"
+
+msgid "Nothing found..."
+msgstr "Нічого не знайдено..."
+
+msgid "Publish ad"
+msgstr "Опублікувати оголошення"
+
+msgid "Location"
+msgstr "Місце розташування"
+
+msgid "Your contact details"
+msgstr "Ваші контактні дані"
+
+msgid "Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services."
+msgstr "Завантажте фото власних солодощів в галерею. Пам’ятайте, що чим якісніше фото - тим більше людей зацікавляться Вашими послугами."
+
+msgid "Upload photos"
+msgstr "Завантажте фото"
+
+msgid "category items"
+msgstr "категорії"
+
+msgid "characters"
+msgstr "символів"
+
+msgid "Ad description"
+msgstr "Опис оголошення"
+
+msgid "Once it is activated, we will send you an e-mail. This usually takes no more than 15 minutes."
+msgstr "Як тільки воно буде активоване, ми надішлемо Вам електронного листа. Як правило, це займає не більше 15 хв."
+
+msgid "Your ad has been successfully added and sent for check!"
+msgstr "Ваше оголошення було успішно додано та відправлено на перевірку!"
+
+msgid "Thank you!"
+msgstr "Дякуємо!"
+
+msgid "Find sweet"
+msgstr "Знайти солоденьке"
+
+msgid "Follow us"
+msgstr "Слідкуйте за нами"
+
+msgid "Change"
+msgstr "Змінити"
+
+msgid "This category does not include ads"
+msgstr "Дана категорія  не містить оголошень"
+
+msgid "Premium items"
+msgstr "Преміум позиції"
+
+msgid "Popular sweets"
+msgstr "Найпопулярніші солодощі"
+
+msgid "Choose sweets for specific event or celebration"
+msgstr "Оберіть цукерки на певну подію чи свято"
+
+msgid "Choose pastries for specific event or celebration"
+msgstr "Оберіть випічку на певну подію чи свято"
+
+msgid "Fine desserts from the best masters"
+msgstr "Вишуканні десерти від найкращих майстрів"
+
+msgid "Review"
+msgstr "Переглянути"
+
+msgid "Choose a cake for specific event or celebration"
+msgstr "Оберіть тортик на певну подію чи свято"
+
+msgid "Sweet categories"
+msgstr "Солодкі категорії"
+
+msgid "Premium sweets"
+msgstr "Преміум солодощі"
+
+msgid "For graduation"
+msgstr "На випускний"
+
+msgid "For birthday"
+msgstr "На день народження"
+
+msgid "For newborns"
+msgstr "Новонародженим"
+
+msgid "For anniversary"
+msgstr "До дня ювілею"
+
+msgid "For wedding"
+msgstr "На весілля"
+
+msgid "Sweets by events"
+msgstr "Солодощі за подіями"
+
+msgid "Sweets by taste"
+msgstr "Солодощі за смаками"
+
+msgid "If you are a confectioner and want to sell your own pastries - add ads and find your sweet tooth."
+msgstr "Якщо Ви кондитер і хочете продавати власну випічку - додавайте оголошення і знаходьте своїх ласунів."
+
+msgid "All Ukraine (start typing the name of the city)"
+msgstr "Вся Україна (почніть вводити назву міста)"
+
+msgid "All Ukraine"
+msgstr "Вся Україна"
+
+msgid " ads"
+msgstr " оголошень"
+
+msgid "Add ads"
+msgstr "Додайте оголошення"
+
+msgid "Search sweets in Sweetico catalog,<br />buy and leave feedback."
+msgstr "Шукайте солодощі в каталозі Sweetico,<br />купуйте та залишайте відгуки."
+
+msgid "Buy sweets"
+msgstr "Купуйте солодощі"
+
+msgid "Get your order"
+msgstr "Отримай замовлення"
+
+msgid "Contact with the seller"
+msgstr "Зв’яжись з продавцем"
+
+msgid "Find sweet!"
+msgstr "Знайди солоденьке!"
+
+msgid "Our cakes are worth your candles!"
+msgstr "Наші тортики варті Ваших свічок!"
+
+msgid "No description available"
+msgstr "Опис відсутній"
+
+msgid "Login for manufacturers"
+msgstr "Вхід для виробників"
+
+msgid "An ad has been deleted"
+msgstr "Оголошення було видалено"
+
+msgid "Edit Ad"
+msgstr "Редагувати оголошення"
+
+msgid "Delete Ad"
+msgstr "Видалити оголошення"
+
+msgid "Thank you for your payment"
+msgstr "Дякуємо Вам за оплату"
+
+msgid "Failed"
+msgstr "Помилка"
+
+msgid "Completed"
+msgstr "Завершений"
+
+msgid "Other sweets from this manufacturer"
+msgstr "Інші солодощі цього виробника"
+
+msgid "Benefits"
+msgstr "Винагороди"
+
+msgid "Manufacturer"
+msgstr "Виробник"
+
+msgid "Open map"
+msgstr "Відкрити карту"
+
+msgid "Placing"
+msgstr "Розміщення"
+
+msgid "Send"
+msgstr "Надіслати"
+
+msgid "Show"
+msgstr "Показати"
+
+msgid "show"
+msgstr "показати"
+
+msgid "Hide"
+msgstr "Приховати"
+
+msgid "Views: "
+msgstr "Переглядів: "
+
+msgid "Write to manufacturer"
+msgstr "Написати виробнику"
+
+msgid "Manufacturer ads"
+msgstr "Oголошення виробника"
+
+msgid "About manufacturer"
+msgstr "Про виробника"
+
+msgid "About me"
+msgstr "Про себе"
+
+msgid "c."
+msgstr "м."
+
+msgid "from"
+msgstr "від"
+
+msgid "City:"
+msgstr "Місто:"
+
+msgid "Enter e-mail address."
+msgstr "Введіть e-mail адресу."
+
+msgid "Password doesn't match"
+msgstr "Паролі не співпадають"
+
+msgid "Oops! Something went wrong while updaing your account."
+msgstr "На жаль, щось пішло не так при оновленні вашого облікового запису."
+
+msgid "System is unable to send you mail containg your new password."
+msgstr "Система не може відправити вам лист, що містить новий пароль."
+
+msgid "There is no user registered with that email address."
+msgstr "Користувача з цією e-mail адресою не зареєстровано."
+
+msgid "Invalid e-mail address."
+msgstr "Некоректна e-mail адреса"
+
+msgid "Log In"
+msgstr "Увійти"
+
+msgid "Lost password?"
+msgstr "Забули пароль?"
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "This email address is already registered."
+msgstr "Ця email адреса вже зареєстрована."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "This username is already registered."
+msgstr "Це ім'я користувача вже зареєстровано."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "Login successful, redirecting..."
+msgstr "Авторизація успішна, перенаправлення..."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "Registration successful, redirecting..."
+msgstr "Реєстрація успішна, перенаправлення..."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "Wrong email or password."
+msgstr "Неправильна email адреса або пароль."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "This field is required."
+msgstr "Це поле є обов'язковим."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "Please enter the same value again."
+msgstr "Будь ласка, введіть те ж значення знову."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "Please enter a valid email address."
+msgstr "Будь ласка, введіть дійсну email адресу."
+
+#: classicrafttheme-child/libs/custom-ajax-auth.php
+msgid "Sending user info, please wait..."
+msgstr "Відправка інформації про користувача, будь ласка, зачекайте..."
+
+msgid "Your listing has been renewed"
+msgstr ""
+
+msgid "Your ad has been updated."
+msgstr "Ваше оголошення було оновлено."
+
+msgid "Cancel"
+msgstr "Cкасувати"
+
+msgid "Drag and drop to reorder"
+msgstr "Перетягніть щоб змінити порядок"
+
+msgid "Phone:"
+msgstr "Телефон:"
+
+msgid "About manufacturer:"
+msgstr "Інформація про виробника:"
+
+msgid "About me:"
+msgstr "Інформація про мене:"
+
+msgid "Name of manufacturer:"
+msgstr "Назва виробника:"
+
+msgid "Name of manufacturer"
+msgstr "Назва виробника"
+
+msgid "in city"
+msgstr "у місті"
+
+msgid "Search result: "
+msgstr "Результат пошуку: "
+
+msgid "A special highlight in the list of items: absent."
+msgstr "Особливе виділення в переліку оголошень: відсутнє."
+
+msgid "A special highlight in the list of items."
+msgstr "Особливе виділення в переліку оглошень."
+
+#: classicrafttheme-child\template_ad_new.php
+msgid "Feature this listing on homepage"
+msgstr "Відображати оголошення на головній сторінці"
+
+#: classicrafttheme-child\template_ad_new.php
+msgid "Feature this listing on category pages"
+msgstr "Відображати оголошення на сторінці категорії"
+
+msgid "Post an Ad"
+msgstr "Додати оголошення"
+
+msgid "Add photo"
+msgstr "Додати фото"
+
+#: template_ad_new.php
+msgid "Add your free ad on Sweetico"
+msgstr "Додати безкоштовне оголошення на Sweetico"
+
+#: header.php
+msgid "Remove"
+msgstr "Видалити"
+
+#: header.php
+msgid "Sorry, you can select only three categories for your ad."
+msgstr "Вибачте, ви можете обрати максимум три категорії для свого оголошення."
+
+#: header.php
+msgid "Search"
+msgstr "Пошук"
+
+msgid "This field is required"
+msgstr "Це поле є обов'язковим"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Street Address"
+msgstr "Адреса вулиці"
+
+msgid "Do you really want to delete your ad?"
+msgstr "Ви дійсно бажаєте видалити дане оголошення?"
+
+msgid "Do you really want to delete this dialogue?"
+msgstr "Ви дійсно бажаєте видалити цей діалог?"
+
+msgid "Premium"
+msgstr "Преміум"
+
+msgid "Cost : "
+msgstr "Ціна : "
+
+msgid "Please enter title"
+msgstr "Будь ласка, введіть назву"
+
+msgid "Please enter description"
+msgstr "Будь ласка, введіть опис"
+
+msgid "Please enter price"
+msgstr "Будь ласка, введіть вартість "
+
+msgid "Please select category"
+msgstr "Будь ласка, оберіть категорію"
+
+msgid "Pending for Approval"
+msgstr "Очікує перевірки"
+
+msgid "Approved"
+msgstr "Опублікований"
+
+msgid "My Dashboard"
+msgstr "Мій кабінет"
+
+msgid "Photos"
+msgstr "Фото"
+
+msgid "Price"
+msgstr "Вартість"
+
+msgid "Address"
+msgstr "Адреса"
+
+msgid "City"
+msgstr "Місто"
+
+msgid "Attach photo"
+msgstr "Прикріпити фото"
+
+msgid "Select one"
+msgstr "Вибрати"
+
+msgid "Add New Sweetico Ads"
+msgstr "Додати нове оголошення"
+
+msgid "Vinnitska"
+msgstr "Вінницька"
+
+msgid "Volinska"
+msgstr "Волинська"
+
+msgid "Donetska"
+msgstr "Донецька"
+
+msgid "Dnipropetrovska"
+msgstr "Дніпропетровська"
+
+msgid "Zhitomirska"
+msgstr "Житомирська"
+
+msgid "Zakarpatska"
+msgstr "Закарпатська"
+
+msgid "Zaporizka"
+msgstr "Запорізька"
+
+msgid "Ivano-Frankivska"
+msgstr "Івано-Франківська"
+
+msgid "Kiyivska"
+msgstr "Київська"
+
+msgid "Kirovogradska"
+msgstr "Кіровоградська"
+
+msgid "Luganska"
+msgstr "Луганська"
+
+msgid "Lvivska"
+msgstr "Львівська"
+
+msgid "Mikolayivska"
+msgstr "Миколаївська"
+
+msgid "Odeska"
+msgstr "Одеська"
+
+msgid "Poltavska"
+msgstr "Полтавська"
+
+msgid "Rivnenska"
+msgstr "Рівненська"
+
+msgid "Sumska"
+msgstr "Сумська"
+
+msgid "Ternopilska"
+msgstr "Тернопільська"
+
+msgid "Harkivska"
+msgstr "Харківська"
+
+msgid "Hersonska"
+msgstr "Херсонська"
+
+msgid "Hmelnitska"
+msgstr "Хмельницька"
+
+msgid "Cherkaska"
+msgstr "Черкаська"
+
+msgid "Chernivetska"
+msgstr "Чернівецька"
+
+msgid "Chernigivska"
+msgstr "Чернігівська"
+
+msgid "m. Kyiv"
+msgstr "м. Київ"
+
+msgid "Cookies"
+msgstr "Печиво"
+
+msgid "Events"
+msgstr "Події"
+
+msgid "Wedding"
+msgstr "Весілля"
+
+msgid "Anniversary"
+msgstr "Ювілей"
+
+msgid "Birthday"
+msgstr "День Народження"
+
+msgid "Baby Shower"
+msgstr "Новонароджений"
+
+msgid "Graduation"
+msgstr "Випускний"
+
+msgid "Muffins"
+msgstr "Мафін"
+
+msgid "Deserts"
+msgstr "Десерти"
+
+msgid "Eclairs"
+msgstr "Еклери"
+
+msgid "Macaroons"
+msgstr "Макаруни"
+
+msgid "Sweets"
+msgstr "Цукерки"
+
+msgid "Chocolates"
+msgstr "Шоколад"
+
+msgid "Lollipops"
+msgstr "Льодяники"
+
+msgid "Marshmallow"
+msgstr "Зефір"
+
+msgid "Candies"
+msgstr "Карамель"
+
+msgid "Сookies"
+msgstr "Печиво"
+
+msgid "Brownie"
+msgstr "Брауні"
+
+msgid "Cakes"
+msgstr "Торти"
+
+msgid "Tastes"
+msgstr "Смак"
+
+msgid "Pastille"
+msgstr "Пастіла"
+
+msgid "Baking"
+msgstr "Випічка"
+
+msgid "Pastries"
+msgstr "Тістечка"
+
+msgid "Classic Cakes"
+msgstr "Класичний"
+
+msgid "Chocolate"
+msgstr "Шоколадний"
+
+msgid "Nutty"
+msgstr "Горіховий"
+
+msgid "Frutty"
+msgstr "Фруктовий"
+
+msgid "Jelly"
+msgstr "Желейний"
+
+msgid "Napoleon"
+msgstr "Наполеон"
+
+msgid "Tart"
+msgstr "Тарт"
+
+msgid "Cream"
+msgstr "Кремовий"
+
+msgid "Biscuit"
+msgstr "Бісквітний "
+
+msgid "Cupcakes"
+msgstr "Кап Кейк"
+
+msgid "Pies"
+msgstr "Пироги"
+
+msgid "Other"
+msgstr "Інше"
+
+#: lib_path.php:4
+msgid "Custom Fields"
+msgstr ""
+
+#: lib_path.php:5 pricing_path.php:60
+msgid "Save All Changes"
+msgstr ""
+
+#: lib_path.php:6 pricing_path.php:56
+msgid "Free Payment Package"
+msgstr ""
+
+#: lib_path.php:7 pricing_path.php:57
+msgid "One Time Payment Package"
+msgstr ""
+
+#: lib_path.php:8 pricing_path.php:58
+msgid "Recurring Payment Package"
+msgstr ""
+
+#: lib_path.php:9
+msgid "Manage Currency"
+msgstr ""
+
+#: lib_path.php:10
+msgid "Pricing Settings"
+msgstr ""
+
+#: lib_path.php:12
+msgid "Import And Export"
+msgstr ""
+
+#: lib_path.php:13 admin_path.php:27
+msgid "Options"
+msgstr "Опції"
+
+#: lib_path.php:14
+msgid "Export to CSV"
+msgstr ""
+
+#: lib_path.php:15
+msgid "Upload your CSV"
+msgstr ""
+
+#: lib_path.php:16
+msgid "Import"
+msgstr ""
+
+#: lib_path.php:17
+msgid "Import Sucessful"
+msgstr ""
+
+#: lib_path.php:18
+msgid "An Error in uploading"
+msgstr ""
+
+#: lib_path.php:19
+msgid "Invalid File"
+msgstr ""
+
+#: lib_path.php:20
+msgid "Allow only Csv File"
+msgstr ""
+
+#: lib_path.php:21
+msgid "Temparory File"
+msgstr ""
+
+#: lib_path.php:23
+msgid "A lead has been deleted"
+msgstr ""
+
+#: lib_path.php:24
+msgid "Classified Leads"
+msgstr ""
+
+#: lib_path.php:25
+msgid "S.No."
+msgstr ""
+
+#: lib_path.php:26
+msgid "Name"
+msgstr "Ім'я"
+
+msgid "Name:"
+msgstr "Ім'я:"
+
+#: lib_path.php:27
+msgid "Email Address"
+msgstr ""
+
+#: lib_path.php:28
+msgid "Post Author"
+msgstr ""
+
+#: lib_path.php:29 template_path.php:76
+msgid "Message"
+msgstr "Повідомлення"
+
+#: lib_path.php:30
+msgid "Action"
+msgstr ""
+
+#: lib_path.php:31
+msgid "You currently have no leads"
+msgstr ""
+
+#: lib_path.php:32
+msgid "Items"
+msgstr ""
+
+#: lib_path.php:34
+msgid "Your Expired Ads"
+msgstr "Архів оголошень"
+
+#: lib_path.php:35
+msgid "Ad Title"
+msgstr "Назва оголошення"
+
+#: lib_path.php:36
+msgid "Categories"
+msgstr "Категорії"
+
+#: lib_path.php:37
+msgid "You currently have no ads"
+msgstr "У Вас немає активних оголошень"
+
+#: lib_path.php:37
+msgid "Your Leads"
+msgstr ""
+
+#: lib_path.php:41
+msgid "Classified Transactions"
+msgstr ""
+
+#: lib_path.php:42
+msgid "ID"
+msgstr ""
+
+#: lib_path.php:43
+msgid "Listing ID"
+msgstr ""
+
+#: lib_path.php:44
+msgid "User Name"
+msgstr ""
+
+#: lib_path.php:45
+msgid "Payer Email"
+msgstr ""
+
+#: lib_path.php:46
+msgid "Listing Title"
+msgstr ""
+
+#: lib_path.php:47
+msgid "Transaction ID"
+msgstr ""
+
+#: lib_path.php:48
+msgid "Payment Status"
+msgstr "Статус оплати"
+
+#: lib_path.php:49
+msgid "Total Amount"
+msgstr ""
+
+#: lib_path.php:50
+msgid "Paid Date"
+msgstr ""
+
+#: lib_path.php:51
+msgid "No transactions found."
+msgstr ""
+
+#: lib_path.php:53
+msgid "Your Ads"
+msgstr "Ваші оголошення"
+
+#: lib_path.php:54
+msgid "Views"
+msgstr "Перегляди"
+
+#: lib_path.php:55 pricing_path.php:19
+msgid "Status"
+msgstr "Статус"
+
+#: lib_path.php:57
+msgid "Member since:"
+msgstr "Учасник з:"
+
+#: lib_path.php:58
+msgid "User Options"
+msgstr "Панель управління"
+
+#: lib_path.php:59
+msgid "Add Ad"
+msgstr "Подати оголошення"
+
+#: lib_path.php:60
+msgid "My Ads"
+msgstr "Мої оголошення"
+
+#: lib_path.php:61
+msgid "View comments"
+msgstr "Переглянути коментарі"
+
+#: lib_path.php:62
+msgid "View Leads"
+msgstr "Переглянути ліди"
+
+#: lib_path.php:63
+msgid "View Expired Ads"
+msgstr "Архів оголошень"
+
+#: lib_path.php:64
+msgid "Edit Profile"
+msgstr "Редагувати профіль"
+
+#: lib_path.php:65
+msgid "Welcome"
+msgstr "Ласкаво просимо"
+
+#: lib_path.php:66
+msgid "Account Information"
+msgstr ""
+
+#: lib_path.php:68
+msgid "Select Category"
+msgstr "Оберіть категорію"
+
+#: lib_path.php:69 lib_path.php:198
+msgid "Description"
+msgstr "Опис"
+
+#: lib_path.php:70
+msgid "Update"
+msgstr "Оновити"
+
+#: lib_path.php:71
+msgid "Want to Upgrade your Listing to Premium ?"
+msgstr "Бажаєте оновити пакет до Преміум ?"
+
+#: lib_path.php:72
+msgid "Upgrade now to get more visibility to your listing and get leads directly on your Dashboard."
+msgstr ""
+
+#: lib_path.php:73
+msgid "Upgrade"
+msgstr "Оновити"
+
+#: lib_path.php:74
+msgid "Billing terms: %s%d %s for first %d %s, then %s%d %s for every %d %s, for %d installments"
+msgstr ""
+
+#: lib_path.php:75
+msgid "Billing terms: %s%d %s for first %d %s, then %s%d %s for each %d %s"
+msgstr ""
+
+#: lib_path.php:76
+msgid "Valid Up to :"
+msgstr "Термін дії оголошення :"
+
+#: lib_path.php:77
+msgid "Would you like to make this listing featured?"
+msgstr ""
+
+#: lib_path.php:78
+msgid "Yes feature this listing on homepage."
+msgstr ""
+
+#: lib_path.php:79
+msgid "Yes feature this listing on category pages."
+msgstr ""
+
+#: lib_path.php:80
+msgid "An additional amount will be charged to make this place featured. You have the option to feature your place on home page or category page or both."
+msgstr ""
+
+#: lib_path.php:81
+msgid "Total price as per your selection."
+msgstr "Загальна вартість за Вашим вибором."
+
+#: lib_path.php:82
+msgid "Note: You will be able to see a preview in the next page"
+msgstr ""
+
+#: lib_path.php:84
+msgid "Your profile has been updated"
+msgstr "Ваш профіль був оновлений"
+
+#: lib_path.php:85
+msgid "Your password has been updated"
+msgstr "Ваш пароль був оновлений"
+
+#: lib_path.php:86
+msgid "Password doesn't match!"
+msgstr ""
+
+#: lib_path.php:87
+msgid "User Name:"
+msgstr "Ваш логин:"
+
+#: lib_path.php:88
+msgid "Usernames cannot be changed."
+msgstr ""
+
+#: lib_path.php:89
+msgid "First Name:"
+msgstr ""
+
+#: lib_path.php:90
+msgid "Your first name."
+msgstr ""
+
+#: lib_path.php:91
+msgid "Last Name:"
+msgstr ""
+
+#: lib_path.php:92
+msgid "Your last name."
+msgstr ""
+
+#: lib_path.php:93
+msgid "Nick Name:"
+msgstr ""
+
+#: lib_path.php:94
+msgid "Your nick name."
+msgstr ""
+
+#: lib_path.php:95
+msgid "Your Email:"
+msgstr ""
+
+#: lib_path.php:96
+msgid "Your email (Required)."
+msgstr ""
+
+#: lib_path.php:97
+msgid "Website:"
+msgstr "Адреса веб-сайту:"
+
+#: lib_path.php:98
+msgid "Your website."
+msgstr ""
+
+#: lib_path.php:99
+msgid "Aim:"
+msgstr ""
+
+#: lib_path.php:100
+msgid "Your aim id."
+msgstr ""
+
+#: lib_path.php:101
+msgid "Yahoo Im:"
+msgstr ""
+
+#: lib_path.php:102
+msgid "Your yahoo id."
+msgstr ""
+
+#: lib_path.php:103
+msgid "Jabber / Google Talk:"
+msgstr ""
+
+#: lib_path.php:104
+msgid "Your gtalk id."
+msgstr ""
+
+#: lib_path.php:105
+msgid "About Yourself:"
+msgstr ""
+
+#: lib_path.php:106
+msgid "Share a little biographical information to fill out your profile. This may be shown publicly."
+msgstr ""
+
+#: lib_path.php:107
+msgid "New Password:"
+msgstr "Новий пароль"
+
+#: lib_path.php:108
+msgid "If you would like to change the password type a new one. Otherwise leave this blank."
+msgstr ""
+
+#: lib_path.php:109 lib_path.php:154
+msgid "Please enter password twice."
+msgstr "Новий пароль повторно:"
+
+#: lib_path.php:110
+msgid "Type your new password again."
+msgstr "Новий пароль ще раз"
+
+#: lib_path.php:111
+msgid "Update Profile"
+msgstr "Оновити профіль"
+
+#: lib_path.php:113
+msgid "Your Comments"
+msgstr ""
+
+#: lib_path.php:114
+msgid "Author"
+msgstr ""
+
+#: lib_path.php:115
+msgid "Comments"
+msgstr ""
+
+#: lib_path.php:116
+msgid "In Response To"
+msgstr ""
+
+#: lib_path.php:117
+msgid "Submitted on"
+msgstr ""
+
+#: lib_path.php:118
+msgid "You currently have no comments."
+msgstr ""
+
+#: lib_path.php:121
+msgid "Ad Details"
+msgstr ""
+
+#: lib_path.php:123 lib_path.php:212
+msgid "Free Ad"
+msgstr "Безкоштовне оголошення"
+
+#: lib_path.php:124
+msgid "Premium Ad"
+msgstr "Преміум оголошення"
+
+#: lib_path.php:125
+msgid "Feature on Home Page Slider"
+msgstr ""
+
+#: lib_path.php:126
+msgid "Feature on Category Page Slider"
+msgstr ""
+
+#: lib_path.php:127
+msgid "Ad Type"
+msgstr ""
+
+#: lib_path.php:128
+msgid "Feature this Ad"
+msgstr ""
+
+#: lib_path.php:131
+msgid "Please enter your name."
+msgstr "Будь ласка, введіть своє ім'я"
+
+#: lib_path.php:132
+msgid "Будь ласка, введіть ваш email адрес."
+msgstr ""
+
+#: lib_path.php:133
+msgid "You entered an invalid email address."
+msgstr ""
+
+#: lib_path.php:134
+msgid "Please enter a message."
+msgstr ""
+
+#: lib_path.php:135
+msgid "Enter valid captcha."
+msgstr ""
+
+#: lib_path.php:136
+msgid "Email"
+msgstr "Email"
+
+#: lib_path.php:137
+msgid "Enter Captcha"
+msgstr ""
+
+#: lib_path.php:138
+msgid "Your query has been sent"
+msgstr ""
+
+#: lib_path.php:140
+msgid "All Dummy data has been removed from your database successfully!"
+msgstr ""
+
+#: lib_path.php:141
+msgid "Theme activated successfully."
+msgstr ""
+
+#: lib_path.php:142
+msgid "Sample data has been populated on your site. Wish to delete sample data?"
+msgstr ""
+
+#: lib_path.php:143
+msgid "Yes Delete Please!"
+msgstr ""
+
+#: lib_path.php:144
+msgid "Would you like to populate sample data on your site?"
+msgstr ""
+
+#: lib_path.php:145
+msgid "Yes Insert Sample Data"
+msgstr ""
+
+#: lib_path.php:147
+msgid "Please enter a username."
+msgstr ""
+
+#: lib_path.php:148
+msgid "This username is invalid.  Please enter a valid username."
+msgstr ""
+
+#: lib_path.php:149
+msgid "This username is already registered, please choose another one."
+msgstr ""
+
+#: lib_path.php:150
+msgid "Please type your e-mail address."
+msgstr ""
+
+#: lib_path.php:151
+msgid "The email address isn&#8217;t correct."
+msgstr ""
+
+#: lib_path.php:152
+msgid "This email is already registered please choose another one."
+msgstr ""
+
+#: lib_path.php:153
+msgid "Please enter a password."
+msgstr ""
+
+#: lib_path.php:155
+msgid "Passwords do not match."
+msgstr ""
+
+#: lib_path.php:156
+msgid "Couldn&#8217;t register you... please contact the webmaster"
+msgstr ""
+
+#: lib_path.php:157
+msgid "Sign in or Create a new Account"
+msgstr ""
+
+#: lib_path.php:158
+msgid "Sign In"
+msgstr ""
+
+#: lib_path.php:159
+msgid "Password"
+msgstr "Пароль"
+
+#: lib_path.php:160
+msgid "Lost your password?"
+msgstr "Забули пароль?"
+
+#: lib_path.php:161
+msgid "Create a free Account"
+msgstr "Створити обліковий запис"
+
+#: lib_path.php:162
+msgid "Username"
+msgstr ""
+
+#: lib_path.php:163
+msgid "Enter a Password"
+msgstr ""
+
+#: lib_path.php:164
+msgid "Enter a Password  again"
+msgstr ""
+
+#: lib_path.php:165
+msgid "Register"
+msgstr "Зареєструватись"
+
+#: lib_path.php:166
+msgid "You are now logged out."
+msgstr ""
+
+#: lib_path.php:167
+msgid "User registration is currently not allowed."
+msgstr ""
+
+#: lib_path.php:168
+msgid "Check your email for the confirmation link."
+msgstr ""
+
+#: lib_path.php:169
+msgid "Check your email for your new password."
+msgstr ""
+
+#: lib_path.php:170
+msgid "Registration complete. Please check your e-mail."
+msgstr ""
+
+#: lib_path.php:171
+msgid "Sorry, that key does not appear to be valid."
+msgstr ""
+
+#: lib_path.php:172
+msgid "Forgot your password?"
+msgstr ""
+
+#: lib_path.php:173
+msgid "Enter your email or username."
+msgstr ""
+
+#: lib_path.php:174
+msgid "Reset my password"
+msgstr ""
+
+#: lib_path.php:175
+msgid "A message will be sent to your email address."
+msgstr ""
+
+#: lib_path.php:178
+msgid "Set Address on Map"
+msgstr "Оновити адресу на карті"
+
+#: lib_path.php:181
+msgid "Add New Field"
+msgstr ""
+
+#: lib_path.php:182
+msgid "Back to Manage Field"
+msgstr ""
+
+#: lib_path.php:183
+msgid "Field Type"
+msgstr ""
+
+#: lib_path.php:184
+msgid "Text"
+msgstr ""
+
+#: lib_path.php:185
+msgid "Radio"
+msgstr ""
+
+#: lib_path.php:186
+msgid "Select"
+msgstr ""
+
+#: lib_path.php:187
+msgid "Textarea"
+msgstr ""
+
+#: lib_path.php:188
+msgid "Image Uploader"
+msgstr ""
+
+#: lib_path.php:189
+msgid "Select the type of this custom field."
+msgstr ""
+
+#: lib_path.php:190
+msgid "Option values"
+msgstr ""
+
+#: lib_path.php:191
+msgid "Seperate multiple option values with a comma. eg. Yes, No"
+msgstr ""
+
+#: lib_path.php:192
+msgid "Name of this field"
+msgstr ""
+
+#: lib_path.php:193
+msgid "Custom field title which will appear in cutom fields label"
+msgstr ""
+
+#: lib_path.php:194
+msgid "HTML variable name"
+msgstr ""
+
+#: lib_path.php:195
+msgid "The HTML variable name for the custom field. IMPORTANT: It should be a unique name and it will be not editable after once you entered."
+msgstr ""
+
+#: lib_path.php:196
+msgid "Field ID"
+msgstr ""
+
+#: lib_path.php:197
+msgid "Give the particular field id for further reference."
+msgstr ""
+
+#: lib_path.php:199
+msgid "Describe this field in a few words. It will appear in beside the field."
+msgstr ""
+
+#: lib_path.php:200
+msgid "Position (Display order)"
+msgstr ""
+
+#: lib_path.php:201
+msgid "This is a numeric value that determines the position of the custom field in the front-end and the back-end. e.g. 5"
+msgstr ""
+
+#: lib_path.php:202 pricing_path.php:20
+msgid "Active"
+msgstr ""
+
+#: lib_path.php:203
+msgid "This setting activates/de-activates the custom field in the front-end and the back-end."
+msgstr ""
+
+#: lib_path.php:204 pricing_path.php:53
+msgid "No"
+msgstr ""
+
+#: lib_path.php:205 pricing_path.php:52
+msgid "Yes"
+msgstr ""
+
+#: lib_path.php:206
+msgid "(required)"
+msgstr ""
+
+#: lib_path.php:207
+msgid "Specify whether or not this field is required to be filled in compulsarily by users."
+msgstr ""
+
+#: lib_path.php:208
+msgid "Show on detail page?"
+msgstr ""
+
+#: lib_path.php:209
+msgid "Specify whether or not this field be shown on the Detail page."
+msgstr ""
+
+#: lib_path.php:210
+msgid "Enable for free ad"
+msgstr ""
+
+#: lib_path.php:211
+msgid "Check if you want to display field for Free Ad. Unchecking this option will display this field only for Paid Listing. For Eg: You can hide website or phone number of Free Listed businesses, which will act as a motivator for them to upgrade their ad to paid."
+msgstr ""
+
+#: lib_path.php:214
+msgid "Edit this field"
+msgstr ""
+
+#: lib_path.php:216
+msgid "Manage Custom Fields"
+msgstr ""
+
+#: lib_path.php:217
+msgid "Add Custom Field"
+msgstr ""
+
+#: lib_path.php:218
+msgid "Type"
+msgstr ""
+
+#: lib_path.php:218
+msgid "This field can not be deleted.(Needed on your forms for Google maps to work.)"
+msgstr ""
+
+#: lib_path.php:222
+msgid "Tags"
+msgstr ""
+
+#: lib_path.php:223
+msgid "Tags are short keywords. with comas no space within. Up to 40 characters only."
+msgstr ""
+
+#: lib_path.php:225
+msgid "Select Package"
+msgstr "Оберіть пакет просування"
+
+#: lib_path.php:226
+msgid "Go Back"
+msgstr "Назад"
+
+#: lib_path.php:227
+msgid "Submit"
+msgstr "Відправити"
+
+#: ad_type_lang.php:5 ad_type_lang.php:6 ad_type_lang.php:7
+msgid "Classified"
+msgstr ""
+
+#: ad_type_lang.php:8 ad_type_lang.php:9
+msgid "Add New Classified"
+msgstr ""
+
+#: ad_type_lang.php:10
+msgid "Edit"
+msgstr "Редагувати"
+
+#: ad_type_lang.php:11
+msgid "Edit Classified"
+msgstr ""
+
+#: ad_type_lang.php:12
+msgid "New Classified"
+msgstr ""
+
+#: ad_type_lang.php:13
+msgid "View Classified"
+msgstr ""
+
+#: ad_type_lang.php:14
+msgid "Search Classified"
+msgstr ""
+
+#: ad_type_lang.php:15
+msgid "No Classified found"
+msgstr ""
+
+#: ad_type_lang.php:16
+msgid "No Classified found in trash"
+msgstr ""
+
+#: ad_type_lang.php:17 ad_type_lang.php:18
+msgid "Classified Categories"
+msgstr ""
+
+#: ad_type_lang.php:19
+msgid "Category"
+msgstr "Категорія"
+
+#: ad_type_lang.php:20
+msgid "Search category"
+msgstr ""
+
+#: ad_type_lang.php:21
+msgid "Popular categories"
+msgstr "Популярні категорії"
+
+#: ad_type_lang.php:22
+msgid "All categories"
+msgstr ""
+
+#: ad_type_lang.php:23
+msgid "Parent category"
+msgstr ""
+
+#: ad_type_lang.php:24
+msgid "Parent category:"
+msgstr ""
+
+#: ad_type_lang.php:25
+msgid "Edit category"
+msgstr ""
+
+#: ad_type_lang.php:26
+msgid "Update category"
+msgstr ""
+
+#: ad_type_lang.php:27
+msgid "Add new category"
+msgstr ""
+
+#: ad_type_lang.php:28
+msgid "New category name"
+msgstr ""
+
+#: ad_type_lang.php:29 ad_type_lang.php:30 ad_type_lang.php:31
+#: ad_type_lang.php:32
+msgid "Classified Tags"
+msgstr ""
+
+#: ad_type_lang.php:33
+msgid "Popular Classified tags"
+msgstr ""
+
+#: ad_type_lang.php:34
+msgid "All Classified tags"
+msgstr ""
+
+#: ad_type_lang.php:35
+msgid "Parent Classified tags"
+msgstr ""
+
+#: ad_type_lang.php:36
+msgid "Parent Classified tags:"
+msgstr ""
+
+#: ad_type_lang.php:37
+msgid "Edit Classified tags"
+msgstr ""
+
+#: ad_type_lang.php:38
+msgid "Update Classified tags"
+msgstr ""
+
+#: ad_type_lang.php:39
+msgid "Add New Classified tags"
+msgstr ""
+
+#: ad_type_lang.php:40
+msgid "New Classified tag name"
+msgstr ""
+
+#: model_path.php:8
+msgid "Merchant Id"
+msgstr ""
+
+#: model_path.php:9
+msgid "Login ID"
+msgstr ""
+
+#: model_path.php:10
+msgid "Example : yourname@domain.com"
+msgstr ""
+
+#: model_path.php:11
+msgid "Transaction Key"
+msgstr ""
+
+#: model_path.php:12
+msgid "Example : 1234567890"
+msgstr ""
+
+#: model_path.php:13
+msgid "Instant Id"
+msgstr ""
+
+#: model_path.php:14
+msgid "Example : 123456"
+msgstr ""
+
+#: model_path.php:15
+msgid "Account Id"
+msgstr ""
+
+#: model_path.php:16
+msgid "Example : 12345"
+msgstr ""
+
+#: model_path.php:17
+msgid "Worldpay"
+msgstr ""
+
+#: model_path.php:18
+msgid "Vendor Id"
+msgstr ""
+
+#: model_path.php:19
+msgid "Enter Vendor ID Example : 1303908"
+msgstr ""
+
+#: model_path.php:20
+msgid "Notify Url"
+msgstr ""
+
+#: model_path.php:21
+msgid "Bank Information"
+msgstr ""
+
+#: model_path.php:22
+msgid "Enter the bank name to which you want to transfer payment"
+msgstr ""
+
+#: model_path.php:23
+msgid "Enter your bank Account ID"
+msgstr ""
+
+#: model_path.php:24
+msgid "Pre Bank Transfer"
+msgstr ""
+
+#: model_path.php:25
+msgid "Pay Cash On Arrival"
+msgstr ""
+
+#: model_path.php:26
+msgid "If in Sandbox Testing Mode, enter the Sandbox Email else enter your real Paypal Account Email where you want to collect payments. Eg: myaccount@xyz.com"
+msgstr ""
+
+#: model_path.php:27
+msgid "Example :"
+msgstr ""
+
+#: pricing_path.php:8
+msgid "Price Package Title"
+msgstr ""
+
+#: pricing_path.php:9
+msgid "The name of the Package would appear on the Frontend on the Classified Ad Submission Page."
+msgstr ""
+
+#: pricing_path.php:10
+msgid "Description of the price package"
+msgstr ""
+
+#: pricing_path.php:11
+msgid "Describe this price package in your words. [Optional]"
+msgstr ""
+
+#: pricing_path.php:12
+msgid "Package Cost"
+msgstr ""
+
+#: pricing_path.php:13
+msgid "Set the one time payment cost here for placing the ad."
+msgstr ""
+
+#: pricing_path.php:14
+msgid "Ad Active Period"
+msgstr ""
+
+#: pricing_path.php:15
+msgid "Days"
+msgstr "Днів"
+
+#: pricing_path.php:16
+msgid "Months"
+msgstr "Місяц"
+
+#: pricing_path.php:17
+msgid "Years"
+msgstr ""
+
+#: pricing_path.php:18
+msgid "Set the Active Time period of the Ad. After which the Ad would expire, the user gets the email after his Ad expires through which he can reactivate the Ad again."
+msgstr ""
+
+#: pricing_path.php:21
+msgid "Deactive"
+msgstr ""
+
+#: pricing_path.php:22
+msgid "Incase you want this Price Package to Activate/Deactivate from the Frontend, you can set the Status here."
+msgstr ""
+
+#: pricing_path.php:23
+msgid "Price settings for Featured ad"
+msgstr ""
+
+#: pricing_path.php:24
+msgid "You might want to charge users extra amount for featured ad within this price package."
+msgstr ""
+
+#: pricing_path.php:25
+msgid "Feature Ad Status"
+msgstr ""
+
+#: pricing_path.php:26
+msgid "Select Active/Deactive for featured Ad."
+msgstr ""
+
+#: pricing_path.php:27
+msgid "Amount to be charged (for featuring on homepage slider)"
+msgstr ""
+
+#: pricing_path.php:28
+msgid "This is the price you wish to charge extra for featuring a business ad on the homepage slider. eg. 25"
+msgstr ""
+
+#: pricing_path.php:29
+msgid "Amount to be charged (for featuring on categories page slider)"
+msgstr ""
+
+#: pricing_path.php:30
+msgid "This is the price you wish to charge extra for a business ad on category pages slider. eg. 10"
+msgstr ""
+
+#: pricing_path.php:32
+msgid "First Price"
+msgstr ""
+
+#: pricing_path.php:33
+msgid "Price of first period of subscription"
+msgstr ""
+
+#: pricing_path.php:34
+msgid "First Period"
+msgstr ""
+
+#: pricing_path.php:35
+msgid "First period of subscription"
+msgstr ""
+
+#: pricing_path.php:36
+msgid "Rebill Times"
+msgstr ""
+
+#: pricing_path.php:37
+msgid "Charge Second Price x Times"
+msgstr ""
+
+#: pricing_path.php:38
+msgid "Rebill Second Price until cancelled"
+msgstr ""
+
+#: pricing_path.php:39
+msgid "This is the number of payments which will occur at the Second Price"
+msgstr ""
+
+#: pricing_path.php:40
+msgid "Second Price"
+msgstr ""
+
+#: pricing_path.php:41
+msgid "Price that must be billed for second and the following periods of subscriptions."
+msgstr ""
+
+#: pricing_path.php:42
+msgid "Second period of subscription"
+msgstr ""
+
+#: pricing_path.php:43
+msgid "Set the active period of this package."
+msgstr ""
+
+#: pricing_path.php:44
+msgid "Select the status for package active/deactive"
+msgstr ""
+
+#: pricing_path.php:46
+msgid "The Free Package is priced at 0 by default. But you can make it a Paid Package as well but putting some dollar value. Eg. 50"
+msgstr ""
+
+#: pricing_path.php:47
+msgid "The Listing would remain active for this time period. After which the Listing would expire, the user gets the email after his listing expires through which he can reactivate the listing again."
+msgstr ""
+
+#: pricing_path.php:49
+msgid "Paypal Settings"
+msgstr ""
+
+#: pricing_path.php:50
+msgid "Here you can edit the payment option settings. Double check the values you enter here to avoid payment related problems."
+msgstr ""
+
+#: pricing_path.php:51
+msgid "Paypal Sandbox Mode"
+msgstr ""
+
+#: pricing_path.php:54
+msgid "For testing purpose choose Yes in Paypal Sandbox Mode. Else choose No for Live Websites and enter your Paypal Email Address below. You must have a PayPal Sandbox account setup before using the testing feature."
+msgstr ""
+
+#: pricing_path.php:59
+msgid "Payment Setting"
+msgstr ""
+
+#: pricing_path.php:62
+msgid "Set Default Currency"
+msgstr ""
+
+#: pricing_path.php:63
+msgid "Select Currency code."
+msgstr ""
+
+#: pricing_path.php:64
+msgid "Supported Currency List"
+msgstr ""
+
+#: pricing_path.php:65
+msgid "Currency"
+msgstr ""
+
+#: pricing_path.php:66
+msgid "Code"
+msgstr ""
+
+#: pricing_path.php:67
+msgid "Symbol"
+msgstr ""
+
+#: pricing_path.php:69
+msgid "Second Period"
+msgstr ""
+
+#: template_path.php:8
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr ""
+
+#: template_path.php:9
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help."
+msgstr ""
+
+#: template_path.php:10
+msgid "Most Used Categories"
+msgstr ""
+
+#: template_path.php:11
+msgid "Try looking in the monthly archives."
+msgstr ""
+
+#: template_path.php:13
+msgid "Daily Archives:"
+msgstr ""
+
+#: template_path.php:14
+msgid "Monthly Archives:"
+msgstr ""
+
+#: template_path.php:15
+msgid "Yearly Archives:"
+msgstr ""
+
+#: template_path.php:16
+msgid "Blog Archives"
+msgstr ""
+
+#: template_path.php:18
+msgid "View all posts by"
+msgstr ""
+
+#: template_path.php:19
+msgid "Published"
+msgstr ""
+
+#: template_path.php:20
+msgid "Full size is pixels"
+msgstr ""
+
+#: template_path.php:21
+msgid "Link to full-size image"
+msgstr ""
+
+#: template_path.php:22
+msgid "Pages:"
+msgstr ""
+
+#: template_path.php:23
+msgid "Edit:"
+msgstr "Редагувати:"
+
+#: template_path.php:25
+msgid "Author Archives:"
+msgstr ""
+
+#: template_path.php:26
+msgid "About"
+msgstr ""
+
+#: template_path.php:28
+msgid "Category Archives:"
+msgstr ""
+
+#: template_path.php:30
+msgid "Review has already been inserted from this computer. So no other reviews are allowed from this computer on this post."
+msgstr ""
+
+#: template_path.php:32
+msgid "No post found."
+msgstr ""
+
+#: template_path.php:34
+msgid "Search Results for: %s"
+msgstr ""
+
+#: template_path.php:36
+msgid "Tag Archives:"
+msgstr ""
+
+#: template_path.php:38
+msgid "Sorry, an error occured."
+msgstr ""
+
+#: template_path.php:39
+msgid "Your Name"
+msgstr "Ваше ім'я"
+
+#: template_path.php:40
+msgid "Your Email"
+msgstr "Ваш Email"
+
+#: template_path.php:41
+msgid "Website"
+msgstr "Вебсайт"
+
+#: template_path.php:42
+msgid "(Optional)"
+msgstr "(Опціонально)"
+
+#: template_path.php:43
+msgid "Your Message"
+msgstr "Ваше повідомлення"
+
+#: template_path.php:45
+msgid "GRID VIEW"
+msgstr ""
+
+#: template_path.php:46
+msgid "LIST VIEW"
+msgstr ""
+
+#: template_path.php:47
+msgid "RECENTLY LISTED"
+msgstr ""
+
+#: template_path.php:48
+msgid "PREMIUM ADS"
+msgstr ""
+
+#: template_path.php:49
+msgid "POPULAR ADS"
+msgstr ""
+
+msgid "Popular ads"
+msgstr "Популярні оголошення"
+
+#: template_path.php:50
+msgid "ago"
+msgstr "тому"
+
+#: template_path.php:51
+msgid "by"
+msgstr ""
+
+#: template_path.php:52
+msgid "View it!"
+msgstr "Подивитися це!"
+
+#: template_path.php:54
+msgid "What are you looking for ?"
+msgstr ""
+
+#: template_path.php:55
+msgid "Zip Code, City or Address"
+msgstr ""
+
+#: template_path.php:56
+msgid "search"
+msgstr ""
+
+#: template_path.php:57
+msgid "Page"
+msgstr "Сторінка"
+
+#: template_path.php:58
+msgid "POST FREE ADS"
+msgstr ""
+
+#: template_path.php:60
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: template_path.php:61
+msgid "No Responses"
+msgstr ""
+
+#: template_path.php:62
+msgid "One Response"
+msgstr ""
+
+#: template_path.php:63
+msgid "% Responses"
+msgstr ""
+
+#: template_path.php:64
+msgid "so far."
+msgstr ""
+
+#: template_path.php:65
+msgid "Comments are closed."
+msgstr ""
+
+#: template_path.php:66
+msgid "You must be"
+msgstr ""
+
+#: template_path.php:67
+msgid "logged in"
+msgstr ""
+
+#: template_path.php:68
+msgid "to post a comment."
+msgstr ""
+
+#: template_path.php:69
+msgid "Logged in as"
+msgstr ""
+
+#: template_path.php:70
+msgid "Log out"
+msgstr "Вихід"
+
+#: template_path.php:71
+msgid "Log out of this account"
+msgstr ""
+
+#: template_path.php:72
+msgid "Mail"
+msgstr ""
+
+#: template_path.php:73
+msgid "Continue reading &rarr;"
+msgstr ""
+
+#: template_path.php:77
+msgid "Leave comment for this ad"
+msgstr ""
+
+#: widget_path.php:7
+msgid "Recent Ad"
+msgstr ""
+
+#: widget_path.php:8
+msgid "Title:"
+msgstr ""
+
+#: widget_path.php:9
+msgid "Sort by"
+msgstr ""
+
+#: widget_path.php:10
+msgid "Date"
+msgstr "Дата"
+
+#: widget_path.php:11
+msgid "Number of comments"
+msgstr ""
+
+#: widget_path.php:12
+msgid "Random"
+msgstr ""
+
+#: widget_path.php:13
+msgid "Include ad excerpt"
+msgstr ""
+
+#: widget_path.php:14
+msgid "Excerpt length (in words):"
+msgstr ""
+
+#: widget_path.php:15
+msgid "Include post date"
+msgstr ""
+
+#: widget_path.php:16
+msgid "Show number of comments"
+msgstr ""
+
+#: widget_path.php:17
+msgid "Number of ad to show:"
+msgstr ""
+
+#: widget_path.php:18
+msgid "Show Post Type:"
+msgstr ""
+
+#: widget_path.php:19
+msgid "Shows recent ad / custom post types."
+msgstr ""
+
+#: widget_path.php:20
+msgid "Classicraft Recent Posts"
+msgstr ""
+
+#: admin_path.php:8
+msgid "Pages Navigation Menu"
+msgstr ""
+
+#: admin_path.php:9
+msgid "Home"
+msgstr "Головна"
+
+#: admin_path.php:10
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the permalink"
+msgstr ""
+
+#: admin_path.php:11
+msgid "This entry was posted in %1$s. Bookmark the permalink"
+msgstr ""
+
+#: admin_path.php:12
+msgid "Bookmark the permalink"
+msgstr ""
+
+#: admin_path.php:13
+msgid "Home Page Widget Area"
+msgstr ""
+
+#: admin_path.php:14
+msgid "Classifie"
+msgstr ""
+
+#: admin_path.php:15
+msgid "Blog Widget Area"
+msgstr ""
+
+#: admin_path.php:16
+msgid "Pages Widget Area"
+msgstr ""
+
+#: admin_path.php:17
+msgid "The default pages for pages widget area"
+msgstr ""
+
+#: admin_path.php:18
+msgid "Contact Page Widget Area"
+msgstr ""
+
+#: admin_path.php:19
+msgid "First Footer Widget Area"
+msgstr ""
+
+#: admin_path.php:20
+msgid "Second Footer Widget Area"
+msgstr ""
+
+#: admin_path.php:21
+msgid "Third Footer Widget Area"
+msgstr ""
+
+#: admin_path.php:22
+msgid "Fourth Footer Widget Area"
+msgstr ""
+
+#: admin_path.php:23
+msgid "You are not allowed to access this part of the site"
+msgstr ""
+
+#: admin_path.php:25
+msgid "Options Updated"
+msgstr ""
+
+#: admin_path.php:26
+msgid "Options Reset"
+msgstr ""
+
+#: lib_path.php:228
+msgid "Contact This Person"
+msgstr ""
+
+#: lib_path.php:231
+msgid "Payment Transaction"
+msgstr ""
+
+#: lib_path.php:232
+msgid "Your Ad Name:"
+msgstr ""
+
+#: lib_path.php:233
+msgid "Payment Status:"
+msgstr "Статус оплати:"
+
+#: lib_path.php:234
+msgid "Payment Amount:"
+msgstr ""
+
+#: lib_path.php:235
+msgid "Payment Currency"
+msgstr ""
+
+#: lib_path.php:236
+msgid "Transaction ID:"
+msgstr ""
+
+#: lib_path.php:237
+msgid "Payer Email:"
+msgstr ""
+
+#: template_path.php:79
+msgid "Your ad has been successfully submitted"
+msgstr "Ваше оголошення було успішно відправлено"
+
+#: revisions.php:3
+msgid "Next"
+msgstr "Далі"
+
+#: revisions.php:5
+msgid "Continue"
+msgstr ""
+
+#: revisions.php:6
+msgid "Upload Image"
+msgstr ""
+
+#: revisions.php:8
+msgid "Add New Classified Ads"
+msgstr ""
+
+#: revisions.php:10
+msgid "View"
+msgstr ""
+
+#: revisions.php:13
+msgid "Processing please wait..."
+msgstr ""
+
+msgid "Image"
+msgstr "Зображення"
+
+msgid "View profile"
+msgstr "Переглянути профіль"
+
+msgid "Rent"
+msgstr "Оренда будівельної техніки"
+
+msgid "I am searching..."
+msgstr "Я шукаю..."
+
+msgid "Find"
+msgstr "Знайти"
+
+msgid "Draft"
+msgstr "Відключити"
+
+msgid "State"
+msgstr "Стан техніки"
+
+msgid "Maximum"
+msgstr "Максимум"
+
+msgid "Minimum"
+msgstr "Мінімум"
+
+msgid "Add"
+msgstr "Додати"
+
+msgid "Where is instruments?"
+msgstr "Де знаходиться техніка?"
+
+msgid "Deposit"
+msgstr "Завдаток"
+
+msgid "Rent price"
+msgstr "Вартість оренди"
+
+msgid "day"
+msgstr "дня"
+
+msgid "days"
+msgstr "днів"
+
+msgid "Rent price for 1 to 4 days, UAH"
+msgstr "Ціна оренди від 1 до 4 днів, грн"
+
+msgid "Deposit size, UAH"
+msgstr "Розмір завдатку, грн"
+
+msgid "Rent price for 5 to 7 days, UAH"
+msgstr "Ціна оренди від 5 до 7 днів, грн"
+
+msgid "Rent price for 10+ days, UAH"
+msgstr "Ціна оренди на 10+ днів, грн"
+
+msgid "Available on locations"
+msgstr "Доступно в локаціях"
+
+msgid "Added"
+msgstr "Додано"
+
+msgid "Send message"
+msgstr "Написати повідомлення"
+
+msgid "Go to main page"
+msgstr "Перейти на головну"
+
+msgid "Several locations"
+msgstr "Декілька локацій"
+
+msgid "From"
+msgstr "Від"
+
+msgid "To"
+msgstr "До"
+
+msgid "No phone number"
+msgstr "Немає номера"
+
+msgid "Filter"
+msgstr "Відфільтрувати"
+
+msgid "What is Prokkat?"
+msgstr "Що таке Prokkat?"
+
+msgid "How it is working?"
+msgstr "Як це працює?"
+
+msgid "visitors everyday"
+msgstr "відвідувачів щодня"
+
+msgid "real ads"
+msgstr "актуальних оголошень "
+
+msgid "trusted partners"
+msgstr "перевірених  партнерів"
+
+msgid "Find out more"
+msgstr "Дізнатись більше"
+
+msgid "Other ads from this manufacturer"
+msgstr "Інші оголошення від цього автора"
+
+msgid "Restore password"
+msgstr "Відновити пароль"
+
+msgid "Resend message"
+msgstr "Надіслати повторно"
+
+msgid "Account activation"
+msgstr "Активація облікового запису"
+
+msgid "Open category"
+msgstr "Відкрити всю категорію"
+
+msgid "Buyers"
+msgstr "Покупцям"
+
+msgid "Sellers"
+msgstr "Продавцям"
+
+msgid "About us"
+msgstr "Про нас"
+
+msgid "Ukraine cities"
+msgstr "Міста України"
+
+msgid "No new messages"
+msgstr "Немає нових повідомлень"
+
+msgid "Your ad was added to archive"
+msgstr "Ваше оголошення було додано в архів"
+
+msgid "Rent your instruments"
+msgstr "Орендуйте та здавайте в оренду будівельну техніку"
+
+msgid "Your ad was renewed"
+msgstr "Ваше оголошення було поновлено"
+
+msgid "New ads"
+msgstr "Нові оголошення"
+
+msgid "Ad Title (russian)"
+msgstr "Назва оголошення (російською)"
+
+msgid "Main"
+msgstr "Головна"
+
+msgid "Post an Ad | "
+msgstr "Додати оголошення | "
+
+msgid "Ad Title (ukr)"
+msgstr "Назва оголошення (українською)"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Onward"
+msgstr "Вперед"
+
+msgid "Duplicate"
+msgstr "Дублювати"
+
+msgid "Your ad was duplicated"
+msgstr "Оголошення продубльовано"
