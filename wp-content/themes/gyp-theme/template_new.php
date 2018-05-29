@@ -3,7 +3,9 @@
  * Template Name: Template New 
  */
 nocache_headers();
-auth_redirect_home();
+if (!is_user_logged_in()) {
+    wp_redirect(site_url() . '/login') ;
+  }
 
 function cc_submit_form_process() {
     $posted = array();

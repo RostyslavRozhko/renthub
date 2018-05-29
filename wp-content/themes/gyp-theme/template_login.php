@@ -9,15 +9,10 @@
 /**
  * Template Name: Template Login 
  */
-  if ( is_user_logged_in() && is_front_page() ) {
-    wp_redirect(site_url()) ;
-    exit;
-  }
-
   get_header();
   ajax_auth_init();
-  include_once("header-categories.php");
 ?>
+<?php search_header_main(); ?>
 
 <section class="login-section">
   <div class="container login-container">
