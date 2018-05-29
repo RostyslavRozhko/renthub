@@ -1,1 +1,0 @@
-<?php include('template_page.php') ?>

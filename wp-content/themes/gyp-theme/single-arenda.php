@@ -134,13 +134,16 @@
                         <?php 
                             foreach ($filters as $filter) {
                                 $filter_name = $filter->name;
-                                debug_to_console(json_encode(get_post_meta($post->ID, $filter->slug, true)));
+                                $filter_value = get_post_meta($post->ID, $filter->slug, true);
+                                if($filter_value) :
                             ?>
                                 <div class="filters-values__item">
                                     <div class="filters-values__item__name"><?php echo $filter_name; ?></div>
-                                    <div class="filters-values__item__value"><?php echo get_post_meta($post->ID, $filter->slug, true); ?></div>
+                                    <div class="filters-values__item__value"><?php echo $filter_value; ?></div>
                                 </div>
-                            <?php } ?>
+                            <?php 
+                            endif;
+                            } ?>
                     </div>
                 <?php endif; ?>
                 <div class="soc-wrap">

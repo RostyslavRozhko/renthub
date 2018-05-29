@@ -1009,7 +1009,7 @@ function sendSMS(){
   $message = [
     'sender' => 'Renthub',   
     'destination' => $number,   
-    'text' => 'Ваш код для авторизації на RentHUB - ' . $code   
+    'text' => $code  . ' - Ваш код для авторизации на RentHUB' 
   ];
 
   $result = $client->SendSMS($message); 
