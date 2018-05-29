@@ -1,4 +1,6 @@
-$(document).ready(function () {
+jQuery(document).ready(function () {
+
+    const $ = jQuery
 
     var i, j = false;
     var h = $(document).height(),
@@ -716,7 +718,7 @@ $(document).ready(function () {
         })
     }
 
-    $('.filters').find('input[type="checkbox"]').click(function() {
+    jQuery('.filters').find('input[type="checkbox"]').click(function() {
         updateCats()
     });
 

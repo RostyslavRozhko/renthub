@@ -249,7 +249,7 @@ function cc_custom_metabox() {
                     </div>
                     <input id="chosenCategory" name="cc_category" type="hidden" value="<?php echo implode(",",$cats); ?>"/>
                 </div>
-                <div>
+                <div id="add_filters">
                     <?php echo my_filters_edit_list($child_id, $pid); ?>
                 </div>
             </div>

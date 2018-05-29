@@ -3,10 +3,10 @@ jQuery.fn.exists = function() {
 }
 jQuery(document).ready(function($) {
 
-    if ($(".plupload-upload-uic").exists()) {
+    if (jQuery(".plupload-upload-uic").exists()) {
         var pconfig = false;
-        $(".plupload-upload-uic").each(function() {
-            var $this = $(this);
+        jQuery(".plupload-upload-uic").each(function() {
+            var $this = jQuery(this);
             var id1 = $this.attr("id");
             var imgId = id1.replace("plupload-upload-ui", "");
 
@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
                             file : file
                         });
 
-                        $('.photo-error').show()
+                        jQuery('.photo-error').show()
                  }
                     cb(result);
                 }
@@ -78,9 +78,9 @@ jQuery(document).ready(function($) {
 
             // a file was added in the queue
             uploader.bind('FilesAdded', function(up, files) {
-                $('.photo-error').hide()
+                jQuery('.photo-error').hide()
                 
-                $.each(files, function(i, file) {
+                jQuery.each(files, function(i, file) {
                 //$this.find('.filelist').append('<div class="file" id="' + file.id + '"><b>' +  file.name + '</b> (<span>' + plupload.formatSize(0) + '</span>/' + plupload.formatSize(file.size) + ') ' + '<div class="fileprogress"></div></div>');
 			      if( imgId != 'ava' ) {
 				    $this.find('.filelist').append('<div class="file" id="' + file.id + '">(<span>' + plupload.formatSize(0) + '</span>/' +
@@ -98,29 +98,29 @@ jQuery(document).ready(function($) {
 
             uploader.bind('UploadProgress', function(up, file) {
 
-                $('#' + file.id + " .fileprogress").width(file.percent + "%");
-                $('#' + file.id + " span").html(plupload.formatSize(parseInt(file.size * file.percent / 100)));
+                jQuery('#' + file.id + " .fileprogress").width(file.percent + "%");
+                jQuery('#' + file.id + " span").html(plupload.formatSize(parseInt(file.size * file.percent / 100)));
             });
 
             // a file was uploaded
             uploader.bind('FileUploaded', function(up, file, response) {
 
 
-                $('#' + file.id).fadeOut();
+                jQuery('#' + file.id).fadeOut();
                 response = response["response"]
                 // add url to the hidden field
                 if ($this.hasClass("plupload-upload-uic-multiple")) {
                     // multiple
-                    var v1 = $.trim($("#" + imgId).val());
+                    var v1 = $.trim(jQuery("#" + imgId).val());
                     if (v1) {
                         v1 = v1 + "," + response;
                     } else {
                         v1 = response;
                     }
-                    $("#" + imgId).val(v1);
+                    jQuery("#" + imgId).val(v1);
                 } else {
                     // single
-                    $("#" + imgId).val(response + "");
+                    jQuery("#" + imgId).val(response + "");
                 }
                 // show thumbs 
                 plu_show_thumbs(imgId);
@@ -137,18 +137,18 @@ function UrlExists(url)
     return http.status!=404;
 }
 
-var saved_url_img1 = $("#img1").val();
-var saved_url_img2 = $("#img2").val();
-var saved_url_img3 = $("#img3").val();
+var saved_url_img1 = jQuery("#img1").val();
+var saved_url_img2 = jQuery("#img2").val();
+var saved_url_img3 = jQuery("#img3").val();
 
 function plu_show_thumbs(imgId) {
     var $ = jQuery;
 	var thumb = '';
 	var pconfig = JSON.parse(JSON.stringify(base_plupload_config));
-    var thumbsC = $("#" + imgId + "plupload-thumbs");
+    var thumbsC = jQuery("#" + imgId + "plupload-thumbs");
     thumbsC.html("");
     // get urls
-    var imagesS = $("#" + imgId).val();
+    var imagesS = jQuery("#" + imgId).val();
     var images = imagesS.split(",");
 	
     for (var i = 0; i < images.length; i++) {
@@ -156,7 +156,7 @@ function plu_show_thumbs(imgId) {
 
 	        if( imgId != 'ava' ) {
 				thumbsC.removeClass("hide");
-			    $("#" + imgId + "plupload-browse-button").addClass("hide");
+			    jQuery("#" + imgId + "plupload-browse-button").addClass("hide");
 		    }
 			
 			var makeMain = mainImgCaption = '';
@@ -180,7 +180,7 @@ function plu_show_thumbs(imgId) {
 			  if (UrlExists(path)) images[i] = path;
 			}
         
-            thumb = $('<div class="thumb" id="thumb' + imgId + i + '"><img src="' + images[i] + '" alt="" />' +
+            thumb = jQuery('<div class="thumb" id="thumb' + imgId + i + '"><img src="' + images[i] + '" alt="" />' +
 			'<div class="upload__control-img">' + makeMain + '<div class="upload__control-del"><a id="thumbremovelink' + imgId + i + '" href="#0">' +
             '<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">' +
             '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>' +
@@ -188,17 +188,17 @@ function plu_show_thumbs(imgId) {
 			thumbsC.append(thumb);
 			
             thumb.find(".upload__control-del a").click(function() {
-                var ki = $(this).attr("id").replace("thumbremovelink" + imgId, "");
+                var ki = jQuery(this).attr("id").replace("thumbremovelink" + imgId, "");
                 ki = parseInt(ki);
                 var kimages = [];
-                imagesS = $("#" + imgId).val();
+                imagesS = jQuery("#" + imgId).val();
                 images = imagesS.split(",");
                 for (var j = 0; j < images.length; j++) {
                     if (j != ki) {
                         kimages[kimages.length] = images[j];
                     }
                 }
-                $("#" + imgId).val(kimages.join());
+                jQuery("#" + imgId).val(kimages.join());
                 plu_show_thumbs(imgId);
 				
 				if( imgId == 'img1' & saved_url_img1 == imagesS ) return false;
@@ -223,9 +223,9 @@ function plu_show_thumbs(imgId) {
             });
 			
 			thumb.find(".makemain").click(function() {
-                var mainImage = $("#img1").val();
-				$("#img1").val($("#" + imgId).val());
-				$("#" + imgId).val(mainImage);
+                var mainImage = jQuery("#img1").val();
+				jQuery("#img1").val(jQuery("#" + imgId).val());
+				jQuery("#" + imgId).val(mainImage);
                 
 				plu_show_thumbs(imgId);
 				plu_show_thumbs("img1");
@@ -235,10 +235,10 @@ function plu_show_thumbs(imgId) {
         }
 		else if( imgId != 'ava' ) {
 			thumbsC.addClass("hide");
-			$("#" + imgId + "plupload-browse-button").removeClass("hide");
+			jQuery("#" + imgId + "plupload-browse-button").removeClass("hide");
 		}
 		else {
-			thumb = $('<div class="thumb" id="thumb' + imgId + i + '"><img src="' + pconfig["no-avatar"] + '" alt="" /></div>');
+			thumb = jQuery('<div class="thumb" id="thumb' + imgId + i + '"><img src="' + pconfig["no-avatar"] + '" alt="" /></div>');
 			thumbsC.append(thumb); 
 		}
     }
@@ -247,8 +247,8 @@ function plu_show_thumbs(imgId) {
             update: function(event, ui) {
                 var kimages = [];
                 thumbsC.find("img").each(function() {
-                    kimages[kimages.length] = $(this).attr("src");
-                    $("#" + imgId).val(kimages.join());
+                    kimages[kimages.length] = jQuery(this).attr("src");
+                    jQuery("#" + imgId).val(kimages.join());
                     plu_show_thumbs(imgId);
                 });
             }

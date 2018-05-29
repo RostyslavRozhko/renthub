@@ -24,7 +24,7 @@
     jQuery("#maincat").on("change", function(e) {
         category_ID = jQuery(this).val();
         var cat_ul = jQuery("#maincat-li").parent();
-        $('#add_filters').hide()
+        jQuery('#add_filters').hide()
 
         // cat_ul.find('#subcat-li').remove();
           jQuery.ajax({
@@ -52,7 +52,7 @@
     });
 
         jQuery("#subcat").on("change", function(e) {
-            const filters_container = $('#add_filters')
+            const filters_container = jQuery('#add_filters')
             filters_container.hide()
             category_ID = jQuery(this).val()
 
@@ -191,8 +191,8 @@
           if(validate_title() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
             return true;
           else {
-		    $('html, body').animate({
-              scrollTop: $('.error').offset().top -70
+		    jQuery('html, body').animate({
+              scrollTop: jQuery('.error').offset().top -70
             }, 'slow');
 		    return false;
 		  }
@@ -202,8 +202,8 @@
           if(validate_title() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
             return true;
           else {
-		    $('html, body').animate({
-              scrollTop: $('.error').offset().top -70
+		    jQuery('html, body').animate({
+              scrollTop: jQuery('.error').offset().top -70
             }, 'slow');
 		    return false;
 		  }
