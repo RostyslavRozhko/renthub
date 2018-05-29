@@ -218,7 +218,7 @@ add_action('init','add_cors_http_header');
     function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
       $city_title = $item->title;
       $city_title .=  ' ' .$this->city_name;
-      $item_output = ""
+      $item_output = "";
 
       $url = add_query_arg(array('search_loc' => $this->city_id, 'address' => $this->city_name), esc_attr($item->url));
 
