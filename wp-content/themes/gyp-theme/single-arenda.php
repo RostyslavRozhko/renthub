@@ -57,8 +57,8 @@
 			    <?php  if( $main_img && file_url_exists( $main_img )) : ?>
 				
                 <div class="advert__img-wrap">
-                  <a href="<?php echo $main_img; ?>"   title="" rel="gallery1">
-				    <img src="<?php echo $main_img; ?>" alt="adv" class="advert__img-big " style="display:block;">
+                  <a href="<?php echo $main_img; ?>" class="fancybox"  title="" rel="gallery1">
+				    <img src="<?php echo $main_img; ?>" alt="adv" class="advert__img-big" style="display:block;">
 				  </a>
 				  <ul class="advert__img-wrap">
 				  <?php 
