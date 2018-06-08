@@ -43,7 +43,7 @@
                       </div>
                       <div class="input-wrp input-wrp_grid">
                           <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flag.svg" class="input-wrp__ico search-icon-input">
-                          <input type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" readonly />
+                          <input type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="<?php echo $_REQUEST['address']?>" readonly />
                           <input type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
                           <img class="header-category-img input-arrow-down" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
                           <div class="header-category-cities hide">
@@ -138,7 +138,7 @@
 
                     <div class="input-wrp input-wrp_grid">
                       <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flag.svg" class="input-wrp__ico search-icon-input">
-                      <input type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" readonly />
+                      <input type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="<?php echo $_REQUEST['address']?>" readonly />
                       <input type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
                       <img class="header-category-img input-arrow-down" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
                       <div class="header-category-cities hide">

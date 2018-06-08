@@ -223,7 +223,7 @@ add_action('init','add_cors_http_header');
       $url = add_query_arg(array('search_loc' => $this->city_id, 'address' => $this->city_name), esc_attr($item->url));
 
       $item_output .= '<li>';
-      $item_output .= '<a>';
+      $item_output .= '<a href="'.$item->url.'">';
       $item_output .= '<img src="'. get_wp_term_image($item->object_id) .'" >';
       $item_output .= '<span>' . $city_title . '</span>';
       $item_output .= '</a>';
