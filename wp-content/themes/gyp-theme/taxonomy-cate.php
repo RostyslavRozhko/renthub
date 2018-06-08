@@ -103,6 +103,7 @@
   }
 
   $the_query = new WP_Query( $arguments );
+	print_r(getSearchResults($the_query->posts));
  ?>
 
  <?php search_header_cate($parent); ?>
@@ -287,7 +288,7 @@
               ?>
               <div class="search-list__cate-container">
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>">
-                    <img src="<?php echo get_wp_term_image($cat_id); ?>" class="search-list__cate-img">
+                    <img src="<?php echo get_thumb(get_wp_term_image($cat_id), 200, 200); ?>" class="search-list__cate-img">
                   </a>
                   <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
                   <div class="search-list__cate-price"><?php echo max_price($cat_id); ?> грн/день</div>
@@ -335,7 +336,7 @@
             <div class="search-list__results">            
           <?php 
             while ($the_query->have_posts()) : 
-              $the_query->the_post();
+              $arr[] = $the_query->the_post();
               $post_id = get_the_ID();
               $post = get_post($post_id);
               $author = get_userdata($post->post_author); 
@@ -415,6 +416,7 @@
           </div>
 	    <?php
           endwhile;
+	  if (count($arr) > 9) {
           echo '<div class="paginator">';
           echo paginate_links( array(
             'mid_size'  => 2,
@@ -422,6 +424,7 @@
             'next_text' => '<i class="fas fa-angle-right"></i>',
           ) ); 
           echo '</div>';
+	  }
           wp_reset_postdata();
 	    else : ?>
         <div class="fanks__title fanks__title_category"><?php _e('This category does not include ads', 'prokkat'); ?></div> 
