@@ -12,7 +12,7 @@ require __DIR__.'/phpQuery.php';
 
 if (!defined( 'ABSPATH' )){
 	header('HTTP/1.0 403 Forbidden');
-	exit('Вызов файлов плагина запрещен.');
+	exit('Запускати файли плагіну напряму  - не можна!.');
 }
 
 add_action('admin_menu', 'check_parser_admin');

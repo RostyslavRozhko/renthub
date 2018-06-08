@@ -103,7 +103,6 @@
   }
 
   $the_query = new WP_Query( $arguments );
-	print_r(getSearchResults($the_query->posts));
  ?>
 
  <?php search_header_cate($parent); ?>

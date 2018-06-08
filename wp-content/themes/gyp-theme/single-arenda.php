@@ -35,6 +35,7 @@
 <!-- Content -->
 <section class="advert_section">
     <div class="container">
+	<?php print_r(post_links());?>
         <div class="breadcrumbs">
         <a href="<?php echo site_url(); ?>">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/house.svg" >

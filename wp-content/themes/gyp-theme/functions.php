@@ -1564,4 +1564,34 @@ function pll_title($post_id=false) {
 
       return $column;
     }
+    /*function get_all_permalinks () {
+        $args = array(
+                'post_type' => 'arenda',
+                'posts_per_page' => -1
+        );
+        global $post;
+        $query = new WP_Query($args);
+        if( $query->have_posts() ):
+                while( $query->have_posts() ):
+                        $query->the_post();
+                        $array_link[] = get_permalink($post->ID);
+                endwhile;
+        endif;
+	return $array_link;
+        wp_reset_query();
+	}*/
+	function post_links() {
+		$args = array(
+			'numberposts' => -1,
+			'post_type'   => 'arenda',
+			'suppress_filters' => true
+		);
+		$get_all_links = get_posts($args);
+		$i = 1;
+		foreach ($get_all_links as $get_link){
+			$links[] = $i++.'&nbsp;'. $get_link->guid.'<br>';
+		}
+	return implode(' ' , $links);
+	}
+
 ?>
