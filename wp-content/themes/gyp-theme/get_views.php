@@ -1,0 +1,26 @@
+<?php
+require_once( explode('wp-content' , __FILE__ )[0] . 'wp-load.php');
+	$start_time = microtime(true);
+        function post_links() {
+                $args = array(
+                        'numberposts' => -1,
+                        'orderby' => 'DESC',
+                        'post_type'   => 'arenda',
+                        'suppress_filters' => true
+                );
+                $get_all_links = get_posts($args);
+                foreach ($get_all_links as $get_link){
+			$postID = $get_link->ID;
+			$count = get_post_meta($postID, 'post_views_count', true);
+			$count = (int)($count + 10);
+			update_post_meta($postID, 'post_views_count', $count);
+                }
+        }
+	function echo_time ($start_time) {
+                $time = microtime(true) - $start_time;
+                $time = mb_substr($time , 0, 5);
+                return $time;
+        }
+	echo post_links();
+	echo 'Час виповенненя скрипту '. echo_time($start_time) . ' секунд';
+?>
