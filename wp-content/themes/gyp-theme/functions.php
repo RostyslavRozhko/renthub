@@ -806,7 +806,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             <input type="hidden" name="filter_'.$filter_id.'" value="'. $filter_id .'">
             <input type="text" name="'. $filter->slug .'" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'" value="'. get_post_meta( $post_id, $filter->slug, true) .'">
             <datalist class="input_add" id="select_options">
-            <s  elect class="select">';
+            <select class="select">';
             foreach($choices as $choice) {
               $choice = trim($choice);
               $result .= '<option value="'. $choice .'" '. $selected .'>'. $choice .'</option>';
