@@ -672,8 +672,8 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             'imgid' => 0, // will be added per uploader
             'user_id' => $current_user->ID,
         ),
-        'main_img_caption' => __( 'Main image', 'cc' ),
-        'make_main_text' => __( 'Make the main', 'cc' ),
+        'main_img_caption' => __('Main image', 'prokkat'),
+        'make_main_text' => __( 'Make the main', 'prokkat' ),
 		'no-avatar' => get_stylesheet_directory_uri() .'/img/no-avatar.png',
     );
     ?>
@@ -806,7 +806,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             <input type="hidden" name="filter_'.$filter_id.'" value="'. $filter_id .'">
             <input type="text" name="'. $filter->slug .'" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'" value="'. get_post_meta( $post_id, $filter->slug, true) .'">
             <datalist class="input_add" id="select_options">
-            <select class="select">';
+            <s  elect class="select">';
             foreach($choices as $choice) {
               $choice = trim($choice);
               $result .= '<option value="'. $choice .'" '. $selected .'>'. $choice .'</option>';

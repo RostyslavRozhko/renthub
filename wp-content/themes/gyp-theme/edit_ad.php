@@ -291,7 +291,7 @@
                                 <div class="add__upload">
                                     <div class="add__upload-text">
                                         <div class="div add__photo-title"><?php _e('Upload photos', 'prokkat'); ?></div>
-                                        <p><?php _e('Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services.', 'prokkat'); ?></p>
+                                        <p><?php _e('Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services', 'prokkat'); ?></p>
                                         <?php my_photo_markup( $id1, get_post_meta( $pid, $id1, true )); ?>
                                     </div>
                                 </div>

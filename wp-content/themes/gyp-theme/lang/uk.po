@@ -15,6 +15,7 @@ msgstr ""
 "X-Generator: Poedit 2.0.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -270,8 +271,8 @@ msgstr "Місце розташування"
 msgid "Your contact details"
 msgstr "Ваші контактні дані"
 
-msgid "Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services."
-msgstr "Завантажте фото власних солодощів в галерею. Пам’ятайте, що чим якісніше фото - тим більше людей зацікавляться Вашими послугами."
+msgid "Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services"
+msgstr "Завантажте фото власних солодощів в галерею. Пам’ятайте, що чим якісніше фото - тим більше людей зацікавляться Вашими послугами"
 
 msgid "Upload photos"
 msgstr "Завантажте фото"
@@ -613,7 +614,7 @@ msgid "Cost : "
 msgstr "Ціна : "
 
 msgid "Please enter title"
-msgstr "Будь ласка, введіть назву"
+msgstr "Будь ласка, заповніть поле"
 
 msgid "Please enter description"
 msgstr "Будь ласка, введіть опис"
@@ -2499,6 +2500,9 @@ msgstr "Відфільтрувати"
 
 msgid "What is RentHUB?"
 msgstr "Що таке RentHUB?"
+
+msgid "RentHUB is"
+msgstr "RentHUB - це відкрита платформа, яка спеціалізується на оренді будівельної техніки. Кожна людина може розмісти оголошення та здати в оренду техніку, якою Вона володіє. Кінцевий користувач навпаки знайде те, що йому необхідно для ремонту чи будівництва."
 
 msgid "How it is working?"
 msgstr "Як це працює?"

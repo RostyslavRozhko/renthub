@@ -206,7 +206,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Київ';
         <div class="col6 nopaddingl">
             <div class="info-section__title"><?php _e('What is RentHUB?', 'prokkat') ?></div>
             <div class="info-section__text">
-                RentHUB - це відкрита платфомна яка спеціалізується на оренді будівельної техніки. Кожна людина може розмісти оголошення та здати в оренду техніку, якою Вона володіє. Кінцевий користувач навпаки знайде те, що йому необіхдно для ремонту чи будівництва.
+	            <?php _e('RentHUB is', 'prokkat') ?>
             </div>
             <div class="info-section__stats">
                 <div class="info-section__stats-col">
@@ -225,9 +225,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Київ';
         </div>
         <div class="col6 nopaddingr">
             <div class="info-section__title"><?php _e('How it is working?', 'prokkat') ?></div>
-            <div class="info-section__text">
-                RentHUB - це відкрита платфомна яка спеціалізується на оренді будівельної техніки. Кожна людина може розмісти оголошення та здати в оренду техніку, якою Вона володіє. Кінцевий користувач навпаки знайде те, що йому необіхдно для ремонту чи будівництва.
-            </div>
+            <div class="info-section__text"><?php _e('RentHUB is', 'prokkat') ?></div>
             <div class="info-section__link-container">
                 <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
                   <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>

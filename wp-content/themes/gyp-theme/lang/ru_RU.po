@@ -270,8 +270,8 @@ msgstr "Место расположения"
 msgid "Your contact details"
 msgstr "Ваши контактные данные"
 
-msgid "Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services."
-msgstr "Загрузите фото техники в галерею. Помните, что чем качественнее фото - тем больше людей заинтересуются Вашими услугами."
+msgid "Upload photo of your own sweets to gallery. Remember that the better the picture - the more people interested in your services"
+msgstr "Загрузите фото техники в галерею. Помните, что чем качественнее фото - тем больше людей заинтересуются Вашими услугами"
 
 msgid "Upload photos"
 msgstr "Загрузите фото"
@@ -613,7 +613,7 @@ msgid "Cost : "
 msgstr "Цена:"
 
 msgid "Please enter title"
-msgstr "Пожалуйста, введите название"
+msgstr "Пожалуйста, заполните поле"
 
 msgid "Please enter description"
 msgstr "Пожалуйста, введите описание"
@@ -2425,8 +2425,11 @@ msgstr "Фильтровать"
 msgid "What is RentHUB?"
 msgstr "Что такое RentHUB?"
 
+msgid "RentHUB is"
+msgstr "RentHUB - это открытая платформа, которая специализируется на аренде строительной техники. Каждый человек может размести объявления и сдать в аренду технику, которой Она обладает. Конечный пользователь наоборот найдет то, что ему необходимо для ремонта или строительства."
+
 msgid "How it is working?"
-msgstr "Как работает?"
+msgstr "Как это работает?"
 
 msgid "visitors everyday"
 msgstr "посетителей ежедневно"
@@ -2534,7 +2537,7 @@ msgid "Wrong contact information"
 msgstr "Неправильные контактные данные"
 
 msgid "The author behaves suspiciously"
-msgstr "втор ведёт себя подозрительно"
+msgstr "Автор ведёт себя подозрительно"
 
 msgid "The ad contains incorrect information"
 msgstr "Объявление содержит неправильную информацию"
@@ -2552,7 +2555,7 @@ msgid "Hide map"
 msgstr "Спрятать карту"
 
 msgid "Sort by"
-msgstr "Сортувати"
+msgstr "Сортировать"
 
 msgid "Details"
 msgstr "Подробнее"
