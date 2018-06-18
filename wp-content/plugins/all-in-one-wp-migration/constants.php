@@ -31,7 +31,7 @@ define( 'AI1WM_DEBUG', false );
 // ==================
 // = Plugin Version =
 // ==================
-define( 'AI1WM_VERSION', '6.68' );
+define( 'AI1WM_VERSION', '6.69' );
 
 // ===============
 // = Plugin Name =
@@ -148,6 +148,16 @@ define( 'AI1WM_MULTISITE_NAME', 'multisite.json' );
 // ======================
 define( 'AI1WM_BLOGS_NAME', 'blogs.json' );
 
+// =========================
+// = Archive Settings Name =
+// =========================
+define( 'AI1WM_SETTINGS_NAME', 'settings.json' );
+
+// ==========================
+// = Archive Multipart Name =
+// ==========================
+define( 'AI1WM_MULTIPART_NAME', 'multipart.list' );
+
 // ========================
 // = Archive FileMap Name =
 // ========================
@@ -157,6 +167,21 @@ define( 'AI1WM_FILEMAP_NAME', 'filemap.list' );
 // = Archive Must-Use Plugins Name =
 // =================================
 define( 'AI1WM_MUPLUGINS_NAME', 'mu-plugins' );
+
+// =============================
+// = Endurance Page Cache Name =
+// =============================
+define( 'AI1WM_ENDURANCE_PAGE_CACHE_NAME', 'endurance-page-cache.php' );
+
+// ===========================
+// = Endurance PHP Edge Name =
+// ===========================
+define( 'AI1WM_ENDURANCE_PHP_EDGE_NAME', 'endurance-php-edge.php' );
+
+// ================================
+// = Endurance Browser Cache Name =
+// ================================
+define( 'AI1WM_ENDURANCE_BROWSER_CACHE_NAME', 'endurance-browser-cache.php' );
 
 // ===================
 // = Export Log Name =
@@ -228,6 +253,11 @@ define( 'AI1WM_ACTIVE_TEMPLATE', 'template' );
 // =====================
 define( 'AI1WM_ACTIVE_STYLESHEET', 'stylesheet' );
 
+// ============
+// = Cron Key =
+// ============
+define( 'AI1WM_CRON', 'cron' );
+
 // ===============
 // = Updater Key =
 // ===============
@@ -251,7 +281,7 @@ define( 'AI1WM_SUPPORT_EMAIL', 'support@servmask.com' );
 // =================
 // = Max File Size =
 // =================
-define( 'AI1WM_MAX_FILE_SIZE', 936870912 );
+define( 'AI1WM_MAX_FILE_SIZE', 536870912 );
 
 // ==================
 // = Max Chunk Size =

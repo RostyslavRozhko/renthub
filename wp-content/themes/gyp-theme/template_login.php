@@ -58,7 +58,7 @@
              <div class="modal__btn__text">Войти с помощью телефона</div>
            </div>
          </a>
-         <a  href="<?php echo str_replace('?lang=ru', '', site_url() . '/wp-login.php?loginFacebook=1&redirect='. site_url()); ?>" onclick="window.location = '<?php echo str_replace('?lang=ru', '', site_url() . '/wp-login.php?loginFacebook=1&redirect=' . site_url() .'/dashboard' ); ?>; return false;">
+         <a  href="<?php echo str_replace('?lang=ru', '', site_url() . '/wp-login.php?loginfacebook=1&redirect='. site_url()); ?>" onclick="window.location = '<?php echo str_replace('?lang=ru', '', site_url() . '/wp-login.php?loginfacebook=1&redirect=' . site_url() .'/dashboard' ); ?>; return false;">
            <div class="modal__btn modal__btn__facebook">
              <div class="modal__btn__text">Войти с помощью Facebook</div>
            </div>
@@ -72,6 +72,7 @@
           <?php wp_nonce_field('ajax-register-nonce', 'signonsecurity'); ?>         
           <input id="nick" type="text" class="required input input_modal" name="nick" placeholder="Ваше имя">
           <input id="signonpassword" type="password" class="required input input_modal" name="signonpassword" placeholder="Пароль">
+	  <input id="signonpasswordtwo" type="password" class="required input input_modal" name="signonpasswordtwo" placeholder="Повторить пароль">
           <input id="phone" type="phone" class="required input input_modal" name="phone" placeholder="Номер телефона">
           <input id="emailreg" type="email" class="required email input input_modal" name="email" placeholder="E-Mail">
           <input id="cc_user_address" type="text" name="user_city" class="required input input_modal" placeholder="Город">
@@ -90,7 +91,7 @@
           </p>
           <form id="confirmation" class="form form_modal-login">
             <input id="conf_code" type="number" class="required input input_modal" name="phone" placeholder="Код">
-            <input class="submit_button btn btn_modal modal__btn modal__btn__login register-btn" type="submit" value="Зарегистрироваться" tabindex="103">
+         <input class="submit_button btn btn_modal modal__btn modal__btn__login register-btn" type="submit" value="Зарегистрироваться" tabindex="103">
           </form>
         </div>
         <div class="resend-sms_form">

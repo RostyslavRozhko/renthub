@@ -5,6 +5,7 @@ defined('ABSPATH') || die();
 
 $allowedSubviews = array(
     'general',
+    'privacy',
     'login-form',
     'woocommerce',
     'comment',
@@ -27,6 +28,8 @@ if (!NextendSocialLoginAdmin::isPro()) {
     <div class="nsl-admin-sub-nav-bar">
         <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('general'); ?>"
            class="nsl-admin-nav-tab<?php if ($subview === 'general'): ?> nsl-admin-nav-tab-active<?php endif; ?>"><?php _e('General', 'nextend-facebook-connect'); ?></a>
+        <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('privacy'); ?>"
+           class="nsl-admin-nav-tab<?php if ($subview === 'privacy'): ?> nsl-admin-nav-tab-active<?php endif; ?>"><?php _e('Privacy', 'nextend-facebook-connect'); ?></a>
         <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('login-form'); ?>"
            class="nsl-admin-nav-tab<?php if ($subview === 'login-form'): ?> nsl-admin-nav-tab-active<?php endif; ?>"><?php _e('Login Form', 'nextend-facebook-connect'); ?></a>
         <a href="<?php echo NextendSocialLoginAdmin::getAdminSettingsUrl('woocommerce'); ?>"

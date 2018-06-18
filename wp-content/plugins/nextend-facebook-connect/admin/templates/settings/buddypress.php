@@ -15,7 +15,7 @@ NextendSocialLoginAdmin::showProBox();
 <table class="form-table">
     <tbody>
     <tr>
-        <th scope="row"><?php _e('BuddyPress register form', 'nextend-facebook-connect'); ?></th>
+        <th scope="row"><?php _e('Register form', 'nextend-facebook-connect'); ?></th>
         <td>
             <fieldset>
                 <label><input type="radio" name="buddypress_register_button"
@@ -40,7 +40,7 @@ NextendSocialLoginAdmin::showProBox();
         </td>
     </tr>
     <tr>
-        <th scope="row"><?php _e('BuddyPress register button style', 'nextend-facebook-connect'); ?></th>
+        <th scope="row"><?php _e('Register button style', 'nextend-facebook-connect'); ?></th>
         <td>
             <fieldset>
                 <label>

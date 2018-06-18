@@ -10,10 +10,11 @@ require_once( explode('wp-content' , __FILE__ )[0] . 'wp-load.php');
                 );
                 $get_all_links = get_posts($args);
                 foreach ($get_all_links as $get_link){
+			$key_field = 'post_views_count';
 			$postID = $get_link->ID;
-			$count = get_post_meta($postID, 'post_views_count', true);
+			$count = get_post_meta($postID, $key_field , true);
 			$count = (int)($count + 10);
-			update_post_meta($postID, 'post_views_count', $count);
+			update_post_meta($postID, $key_field , $count);
                 }
         }
 	function echo_time ($start_time) {
@@ -22,5 +23,5 @@ require_once( explode('wp-content' , __FILE__ )[0] . 'wp-load.php');
                 return $time;
         }
 	echo post_links();
-	echo 'Час виповенненя скрипту '. echo_time($start_time) . ' секунд';
+	echo 'Час виповнення скрипту '. echo_time($start_time) . ' секунд';
 ?>

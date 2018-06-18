@@ -1,4 +1,5 @@
 <?php
+require_once(NSL_PATH . '/includes/userData.php');
 
 class NextendSocialUser {
 
@@ -87,8 +88,12 @@ class NextendSocialUser {
 
         $user_id = false;
 
-        $email          = $this->getAuthUserData('email');
         $providerUserID = $this->getAuthUserData('id');
+
+        $email = '';
+        if (NextendSocialLogin::$settings->get('store_email') == 1) {
+            $email = $this->getAuthUserData('email');
+        }
 
         if (empty($email)) {
             $email = '';
@@ -99,7 +104,7 @@ class NextendSocialUser {
             if (apply_filters('nsl_is_register_allowed', true, $this->provider)) {
                 $this->register($providerUserID, $email);
             } else {
-                NextendSocialProvider::redirect(__('Authentication error', 'nextend-facebook-connect'), site_url('wp-login.php?registration=disabled'));
+                NextendSocialProvider::redirect(__('Authentication error', 'nextend-facebook-connect'), add_query_arg('registration', 'disabled', NextendSocialLogin::getLoginUrl()));
                 exit;
             }
 
@@ -150,38 +155,52 @@ class NextendSocialUser {
     protected function register($providerID, $email) {
         NextendSocialLogin::$WPLoginCurrentFlow = 'register';
 
-        /**
-         * First checks provided first_name & last_name if it is not available checks name if it is neither available checks secondary_name.
-         */
-        $sanitized_user_login = $this->sanitizeUserName($this->getAuthUserData('first_name') . $this->getAuthUserData('last_name'));
-        if ($sanitized_user_login === false) {
-            $sanitized_user_login = $this->sanitizeUserName($this->getAuthUserData('username'));
+        $sanitized_user_login = false;
+
+        if (NextendSocialLogin::$settings->get('store_name') == 1) {
+            /**
+             * First checks provided first_name & last_name if it is not available checks name if it is neither available checks secondary_name.
+             */
+            $sanitized_user_login = $this->sanitizeUserName($this->getAuthUserData('first_name') . $this->getAuthUserData('last_name'));
             if ($sanitized_user_login === false) {
-                $sanitized_user_login = $this->sanitizeUserName($this->getAuthUserData('name'));
+                $sanitized_user_login = $this->sanitizeUserName($this->getAuthUserData('username'));
+                if ($sanitized_user_login === false) {
+                    $sanitized_user_login = $this->sanitizeUserName($this->getAuthUserData('name'));
+                }
             }
         }
 
+        $email = '';
+        if (NextendSocialLogin::$settings->get('store_email') == 1) {
+            $email = $this->getAuthUserData('email');
+        }
         $userData = array(
             'email'    => $email,
             'username' => $sanitized_user_login
         );
 
         do_action('nsl_before_register', $this->provider);
-        $userData = apply_filters('nsl_' . $this->provider->getId() . '_register_user_data', $userData);//validated userdata
 
-        /**
-         * If email is empty or  it is not provided. Generate one. The format will be like: yourProviderId@providerName.unknown
-         */
-        if (empty($userData['email'])) {
-            $userData['email'] = $providerID . '@' . $this->provider->getId() . '.unknown';
+        do_action('nsl_' . $this->provider->getId() . '_before_register');
+
+        if (NextendSocialLogin::$settings->get('terms_show') == '1') {
+
+            add_filter('nsl_registration_require_extra_input', array(
+                $this,
+                'require_extra_input_terms'
+            ));
         }
+
+
+        /** @var array $userData Validated user data */
+        $userData = $this->finalizeUserData($userData);
 
         /**
          * -If neither of the usernames ( first_name & last_name, secondary_name) are appropriate, the fallback username will be combined with and id that was sent by the provider.
          * -In this way we can generate an appropriate username.
          */
         if (empty($userData['username'])) {
-            $userData['username'] = sanitize_user($this->provider->settings->get('user_fallback') . $providerID, true);
+            $userData['username'] = sanitize_user($this->provider->settings->get('user_fallback') . md5(uniqid(rand())), true);
         }
 
         /**
@@ -261,27 +280,30 @@ class NextendSocialUser {
             return false;
         }
 
-        $user_data = array();
-        $name      = $this->getAuthUserData('name');
-        if (!empty($name)) {
-            $user_data['display_name'] = $name;
-        }
+        if (NextendSocialLogin::$settings->get('store_name') == 1) {
+            $user_data = array();
+            $name      = $this->getAuthUserData('name');
+            if (!empty($name)) {
+                $user_data['display_name'] = $name;
+            }
 
-        $first_name = $this->getAuthUserData('first_name');
-        if (!empty($first_name)) {
-            $user_data['first_name'] = $first_name;
-            if (class_exists('WooCommerce', false)) {
-                add_user_meta($user_id, 'billing_first_name', $first_name);
+            $first_name = $this->getAuthUserData('first_name');
+            if (!empty($first_name)) {
+                $user_data['first_name'] = $first_name;
+                if (class_exists('WooCommerce', false)) {
+                    add_user_meta($user_id, 'billing_first_name', $first_name);
+                }
+            }
+
+            $last_name = $this->getAuthUserData('last_name');
+            if (!empty($last_name)) {
+                $user_data['last_name'] = $last_name;
+                if (class_exists('WooCommerce', false)) {
+                    add_user_meta($user_id, 'billing_last_name', $last_name);
+                }
             }
         }
 
-        $last_name = $this->getAuthUserData('last_name');
-        if (!empty($last_name)) {
-            $user_data['last_name'] = $last_name;
-            if (class_exists('WooCommerce', false)) {
-                add_user_meta($user_id, 'billing_last_name', $last_name);
-            }
-        }
         if (!empty($user_data)) {
             $user_data['ID'] = $user_id;
             wp_update_user($user_data);
@@ -405,5 +427,49 @@ class NextendSocialUser {
      */
     public function getProvider() {
         return $this->provider;
+    }
+
+    /**
+     * @param $userData
+     *
+     * @return array
+     * @throws NSLContinuePageRenderException
+     */
+    public function finalizeUserData($userData) {
+
+        $data = new NextendSocialUserData($userData, $this, $this->provider);
+
+        return $data->toArray();
+    }
+
+    public function require_extra_input_terms($askExtraData) {
+
+        add_action('nsl_registration_form_end', array(
+            $this,
+            'registration_form_terms'
+        ), 10000);
+
+        return true;
+    }
+
+    public function registration_form_terms($userData) {
+        ?>
+        <p>
+            <?php
+            $terms = $this->provider->settings->get('terms');
+
+            if (empty($terms)) {
+                $terms = NextendSocialLogin::$settings->get('terms');
+            }
+
+            if (function_exists('get_privacy_policy_url')) {
+                $terms = str_replace('#privacy_policy_url', get_privacy_policy_url(), $terms);
+            }
+
+            echo __($terms, 'nextend-facebook-connect');
+
+            ?>
+        </p>
+        <?php
     }
 }

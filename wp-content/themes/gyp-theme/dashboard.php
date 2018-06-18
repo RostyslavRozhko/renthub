@@ -30,7 +30,7 @@
       'post_status' => 'draft',
       'post_type' => POST_TYPE,
       'post_author'    => $new_post_author,
-			'post_content'   => $post->post_content,
+      'post_content'   => $post->post_content,
     );
     $new_post_id = wp_insert_post($cc_my_post);
 

@@ -70,11 +70,19 @@ class NextendSocialProviderAdmin {
 
         if (isset($postedData['custom_icon_button'])) {
             if (isset($postedData['custom_icon_button_enabled']) && $postedData['custom_icon_button_enabled'] == '1') {
-                $newData['custom_icon_button'] = $postedData['custom_icon_button'];
+                $newData['custom_icon_button'] = wp_kses_post($postedData['custom_icon_button']);
             } else {
                 if ($postedData['custom_icon_button'] != '') {
                     $newData['custom_icon_button'] = '';
                 }
+            }
+        }
+
+        if (isset($postedData['terms'])) {
+            if (isset($postedData['terms_override']) && $postedData['terms_override'] == '1') {
+                $newData['terms'] = $postedData['terms'];
+            } else {
+                $newData['terms'] = '';
             }
         }
 

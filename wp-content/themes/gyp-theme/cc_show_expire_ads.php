@@ -24,7 +24,7 @@
     <div class="add__title"><?php _e('Your Expired Ads', 'prokkat'); ?></div>
     
     <?php if($update_msg){ ?>
-    <div class="notification mess-info mess-info_center">
+    <div class="notification mess-info mess-info_center1111111111111111111111111111">
     <div class="upload__control-img close-mess">
                     <div class="upload__control-del ">
                         <a href="#0">

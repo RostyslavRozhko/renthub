@@ -205,7 +205,7 @@
                         <div class="author-side__name">
                             <img class="contact-ad__author-photo" src="<?php echo $ava; ?>" />
 			    <div class="contact-ad__author-text">
-				<a href="<?php echo get_author_posts_url($author_id);?>"><?php echo the_author_meta('nickname');//echo the_author_posts_link(); ?></a>
+				<a href="<?php echo get_author_posts_url($author_id);?>"><?php echo the_author_meta('nickname');?></a>
                                 <a class="single__state" data-state="<?php echo $state; ?>"></a>
                                 <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
                             </div>
@@ -237,10 +237,10 @@
                     <?php endif ?>
                     </div>
                     <div class="maps-wrp">
-						<div id='address_list' style="padding: 25px 25px 0 25px"></div>
-						<input id="cc_address_list" type="hidden" value='<?php echo get_post_meta($post->ID, 'cc_address_list', true); ?>' />
-                        <div class="maps">
-						  <div id="map_canvas" style="height: 250px;"></div>
+		<div id='address_list' style="padding: 25px 25px 0 25px"></div>
+		<input id="cc_address_list" type="hidden" value='<?php echo get_post_meta($post->ID, 'cc_address_list', true); ?>' />
+                    <div class="maps">
+			<div id="map_canvas" style="height: 250px;"></div>
                         </div>
                     </div>
                     </div>
@@ -254,7 +254,6 @@
 <?php
   query_posts(array(
     'post_type' => POST_TYPE,
-    //'posts_per_page' => -1,
     'posts_per_page' => 10,
     'author' => $author_id
   ));

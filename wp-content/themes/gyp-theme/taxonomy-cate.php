@@ -110,7 +110,10 @@
 <div style="position: relative">
 <?php
       if ($the_query->have_posts()) :   ?>
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&libraries=places&language=<?php echo pll_current_language('slug'); ?>"></script>
+          <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&libraries=places&language=<?php //echo pll_current_language('slug'); ?>"></script>&language=<?php //echo pll_current_language('slug'); ?>-->
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places"></script>
+          <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&callback=initMap"></script> 
           <script>
             function initMap() {
               const mapId = document.getElementById('search-map')
@@ -145,13 +148,13 @@
 
                 if(ad.location) {
                   const locations = JSON.parse(ad.location)
-                  length = locations.length
 
-                  locations.map(position => {
-                    const marker = new google.maps.Marker({
+                  length = locations.length
+                  var markers = locations.map(position => {
+                    const marker =  new google.maps.Marker({
                       map: map,
                       position: position,
-                      icon: icon,
+                      icon: icon,   
                       title: ad.title
                     })
 
@@ -162,7 +165,7 @@
                       infowindow.open(map, marker)
                       prevWindow = infowindow
                     })
-                  })
+                  });
                 }
                   map.fitBounds(bounds)
                   const listener = google.maps.event.addListener(map, "idle", function() { 
@@ -172,21 +175,21 @@
                   })
               })
 
-              // $('.search-list__title-city').each(function(index) {
-              //   const cities = JSON.parse($(this).find('input').val())
-              //   const result = cities.map(id => {
-              //     geocoder.geocode({'placeId': id}, function(results, status) {
-              //       console.log(results, status)
-              //       if (status === google.maps.GeocoderStatus.OK) {
-              //         if (results[0]) {
-              //           const place = results[0]
-              //           console.log(place)
-              //         }
-              //       }
-              //     })
-              //   })
-              //   // $(this).text(result.join())
-              // })
+               /*$('.search-list__title-city').each(function(index) {
+                 const cities = JSON.parse($(this).find('input').val())
+                 const result = cities.map(id => {
+                   geocoder.geocode({'placeId': id}, function(results, status) {
+                     console.log(results, status)
+                     if (status === google.maps.GeocoderStatus.OK) {
+                       if (results[0]) {
+                         const place = results[0]
+                         console.log(place)
+                       }
+                     }
+                   })
+                 })
+                  $(this).text(result.join())
+               });*/
             }
 
             google.maps.event.addDomListener(window, 'load', initMap);
@@ -336,11 +339,11 @@
           <?php 
             while ($the_query->have_posts()) : 
               $arr[] = $the_query->the_post();
+		print_r($the_query->the_post());
               $post_id = get_the_ID();
               $post = get_post($post_id);
               $author = get_userdata($post->post_author); 
               $author_id = $author->ID;
-
           ?>
           <div class="search-list__result">
             <div class="search-list__img">
@@ -370,7 +373,7 @@
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
               <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
-              <input type="hidden" id="user_name" value="<?php echo $author->display_name; ?>">
+              <input type="hidden" id="user_name" value="<?php the_author_meta('nickname');?>">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/envelope.svg">
             </a>
             <div class="search-list__phone-container">
@@ -392,7 +395,7 @@
                         if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png'; 
                     ?>
                     <input type="hidden" name="image" value="<?php echo $ava; ?>">
-                    <input type="hidden" name="author_name" value="<?php echo $author->display_name; ?>" >
+                    <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname');?>" >
                     <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
                   </a>
                     <?php } else { ?>
@@ -408,14 +411,14 @@
                     if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png'; 
                 ?>
                 <input type="hidden" name="image" value="<?php echo $ava; ?>">
-                <input type="hidden" name="author_name" value="<?php echo $author->display_name; ?>" >
+                <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname'); ?>" >
                 <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
               </a>
               </div>
           </div>
 	    <?php
           endwhile;
-	  if (count($arr) > 9) {
+	  //if (count($arr) > 9) {
           echo '<div class="paginator">';
           echo paginate_links( array(
             'mid_size'  => 2,
@@ -423,7 +426,7 @@
             'next_text' => '<i class="fas fa-angle-right"></i>',
           ) ); 
           echo '</div>';
-	  }
+	  //}
           wp_reset_postdata();
 	    else : ?>
         <div class="fanks__title fanks__title_category"><?php _e('This category does not include ads', 'prokkat'); ?></div> 

@@ -48,8 +48,6 @@
         <th scope="row"><?php _e('Debug mode', 'nextend-facebook-connect'); ?></th>
         <td>
             <fieldset>
-                <legend class="screen-reader-text">
-                    <span><?php _e('Debug mode', 'nextend-facebook-connect'); ?></span></legend>
                 <label><input type="radio" name="debug"
                               value="0" <?php if ($settings->get('debug') == '0') : ?> checked="checked" <?php endif; ?>>
                     <span><?php _e('Disabled', 'nextend-facebook-connect'); ?></span></label><br>
@@ -59,18 +57,26 @@
             </fieldset>
         </td>
     </tr>
-
     <tr>
-        <th scope="row"><?php _e('Store Avatar', 'nextend-facebook-connect'); ?></th>
+        <th scope="row"><?php _e('Page for register flow', 'nextend-facebook-connect'); ?></th>
         <td>
-            <fieldset>
-                <label><input type="radio" name="avatar_store"
-                              value="0" <?php if ($settings->get('avatar_store') == '0') : ?> checked="checked" <?php endif; ?>>
-                    <span><?php _e('Disabled', 'nextend-facebook-connect'); ?></span></label><br>
-                <label><input type="radio" name="avatar_store"
-                              value="1" <?php if ($settings->get('avatar_store') == '1') : ?> checked="checked" <?php endif; ?>>
-                    <span><?php _e('Enabled', 'nextend-facebook-connect'); ?></span></label><br>
-            </fieldset>
+             <?php wp_dropdown_pages(array(
+                 'name'             => 'register-flow-page',
+                 'show_option_none' => __('None'),
+                 'selected'         => $settings->get('register-flow-page')
+             )); ?>
+            <p class="description" id="tagline-register-flow-page"><?php printf(__('First create a new page for register flow and insert the following shortcode: %1$s then select this page above', 'nextend-facebook-connect'), '<code>[nextend_social_login_register_flow]</code>'); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row"><?php _e('OAuth redirect uri proxy page', 'nextend-facebook-connect'); ?></th>
+        <td>
+             <?php wp_dropdown_pages(array(
+                 'name'             => 'proxy-page',
+                 'show_option_none' => __('None'),
+                 'selected'         => $settings->get('proxy-page')
+             )); ?>
+            <p class="description" id="tagline-proxy-page"><?php _e('Pick a custom page when wp-login.php not available to handle the OAuth flow.', 'nextend-facebook-connect'); ?></p>
         </td>
     </tr>
 
@@ -80,8 +86,8 @@
         </th>
         <td>
             <?php
-            $useDefault = false;
-            $default_redirect  = $settings->get('default_redirect');
+            $useDefault       = false;
+            $default_redirect = $settings->get('default_redirect');
             if (!empty($default_redirect)) {
                 $useDefault = true;
             }
@@ -95,7 +101,7 @@
                    class="regular-text"<?php if (!$useDefault): ?> style="display:none;"<?php endif; ?>>
 
             <?php
-            $useDefault   = false;
+            $useDefault          = false;
             $default_redirectReg = $settings->get('default_redirect_reg');
             if (!empty($default_redirectReg)) {
                 $useDefault = true;

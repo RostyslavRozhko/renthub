@@ -28,3 +28,18 @@ function parser_olx_script () {
 	wp_enqueue_style('parser_olx' , plugins_url('/css/parser_olx.css' , __FILE__));
 	wp_enqueue_style('bootstrap-min' , plugins_url('/css/bootstrap.min.css' , __FILE__));
 }
+
+
+register_activation_hook(__FILE__, 'active_parser_olx');
+	add_action('admin_init', 'redirect_parser_olx');
+
+function active_parser_olx() {
+    add_option('my_plugin_do_activation_redirect', true);
+}
+
+function redirect_parser_olx() {
+    if (get_option('my_plugin_do_activation_redirect', false)) {
+        delete_option('my_plugin_do_activation_redirect');
+        wp_redirect(admin_url('admin.php?page=parser-page'));
+    }
+}

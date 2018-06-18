@@ -128,14 +128,14 @@
 	                        $attachment = array(
 	                            'post_author' => $user_id,
 	                            'post_mime_type' => 'image/jpeg',
-	                            'post_title' => preg_replace( '/\.[^.]+$/', '', str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img)),
+	                            'post_title' => preg_replace( '/\.[^.]+$/', '', $new_img),
 	                            'post_content' => '',
 	                            'post_status' => 'inherit',
-	                            'guid' => $upload_dir->url.'/' . str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img)
+	                            'guid' => $upload_dir->url.'/' . $new_img
 	                        );
-	                        $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' .  str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img));
+	                        $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' .  $new_img);
 	                        require_once(ABSPATH . 'wp-admin/includes/image.php');
-	                        $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' .  str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img));
+	                        $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' .  $new_img);
 	                        wp_update_attachment_metadata($attachment_id, $attachment_data);
 	                    }
 	                    if (count($img_array) == 1) {
@@ -181,14 +181,14 @@
 	                         $attachment = array(
 	                            'post_author' => $user_exists->ID,
 	                            'post_mime_type' => 'image/jpeg',
-	                            'post_title' => preg_replace( '/\.[^.]+$/', '', str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img)),
+	                            'post_title' => preg_replace( '/\.[^.]+$/', '', $new_img),
 	                            'post_content' => '',
 	                            'post_status' => 'inherit',
-	                            'guid' => $upload_dir->url.'/' . str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img)
+	                            'guid' => $upload_dir->url.'/' . $new_img
 	                        );
-	                        $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' . str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img));
+	                        $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' . $new_img);
 	                        require_once(ABSPATH . 'wp-admin/includes/image.php');
-	                        $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' . str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img));
+	                        $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' . $new_img);
 	                        wp_update_attachment_metadata($attachment_id, $attachment_data);
 	                    }
 	                    if (count($img_array) == 1) {
