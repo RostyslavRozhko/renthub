@@ -45,7 +45,21 @@
               )
           )
         );
-
+	$args = array(
+    		'post_type' => POST_TYPE,
+    		'posts_per_page' => -1,
+    		'post_status' => 'publish',
+    		'tax_query' => array(
+      			array(
+          			'include_children' => false,
+          			'taxonomy' => 'cate',
+          			'field' => 'term_taxonomy_id',
+          			'terms' => $terms,
+        		)
+      			),
+   		 'meta_query' => array()
+  		);
+	$all_query = new WP_Query($args); 
         if($s_for) {
           $arguments['title_like'] = $s_for;
         }
@@ -104,7 +118,7 @@
           $arguments['orderby'] = 'meta_value_num';
         }
 
-        $the_query = new WP_Query( $arguments );
+        $the_query = new WP_Query($arguments);
 
         $temp_query = $wp_query;
         $wp_query   = NULL;
@@ -324,6 +338,7 @@
           endwhile;
 	    ?>
                     </div>
+		   <?php if(count($arr) > 9 || $all_query->post_count > 9) { ?>
                     <div class="paginator">
                       <?php
                         echo paginate_links( array(
@@ -334,6 +349,7 @@
                         wp_reset_postdata();
                       ?>
                     </div>
+		   <?php } ?>
                   </div>
       <?php else : ?>
 

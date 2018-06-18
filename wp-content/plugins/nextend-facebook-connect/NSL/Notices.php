@@ -175,8 +175,7 @@ class Notices {
             }
         }
 
-        self::delete();
-        self::$notices = array();
+        self::clear();
 
         return $html;
     }
@@ -189,8 +188,9 @@ class Notices {
         Persistent::set('notices', self::$notices);
     }
 
-    private static function delete() {
+    public static function clear() {
 
         Persistent::delete('notices');
+        self::$notices = array();
     }
 }

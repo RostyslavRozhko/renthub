@@ -4,7 +4,7 @@ Tags: social login, facebook, google, twitter, linkedin, register, login, social
 Donate link: https://www.facebook.com/nextendweb
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 3.0.7
+Stable tag: 3.0.10
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,9 +62,11 @@ After you activated the plugin configure and enable the provider you want to use
 
 == Frequently Asked Questions ==
 
+= Can I make my site GDPR compliant with Nextend Social Login installed? =
+Sure, Nextend Social Login provides you the tools to make your site GDPR compliant. [Check out the Nextend Social Login GDPR documentation](https://nextendweb.com/nextend-social-login-docs/gdpr/) to learn more about the topic.
+
 = 1. How can I get the email address from the Twitter users? =
 After you set up your APP go to the Settings tab and enter the URL of your Terms of Service and Privacy Policy page. Then hit the Update your settings button. Then go to the Permissions tab and check the "Request email addresses from users" under "Additional Permissions". [There's a documentation](https://nextendweb.com/nextend-social-login-docs/provider-twitter/#get-email) that explains the process with screenshots.
-
 
 = 2. Why are random email addresses generated for users registering with their FaceBook account? =
 When the user tries to register with their Facebook account Facebook pops up a window where each user can view what kind of access they give for the app. In this modal they can chose not to share their email address. When they're doing so we generate a random email address for them. They can of course change this at their profile.
@@ -111,6 +113,25 @@ Unfortunately, currently there are no BuddyPress specific settings. However your
 2. Nextend Social Login and Register in the profile page for account linking
 
 == Changelog ==
+
+= 3.0.10 =
+* Fix: display_post_states is static now 
+
+= 3.0.9 =
+* Fix: Parse error for alternate login page
+
+= 3.0.8 =
+* Feature: A page can be selected which handles the extra fields for Register flow.
+* Feature: A page can be selected which handles the OAuth flow.
+* Feature: Spanish (Latin America) translation added.
+* Feature: GDPR - add custom Terms and conditions on register.
+* Feature: GDPR - retrieved fields can now be exported with the Export Personal Data tool of WordPress.
+* Fix: Jetpack - Secure Sign On
+* Fix: Dokan - redirection
+
+* PRO: Feature: Authorized domain name check and notice for changed domain name.
+* PRO: Feature: Option to change the button layouts for WooCommerce login/register/billing forms.
+* PRO: Feature: Sync LinkedId fields
 
 = 3.0.7 =
 * Feature: AJAX compatibility

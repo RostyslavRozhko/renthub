@@ -65,7 +65,7 @@ NextendSocialLoginAdmin::showProBox();
             </td>
         </tr>
         <tr>
-            <th scope="row"><?php _e('MemberPress account details', 'nextend-facebook-connect'); ?></th>
+            <th scope="row"><?php _e('Account details', 'nextend-facebook-connect'); ?></th>
             <td>
                 <fieldset>
                     <label><input type="radio" name="memberpress_account_details"

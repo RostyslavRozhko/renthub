@@ -54,8 +54,6 @@ NextendSocialLoginAdmin::showProBox();
         <th scope="row"><?php _e('Registration notification sent to', 'nextend-facebook-connect'); ?></th>
         <td>
             <fieldset>
-                <legend class="screen-reader-text">
-                    <span><?php _e('Registration notification sent to', 'nextend-facebook-connect'); ?></span></legend>
                 <label><input type="radio" name="registration_notification_notify"
                               value="0" <?php if ($settings->get('registration_notification_notify') == '0') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
                     <span><?php _e('WordPress default', 'nextend-facebook-connect'); ?></span></label><br>

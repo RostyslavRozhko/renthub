@@ -114,7 +114,7 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
 
             $this->client->setClientId($this->settings->get('appid'));
             $this->client->setClientSecret($this->settings->get('secret'));
-            $this->client->setRedirectUri($this->getLoginUrl());
+            $this->client->setRedirectUri($this->getRedirectUri());
         }
 
         return $this->client;
@@ -225,7 +225,8 @@ class NextendSocialProviderFacebook extends NextendSocialProvider {
             }
 
         }
-        $this->saveUserData($user_id, 'access_token', $access_token);
+
+        $this->storeAccessToken($user_id, $access_token);
     }
 
     protected function saveUserData($user_id, $key, $data) {

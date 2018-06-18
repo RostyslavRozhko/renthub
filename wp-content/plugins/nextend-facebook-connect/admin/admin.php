@@ -62,6 +62,12 @@ class NextendSocialLoginAdmin {
             case 'fix-redirect-uri':
                 self::display_admin_area('fix-redirect-uri');
                 break;
+            case 'domain-changed':
+                self::display_admin_area('domain-changed');
+                break;
+            case 'show-debug':
+                self::display_admin_area('show-debug');
+                break;
             case 'global-settings':
                 self::display_admin_area('global-settings');
                 break;
@@ -195,6 +201,11 @@ class NextendSocialLoginAdmin {
             'NextendSocialLoginAdmin',
             'showUserFields'
         ));
+
+        add_filter('display_post_states', array(
+            'NextendSocialLoginAdmin',
+            'display_post_states'
+        ), 10, 2);
     }
 
     public static function save_form_data() {
@@ -316,12 +327,19 @@ class NextendSocialLoginAdmin {
         foreach ($postedData as $key => $value) {
             switch ($key) {
                 case 'debug':
+                case 'terms_show':
+                case 'store_name':
+                case 'store_email':
                 case 'avatar_store':
+                case 'store_access_token':
                     if ($value == 1) {
                         $newData[$key] = 1;
                     } else {
                         $newData[$key] = 0;
                     }
+                    break;
+                case 'terms':
+                    $newData[$key] = wp_kses_post($value);
                     break;
                 case 'show_login_form':
                 case 'show_registration_form':
@@ -339,6 +357,8 @@ class NextendSocialLoginAdmin {
                     }
                     break;
                 case 'license_key':
+                    \NSL\Notices::clear();
+
                     $value = trim(sanitize_text_field($value));
                     if ($value != NextendSocialLogin::$settings->get('license_key') || NextendSocialLogin::$settings->get('license_key_ok') == '0') {
                         $newData['license_key_ok'] = '0';
@@ -349,6 +369,8 @@ class NextendSocialLoginAdmin {
                                 if ($response === 'OK') {
                                     $newData[$key]             = $value;
                                     $newData['license_key_ok'] = '1';
+
+                                    $newData['authorized_domain'] = NextendSocialLogin::getDomain();
                                 }
                             } catch (Exception $e) {
                                 \NSL\Notices::addError($e->getMessage());
@@ -359,6 +381,18 @@ class NextendSocialLoginAdmin {
                 case 'review_state':
                 case 'woocommerce_dismissed':
                     $newData[$key] = intval($value);
+                    break;
+
+                case 'authorized_domain':
+                    $newData[$key] = $value;
+                    break;
+                case 'register-flow-page':
+                case 'proxy-page':
+                    if (get_post($value) !== null) {
+                        $newData[$key] = $value;
+                    } else {
+                        $newData[$key] = '';
+                    }
                     break;
             }
         }
@@ -424,7 +458,7 @@ class NextendSocialLoginAdmin {
             'user-agent' => 'WordPress',
             'body'       => array_merge(array(
                 'platform'    => 'wordpress',
-                'domain'      => parse_url(site_url(), PHP_URL_HOST),
+                'domain'      => NextendSocialLogin::getDomain(),
                 'license_key' => NextendSocialLogin::$settings->get('license_key')
             ), $args)
         );
@@ -525,5 +559,104 @@ class NextendSocialLoginAdmin {
 
     public static function showUserFields($user) {
         include(dirname(__FILE__) . '/EditUser.php');
+    }
+
+    public static function authorizeBox($view = 'pro-addon') {
+
+        $args = array(
+            'product'  => 'nsl',
+            'domain'   => NextendSocialLogin::getDomain(),
+            'platform' => 'wordpress'
+
+        );
+
+        $authorizeUrl = NextendSocialLoginAdmin::trackUrl('https://secure.nextendweb.com/authorize/', 'authorize');
+        ?>
+        <div class="nsl-box nsl-box-yellow nsl-box-padlock">
+        <h2 class="title"><?php _e('Authorize your Pro Addon', 'nextend-facebook-connect'); ?></h2>
+        <p><?php _e('To be able to use the Pro features, you need to authorize Nextend Social Connect Pro Addon. You can do this by clicking on the Authorize button below then select the related purchase.', 'nextend-facebook-connect'); ?></p>
+
+        <p>
+            <a href="#"
+               onclick="window.authorizeWindow = NSLPopupCenter('<?php echo $authorizeUrl; ?>', 'authorize-window', 800, 800);return false;"
+               class="button button-primary"><?php _e('Authorize', 'nextend-facebook-connect'); ?></a>
+        </p>
+    </div>
+
+        <script type="text/javascript">
+		(function ($) {
+
+            var args = <?php echo wp_json_encode($args); ?>;
+            window.addEventListener('message', function (e) {
+                if (e.origin === 'https://secure.nextendweb.com') {
+                    if (typeof window.authorizeWindow === 'undefined') {
+                        if (typeof e.source !== 'undefined') {
+                            window.authorizeWindow = e.source;
+                        } else {
+                            return false;
+                        }
+                    }
+
+                    try {
+                        var envelope = JSON.parse(e.data);
+
+                        if (envelope.action) {
+                            switch (envelope.action) {
+                                case 'ready':
+                                    window.authorizeWindow.postMessage(JSON.stringify({
+                                        'action': 'authorize',
+                                        'data': args
+                                    }), 'https://secure.nextendweb.com');
+                                    break;
+                                case 'license':
+                                    $('#license_key').val(envelope.license_key);
+                                    $('#license_form').submit();
+                                    break;
+                            }
+
+                        }
+                    }
+                    catch (ex) {
+                        console.error(ex);
+                        console.log(e);
+                    }
+                }
+            });
+        })(jQuery);
+    </script>
+
+        <form id="license_form" method="post" action="<?php echo admin_url('admin-post.php'); ?>"
+              novalidate="novalidate" style="display:none;">
+
+		<?php wp_nonce_field('nextend-social-login'); ?>
+            <input type="hidden" name="action" value="nextend-social-login"/>
+        <input type="hidden" name="view" value="<?php echo $view; ?>"/>
+
+        <table class="form-table">
+            <tbody>
+            <tr>
+                <th scope="row"><label
+                            for="license_key"><?php _e('License key', 'nextend-facebook-connect'); ?></label></th>
+                <td><input name="license_key" type="text" id="license_key"
+                           value="<?php echo esc_attr(NextendSocialLogin::$settings->get('license_key')); ?>"
+                           class="regular-text">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </form>
+        <?php
+    }
+
+    public static function display_post_states($post_states, $post) {
+        if (NextendSocialLogin::getProxyPage() === $post->ID) {
+            $post_states['nsl_proxy_page'] = __('OAuth proxy page') . ' — NSL';
+        }
+        if (NextendSocialLogin::getRegisterFlowPage() === $post->ID) {
+            $post_states['nsl_proxy_page'] = __('Register flow page') . ' — NSL';
+        }
+
+        return $post_states;
     }
 }

@@ -87,7 +87,7 @@ class NextendSocialProviderTwitter extends NextendSocialProvider {
 
             $this->client = new NextendSocialProviderTwitterClient($this->id, $this->settings->get('consumer_key'), $this->settings->get('consumer_secret'));
 
-            $this->client->setRedirectUri($this->getLoginUrl());
+            $this->client->setRedirectUri($this->getRedirectUri());
         }
 
         return $this->client;
@@ -142,7 +142,7 @@ class NextendSocialProviderTwitter extends NextendSocialProvider {
             $this->updateAvatar($user_id, $this->authUserData['profile_image_url_https']);
         }
 
-        $this->saveUserData($user_id, 'access_token', $access_token);
+        $this->storeAccessToken($user_id, $access_token);
     }
 
     public function getState() {

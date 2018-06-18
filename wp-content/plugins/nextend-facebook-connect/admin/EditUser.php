@@ -20,7 +20,16 @@
                         <?php
                         $value = get_user_meta($user->ID, $fieldName, true);
                         if (!empty($value)) {
-                            echo esc_html($value);
+                            $unSerialized = maybe_unserialize($value);
+                            if (is_array($unSerialized) || is_object($unSerialized)) {
+
+                                echo "<pre>";
+                                print_r(formatUserMeta((array)$unSerialized));
+
+                                echo "</pre>";
+                            } else {
+                                echo esc_html($value);
+                            }
                             $hasData = true;
                         }
                         ?>
@@ -38,3 +47,18 @@
     }
     ?>
 <?php endforeach; ?>
+
+<?php
+
+function formatUserMeta($user_meta, $level = '') {
+    $formatted_usermeta = '';
+    if (is_array($user_meta)) {
+        foreach ($user_meta as $meta_key => $meta_value) {
+            $formatted_usermeta .= formatUserMeta($meta_value, $level . '[' . $meta_key . ']');
+        }
+    } else {
+        $formatted_usermeta .= "\n" . $level . ' = ' . $user_meta;
+    }
+
+    return $formatted_usermeta;
+}

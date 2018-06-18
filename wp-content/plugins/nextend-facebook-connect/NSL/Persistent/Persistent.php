@@ -58,7 +58,12 @@ class Persistent {
      * @param          $user_login
      * @param \WP_User $user
      */
-    public function transferSessionToUser($user_login, $user) {
+    public function transferSessionToUser($user_login, $user = null) {
+
+        if (!$user) { // For do_action( 'wp_login' ) calls that lacked passing the 2nd arg.
+            $user = get_user_by('login', $user_login);
+        }
+
         $newStorage = new Transient($user->ID);
         /**
          * $this->storage might be NULL if init action not called yet

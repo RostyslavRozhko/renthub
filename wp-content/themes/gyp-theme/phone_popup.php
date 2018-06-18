@@ -8,8 +8,7 @@
         <div class="call-feedback__author">
             <img src="<?php echo $ava; ?>" />
             <div class="call-feedback__name">
-                <?php echo the_author_posts_link(); ?>
-                <!-- <div class="contact-ad__author-city" id="city"></div> -->
+                <?php echo the_author_meta('nickname');?>
             </div>
         </div> 
         <div class="call-feedback__number">
@@ -32,7 +31,7 @@
         <div class="call-feedback__author">
             <img src="<?php echo $ava; ?>" />
             <div class="call-feedback__name">
-                <?php echo the_author_posts_link(); ?>
+                <?php echo the_author_meta('nickname');?>
                 <!-- <div class="contact-ad__author-city" id="city"></div> -->
             </div>
         </div> 

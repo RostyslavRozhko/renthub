@@ -86,7 +86,7 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
 
             $this->client->setClientId($this->settings->get('client_id'));
             $this->client->setClientSecret($this->settings->get('client_secret'));
-            $this->client->setRedirectUri($this->getLoginUrl());
+            $this->client->setRedirectUri($this->getRedirectUri());
             $this->client->setApprovalPrompt('auto');
         }
 
@@ -132,7 +132,7 @@ class NextendSocialProviderGoogle extends NextendSocialProvider {
             $this->updateAvatar($user_id, $this->getAuthUserData('picture'));
         }
 
-        $this->saveUserData($user_id, 'access_token', $access_token);
+        $this->storeAccessToken($user_id, $access_token);
     }
 
     public function getState() {

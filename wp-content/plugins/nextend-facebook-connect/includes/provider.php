@@ -53,7 +53,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
         foreach ($this->getSyncFields() AS $field_name => $fieldData) {
 
             $extraSettings['sync_fields/fields/' . $field_name . '/enabled']  = 0;
-            $extraSettings['sync_fields/fields/' . $field_name . '/meta_key'] = $field_name;
+            $extraSettings['sync_fields/fields/' . $field_name . '/meta_key'] = $this->id . '_' . $field_name;
         }
 
         $this->settings = new NextendSocialLoginSettings($this->optionKey, array_merge(array(
@@ -67,6 +67,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
             'user_prefix'           => '',
             'user_fallback'         => '',
             'oauth_redirect_url'    => '',
+            'terms'                 => '',
 
             'sync_fields/link'  => 0,
             'sync_fields/login' => 0
@@ -113,7 +114,13 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
             $args['interim-login'] = 1;
         }
 
-        return add_query_arg($args, site_url('wp-login.php'));
+        return add_query_arg($args, NextendSocialLogin::getLoginUrl());
+    }
+
+    public function getRedirectUri() {
+        $args = array('loginSocial' => $this->getId());
+
+        return add_query_arg($args, NextendSocialLogin::getLoginUrl());
     }
 
     public function needPro() {
@@ -158,7 +165,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
      */
     public function checkOauthRedirectUrl() {
         $oauth_redirect_url = $this->settings->get('oauth_redirect_url');
-        if (empty($oauth_redirect_url) || $oauth_redirect_url == $this->getLoginUrl()) {
+        if (empty($oauth_redirect_url) || $oauth_redirect_url == $this->getRedirectUri()) {
             return true;
         }
 
@@ -167,7 +174,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
 
     public function updateOauthRedirectUrl() {
         $this->settings->update(array(
-            'oauth_redirect_url' => $this->getLoginUrl()
+            'oauth_redirect_url' => $this->getRedirectUri()
         ));
     }
 
@@ -367,6 +374,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
      * @param $providerIdentifier
      * Insert the userid into the wp_social_users table,
      * in this way a link is created between user accounts and the providers.
+     *
      * @return bool
      */
     public function linkUserToProviderIdentifier($user_id, $providerIdentifier) {
@@ -469,6 +477,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
     /**
      * @param $user_id
      * If a user has linked the account with a provider return the user identifier else false.
+     *
      * @return bool|null|string
      */
     public function isUserConnected($user_id) {
@@ -555,7 +564,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
     }
 
     public function redirectToLoginForm() {
-        self::redirect(__('Authentication error', 'nextend-facebook-connect'), site_url('wp-login.php'));
+        self::redirect(__('Authentication error', 'nextend-facebook-connect'), NextendSocialLogin::getLoginUrl());
     }
 
     /**
@@ -609,20 +618,10 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
         if (\NSL\Persistent\Persistent::get($this->id . '_interim_login') == 1) {
             $this->deleteLoginPersistentData();
 
-            $url = add_query_arg('interim_login', 'nsl', site_url('wp-login.php', 'login'));
-            ?>
-            <!doctype html>
-            <html lang=en>
-            <head>
-                <meta charset=utf-8>
-                <title><?php _e('Authentication successful', 'nextend-facebook-connect'); ?></title>
-                <script type="text/javascript">
-					window.location = <?php echo wp_json_encode($url); ?>;
-                </script>
-                <meta http-equiv="refresh" content="0;<?php echo esc_attr($url); ?>">
-            </head>
-            </html>
-            <?php
+            $url = add_query_arg('interim_login', 'nsl', NextendSocialLogin::getLoginUrl('login'));
+
+            self::redirect(__('Authentication successful', 'nextend-facebook-connect'), $url);
+
             exit;
         }
 
@@ -645,6 +644,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
      * If fixed redirect url is not set and there is no redirect in the url, redirects to the default redirect url if it
      * is set.
      * Else redirect to the site url.
+     *
      * @return mixed|void
      */
     protected function getLastLocationRedirectTo() {
@@ -753,7 +753,7 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
 
         $this->settings->update(array(
             'tested'             => 1,
-            'oauth_redirect_url' => $this->getLoginUrl()
+            'oauth_redirect_url' => $this->getRedirectUri()
         ));
 
         \NSL\Notices::addSuccess(__('The test was successful', 'nextend-facebook-connect'));
@@ -926,5 +926,55 @@ abstract class NextendSocialProvider extends NextendSocialProviderDummy {
 
     protected function updateAvatar($user_id, $url) {
         do_action('nsl_update_avatar', $this, $user_id, $url);
+    }
+
+    public function exportPersonalData($userID) {
+        $data = array();
+
+        $socialID = $this->isUserConnected($userID);
+        if ($socialID !== false) {
+            $data[] = array(
+                'name'  => $this->getLabel() . ' ' . __('Identifier'),
+                'value' => $socialID,
+            );
+        }
+
+        $accessToken = $this->getAccessToken($userID);
+        if (!empty($accessToken)) {
+            $data[] = array(
+                'name'  => $this->getLabel() . ' ' . __('Access token'),
+                'value' => $accessToken,
+            );
+        }
+
+        $profilePicture = $this->getUserData($userID, 'profile_picture');
+        if (!empty($profilePicture)) {
+            $data[] = array(
+                'name'  => $this->getLabel() . ' ' . __('Profile picture'),
+                'value' => $profilePicture,
+            );
+        }
+
+        foreach ($this->getSyncFields() AS $fieldName => $fieldData) {
+            $meta_key = $this->settings->get('sync_fields/fields/' . $fieldName . '/meta_key');
+            if (!empty($meta_key)) {
+                $value = get_user_meta($userID, $meta_key, true);
+                if (!empty($value)) {
+                    $data[] = array(
+                        'name'  => $this->getLabel() . ' ' . $fieldData['label'],
+                        'value' => $value
+                    );
+                }
+            }
+        }
+
+
+        return $data;
+    }
+
+    protected function storeAccessToken($userID, $accessToken) {
+        if (NextendSocialLogin::$settings->get('store_access_token') == 1) {
+            $this->saveUserData($userID, 'access_token', $accessToken);
+        }
     }
 }
