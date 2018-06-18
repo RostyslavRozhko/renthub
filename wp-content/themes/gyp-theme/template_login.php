@@ -73,7 +73,7 @@
           <input id="nick" type="text" class="required input input_modal" name="nick" placeholder="Ваше имя">
           <input id="signonpassword" type="password" class="required input input_modal" name="signonpassword" placeholder="Пароль">
 	  <input id="signonpasswordtwo" type="password" class="required input input_modal" name="signonpasswordtwo" placeholder="Повторить пароль">
-          <input id="phone" type="phone" class="required input input_modal" name="phone" placeholder="Номер телефона">
+          <input id="phone" type="phone" class="required input input_modal" pattern="\d{3}[-\s]\d{3}[-\s]\d{4}.*?$" name="phone" placeholder="Номер телефона">
           <input id="emailreg" type="email" class="required email input input_modal" name="email" placeholder="E-Mail">
           <input id="cc_user_address" type="text" name="user_city" class="required input input_modal" placeholder="Город">
           <input type="hidden" id="cc_user_city_id" class="input input_add" name="user_city_id" value="" />
@@ -136,7 +136,7 @@
           </p>
           <form id="phone_login" class="form form_modal-login">
             <?php wp_nonce_field('ajax-login-phone-nonce', 'securityphone'); ?>  
-            <input id="phone_number" type="phone" class="required input input_modal" name="tel" placeholder="Номер телефона">
+            <input id="phone_number" type="phone" class="required input input_modal" pattern="\d{3}[-\s]\d{3}[-\s]\d{4}.*?$" name="tel" placeholder="Номер телефона">
             <input class="submit_button btn btn_modal modal__btn modal__btn__login register-btn" type="submit" value="Войти" tabindex="103">
           </form>
         </div>

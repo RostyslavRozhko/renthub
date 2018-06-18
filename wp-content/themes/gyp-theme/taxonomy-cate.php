@@ -26,6 +26,8 @@
   $term_name = $term->name;
 
   $filters = get_field('filters', 'cate_' . $current_id);
+
+
   if($filters) {
     foreach($filters as $filter) {
       $slug = $filter->slug;
@@ -49,6 +51,20 @@
     'post_type' => POST_TYPE,
     'posts_per_page' => $limit,
     'paged' => $paged,
+    'post_status' => 'publish',
+    'tax_query' => array(
+      array(
+          'include_children' => false,
+          'taxonomy' => 'cate',
+          'field' => 'term_taxonomy_id',
+          'terms' => $terms,
+        )
+      ),
+    'meta_query' => array()
+  );
+  $args = array(
+    'post_type' => POST_TYPE,
+    'posts_per_page' => -1,
     'post_status' => 'publish',
     'tax_query' => array(
       array(
@@ -102,7 +118,9 @@
     }
   }
 
-  $the_query = new WP_Query( $arguments );
+  $the_query = new WP_Query($arguments);
+  $all_query = new WP_Query($args);
+  global $wp_query;
  ?>
 
  <?php search_header_cate($parent); ?>
@@ -339,7 +357,6 @@
           <?php 
             while ($the_query->have_posts()) : 
               $arr[] = $the_query->the_post();
-		print_r($the_query->the_post());
               $post_id = get_the_ID();
               $post = get_post($post_id);
               $author = get_userdata($post->post_author); 
@@ -418,7 +435,10 @@
           </div>
 	    <?php
           endwhile;
-	  //if (count($arr) > 9) {
+	  //if ($all_query->post_count > 10 && count($arr) > 1) {
+	  //$wp_query->max_num_pages > 1) {
+	 // if(count($arr) > 9) {
+          if (count($arr) > 9 && $all_query->post_count > 9){
           echo '<div class="paginator">';
           echo paginate_links( array(
             'mid_size'  => 2,
@@ -426,7 +446,7 @@
             'next_text' => '<i class="fas fa-angle-right"></i>',
           ) ); 
           echo '</div>';
-	  //}
+	  }
           wp_reset_postdata();
 	    else : ?>
         <div class="fanks__title fanks__title_category"><?php _e('This category does not include ads', 'prokkat'); ?></div> 
