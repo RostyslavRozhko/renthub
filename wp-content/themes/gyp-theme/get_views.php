@@ -13,7 +13,7 @@ require_once( explode('wp-content' , __FILE__ )[0] . 'wp-load.php');
 			$key_field = 'post_views_count';
 			$postID = $get_link->ID;
 			$count = get_post_meta($postID, $key_field , true);
-			$count = (int)($count + 10);
+			$count = (int)($count + 1);
 			update_post_meta($postID, $key_field , $count);
                 }
         }
