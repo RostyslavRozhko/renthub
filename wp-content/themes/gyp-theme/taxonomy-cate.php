@@ -128,9 +128,7 @@
 <div style="position: relative">
 <?php
       if ($the_query->have_posts()) :   ?>
-<!--	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&callback=initMap"></script>
--->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&libraries=places&language=<?php echo pll_current_language('slug'); ?>"></script>
           <script>
               function initMap() {
               const mapId = document.getElementById('search-map')
@@ -165,21 +163,16 @@
 
                 if(ad.location) {
                   const locations = JSON.parse(ad.location)
-		  console.log(locations)
                   length = locations.length
-                  //var markers = locations.map(position => {
-		  var markers = locations.map(function(location, i) {
+                  var markers = locations.map(position => {
                     const marker =  new google.maps.Marker({
                       map: map,
-                      //position: position,
-		      position: location,
-                      //icon: icon,   
+                      position: position,
+                      icon: icon,   
                       title: ad.title
                     })
-		var markerCluster = new MarkerClusterer(map, markers,
-            	//{ imagePath: '<?php echo get_stylesheet_directory_uri(); ?>/img/m1.png'} );
-		{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-                    bounds.extend(location)
+		
+                    bounds.extend(position)
                     
                     marker.addListener('click', () => {
                       if(prevWindow) prevWindow.close()
@@ -212,12 +205,8 @@
                   $(this).text(result.join())
                });*/
             }
-            //google.maps.event.addDomListener(window, 'load', initMap);
+            google.maps.event.addDomListener(window, 'load', initMap);
           </script>
-	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-	<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&callback=initMap&sensor=false"></script>
--->
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&callback=initMap&sensor=false&libraries=places&language=ru" type="text/javascript"></script>
       <?php endif ?>
 </div>
 
