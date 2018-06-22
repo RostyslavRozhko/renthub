@@ -1,5 +1,5 @@
 <?php
-  function search_header_cate($parent) { ?>
+  function search_header_cate($parent, $selected_city_name = '', $selected_city_id = '') { ?>
      <section class="header-section">
       <div class="container">
           <?php 
@@ -43,8 +43,8 @@
                       </div>
                       <div class="input-wrp input-wrp_grid">
                           <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flag.svg" class="input-wrp__ico search-icon-input">
-                          <input type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" readonly />
-                          <input type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
+                          <input value="<?php echo $selected_city_name; ?>" type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" readonly />
+                          <input value="<?php echo $selected_city_id; ?>" type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
                           <img class="header-category-img input-arrow-down" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
                           <div class="header-category-cities hide">
                             <div class="header-category-city" data-id="ChIJBUVa4U7P1EAR_kYBF9IxSXY">Киев</div>
@@ -72,7 +72,7 @@
   </section>
 <?php } ?>
 
-<?php function search_header_main() { ?>
+<?php function search_header_main($selected_city_name = '', $selected_city_id = '') { ?>
   <section class="header-section">
     <div class="container">
         <div class="search-grp search-grp_header">
@@ -138,8 +138,8 @@
 
                     <div class="input-wrp input-wrp_grid">
                       <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flag.svg" class="input-wrp__ico search-icon-input">
-                      <input type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" readonly />
-                      <input type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
+                      <input value="<?php echo $selected_city_name; ?>" type="text" id="s_addresss" class="input input_srch-header input_srch-header-btn" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" readonly />
+                      <input value="<?php echo $selected_city_id; ?>" type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
                       <img class="header-category-img input-arrow-down" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
                       <div class="header-category-cities hide">
                         <div class="header-category-city" data-id="ChIJBUVa4U7P1EAR_kYBF9IxSXY">Киев</div>

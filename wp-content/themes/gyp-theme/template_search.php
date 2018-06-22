@@ -112,7 +112,7 @@
 
       ?>
 
-<?php search_header_main(); ?>
+<?php search_header_main($address, $s_to); ?>
 
 <div style="position: relative">
 <?php

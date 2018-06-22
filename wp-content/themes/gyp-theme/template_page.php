@@ -6,7 +6,7 @@ get_header();
 $city_id = get_field('city_id') ? get_field('city_id') : 'ChIJBUVa4U7P1EAR_kYBF9IxSXY';
 $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 ?>
-<?php search_header_main(); ?>
+<?php search_header_main($city_name, $city_id); ?>
 
 <section class="maincats__section">
     <div class="container maincats__container">
@@ -77,27 +77,58 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                             )
                         )
                         ));
-                        if (have_posts()) :                   
+                    ?>
+                    <div class="desktop-only">
+                    
+                    <?php if (have_posts()) :                   
                             while (have_posts()) : the_post();
 				    ?>
-                    <div class="gallery-item">
-                    <div class="product-item">
-                        <div class="product-item__img">
-                            <?php echo ad_thumbnail(); ?>
-                        </div>
-                        <a href="<?php the_permalink() ?>" class="product-item__container-title">
-                          <div class="product-item__title">
-                             <?php echo title_excerpt(); ?>
-                          </div>
-                          <div class="product-item__price">
-                                <?php echo price_output(); ?>
+                        <div class="gallery-item">
+                            <div class="product-item">
+                                <div class="product-item__img">
+                                    <?php echo ad_thumbnail(); ?>
+                                </div>
+                                <a href="<?php the_permalink() ?>" class="product-item__container-title">
+                                <div class="product-item__title">
+                                    <?php echo title_excerpt(); ?>
+                                </div>
+                                <div class="product-item__price">
+                                        <?php echo price_output(); ?>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+                    <?php endwhile; endif; ?>
                     </div>
-                </div>
-						
-						<?php endwhile; endif; wp_reset_query(); ?>
-						
+
+					<div class="wrap-carousel wrap-carousel_other wrap-carousel_advert mobile-only">
+                        <div class="carousel" id="authorSlick">
+                    <?php if (have_posts()) :                   
+                            while (have_posts()) : the_post();
+				    ?>
+                                <div class = "carousel__item">
+                                    <div class="gallery-item">
+                                        <div class="product-item">
+                                            <div class="product-item__img">
+                                                <?php echo ad_thumbnail(); ?>
+                                            </div>
+                                            <a href="<?php the_permalink() ?>" class="product-item__container-title">
+                                            <div class="product-item__title">
+                                                <?php echo title_excerpt(); ?>
+                                            </div>
+                                            <div class="product-item__price">
+                                                    <?php echo price_output(); ?>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                    <?php endwhile; endif; ?>
+                        </div>
+                    </div>
+
+                    <?php wp_reset_query(); ?>
+
                     </div>
                 </div>
             </div>

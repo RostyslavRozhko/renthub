@@ -121,13 +121,21 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
               add_post_meta($post_id, 'cc_address_list', $posted['cc_address_list'], true);
                 add_post_meta($post_id, 'cc_city_id', $posted['cc_city_id'], true);
                 add_post_meta($post_id, 'cc_locations', $posted['cc_locations'], true);
-			  if( isset($posted['custom-price']) )
-                add_post_meta($post_id, 'custom-price', $posted['custom-price'], true);
-			  else {
+
                 add_post_meta($post_id, 'cc_price', $posted['cc_price'], true);
-                add_post_meta($post_id, 'cc_price_week', $posted['cc_price_week'], true);
-                add_post_meta($post_id, 'cc_price_more', $posted['cc_price_more'], true);
                 add_post_meta($post_id, 'cc_price_deposit', $posted['cc_price_deposit'], true);
+
+              if(!$posted['cc_price_week']) {
+                add_post_meta($post_id, 'cc_price_week', intval($posted['cc_price']) * 7, true);
+              } else {
+                add_post_meta($post_id, 'cc_price_week', $posted['cc_price_week'], true);
+              }
+
+              if(!$posted['cc_price_more']) {
+                add_post_meta($post_id, 'cc_price_more', intval($posted['cc_price']) * 30, true);
+              } else {
+                add_post_meta($post_id, 'cc_price_more', $posted['cc_price_more'], true);
+                  
               }
               
               add_post_meta($post_id, 'cc_state', $posted['cc_state'], true);

@@ -105,7 +105,7 @@
   $the_query = new WP_Query( $arguments );
  ?>
 
- <?php search_header_cate($parent); ?>
+ <?php search_header_cate($parent, $address, $s_to); ?>
 
 <div style="position: relative">
 <?php
