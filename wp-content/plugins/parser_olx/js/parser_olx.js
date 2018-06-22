@@ -16,7 +16,7 @@ jQuery(document).ready(function () {
 			jQuery('.form-control').each(function() {
 				jQuery('#url , #current , #next').css('border' , '1px solid red');
 			});
-			jQuery("<span class='empty_field'>Заповніть поля</span>").css("color" , "red").appendTo(".container");
+			jQuery("<span class='empty_field'>Заповніть поля</span>").css("color" , "red").appendTo(".container-fluid");
 			setTimeout(function() {
 				jQuery("span.empty_field").fadeOut(500);
 				jQuery('#url , #current , #next').css('border' , '');

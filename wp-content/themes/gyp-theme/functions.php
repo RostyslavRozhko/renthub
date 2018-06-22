@@ -10,6 +10,7 @@
   require_once( get_stylesheet_directory() . '/messages_functions.php' );
   require_once( get_stylesheet_directory() . '/libs/custom-ajax-auth.php' );
   require_once( get_stylesheet_directory() . '/gateways/liqpay/liqpay-ipn.php' );
+  
 
   add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
   add_action( 'wp_enqueue_scripts', 'theme_dequeue_scripts', 100 );
@@ -31,7 +32,10 @@ add_action('init','add_cors_http_header');
   {
 	$scriptsrc = get_stylesheet_directory_uri() . '/js/';
     $libsrc = get_stylesheet_directory_uri() . '/libs/';
-	
+	if (is_page(7)){
+		wp_register_script( 'close_message_delete', $scriptsrc . 'close_message_delete.js', 'jquery', '1.1', true );
+		wp_enqueue_script( 'close_message_delete' );
+	}	
 	//wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
     wp_enqueue_style( 'child-style', get_stylesheet_uri(), array(), '1.0' );
 	wp_enqueue_style( 'main', get_stylesheet_directory_uri() . '/css/main.css', array(), '1.1' );
@@ -223,7 +227,7 @@ add_action('init','add_cors_http_header');
       $url = add_query_arg(array('search_loc' => $this->city_id, 'address' => $this->city_name), esc_attr($item->url));
 
       $item_output .= '<li>';
-      $item_output .= '<a>';
+      $item_output .= '<a href="'.$item->url.'">';
       $item_output .= '<img src="'. get_wp_term_image($item->object_id) .'" >';
       $item_output .= '<span>' . $city_title . '</span>';
       $item_output .= '</a>';

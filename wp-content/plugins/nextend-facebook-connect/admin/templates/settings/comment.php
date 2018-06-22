@@ -15,11 +15,9 @@ NextendSocialLoginAdmin::showProBox();
 <table class="form-table">
     <tbody>
     <tr>
-        <th scope="row"><?php _e('Comment login button', 'nextend-facebook-connect'); ?></th>
+        <th scope="row"><?php _e('Login button', 'nextend-facebook-connect'); ?></th>
         <td>
             <fieldset>
-                <legend class="screen-reader-text">
-                    <span><?php _e('Comment login button', 'nextend-facebook-connect'); ?></span></legend>
                 <label><input type="radio" name="comment_login_button"
                               value="show" <?php if ($settings->get('comment_login_button') == 'show') : ?> checked="checked" <?php endif; ?><?php echo $attr; ?>>
                     <span><?php _e('Show', 'nextend-facebook-connect'); ?></span></label><br>
@@ -31,7 +29,7 @@ NextendSocialLoginAdmin::showProBox();
         </td>
     </tr>
     <tr>
-        <th scope="row"><?php _e('Comment button style', 'nextend-facebook-connect'); ?></th>
+        <th scope="row"><?php _e('Button style', 'nextend-facebook-connect'); ?></th>
         <td>
             <fieldset>
                 <label>

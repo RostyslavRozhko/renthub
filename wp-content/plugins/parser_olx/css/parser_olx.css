@@ -7,8 +7,26 @@
 	display: none;
 	margin: 0 15px;
 	width: 40px;
-    position: relative;
+  position: relative;
 }
 #count {
 	display: inline;
+}
+.error_url {
+	display:block; 
+	color: red; 
+	font-weight: bold;
+}
+.time_script {
+	display: block;
+}
+#cate:hover {
+	cursor: pointer;
+}
+.empty_field {
+	margin-top: 20px;
+	font-weight: bold;
+	font-size: 18px;
+	position: relative;
+	display: block;
 }

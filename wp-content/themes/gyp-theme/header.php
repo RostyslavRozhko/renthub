@@ -76,9 +76,9 @@
                 </div>
 				
                 <div class="header__control-container">
-                    <!-- <ul class="lang-switcher">
+                    <ul class="lang-switcher">
                         <?php pll_the_languages( array( 'dropdown' => 0 ) ); ?>
-                    </ul> -->
+                    </ul>
 					
                 <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow">
                   <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>

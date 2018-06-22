@@ -29,7 +29,7 @@ if (!is_user_logged_in()) {
 }
 
 function ajax_login_phone() {
-    // check_ajax_referer( 'ajax-login-phone-nonce', 'securityphone' );
+        //check_ajax_referer( 'ajax-login-phone-nonce', 'securityphone' );
 	$tel_formated = sanitize_text_field($_POST['tel']);
 	$tel = preg_replace('/[()+ -]/', '', $tel_formated);
 
@@ -75,7 +75,7 @@ function ajax_register(){
 	$user = get_user_by('login', $tel );
 
   	if ($old_users_arr || $user) {
-		echo json_encode(array('loggedin' => false, 'phone_exist' => true, 'message' => 'Это номер телефона уже зарегистрировано.'));
+		echo json_encode(array('loggedin' => false, 'phone_exist' => true, 'message' => 'Это номер телефона уже зарегистрирован.'));
 		die();
 	}
 	
@@ -194,8 +194,7 @@ function ajax_forgotPassword(){
 			$headers = array(
 	          'Content-Type: text/html; charset=UTF-8',
 	          'From: ' . $blogname . ' <' . $admin_email . '>' . "\r\n",
-	        );
-				
+	        );		
 			$mail = wp_mail( $user->user_email, __( 'Your new password', 'prokkat' ), $message, $headers );
 			if( $mail )
 				$success = 'Check your email address for you new password.';

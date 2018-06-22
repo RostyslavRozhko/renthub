@@ -39,7 +39,6 @@ var isWebView = null;
 
 function checkWebView() {
     if (isWebView === null) {
-        //Based on UserAgent.js {@link https://github.com/uupaa/UserAgent.js}
         function _detectOS(ua) {
             switch (true) {
                 case /Android/.test(ua):
@@ -63,17 +62,17 @@ function checkWebView() {
 
             switch (true) {
                 case /CriOS/.test(ua):
-                    return "Chrome for iOS"; // https://developer.chrome.com/multidevice/user-agent
+                    return "Chrome for iOS";
                 case /Edge/.test(ua):
                     return "Edge";
                 case android && /Silk\//.test(ua):
-                    return "Silk"; // Kidle Silk browser
+                    return "Silk";
                 case /Chrome/.test(ua):
                     return "Chrome";
                 case /Firefox/.test(ua):
                     return "Firefox";
                 case android:
-                    return "AOSP"; // AOSP stock browser
+                    return "AOSP";
                 case /MSIE|Trident/.test(ua):
                     return "IE";
                 case /Safari\//.test(ua):
@@ -100,9 +99,9 @@ function checkWebView() {
                     return _getVersion(ua, "Version/");
                 case "IE":
                     return /IEMobile/.test(ua) ? _getVersion(ua, "IEMobile/") :
-                        /MSIE/.test(ua) ? _getVersion(ua, "MSIE ") // IE 10
+                        /MSIE/.test(ua) ? _getVersion(ua, "MSIE ")
                             :
-                            _getVersion(ua, "rv:"); // IE 11
+                            _getVersion(ua, "rv:");
                 case "Safari":
                     return _getVersion(ua, "Version/");
                 case "WebKit":
@@ -115,7 +114,6 @@ function checkWebView() {
             try {
                 return _normalizeSemverString(ua.split(token)[1].trim().split(/[^\w\.]/)[0]);
             } catch (o_O) {
-                // ignore
             }
             return "0.0.0";
         }
@@ -134,23 +132,14 @@ function checkWebView() {
                 case "iOSWebKit":
                     return _isWebView_iOS(options);
                 case "AndroidAOSP":
-                    return false; // can not accurately detect
+                    return false;
                 case "AndroidChrome":
                     return parseFloat(version) >= 42 ? /; wv/.test(ua) : /\d{2}\.0\.0/.test(version) ? true : _isWebView_Android(options);
             }
             return false;
         }
 
-        function _isWebView_iOS(options) { // @arg Object - { WEB_VIEW }
-            // @ret Boolean
-            // Chrome 15++, Safari 5.1++, IE11, Edge, Firefox10++
-            // Android 5.0 ChromeWebView 30: webkitFullscreenEnabled === false
-            // Android 5.0 ChromeWebView 33: webkitFullscreenEnabled === false
-            // Android 5.0 ChromeWebView 36: webkitFullscreenEnabled === false
-            // Android 5.0 ChromeWebView 37: webkitFullscreenEnabled === false
-            // Android 5.0 ChromeWebView 40: webkitFullscreenEnabled === false
-            // Android 5.0 ChromeWebView 42: webkitFullscreenEnabled === ?
-            // Android 5.0 ChromeWebView 44: webkitFullscreenEnabled === true
+        function _isWebView_iOS(options) {
             var document = (window["document"] || {});
 
             if ("WEB_VIEW" in options) {
@@ -160,14 +149,6 @@ function checkWebView() {
         }
 
         function _isWebView_Android(options) {
-            // Chrome 8++
-            // Android 5.0 ChromeWebView 30: webkitRequestFileSystem === false
-            // Android 5.0 ChromeWebView 33: webkitRequestFileSystem === false
-            // Android 5.0 ChromeWebView 36: webkitRequestFileSystem === false
-            // Android 5.0 ChromeWebView 37: webkitRequestFileSystem === false
-            // Android 5.0 ChromeWebView 40: webkitRequestFileSystem === false
-            // Android 5.0 ChromeWebView 42: webkitRequestFileSystem === false
-            // Android 5.0 ChromeWebView 44: webkitRequestFileSystem === false
             if ("WEB_VIEW" in options) {
                 return options["WEB_VIEW"];
             }

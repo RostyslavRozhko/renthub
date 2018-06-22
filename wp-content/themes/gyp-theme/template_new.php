@@ -4,9 +4,8 @@
  */
 nocache_headers();
 if (!is_user_logged_in()) {
-    wp_redirect(site_url() . '/login') ;
-  }
-
+	wp_redirect(site_url() . '/login') ;
+}
 function cc_submit_form_process() {
     $posted = array();
 
@@ -206,7 +205,6 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
 <section class="add-ad">
 
 <?php if( $success ) : ?>
-
     <div class="fanks">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/success.svg" class="notfound__icon" >
         <div class="fanks__title"><?php _e('Thank you!', 'prokkat'); ?></div>
