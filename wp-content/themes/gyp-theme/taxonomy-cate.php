@@ -123,7 +123,7 @@
   global $wp_query;
  ?>
 
- <?php search_header_cate($parent); ?>
+ <?php search_header_cate($parent, $address, $s_to); ?>
 
 <div style="position: relative">
 <?php
