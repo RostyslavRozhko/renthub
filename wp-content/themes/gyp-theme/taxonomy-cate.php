@@ -123,89 +123,85 @@
   global $wp_query;
  ?>
 
- <?php search_header_cate($parent, $address, $s_to); ?>
+ <?php search_header_cate($parent); ?>
 
 <div style="position: relative">
 <?php
       if ($the_query->have_posts()) :   ?>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&libraries=places&language=<?php echo pll_current_language('slug'); ?>"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&libraries=places&language=ru" type="text/javascript"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
           <script>
               function initMap() {
-              const mapId = document.getElementById('search-map')
-              const defaultLocation = {lat: 50.4490244, lng: 30.5201343}
 
-              const bounds = new google.maps.LatLngBounds()
-              const geocoder = new google.maps.Geocoder;
-              
-              const map = new google.maps.Map(mapId, {
-                center: defaultLocation,
-                zoom: 11
-              });
+                    const mapId = document.getElementById('search-map')
+                    const defaultLocation = {lat: 50.4490244, lng: 30.5201343}
 
-              const data = <?php echo json_encode(getSearchResults($the_query->posts)); ?>;
-              let prevWindow;
-
-              data.map(ad => {
-                const content = `
-                  <div class="infowindow__container">
-                    <img src="${ad.img}" class="infowindow__img">
-                    <div class="infowindow__text-container">
-                      <div class="infowindow__title">${ad.title}</div>
-                      <div class="infowindow__price">${ad.price}</div>
-                      <a href="${ad.link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></div>
-                    </div>
-                  </div>
-                `
-                const infowindow = new google.maps.InfoWindow({
-                  content: content
-                });
-                const icon = "<?php echo get_stylesheet_directory_uri(); ?>/img/mark.png"
-
-                if(ad.location) {
-                  const locations = JSON.parse(ad.location)
-                  length = locations.length
-                  var markers = locations.map(position => {
-                    const marker =  new google.maps.Marker({
-                      map: map,
-                      position: position,
-                      icon: icon,   
-                      title: ad.title
-                    })
-		
-                    bounds.extend(position)
+                    const bounds = new google.maps.LatLngBounds()
+                    const geocoder = new google.maps.Geocoder;
                     
-                    marker.addListener('click', () => {
-                      if(prevWindow) prevWindow.close()
-                      infowindow.open(map, marker)
-                      prevWindow = infowindow
-                    })
-                  });
-                }
-                  map.fitBounds(bounds)
-                  const listener = google.maps.event.addListener(map, "idle", function() { 
-                    if (map.getZoom() > 11) map.setZoom(11); 
-                    if (map.getZoom() < 6) map.setZoom(6); 
-                    google.maps.event.removeListener(listener); 
-                  })
-              });
+                      const map = new google.maps.Map(mapId, {
+	                      center: defaultLocation,
+	                      zoom: 4
+                      });
 
-               /*$('.search-list__title-city').each(function(index) {
-                 const cities = JSON.parse($(this).find('input').val())
-                 const result = cities.map(id => {
-                   geocoder.geocode({'placeId': id}, function(results, status) {
-                     console.log(results, status)
-                     if (status === google.maps.GeocoderStatus.OK) {
-                       if (results[0]) {
-                         const place = results[0]
-                         console.log(place)
-                       }
-                     }
-                   })
-                 })
-                  $(this).text(result.join())
-               });*/
-            }
-            google.maps.event.addDomListener(window, 'load', initMap);
+                      const data = <?php echo json_encode(getSearchResults($the_query->posts)); ?>;
+
+                      let prevWindow;
+
+                      var markers = [];
+
+                      const icon = "<?php echo get_stylesheet_directory_uri(); ?>/img/mark.png";
+
+                      for (var i = 0; i < data.length; i++) {
+
+                      	const content = `
+                          <div class="infowindow__container">
+                            <img src="${data[i].img}" class="infowindow__img">
+                            <div class="infowindow__text-container">
+                              <div class="infowindow__title">${data[i].title}</div>
+                              <div class="infowindow__price">${data[i].price}</div>
+                              <a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></div>
+                            </div>
+                          </div>
+                        `
+                        const infowindow = new google.maps.InfoWindow({
+                          content: content
+                        });
+
+                      	var position = JSON.parse(data[i].location);
+
+                      	for ( var j = 0; j < position.length ; j++){
+
+                      		var marker = new google.maps.Marker({
+                              map: map,
+                              icon: icon,
+                              position: position[j],
+                              title: data[i].title
+                        	});
+
+	                        bounds.extend(position[j]);
+
+						  	google.maps.event.addListener(marker, 'click', function () {
+						  			if(prevWindow) prevWindow.close()
+	        						infowindow.open(map, this);
+	        						prevWindow = infowindow
+	    					});
+	    					map.fitBounds(bounds)
+                            const listener = google.maps.event.addListener(map, "idle", function() { 
+                              if (map.getZoom() > 11) map.setZoom(11); 
+                              if (map.getZoom() < 4) map.setZoom(4); 
+                              google.maps.event.removeListener(listener); 
+                         });
+                           }
+
+                         markers.push(marker);
+
+                      }
+                      var markerCluster = new MarkerClusterer(map, markers,
+                        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+                      );
+               }
+               google.maps.event.addDomListener(window, 'load', initMap);
           </script>
       <?php endif ?>
 </div>
@@ -430,9 +426,6 @@
           </div>
 	    <?php
           endwhile;
-	  //if ($all_query->post_count > 10 && count($arr) > 1) {
-	  //$wp_query->max_num_pages > 1) {
-	 // if(count($arr) > 9) {
           if (count($arr) > 9 && $all_query->post_count > 9){
           echo '<div class="paginator">';
           echo paginate_links( array(
