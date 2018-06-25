@@ -3,7 +3,7 @@
   function map_script()
   {
 	global $post; ?>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=<?php echo pll_current_language('slug'); ?>"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=ru"></script>
   
     <script>
       function initMap() {
@@ -208,7 +208,7 @@
   
   function edit_map()
   { ?>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=<?php echo pll_current_language('slug'); ?>"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=ru"></script>
     <script>
       function initMap() {
 		const defaultLocation = {lat: 50.4490244, lng: 30.5201343}
