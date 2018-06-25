@@ -37,7 +37,7 @@
                                     ?>
                                   </ul>
                             <div class="return-to-main-cat">
-                                <a href="<?php echo get_site_url(); ?>" ><i class="fa fa-arrow-left"></i> Повернутися до основних категорій</a>
+                                <a href="<?php echo get_site_url(); ?>" ><i class="fa fa-arrow-left"></i> <?php _e('Back to main', 'prokkat') ?></a>
                             </div>
                         </div>
                       </div>

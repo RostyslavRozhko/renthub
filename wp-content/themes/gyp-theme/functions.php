@@ -46,11 +46,13 @@ add_action('init','add_cors_http_header');
 
     wp_register_script( 'slick-js', $libsrc . 'slick/slick.min.js', 'jquery', '1.1', true );
 	wp_register_script( 'fancybox-js', $libsrc . 'fancybox/jquery.fancybox.pack.js', 'jquery', '1.0', true );
-	wp_register_script( 'common-js', $scriptsrc . 'common.js', 'jquery', '1.1', true );
+  wp_register_script( 'common-js', $scriptsrc . 'common.js', 'jquery', '1.1', true );
+  wp_register_script( 'cookies-js', $scriptsrc . 'cookies.js', 'jquery', '1.1', true );
 	
 	wp_enqueue_script( 'slick-js' );
 	wp_enqueue_script( 'fancybox-js' );
     wp_enqueue_script( 'common-js' );
+    wp_enqueue_script( 'cookies-js' );
 	
 	wp_localize_script( 'common-js', 'commonjs_object', array( 
         'ajaxurl' => admin_url( 'admin-ajax.php' ),

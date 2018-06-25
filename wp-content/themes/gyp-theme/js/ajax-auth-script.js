@@ -2,6 +2,10 @@ jQuery(document).ready(function ($) {
 
     const modal = $('.fancybox-error');
 
+    let returnCode = Math.floor(Math.random() * 999999) + 100000
+
+    let smsCounter = Cookies.get("smscounter") || 0
+
     var a = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"'","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"'","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"'","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"'","б":"b","ю":"yu"};
 
     function transliterate(word){
@@ -139,7 +143,10 @@ jQuery(document).ready(function ($) {
     });
 
     jQuery('form#phone_login').on('submit', function (e) {
-        const returnCode = Math.floor(Math.random() * 999999) + 100000
+        if(smsCounter > 2) {
+            sms_block(smsCounter)
+            return
+        }
         const phone_number = $('#phone_number').val()
         const security = jQuery('form#phone_login #securityphone').val();
         jQuery.ajax({
@@ -165,7 +172,13 @@ jQuery(document).ready(function ($) {
 
                 $('.resend-sms').click(function(e) {
                     e.preventDefault()
-                    resendSMS(phone_number, returnCode)
+                    smsCounter++
+                    if(smsCounter > 2) {
+                        sms_block(smsCounter)
+                    } else {
+                        returnCode = Math.floor(Math.random() * 999999) + 100000
+                        resendSMS(phone_number, returnCode)
+                    }
                 })
             }
         })
@@ -199,7 +212,6 @@ jQuery(document).ready(function ($) {
                 'tel': phone_number
             },
             success: function (data) {
-                console.log(data)
                 if(data.loggedin && redirect){
                     redirecturl = ajax_auth_object.redirecturl_login;
                     document.location.href = redirecturl;
@@ -259,6 +271,13 @@ jQuery(document).ready(function ($) {
                 }
             }
         });
+    }
+
+    function sms_block(counter) {
+        openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
+        var date = new Date();
+        date.setTime(date.getTime() + (60 * 60 * 1000));
+        Cookies.set("smscounter", counter, { expires: date });
     }
 
     function openBox(content) {
