@@ -121,9 +121,10 @@
   $the_query = new WP_Query($arguments);
   $all_query = new WP_Query($args);
   global $wp_query;
+
  ?>
 
- <?php search_header_cate($parent, $address, $s_to); ?>
+ <?php search_header_cate($parent); ?>
 
 <div style="position: relative">
 <?php
@@ -154,6 +155,8 @@
 
                       for (var i = 0; i < data.length; i++) {
 
+                      var position = JSON.parse(data[i].location);
+
                       	const content = `
                           <div class="infowindow__container">
                             <img src="${data[i].img}" class="infowindow__img">
@@ -164,42 +167,76 @@
                             </div>
                           </div>
                         `
+
                         const infowindow = new google.maps.InfoWindow({
                           content: content
                         });
 
-                      	var position = JSON.parse(data[i].location);
+                      	var marker = new google.maps.Marker({
+	                              map: map,
+	                              icon: icon,
+	                              position: position[0],
+	                              title: data[i].title
+	                    });
+                      	
+		                    bounds.extend(position[0]);
 
-                      	for ( var j = 0; j < position.length ; j++){
+							google.maps.event.addListener(marker, 'click', function () {
+							  	if(prevWindow) 
+							  		prevWindow.close()
+		        				infowindow.open(map, this);
+		        				prevWindow = infowindow
+		    				});
 
-                      		var marker = new google.maps.Marker({
-                              map: map,
-                              icon: icon,
-                              position: position[j],
-                              title: data[i].title
-                        	});
+		    				map.fitBounds(bounds)
+		                        const listener = google.maps.event.addListener(map, "idle", function() { 
+		                            if (map.getZoom() > 11) map.setZoom(11); 
+		                            if (map.getZoom() < 4) map.setZoom(4); 
+		                            google.maps.event.removeListener(listener); 
+	                         });
+	                    
 
-	                        bounds.extend(position[j]);
+	                         markers.push(marker);
 
-						  	google.maps.event.addListener(marker, 'click', function () {
-						  			if(prevWindow) prevWindow.close()
-	        						infowindow.open(map, this);
-	        						prevWindow = infowindow
-	    					});
-	    					map.fitBounds(bounds)
-                            const listener = google.maps.event.addListener(map, "idle", function() { 
-                              if (map.getZoom() > 11) map.setZoom(11); 
-                              if (map.getZoom() < 4) map.setZoom(4); 
-                              google.maps.event.removeListener(listener); 
-                         });
-                           }
+                      	if (position.length > 1) {
+	                      	for ( var j = 0; j < position.length ; j++){
 
-                         markers.push(marker);
+	                      		var marker = new google.maps.Marker({
+	                              map: map,
+	                              icon: icon,
+	                              position: position[j],
+	                              title: data[i].title
+	                        	});
+
+		                        bounds.extend(position[j]);
+
+							  	google.maps.event.addListener(marker, 'click', function () {
+							  			if(prevWindow) prevWindow.close()
+		        						infowindow.open(map, this);
+		        						prevWindow = infowindow
+		    					});
+
+		    					map.fitBounds(bounds)
+		                            const listener = google.maps.event.addListener(map, "idle", function() { 
+		                              if (map.getZoom() > 11) map.setZoom(11); 
+		                              if (map.getZoom() < 4) map.setZoom(4); 
+		                              google.maps.event.removeListener(listener); 
+	                         	});
+	                        	}
+
+	                         	markers.push(marker);
+
+	                   		}
 
                       }
-                      var markerCluster = new MarkerClusterer(map, markers,
-                        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+
+                      var markerCluster = new MarkerClusterer(map, markers,{
+                        	imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                        	maxZoom: 10,
+    						gridSize: 50
+                    	}
                       );
+
                }
                google.maps.event.addDomListener(window, 'load', initMap);
           </script>
@@ -352,6 +389,10 @@
               $post = get_post($post_id);
               $author = get_userdata($post->post_author); 
               $author_id = $author->ID;
+              /*get town*/
+              $coordinates = get_post_meta($post_id , 'cc_locations',true);
+              $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
+              $get_address = trim(get_address($coordinates));
           ?>
           <div class="search-list__result">
             <div class="search-list__img">
@@ -366,7 +407,7 @@
                 <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >
               </div>
             </div>
-            <div class="search-list__price-container">
+            <!--<div class="search-list__price-container">
               <div class="search-list__price">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
                 <?php echo price_output($post_id); ?>
@@ -377,7 +418,8 @@
                   <?php echo get_post_meta( $post_id, 'cc_price_deposit', true ); ?> грн
                 </div>
               <?php endif ?>
-            </div>
+            </div>-->
+            <div class="town"><?php echo $get_address;?></div>
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
               <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">

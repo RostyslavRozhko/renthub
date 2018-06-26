@@ -29,6 +29,11 @@
 
       $ava = get_the_author_meta('user_avatar', $author_id);
       if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png';
+
+      $user = get_userdata($author_id);
+      $user_reg = $user->get('user_registered');
+      $datetime = new DateTime($user_reg);
+      $date_registered = $datetime->format('d.m.Y');
   
 ?>
 <?php search_header_cate($parent->term_id); ?>
@@ -206,6 +211,7 @@
                             <img class="contact-ad__author-photo" src="<?php echo $ava; ?>" />
 			    <div class="contact-ad__author-text">
 				<a href="<?php echo get_author_posts_url($author_id);?>"><?php echo the_author_meta('nickname');?></a>
+                <span class="date_registered">Дата регистрации: <?php echo $date_registered;?></span>
                                 <a class="single__state" data-state="<?php echo $state; ?>"></a>
                                 <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
                             </div>
@@ -229,7 +235,7 @@
                             <a class="contact__write fancybox-send-msg" href="#send-msg">
                                 <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
                                 <input type="hidden" id="user_id" value="<?php echo $user_ID; ?>">
-                                <input type="hidden" id="user_name" value="<?php echo $current_user->nickname ?>">
+                                <input type="hidden" id="user_name" value="<?php echo $current_user->nickname; ?>">
                                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/speech-bubbles.svg" class="tel-icon" />
                                 <span class="contact__text"><?php _e('Ask the manufacturer', 'prokkat'); ?></span>
                             </a>
