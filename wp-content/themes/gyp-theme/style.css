@@ -2859,7 +2859,7 @@ b {
 .maincat__subs-list {
   display: flex;
   flex-wrap: wrap;
-  height: 34px;
+  height: 35px;
   overflow: hidden;
 }
 
