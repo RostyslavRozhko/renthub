@@ -1570,4 +1570,32 @@ function pll_title($post_id=false) {
 
       return $column;
     }
+
+    /*get town in category list*/
+    function get_address($coordinates) {
+        $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.$coordinates.'&sensor=false&language=ru';
+        $json = file_get_contents($url);
+        $data = json_decode($json, TRUE);
+        if($data['status']=="OK"){
+          $town = explode("," , $data['results'][0]['formatted_address']);
+          if ($data['results'][0]['address_components'][2]['long_name'] == 'Київ' || $data['results'][0]['address_component'][2] == 'Киев'){
+            return $town[0].','. $town[1];
+          }
+          else {
+            return $town[0].','. $town[1] . ',' . $town[2];
+          }
+        }
+    }
+
+    add_filter( 'slack_get_events', function( $events ) {
+    $events['user_login'] = array(
+        'action'      => 'wp_login',
+        'description' => __( 'When user logged in', 'slack' ),
+        'message'     => function( $user_login ) {
+            return sprintf( '%s is logged in', $user_login );
+        }
+    );
+    return $events;
+} );
+
 ?>
