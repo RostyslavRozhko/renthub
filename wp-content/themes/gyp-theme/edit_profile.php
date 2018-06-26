@@ -36,7 +36,7 @@ $update_msg = $err_msg = $user_data = '';
         }
     endforeach;
 
-	if( !$err_msg ) $update_msg = "Ваш профіль оновлено";
+	if( !$err_msg ) $update_msg = "Ваш профиль обновлено";
 
   }
 

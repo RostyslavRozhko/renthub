@@ -105,6 +105,11 @@
                 cc_title.css('border', 'solid 1px red');
                 cc_title.css('background-color', '#ffece8');
                 return false;
+            } else if(cc_title.val().length > 100) {
+				cc_title.addClass("error");
+                cc_title.attr("placeholder", "Максимум 100 символов");
+                cc_title.css('border', 'solid 1px red');
+                cc_title.css('background-color', '#ffece8');
             }else{
 				cc_title.removeClass("error");
                 cc_title.css('border', 'none');
@@ -161,18 +166,21 @@
         }
 		
   function validate_desc() {
-    if(cc_desc.val() == "" || cc_desc.val().length < 150 ) {
-			desc_error.addClass("error")
-      desc_error.text('<?php echo __( 'Please enter description', 'prokkat' ); ?>')
-      return false;
+    if(cc_desc.val() == "") {
+        cc_desc.addClass("error")
+        cc_desc.attr("placeholder", "<?php echo __( 'Please enter description', 'prokkat' ); ?>");
+        cc_desc.css('border', 'solid 1px red');
+        cc_desc.css('background-color', '#ffece8');
+        return false;
     } else {
-			desc_error.removeClass("error");
-      desc_error.text('')
-      return true;
+		cc_desc.removeClass("error");
+        cc_desc.css('border', 'none');
+        cc_desc.css('background-color', '');
+        return true;
     }
   }
-  desc_error.blur(validate_desc);
-  desc_error.keyup(validate_desc);
+  cc_desc.blur(validate_desc);
+  cc_desc.keyup(validate_desc);
 		
 		function validate_photo(){
             if( !jQuery("#img1").val() & !jQuery("#img2").val() & !jQuery("#img3").val() ) {
