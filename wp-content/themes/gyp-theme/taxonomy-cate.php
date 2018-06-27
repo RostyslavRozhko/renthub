@@ -391,6 +391,7 @@
               $author_id = $author->ID;
               /*get town*/
               $coordinates = get_post_meta($post_id , 'cc_locations',true);
+	      $coordinates = explode("},{" , $coordinates)[0];
               $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
               $get_address = trim(get_address($coordinates));
           ?>
