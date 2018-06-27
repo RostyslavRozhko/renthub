@@ -32,10 +32,9 @@ add_action('init','add_cors_http_header');
   {
 	$scriptsrc = get_stylesheet_directory_uri() . '/js/';
     $libsrc = get_stylesheet_directory_uri() . '/libs/';
-	if (is_page(7)){
+	
 		wp_register_script( 'close_message_delete', $scriptsrc . 'close_message_delete.js', 'jquery', '1.1', true );
 		wp_enqueue_script( 'close_message_delete' );
-	}	
 	//wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
     wp_enqueue_style( 'child-style', get_stylesheet_uri(), array(), '1.0' );
 	wp_enqueue_style( 'main', get_stylesheet_directory_uri() . '/css/main.css', array(), '1.1' );
