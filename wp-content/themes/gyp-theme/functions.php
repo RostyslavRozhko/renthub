@@ -1,5 +1,5 @@
 <?php
-  
+  require __DIR__.'/S3.php';  
   load_theme_textdomain('prokkat', get_stylesheet_directory() . '/lang');
   
   //require_once( get_template_directory() . '/library/control/theme_functions.php' );
@@ -701,6 +701,17 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     // handle file upload
     $status = wp_handle_upload($_FILES[$imgid . 'async-upload'], array('test_form' => true, 'action' => 'plupload_action'));
     $filename = $status['file'];
+
+	if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJRPSL3LGIFILFIYA');
+        if (!defined('awsSecretKey')) define('awsSecretKey', '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');
+
+        $s3 = new S3(awsAccessKey, awsSecretKey);
+        $bucket = 'renthub-storage';
+	      $path = $_FILES[$imgid . 'async-upload']['name'];
+
+	//$upload_img = $s3->putObjectFile($_FILES[$imgid . 'async-upload']['tmp_name'], $bucket, $path);
+       S3::putObject(S3::inputFile($_FILES[$imgid . 'async-upload']['tmp_name'], false), $bucket, $path, S3::ACL_PUBLIC_READ);
+
     $attachment = array(
         'post_mime_type' => $status['type'],
         'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
@@ -1578,11 +1589,18 @@ function pll_title($post_id=false) {
         $data = json_decode($json, TRUE);
         if($data['status']=="OK"){
           $town = explode("," , $data['results'][0]['formatted_address']);
+          $type = implode(' ' , $data['results'][0]['address_components'][0]['types']);
           if ($data['results'][0]['address_components'][2]['long_name'] == 'Київ' || $data['results'][0]['address_component'][2] == 'Киев'){
-            return $town[0].','. $town[1];
+            return $town[0].' , '. $town[1];
           }
-          else {
-            return $town[0].','. $town[1] . ',' . $town[2];
+          if (($data['results'][0]['address_components'][2]['long_name'] != 'Київ' || $data['results'][0]['address_component'][2] != 'Киев') &&  $type != 'route' && $type != 'premise') {
+            return $town[0].'&nbsp;'. $town[1] . ' , ' . $town[2];
+          }
+          if($type == 'route'){
+            return $town[0].'&nbsp;'. $town[1];
+          }
+          if($type == 'premise'){
+            return $town[1] . ' , ' . $town[2] . ' , ' . $town[3];
           }
         }
     }
