@@ -30,7 +30,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                     </div>
                     <div class="maincat__subs-list">';
                         $term_children = get_term_children( $termId, $taxonomyName );
-                        $term_children = array_slice($term_children, 0, 5);
+                        $term_children = array_slice($term_children, 0, 4);
                         foreach ( $term_children as $child ) {
                             $term = get_term_by( 'id', $child, $taxonomyName );
                             echo '
