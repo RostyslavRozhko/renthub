@@ -701,19 +701,15 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     $status = wp_handle_upload($_FILES[$imgid . 'async-upload'], array('test_form' => true, 'action' => 'plupload_action'));
     $filename = $status['file'];
 
-	if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJRPSL3LGIFILFIYA');
-        if (!defined('awsSecretKey')) define('awsSecretKey', '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');
+	/*For upload img to amazon*/
+	$file_url = $status['url'];
+	$file_name = $_FILES[$imgid . 'async-upload']['name'];
 
-        $s3 = new S3(awsAccessKey, awsSecretKey);
-        $bucket = 'renthub-storage';
-	      $path = $_FILES[$imgid . 'async-upload']['name'];
-
-	//$upload_img = $s3->putObjectFile($_FILES[$imgid . 'async-upload']['tmp_name'], $bucket, $path);
-       S3::putObject(S3::inputFile($_FILES[$imgid . 'async-upload']['tmp_name'], false), $bucket, $path, S3::ACL_PUBLIC_READ);
+	upload_amazon($file_url , $file_name);
 
     $attachment = array(
         'post_mime_type' => $status['type'],
-        'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+        'post_title' => preg_replace( '/\.[^.]+$/', '', basename($filename)),
         'post_content' => '',
         'post_status' => 'inherit',
         'guid' => $status['url']
@@ -741,6 +737,14 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   }
   add_action('wp_ajax_plupload_action', "g_plupload_action");
   
+  /*Upload img to amazon*/
+	function upload_amazon ($file_url , $file_name) {
+		$accessKey = 'AKIAJRPSL3LGIFILFIYA';
+        $secretKey = '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';
+        $s3 = new S3($accessKey, $secretKey);
+        $bucket = S3::listBuckets()[0];
+        return S3::putObject(S3::inputFile($file_path, false), $bucket, $file_name);
+	}
   
   function delete_image_ajax()
   {
@@ -790,7 +794,8 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
   
   function my_photo_markup( $id, $svalue='', $width=800, $height=800 )
-  { ?>
+  { 
+  	?>
       <input type="hidden" name="<?php echo $id; ?>" id="<?php echo $id; ?>" value="<?php echo $svalue; ?>" />
       <div class="plupload-upload-uic hide-if-no-js" id="<?php echo $id; ?>plupload-upload-ui">
 	  <?php if( $id == "img1" && !is_admin() ) : ?>
@@ -1590,16 +1595,16 @@ function pll_title($post_id=false) {
           $town = explode("," , $data['results'][0]['formatted_address']);
           $type = implode(' ' , $data['results'][0]['address_components'][0]['types']);
           if ($data['results'][0]['address_components'][2]['long_name'] == 'Київ' || $data['results'][0]['address_component'][2] == 'Киев'){
-            return $town[0].' , '. $town[1];
+            return $town[0].'<br>'. $town[1];
           }
           if (($data['results'][0]['address_components'][2]['long_name'] != 'Київ' || $data['results'][0]['address_component'][2] != 'Киев') &&  $type != 'route' && $type != 'premise') {
-            return $town[0].'&nbsp;'. $town[1] . ' , ' . $town[2];
+            return $town[0].'&nbsp;'. $town[1] . '<br>' . $town[2];
           }
           if($type == 'route'){
-            return $town[0].'&nbsp;'. $town[1];
+            return $town[0].'<br>'. $town[1];
           }
           if($type == 'premise'){
-            return $town[1] . ' , ' . $town[2] . ' , ' . $town[3];
+            return $town[1] . ' , ' . $town[2] . '<br>' . $town[3];
           }
         }
     }
