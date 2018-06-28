@@ -5090,13 +5090,11 @@ label.error {
 
   .advert__tags_grid {
     width: 50%;
+    padding: 0 15px;
   }
   .filters-values__item__name, .filters-values__item__value {
     height: 55px;
     line-height: 20px;
-  }
-  .advert__tags {
-    padding: 0 15px;
   }
 }
 
