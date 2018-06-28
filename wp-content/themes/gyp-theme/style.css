@@ -5091,6 +5091,13 @@ label.error {
   .advert__tags_grid {
     width: 50%;
   }
+  .filters-values__item__name, .filters-values__item__value {
+    height: 55px;
+    line-height: 20px;
+  }
+  .advert__tags {
+    padding: 0 15px;
+  }
 }
 
 @media (max-width: 650px) {
