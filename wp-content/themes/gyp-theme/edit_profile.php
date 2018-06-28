@@ -8,16 +8,16 @@ $update_msg = $err_msg = $user_data = '';
     $user_meta = $wp_user = array();
 	
 	if( isset( $_POST['nname'] ) && $_POST['nname'] ) {
-	  $user_meta['nickname'] = $wp_user['display_name'] = $_POST['nname'];
+	  $user_meta['nickname'] = $wp_user['display_name'] = esc_attr($_POST['nname']);
 	}
-    $user_meta['city_id'] = isset( $_POST['cc_city_id'] ) ? $_POST['cc_city_id'] : '';
-    $user_meta['city_name'] = isset( $_POST['city_address'] ) ? $_POST['city_address'] : '';
-    $user_meta['cc_address_list'] = isset( $_POST['cc_address_list'] ) ? $_POST['cc_address_list'] : '';
-    $user_meta['cc_city_id'] = isset( $_POST['cc_city_id'] ) ? $_POST['cc_city_id'] : '';
-    $user_meta['cc_locations'] = isset( $_POST['cc_locations'] ) ? $_POST['cc_locations'] : '';
+    $user_meta['city_id'] = isset( $_POST['cc_city_id'] ) ? esc_attr($_POST['cc_city_id']) : '';
+    $user_meta['city_name'] = isset( $_POST['city_address'] ) ? esc_attr($_POST['city_address']) : '';
+    $user_meta['cc_address_list'] = isset( $_POST['cc_address_list'] ) ? esc_attr($_POST['cc_address_list']) : '';
+    $user_meta['cc_city_id'] = isset( $_POST['cc_city_id'] ) ? esc_attr($_POST['cc_city_id']) : '';
+    $user_meta['cc_locations'] = isset( $_POST['cc_locations'] ) ? esc_attr($_POST['cc_locations']) : '';
 
-    $user_meta['phone'] = isset( $_POST['phone'] ) ? $_POST['phone'] : '';
-    $user_meta['description'] = isset( $_POST['abtme'] ) ? $_POST['abtme'] : '';
+    $user_meta['phone'] = isset( $_POST['phone'] ) ? esc_attr($_POST['phone']) : '';
+    $user_meta['description'] = isset( $_POST['abtme'] ) ? esc_attr($_POST['abtme']) : '';
     $user_meta['description_ru'] = $user_meta['description'];
 	
     //Update user data
