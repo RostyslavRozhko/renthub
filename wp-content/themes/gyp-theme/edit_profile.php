@@ -8,16 +8,16 @@ $update_msg = $err_msg = $user_data = '';
     $user_meta = $wp_user = array();
 	
 	if( isset( $_POST['nname'] ) && $_POST['nname'] ) {
-	  $user_meta['nickname'] = $wp_user['display_name'] = esc_attr($_POST['nname']);
+	  $user_meta['nickname'] = $wp_user['display_name'] = $_POST['nname'];
 	}
-    $user_meta['city_id'] = isset( $_POST['cc_city_id'] ) ? esc_attr($_POST['cc_city_id']) : '';
-    $user_meta['city_name'] = isset( $_POST['cc_address'] ) ? esc_attr($_POST['cc_address']) : '';
-    $user_meta['cc_address_list'] = isset( $_POST['cc_address_list'] ) ? esc_attr($_POST['cc_address_list']) : '';
-    $user_meta['cc_city_id'] = isset( $_POST['cc_city_id'] ) ? esc_attr($_POST['cc_city_id']) : '';
-    $user_meta['cc_locations'] = isset( $_POST['cc_locations'] ) ? esc_attr($_POST['cc_locations']) : '';
+    $user_meta['city_id'] = isset( $_POST['cc_city_id'] ) ? $_POST['cc_city_id'] : '';
+    $user_meta['city_name'] = isset( $_POST['city_address'] ) ? $_POST['city_address'] : '';
+    $user_meta['cc_address_list'] = isset( $_POST['cc_address_list'] ) ? $_POST['cc_address_list'] : '';
+    $user_meta['cc_city_id'] = isset( $_POST['cc_city_id'] ) ? $_POST['cc_city_id'] : '';
+    $user_meta['cc_locations'] = isset( $_POST['cc_locations'] ) ? $_POST['cc_locations'] : '';
 
-    $user_meta['phone'] = isset( $_POST['phone'] ) ? esc_attr($_POST['phone']) : '';
-    $user_meta['description'] = isset( $_POST['abtme'] ) ? esc_attr($_POST['abtme']) : '';
+    $user_meta['phone'] = isset( $_POST['phone'] ) ? $_POST['phone'] : '';
+    $user_meta['description'] = isset( $_POST['abtme'] ) ? $_POST['abtme'] : '';
     $user_meta['description_ru'] = $user_meta['description'];
 	
     //Update user data
@@ -94,7 +94,7 @@ $update_msg = $err_msg = $user_data = '';
                                 <div class="col6 nopaddingl">
                                     <div class="form__title"><?php _e('City', 'prokkat'); ?></div>
                                     <div class="input-wrp input-wrp_block">
-                                        <input type="text" name="cc_address" id="s_address" class="input_add noEnterSubmit" value="" placeholder="<?php _e('Enter your city', 'prokkat') ?>" />
+                                        <input type="text" name="city_address" id="s_address" class="input_add noEnterSubmit" value="<?php echo get_the_author_meta('city_name', $current_user->ID); ?>" placeholder="<?php _e('Enter your city', 'prokkat') ?>" />
                                         <input type="hidden" name="cc_city_id" id="s_city_id" class="input_add" value="<?php echo get_the_author_meta('city_id', $current_user->ID); ?>" />
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@ $update_msg = $err_msg = $user_data = '';
                                 <input type="hidden" name="cc_city_id" id="cc_city_id" value='<?php echo get_the_author_meta('cc_city_id', $current_user->ID); ?>'/>
                                 <input type="hidden" name="cc_locations" id="cc_locations" value='<?php echo get_the_author_meta('cc_locations', $current_user->ID); ?>'/>
                                 <div class="address-input__container">
-                                    <input type="text" name="cc_address" id="cc_address" class="input_add noEnterSubmit" value='' placeholder="<?php _e('Address', 'prokkat'); ?>" />
+                                    <input type="text" name="cc_address" id="cc_address" class="input_add noEnterSubmit" value="" placeholder="<?php _e('Address', 'prokkat'); ?>" />
                                     <input type="button" id="add_address" value="<?php _e('Add', 'prokkat'); ?>" />
                                 </div>
 			                    <div id="map_canvas" style="height:350px; margin-top: 10px; position:relative;"  class="form_row clearfix"></div>
