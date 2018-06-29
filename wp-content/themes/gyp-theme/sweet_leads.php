@@ -1,12 +1,28 @@
 <?php
-
+  global $current_user;
   $captcha1 = rand(0, 9);
   $captcha2 = rand(0, 9);
   $cc_sbs_captcha = $captcha1 + $captcha2;
+  $ava = get_the_author_meta('user_avatar', $author_id);
+    if( !$ava ) {
+      $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png'; 
+    }
+  $city = get_the_author_meta('city_name', $author_id);
+  $city = explode("," , $city);
 ?>
     <form id="send-msg" method="post" class="hide">
       <div class="form form_send-msg clearfix">
-      <h3 class="advert__mess-title"><?php _e('Send message', 'prokkat'); ?></h3>
+      <div class="call-feedback__author">
+            <img src="<?php echo $ava; ?>" />
+            <div class="call-feedback__name">
+                <?php echo the_author_meta('nickname');?>
+                <?php if (!empty($city[0])): ?>
+                      <span><?php echo 'м.&nbsp;'.$city[0];?></span>
+                <?php endif; ?>
+            </div>
+
+        </div>
+      <!--<h3 class="advert__mess-title"><?php _e('Send message', 'prokkat'); ?></h3>-->
 	  
         <div>
         <p class="status input-wrp input-wrp_block hide" style="font-family: 'Fira Sans', sans-serif;"></p>
