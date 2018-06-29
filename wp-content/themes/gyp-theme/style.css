@@ -74,6 +74,10 @@
   flex-direction: column;
   justify-content: flex-start;
   margin-left: 20px;
+  font-weight: bold;
+}
+.call-feedback__name > span {
+  font-weight: 100;
 }
 
 .call-feedback__name a {
@@ -131,7 +135,6 @@
 
 .call-feedback__success-container img {
   width: 80px;
-  background: red;
 }
 
 .call-feedback__success-container div {
@@ -3761,6 +3764,7 @@ input[type=number]::-webkit-outer-spin-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-right: 30px;
 }
 
 .infowindow__title {
@@ -5187,3 +5191,32 @@ label.error {
     font-size: 14px;
     padding: 5px 0;
 }
+.infowindow__name {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    font-weight: bold;
+}
+.infowindow__address {
+    width: 80px;
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    font-weight: 500;
+}
+#mess_author , #call_author {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    position: absolute;
+    right: 33px;
+    top: 50px;
+}
+#call_author {
+  right: 0px;
+}
+#mess_author > .search-list__button img {
+    height: 12px;
+    width: 12px;
+}
+    
