@@ -690,6 +690,14 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   add_action("wp_head", "plupload_admin_head");
   add_action("admin_head", "plupload_admin_head");
   
+/*Upload img to amazon*/
+	function upload_amazon($file_path,$file_name) {
+		$accessKey = 'AKIAJRPSL3LGIFILFIYA';
+        $secretKey = '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';
+        $s3 = new S3($accessKey, $secretKey);
+        $bucket = S3::listBuckets()[0];
+        return S3::putObject(S3::inputFile($file_path, false), $bucket, $file_name , S3::ACL_PUBLIC_READ);
+	}
 
   function g_plupload_action() {
 
@@ -699,13 +707,12 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
     // handle file upload
     $status = wp_handle_upload($_FILES[$imgid . 'async-upload'], array('test_form' => true, 'action' => 'plupload_action'));
-    $filename = $status['file'];
 
 	/*For upload img to amazon*/
-	$file_url = $status['url'];
-	$file_name = $_FILES[$imgid . 'async-upload']['name'];
+	$filename = $status['file'];
+	$file_path = $_FILES[$imgid . 'async-upload']['name'];
 
-	upload_amazon($file_url , $file_name);
+	upload_amazon ($filename , $file_path);
 
     $attachment = array(
         'post_mime_type' => $status['type'],
@@ -736,15 +743,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     exit;
   }
   add_action('wp_ajax_plupload_action', "g_plupload_action");
-  
-  /*Upload img to amazon*/
-	function upload_amazon ($file_url , $file_name) {
-		$accessKey = 'AKIAJRPSL3LGIFILFIYA';
-        $secretKey = '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';
-        $s3 = new S3($accessKey, $secretKey);
-        $bucket = S3::listBuckets()[0];
-        return S3::putObject(S3::inputFile($file_path, false), $bucket, $file_name);
-	}
+ 
   
   function delete_image_ajax()
   {
@@ -1077,12 +1076,23 @@ add_action('wp_ajax_nopriv_activate_account', 'activate_account' );
     $result = [];
     foreach ($list as $ad) {
       $id = $ad->ID;
+      $get_post_author = get_post($id);
+      $name = get_user_meta($get_post_author->post_author ,'nickname' , true);
+      $location = get_post_meta($id, 'cc_locations', true);
+	  $address = explode("},{" , $location)[0];
+      $address = preg_replace ("/[^0-9\s\,\.]/","", $location);
+      $address = strip_tags(trim(get_address($address)));
+      $state = get_post_meta($id, 'cc_state', true);
+
       $result[] = array(
-        'title' => title_excerpt($id),
+        //'title' => title_excerpt($id),
+        'title' => get_the_title($id),
         'img' => ad_thumbnail_url($id),
         'link' => get_permalink($id),
+        'address' => $address,
+        'name' => $name,
         'price' => price_output($id),
-        'location' => get_post_meta($id, 'cc_locations', true),
+        'location' => $location,
         'categories' => get_the_term_list($id, CUSTOM_CAT_TYPE, '', ' ', '')
       );
     }
@@ -1619,5 +1629,14 @@ function pll_title($post_id=false) {
     );
     return $events;
 } );
+
+    remove_action( 'add_option_new_admin_email', 'update_option_new_admin_email' );
+remove_action( 'update_option_new_admin_email', 'update_option_new_admin_email' );
+ 
+function wpdocs_update_option_new_admin_email( $old_value, $value ) {
+update_option( 'admin_email', $value );
+}
+add_action( 'add_option_new_admin_email', 'wpdocs_update_option_new_admin_email', 10, 2 );
+add_action( 'update_option_new_admin_email', 'wpdocs_update_option_new_admin_email', 10, 2 );
 
 ?>
