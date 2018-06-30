@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="header__category__right hide">
                                             <div class="header__category__topbar">
-						<img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/close.svg" >
+				<img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/cross-out.svg" >
                                                 <a href="'.get_term_link( $termId, $taxonomyName ).'">Все объявления в <b>'.esc_html($category->name).'</b></a>
                                                 
                                             </div>
