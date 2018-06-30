@@ -26,7 +26,6 @@
                             foreach ( $categories as $category ) {
                                 $termId = $category->term_id;
                                 $taxonomyName = 'cate';
-                                // <img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/cross-out.svg" >
                                 echo '
                                     <div class="header_switcher">
                                          <div class="header__category__btn">
@@ -40,6 +39,7 @@
                                         </div>
                                         <div class="header__category__right hide">
                                             <div class="header__category__topbar">
+						<img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/close.svg" >
                                                 <a href="'.get_term_link( $termId, $taxonomyName ).'">Все объявления в <b>'.esc_html($category->name).'</b></a>
                                                 
                                             </div>
