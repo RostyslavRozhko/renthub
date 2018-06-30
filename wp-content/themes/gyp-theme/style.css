@@ -2862,7 +2862,7 @@ b {
 .maincat__subs-list {
   display: flex;
   flex-wrap: wrap;
-  height: 140px;
+  height: 55px;
   overflow: hidden;
 }
 
@@ -4709,6 +4709,12 @@ label.error {
 }
 
 @media (max-width: 480px) {
+	.maincat__subs-list {
+	  display: flex;
+	  flex-wrap: wrap;
+	  height: 140px;
+	  overflow: hidden;
+	}
   .mobile-only {
     display: block;
   }
