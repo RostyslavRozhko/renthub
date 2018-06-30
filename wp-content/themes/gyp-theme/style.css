@@ -2862,7 +2862,7 @@ b {
 .maincat__subs-list {
   display: flex;
   flex-wrap: wrap;
-  height: 75px;
+  height: 140px;
   overflow: hidden;
 }
 
