@@ -52,8 +52,10 @@ jQuery(document).ready(function ($) {
 					if( data.error ) {				
 						message.html(data.error);
 					}
-					else if( data.message ) {				
-						message.html(data.message);
+					else {				
+						//message.html(data.message);
+						message.text(leads_object.successmessage);
+						message.delay(1000).fadeOut(1000);
 						jQuery('#message').val('');
 						jQuery('#captcha').val('');
 					}
@@ -120,5 +122,7 @@ jQuery(document).ready(function ($) {
 			}
       });
     });
-   
+    jQuery('.close-categories').click(function(){
+    		jQuery('.header__category__window-small').hide();
+    });
 });

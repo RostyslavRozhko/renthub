@@ -138,10 +138,19 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
               }
               
               add_post_meta($post_id, 'cc_state', $posted['cc_state'], true);
-
-			  add_post_meta($post_id, 'img1', $posted['img1'], true);
+              upload_amazon($file_path,$file_name);
+			  /*add_post_meta($post_id, 'img1', $posted['img1'], true);
 			  add_post_meta($post_id, 'img2', $posted['img2'], true);
-			  add_post_meta($post_id, 'img3', $posted['img3'], true);
+			  add_post_meta($post_id, 'img3', $posted['img3'], true);*/
+
+              $name_img1 = preg_replace( '/\.[.^]+$/', '', basename($posted["img1"]));
+              $name_img2 = preg_replace( '/\.[.^]+$/', '', basename($posted["img2"]));
+              $name_img3 = preg_replace( '/\.[.^]+$/', '', basename($posted["img3"]));
+              $url_amazon = 'https://s3-us-west-1.amazonaws.com/storage-renthub/';
+
+              add_post_meta($post_id, 'img1', $url_amazon.$name_img1, true);
+              add_post_meta($post_id, 'img2', $url_amazon.$name_img2, true);
+              add_post_meta($post_id, 'img3', $url_amazon.$name_img3, true);   
 
 			  if( !$posted['img1'] && $posted['img2'] ) {
 				  update_post_meta($post_id, 'img1', $posted['img2']);
@@ -172,13 +181,13 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
 			  $permalink = get_permalink( $post_id );
 			  $img_url = ad_thumbnail_url ( $post_id );
 			  ob_start();
-	          include( get_stylesheet_directory() . '/email/complete.php');
+	          include( get_stylesheet_directory() . '/email/complete_new.php');
 	          $message = ob_get_clean();
               wp_mail($current_user->user_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
 
 			  // email to admin
-			  $message = admin_url( 'post.php?post=' . $post_id ) . '&action=edit';
-			  wp_mail( $admin_email, __('New Ad', 'cc'), $message );
+			  $message = admin_url('post.php?post=' . $post_id ) . '&action=edit';
+			  wp_mail($admin_email, __('New Ad', 'cc'), $message );
 
 
 			  //Validate to prevent duplicate submission

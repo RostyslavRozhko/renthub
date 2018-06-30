@@ -357,7 +357,7 @@ padding: 0 30px;
 
 .advert__tags_grid {
     width: 25%;
-    height: 20px;
+    height: 35px;
 }
 
 .modal__header_login .upload__control-del {
@@ -5196,6 +5196,8 @@ label.error {
     left: 18px;
     bottom: 18px;
     font-weight: bold;
+    width: 60px;
+    top: 80px;
 }
 .infowindow__address {
     width: 80px;
@@ -5219,4 +5221,10 @@ label.error {
     height: 12px;
     width: 12px;
 }
-    
+.close-categories {
+      position: absolute;
+      right: 20px;
+}
+.close-categories:hover {
+  cursor: pointer;
+}

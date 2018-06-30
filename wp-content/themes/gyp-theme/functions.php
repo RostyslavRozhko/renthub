@@ -65,6 +65,7 @@ add_action('init','add_cors_http_header');
     wp_localize_script( 'leads-script', 'leads_object', array( 
       'ajaxurl' => admin_url( 'admin-ajax.php?lang='.pll_current_language() ),
       'loadingmessage' => __('Sending message...', 'prokkat'),
+      'successmessage' => __('Сообщение успешно отправлено!', 'prokkat'),
 	  'nonce' => wp_create_nonce('fep-message'),
 	  'equalTo' => __('Wrong answer.', 'prokkat'),
     ));
@@ -711,7 +712,6 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 	/*For upload img to amazon*/
 	$filename = $status['file'];
 	$file_path = $_FILES[$imgid . 'async-upload']['name'];
-
 	upload_amazon ($filename , $file_path);
 
     $attachment = array(
@@ -728,10 +728,10 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
 	//  Resize imagewal
 	if( $imgid == "ava" ) {
-      $img_url = get_user_meta( $_POST["user_id"], 'user_avatar', true);
-	  if( $img_url ) delete_images( $img_url );
-	  get_thumb($status['url'], 152, 152);
-	  update_user_meta( $_POST["user_id"], 'user_avatar', $status['url'] );
+	      $img_url = get_user_meta($_POST["user_id"], 'user_avatar', true);
+		  if( $img_url ) delete_images( $img_url );
+		  get_thumb($status['url'], 152, 152);
+		  update_user_meta( $_POST["user_id"], 'user_avatar', $status['url']);
 	}
     else {
 	  get_thumb($status['url'], 515, 515);
