@@ -90,6 +90,7 @@
 
                             <img class="header-category-img" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">    
                         </div>
+
                         <div class="header__category__window header__category__window-small header__category__paddings hide">
                         <?php
                             $categories = get_categories(array(
@@ -112,11 +113,11 @@
                                                 <i id="category-btn-arrow" class="fa fa-angle-right"></i>
                                             </button>
                                         </div>
+                                        <div class="back__white"></div>
                                         <div class="header__category__right hide">
                                             <div class="header__category__topbar">
-						<img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/cross-out.svg" >
+						                                <img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/cross-out.svg" >
                                                 <a href="'.get_term_link( $termId, $taxonomyName ).'">Все объявления в <b>'.esc_html($category->name).'</b></a>
-                                                
                                             </div>
                                             <div class="header__subcategory">
                                                 <div class="header__category-list">
@@ -133,7 +134,7 @@
                                 </div>                                
                             </div>
                             <?php } ?>                            
-                        </div> 
+                        </div>
                     </div>
 
                     <div class="input-wrp input-wrp_grid">
