@@ -59,7 +59,8 @@
       			),
    		 'meta_query' => array()
   		);
-	$all_query = new WP_Query($args); 
+	$all_query = new WP_Query($args);
+
         if($s_for) {
           $arguments['title_like'] = $s_for;
         }
@@ -149,6 +150,8 @@
 
                       const data = <?php echo json_encode(getSearchResults($the_query->posts)); ?>;
 
+                      console.log(data);
+
                       let prevWindow;
 
                       var markers = [];
@@ -165,7 +168,26 @@
                             <div class="infowindow__text-container">
                               <div class="infowindow__title">${data[i].title}</div>
                               <div class="infowindow__price">${data[i].price}</div>
-                              <a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></div>
+                              <div class="infowindow__name">${data[i].name}</div>
+                              <div class="infowindow__address">${data[i].address}</div>
+                              <a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></a>
+                              <a class="search-list__button search-list__button__grey fancybox-send-msg" id="mess_author" href="#send-msg">
+                                <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
+                                <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
+                                <input type="hidden" id="user_name" value="<?php the_author_meta('nickname');?>">
+                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/envelope.svg">
+                              </a>
+                              <a href="#callFeedback" id="call_author" class="search-list__call search-list__button search-list__button__yellow fancybox-feedback">
+                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/call-answer-black.svg">
+                                <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
+                                <?php 
+                                    $ava = get_the_author_meta( 'user_avatar', $author_id );
+                                    if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png'; 
+                                ?>
+                                <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                                <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname'); ?>" >
+                                <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
+                              </a>
                             </div>
                           </div>
                         `
@@ -181,63 +203,60 @@
                                       title: data[i].title
                             });
                         
-                                    bounds.extend(position[0]);
+                            bounds.extend(position[0]);
 
-                                                        google.maps.event.addListener(marker, 'click', function () {
-                                                                if(prevWindow) 
-                                                                        prevWindow.close()
-                                                        infowindow.open(map, this);
-                                                        prevWindow = infowindow
-                                                });
+                             google.maps.event.addListener(marker, 'click', function () {
+                                if(prevWindow) 
+                                prevWindow.close()
+                                infowindow.open(map, this);
+                                prevWindow = infowindow
+                            });
 
-                                                map.fitBounds(bounds)
-                                        const listener = google.maps.event.addListener(map, "idle", function() { 
-                                            if (map.getZoom() > 11) map.setZoom(11); 
-                                            if (map.getZoom() < 4) map.setZoom(4); 
-                                            google.maps.event.removeListener(listener); 
-                                 });
+                            map.fitBounds(bounds)
+                            const listener = google.maps.event.addListener(map, "idle", function() { 
+                              if (map.getZoom() > 11) map.setZoom(11); 
+                              if (map.getZoom() < 4) map.setZoom(4); 
+                              google.maps.event.removeListener(listener); 
+                            });
                             
 
-                                 markers.push(marker);
+                            markers.push(marker);
 
                         if (position.length > 1) {
-                                for ( var j = 0; j < position.length ; j++){
+                          for ( var j = 0; j < position.length ; j++){
 
-                                        var marker = new google.maps.Marker({
-                                      map: map,
-                                      icon: icon,
-                                      position: position[j],
-                                      title: data[i].title
-                                        });
+                          var marker = new google.maps.Marker({
+                              map: map,
+                              icon: icon,
+                              position: position[j],
+                              title: data[i].title
+                          });
 
-                                        bounds.extend(position[j]);
+                          bounds.extend(position[j]);
 
-                                                                google.maps.event.addListener(marker, 'click', function () {
-                                                                                if(prevWindow) prevWindow.close()
-                                                                        infowindow.open(map, this);
-                                                                        prevWindow = infowindow
-                                                        });
+                          google.maps.event.addListener(marker, 'click', function () {
+                            if(prevWindow) prevWindow.close()
+                            infowindow.open(map, this);
+                            prevWindow = infowindow
+                          });
 
-                                                        map.fitBounds(bounds)
-                                            const listener = google.maps.event.addListener(map, "idle", function() { 
-                                              if (map.getZoom() > 11) map.setZoom(11); 
-                                              if (map.getZoom() < 4) map.setZoom(4); 
-                                              google.maps.event.removeListener(listener); 
-                                        });
-                                        }
+                          map.fitBounds(bounds)
+                          const listener = google.maps.event.addListener(map, "idle", function() { 
+                            if (map.getZoom() > 11) map.setZoom(11); 
+                            if (map.getZoom() < 4) map.setZoom(4); 
+                            google.maps.event.removeListener(listener); 
+                          });
+                          }
 
-                                        markers.push(marker);
-
-                                        }
-
+                          markers.push(marker);
+                          }
 	                      }
-				 var markerCluster = new MarkerClusterer(map, markers,{
-                                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
-                                maxZoom: 10,
-                                                gridSize: 50
+				            var markerCluster = new MarkerClusterer(map, markers,{
+                      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                      maxZoom: 10,
+                      gridSize: 50
                         }
-                      );
-
+                    );
                }
                google.maps.event.addDomListener(window, 'load', initMap);
           </script>
@@ -280,9 +299,9 @@
               $post = get_post($post_id);
               $author = get_userdata($post->post_author); 
               $author_id = $author->ID;
-		/*get town*/
+		          /*get town*/
               $coordinates = get_post_meta($post_id , 'cc_locations',true);
-	      $coordinates = explode("},{" , $coordinates)[0];
+	            $coordinates = explode("},{" , $coordinates)[0];
               $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
               $get_address = trim(get_address($coordinates));
 
@@ -310,19 +329,7 @@
                 <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >
               </div>
             </div>
-            <!--<div class="search-list__price-container">
-              <div class="search-list__price">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
-                <?php echo price_output($post_id); ?>
-              </div>
-              <?php if(get_post_meta( $post_id, 'cc_price_deposit', true )) : ?>
-              <div class="search-list__deposit">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/protection-black.svg">
-                <?php echo get_post_meta( $post_id, 'cc_price_deposit', true ); ?> грн
-              </div>
-              <?php endif ?>
-            </div>-->
-		<div class="town"><?php echo $get_address;?></div>
+		        <div class="town"><?php echo $get_address;?></div>
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
               <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
@@ -373,7 +380,7 @@
           endwhile;
 	    ?>
                     </div>
-		   <?php if(count($arr) > 9 || $all_query->post_count > 9) { ?>
+		   <?php if(count($arr) > 9 && $all_query->post_count > 9) { ?>
                     <div class="paginator">
                       <?php
                         echo paginate_links( array(
@@ -469,5 +476,6 @@
 	
 <?php 
   include_once('phone_popup.php');
+  include_once('sweet_leads.php');
   get_footer(); 
 ?>

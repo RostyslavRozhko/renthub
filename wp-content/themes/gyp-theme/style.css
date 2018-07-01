@@ -758,7 +758,7 @@ padding: 0 30px;
 .header__category__window-small {
   position: absolute;
   background-color: white;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);*/
   top: 40px;
   z-index: 30;
   left: 0;
@@ -875,6 +875,7 @@ padding: 0 30px;
 }
 
 .header_switcher {
+	box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.1);
 }
 
 .header__category-list {
@@ -5233,4 +5234,11 @@ label.error {
 }
 .close-categories:hover {
   cursor: pointer;
+}
+.back__white {
+	position: absolute;
+    background: white;
+    top: 10px;
+    z-index: -1;
+    display: none;
 }

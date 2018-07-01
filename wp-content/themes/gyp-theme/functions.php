@@ -729,7 +729,8 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 	//  Resize imagewal
 	if( $imgid == "ava" ) {
 	      $img_url = get_user_meta($_POST["user_id"], 'user_avatar', true);
-		  if( $img_url ) delete_images( $img_url );
+		  if( $img_url ) 
+        delete_images( $img_url );
 		  get_thumb($status['url'], 152, 152);
 		  update_user_meta( $_POST["user_id"], 'user_avatar', $status['url']);
 	}
@@ -1079,13 +1080,12 @@ add_action('wp_ajax_nopriv_activate_account', 'activate_account' );
       $get_post_author = get_post($id);
       $name = get_user_meta($get_post_author->post_author ,'nickname' , true);
       $location = get_post_meta($id, 'cc_locations', true);
-	  $address = explode("},{" , $location)[0];
-      $address = preg_replace ("/[^0-9\s\,\.]/","", $location);
+	    $address = explode("},{" , $location)[0];
+      $address = preg_replace ("/[^0-9\s\,\.]/","", $address);
       $address = strip_tags(trim(get_address($address)));
       $state = get_post_meta($id, 'cc_state', true);
 
       $result[] = array(
-        //'title' => title_excerpt($id),
         'title' => get_the_title($id),
         'img' => ad_thumbnail_url($id),
         'link' => get_permalink($id),
@@ -1291,7 +1291,6 @@ function pll_title($post_id=false) {
 	    $img_url = file_url_exists( $img_resized ) ? $img_resized : $img_url;
 	  }
       else $img_url = get_stylesheet_directory_uri() . '/img/placeholder.jpg';
-
 	  return $img_url;
   }
   

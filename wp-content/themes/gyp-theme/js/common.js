@@ -644,18 +644,22 @@ jQuery(document).ready(function () {
     //     $('.header__category__right').hide()        
     //     $('.header__category__window').hide()
     // })
+    jQuery('.close-categories').click(function(){
+            jQuery('.header__category__window-small').hide();
+    });
 
     function showCategoty(node) {
         if($(window).width() > 480) {
-            $('.header__category__right').hide()
-            $(node).find('.header__category__right').show()
-            const leftWidth = $(node).width()
+            $('.header__category__right, .back__white').hide()
+            $(node).find('.header__category__right, .back__white').show()
+            const leftWidth = $(node).width() + 10;
             const containerWidth = $('.form_srch-header').width()
             const height = $('.header__category__window').height()
     
-            $('.header__category__right').width(containerWidth-leftWidth)
+            $('.header__category__right , .back__white').width(containerWidth-leftWidth)
             $('.header__category__right').css('left', leftWidth)
             $('.header__category__right').height(height + 50)
+            $('.back__white').height(height);
         }
     }
 

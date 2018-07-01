@@ -123,8 +123,6 @@
   $all_query = new WP_Query($args);
   global $wp_query;
 
-  //print_r(getSearchResults($the_query->posts));
-
  ?>
 
  <?php search_header_cate($parent); ?>
@@ -428,18 +426,6 @@
                 <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >
               </div>
             </div>
-            <!--<div class="search-list__price-container">
-              <div class="search-list__price">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
-                <?php echo price_output($post_id); ?>
-              </div>
-              <?php if(get_post_meta( $post_id, 'cc_price_deposit', true )) : ?>
-                <div class="search-list__deposit">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/protection-black.svg">
-                  <?php echo get_post_meta( $post_id, 'cc_price_deposit', true ); ?> грн
-                </div>
-              <?php endif ?>
-            </div>-->
             <div class="town"><?php echo $get_address;?></div>
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">

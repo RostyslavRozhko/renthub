@@ -122,7 +122,4 @@ jQuery(document).ready(function ($) {
 			}
       });
     });
-    jQuery('.close-categories').click(function(){
-    		jQuery('.header__category__window-small').hide();
-    });
 });

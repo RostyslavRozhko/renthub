@@ -48,9 +48,6 @@
            <input type="text" name="email" id="email" class="required email input input_modal" placeholder="E-Mail">
            <input type="password" name="password" id="password" class="required input input_modal" placeholder="<?php _e('Password', 'prokkat'); ?>">
          </div>
-         <div class="login-container__center-btns">
-           <a class="text-link modal__btn__forgot" data-tab="#forgot"><?php _e('Lost your password?', 'prokkat'); ?></a>          
-         </div>
          <input class="submit_button btn btn_modal modal__btn modal__btn__login" type="submit" name="login" value="<?php _e('Log In', 'prokkat'); ?>"/>
          <div class="text-center">
          <a data-tab="#phone-login" class="modal-tab-phone-login">
