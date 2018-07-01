@@ -206,7 +206,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                                 foreach ( $term_children as $child ) {
                                     $term = get_term_by( 'id', $child, $taxonomyName );
                                     echo '
-                                            <a class="info-section__subcat-title" href="'.get_term_link( $child, $taxonomyName ).'">'.$term->name.'</a><span>, </span>
+                                            <a class="info-section__subcat-title" href="'.get_term_link( $child, $taxonomyName ).'">'.$term->name.'</a>&nbsp;
                                         ';
                                 }
                                 echo '</div>
