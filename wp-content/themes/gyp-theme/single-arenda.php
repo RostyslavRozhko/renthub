@@ -36,7 +36,64 @@
       $date_registered = $datetime->format('d.m.Y');
   
 ?>
-<?php search_header_cate($parent->term_id); ?>
+ <section class="header-section">
+    <div class="container">
+        <?php 
+            $lang = ( pll_current_language() != 'uk' ) ? '-'.pll_current_language() : ''; ?>
+        
+        <div class="search-grp search-grp_header">
+                <div class="header__search-show-btn hide">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg">
+                  <?php _e('Search', 'prokkat'); ?>
+                </div>
+                <form action="<?php echo site_url('search'.$lang.'/'); ?>" method="get" class="form_srch-header">
+                    <div class="header__popup__container">
+                      <div class="input-wrp input-wrp_grid header__category__container" style="padding: 0 15px">
+                          <div class="header__category__text-container">
+                              <img class="header__category__text-container-img" src="<?php echo get_stylesheet_directory_uri(); ?>/img/bookmark.svg">
+                              <div><?php echo $parent->name; ?></div>
+                          </div>
+                          <img class="header-category-img" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
+                      </div>  
+                      <div class="header__category__window header__category__window-small header__category__paddings hide">
+                                <ul class="menu-cat">
+                                  <?php
+                                    $cat_args = array(
+                                    'parent' => $parent->term_id,
+                                    'orderby' => 'name',
+                                    'hierarchical' => 1,
+                                    'taxonomy' => 'cate',
+                                    'hide_empty' => 0,
+                                    'style' => 'cat_list',
+                                    'title_li' => '',
+                                    'walker' => new Custom_Walker_Category(),
+                                    );
+                                    
+                                    wp_list_categories($cat_args);
+                                  ?>
+                                </ul>
+                          <div class="return-to-main-cat">
+                              <a href="<?php echo get_site_url(); ?>" ><i class="fa fa-arrow-left"></i><?php _e('Return to the main categories', 'prokkat'); ?></a>
+                          </div>
+                      </div>  
+                    </div>
+                    <div class="input-wrp input-wrp_grid">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flag.svg" class="input-wrp__ico search-icon-input">
+                        <input type="text" id="s_address" class="input input_srch-header" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" />
+                        <input type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
+                    </div>
+                    <div class="input-wrp input-wrp_grid header__search-input">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg" class="input-wrp__ico search-icon-input">
+                        <input type="text" class="input input_srch-header" placeholder="<?php _e('Search', 'prokkat'); ?>" name="search_for" value="" id="autocomplete-field" />
+                    </div>
+                    <div class="input-wrp input-wrp_btn header__search-btn_container">
+                        <input type="submit" class="header__search-btn" value="<?php _e('Find', 'prokkat') ?>"/>
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg">
+                    </div>
+                </form>
+        </div>
+    </div>
+</section>
 <!-- Content -->
 <section class="advert_section">
     <div class="container">

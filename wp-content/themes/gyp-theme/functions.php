@@ -678,8 +678,8 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             'imgid' => 0, // will be added per uploader
             'user_id' => $current_user->ID,
         ),
-        'main_img_caption' => __( 'Main image', 'cc' ),
-        'make_main_text' => __( 'Make the main', 'cc' ),
+        'main_img_caption' => __('Main image', 'prokkat'),
+        'make_main_text' => __( 'Make the main', 'prokkat' ),
 		'no-avatar' => get_stylesheet_directory_uri() .'/img/no-avatar.png',
     );
     ?>
