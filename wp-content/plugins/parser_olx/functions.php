@@ -94,9 +94,10 @@
 	              $new_img = str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img);
 	              $upload_dir = (object) wp_upload_dir($time);
 	              $path = $upload_dir->path.'/' . $new_img;
+	              //upload_amazon($path , $new_img);
 	              if (!file_exists($path)) {
 	                  copy($img, $path);
-	              }
+	              } 
 	          }
 	          /*Ім'я власника оголошення*/
 	          $name = trim($doc_item->find('.offer-user__details > h4')->text());
@@ -153,6 +154,7 @@
 
 	                    add_post_meta($post_id, 'cc_price', $price, true);
 	                    update_user_meta($user_id, 'nickname', $name);
+	                    update_user_meta($user_id, 'city_name', $town);
 	                    update_user_meta($user_id, 'phone', strip_tags($new_tel) , true);
 	                    add_post_meta($post_id, 'cc_locations', $town_new);
 	                    add_post_meta($post_id, 'cc_address_list', $address_new);
@@ -206,6 +208,7 @@
 
 	                    add_post_meta($post_id, 'cc_price', $price, true);
 	                    update_user_meta($user_exists->ID, 'nickname', $name);
+	                    update_user_meta($user_exists->ID, 'city_name', $town);
 	                    update_user_meta($user_exists->ID, 'phone', strip_tags($new_tel) , true);
 	                    add_post_meta($post_id, 'cc_locations', $town_new);
 	                    add_post_meta($post_id, 'cc_address_list', $address_new);
@@ -300,4 +303,43 @@
 	<?php
 	  }
 	}
-?>
+	function amazon_download (){ ?>
+	<div class="container-fluid">
+		<h2><?php echo get_admin_page_title() ?></h2>
+		<form action="" method="post">
+			<input type="hidden" name="amazon_post" value="amazon">
+			<input type="submit" class="btn btn-success button action" value="Завантажити фото">
+		</form>
+	<?php 
+				$query_images_args = array(
+				    'post_type'      => 'attachment',
+				    'post_mime_type' => 'image',
+				    'post_status'    => 'inherit',
+				    'posts_per_page' => - 1,
+				);
+
+				$query_images = new WP_Query($query_images_args);
+
+				$images = array();
+				$get_url_imgs = array();
+
+				foreach ($query_images->posts as $image) {
+				    $images[] = get_attached_file($image->ID);
+				    $get_url_imgs[] = wp_get_attachment_url($image->ID);
+				}
+				if(isset($_POST['amazon_post']) && !empty($_POST['amazon_post'])){
+					foreach ($images as $img) {
+						$name_img = basename($img);
+						echo 'Идет загрузка фото на amazon...';
+						//upload_amazon($img , $name_img);
+					}
+				}?>
+				<div class="row">
+				<?php foreach ($get_url_imgs as $get_url_img) { ?>
+					<div class="col-md-2" style="text-align: center; margin: 20px 0;"><img src="<?=$get_url_img?>" width="100" height="100"></div>
+				<?php } ?>
+				</div>
+		<?php
+	} ?>
+	</div>
+<?php?>

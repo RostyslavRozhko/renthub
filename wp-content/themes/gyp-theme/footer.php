@@ -97,8 +97,8 @@
     <div class="footer__copyright">
         <div class="container">
             <div class="footer__social-icons">
-                <img src="<?php echo get_stylesheet_directory_uri() . "/img/twitter.svg"; ?>"/>
-                <img src="<?php echo get_stylesheet_directory_uri() . "/img/facebook-2.svg"; ?>"/>
+            <a href="https://twitter.com" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . "/img/twitter.svg"; ?>"/></a>
+            <a href="https://www.facebook.com/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . "/img/facebook-2.svg"; ?>"/></a>
             </div>
             <div class="footer__logo footer__left">RENTHUB.COM.UA</div>
             <div>

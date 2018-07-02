@@ -129,13 +129,13 @@ jQuery(document).ready(function($) {
     }
 });
 
-function UrlExists(url)
+/*function UrlExists(url)
 {
     var http = new XMLHttpRequest();
     http.open('HEAD', url, true);
     http.send();
     return http.status!=404;
-}
+}*/
 
 var saved_url_img1 = jQuery("#img1").val();
 var saved_url_img2 = jQuery("#img2").val();
