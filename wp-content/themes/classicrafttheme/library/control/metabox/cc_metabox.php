@@ -293,7 +293,7 @@ function cc_custom_metabox() {
 			  <div class="add__upload_sm ">
 			    <div class="add__upload_sh">
                   <div class="upload_img-wrp">
-                    <?php my_photo_markup( $id1, get_post_meta( $post->ID, $id1, true ) ); ?>
+                    <?php my_photo_markup($id1, get_post_meta( $post->ID, $id1, true )); ?>
                     <div class="plupload-thumbs hide" id="<?php echo $id1; ?>plupload-thumbs">
                     </div>
                   </div>
@@ -301,7 +301,7 @@ function cc_custom_metabox() {
 
                 <div class="add__upload_sh">
                   <div class="upload_img-wrp">
-                    <?php my_photo_markup( $id2, get_post_meta( $post->ID, $id2, true ) ); ?>
+                    <?php my_photo_markup($id2, get_post_meta( $post->ID, $id2, true )); ?>
                     <div class="plupload-thumbs hide" id="<?php echo $id2; ?>plupload-thumbs">
                     </div>
                   </div>
@@ -364,10 +364,19 @@ function cc_save_custommeta_box($post_id) {
         update_post_meta($pid, 'cc_price_more', $_POST['cc_price_more']);
         update_post_meta($pid, 'cc_price_deposit', $_POST['cc_price_deposit']);
     }
-
-	update_post_meta( $post_id, 'img1', $_POST['img1'] );
+    
+	/*update_post_meta( $post_id, 'img1', $_POST['img1'] );
     update_post_meta( $post_id, 'img2', $_POST['img2'] );
-    update_post_meta( $post_id, 'img3', $_POST['img3'] );
+    update_post_meta( $post_id, 'img3', $_POST['img3'] );*/
+
+    $name_img1 = basename($_POST['img1']);
+    $name_img2 = basename($_POST['img2']);
+    $name_img3 = basename($_POST['img3']);
+    $url_amazon = 'https://s3-us-west-1.amazonaws.com/storage-renthub/';
+
+    update_post_meta($post_id, 'img1', $url_amazon.$name_img1);
+    update_post_meta($post_id, 'img2', $url_amazon.$name_img2);
+    update_post_meta($post_id, 'img3', $url_amazon.$name_img3);
 
     update_post_meta( $pid, 'cc_address_list', $_POST['cc_address_list'] );
     update_post_meta( $pid, 'cc_city_id', $_POST['cc_city_id'] );

@@ -6,6 +6,7 @@ nocache_headers();
 if (!is_user_logged_in()) {
 	wp_redirect(site_url() . '/login') ;
 }
+
 function cc_submit_form_process() {
     $posted = array();
 
@@ -138,18 +139,33 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
               }
               
               add_post_meta($post_id, 'cc_state', $posted['cc_state'], true);
-              add_post_meta($post_id, 'img1', $posted['img1'], true);
+
+              /*add_post_meta($post_id, 'img1', $posted['img1'], true);
 			  add_post_meta($post_id, 'img2', $posted['img2'], true);
-			  add_post_meta($post_id, 'img3', $posted['img3'], true);  
+			  add_post_meta($post_id, 'img3', $posted['img3'], true);*/
+
+              $name_img1 = basename($posted["img1"]);
+              $name_img2 = basename($posted["img2"]);
+              $name_img3 = basename($posted["img3"]);
+              $url_amazon = 'https://s3-us-west-1.amazonaws.com/storage-renthub/';
+
+              add_post_meta($post_id, 'img1', $url_amazon.$name_img1, true);
+              add_post_meta($post_id, 'img2', $url_amazon.$name_img2, true);
+              add_post_meta($post_id, 'img3', $url_amazon.$name_img3, true);
+  
 
 			  if( !$posted['img1'] && $posted['img2'] ) {
-				  update_post_meta($post_id, 'img1', $posted['img2']);
-			      update_post_meta($post_id, 'img2', '');
+				  /*update_post_meta($post_id, 'img1', $posted['img2']);
+			      update_post_meta($post_id, 'img2', '');*/
+                  update_post_meta($post_id, 'img1', $url_amazon.$name_img2);
+                  update_post_meta($post_id, 'img2', '');
 			  }
 
 			  if( !$posted['img1'] && !$posted['img2'] && $posted['img3'] ) {
-				  update_post_meta($post_id, 'img1', $posted['img3']);
-			      update_post_meta($post_id, 'img3', '');
+				  /*update_post_meta($post_id, 'img1', $posted['img3']);
+			      update_post_meta($post_id, 'img3', '');*/
+                  update_post_meta($post_id, 'img1', $url_amazon.$name_img3);
+                  update_post_meta($post_id, 'img3', '');
 			  }
 
               //Save add type value
@@ -173,8 +189,8 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
 			  ob_start();
 	          include( get_stylesheet_directory() . '/email/complete_new.php');
 	          $message = ob_get_clean();
-              wp_mail($current_user->user_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
-
+              	  //wp_mail($current_user->user_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
+		  wp_mail($admin_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
 			  // email to admin
 			  $message = admin_url('post.php?post=' . $post_id ) . '&action=edit';
 			  wp_mail($admin_email, __('New Ad', 'cc'), $message );

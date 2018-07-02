@@ -700,6 +700,27 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         return S3::putObject(S3::inputFile($file_path, false), $bucket, $file_name , S3::ACL_PUBLIC_READ);
 	}
 
+
+	/*add_filter( 'wp_handle_upload', 'upload_amazon_media', 10, 2 );
+	function upload_amazon_media($upload , $context) {
+		$accessKey = 'AKIAJRPSL3LGIFILFIYA';
+        $secretKey = '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';
+        $s3 = new S3($accessKey, $secretKey);
+        $bucket = S3::listBuckets()[0];
+        return S3::putObject(S3::inputFile($upload, false), $bucket, $context , S3::ACL_PUBLIC_READ);
+	}*/
+
+  function translit($s) {
+    $s = (string) $s;
+    $s = strip_tags($s);
+    $s = str_replace(array("\n", "\r"), " ", $s);
+    $s = preg_replace("/\s+/", ' ', $s);
+    $s = trim($s);
+    $s = function_exists('mb_strtolower') ? mb_strtolower($s) : strtolower($s);
+    $s = strtr($s, array('а'=>'a','б'=>'b','в'=>'v','г'=>'g','д'=>'d','е'=>'e','ё'=>'e','ж'=>'j','з'=>'z','и'=>'i','й'=>'y','к'=>'k','л'=>'l','м'=>'m','н'=>'n','о'=>'o','п'=>'p','р'=>'r','с'=>'s','т'=>'t','у'=>'u','ф'=>'f','х'=>'h','ц'=>'c','ч'=>'ch','ш'=>'sh','щ'=>'shch','ы'=>'y','э'=>'e','ю'=>'yu','я'=>'ya','ъ'=>'','ь'=>''));
+    $s = str_replace(" ", "-", $s);
+    return ucfirst($s);
+}
   function g_plupload_action() {
 
     // check ajax noonce
@@ -711,8 +732,11 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
 	/*For upload img to amazon*/
 	$filename = $status['file'];
-	$file_path = $_FILES[$imgid . 'async-upload']['name'];
-	upload_amazon ($filename , $file_path);
+
+	$file_path = $status['file'];
+	$file_name_img = $_FILES[$imgid . 'async-upload']['name'];
+
+	upload_amazon ($file_path , translit($file_name_img));
 
     $attachment = array(
         'post_mime_type' => $status['type'],
@@ -731,14 +755,27 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 	      $img_url = get_user_meta($_POST["user_id"], 'user_avatar', true);
 		  if( $img_url ) 
         delete_images( $img_url );
-		  get_thumb($status['url'], 152, 152);
-		  update_user_meta( $_POST["user_id"], 'user_avatar', $status['url']);
+		  $img_ava_url = get_thumb($status['url'], 152, 152);
+      $img_ava_name = basename($img_ava_url);
+      $url_amazon = 'https://s3-us-west-1.amazonaws.com/storage-renthub/';
+      update_user_meta( $_POST["user_id"], 'user_avatar', $url_amazon.$img_ava_name);
+
+      $upload_dir = (object) wp_upload_dir($time);
+	  $path_ava = $upload_dir->path.'/' . $img_ava_name;
+	  upload_amazon ($path_ava , $img_ava_name);
+
 	}
     else {
-	  get_thumb($status['url'], 515, 515);
-	  get_thumb($status['url'], 145, 86);
+	  $img_url_515 = get_thumb($status['url'], 515, 515);
+	  $img_url_145 = get_thumb($status['url'], 145, 86);
+      $img_img_515 = basename($img_url_515);
+      $img_img_145 = basename($img_url_145);
+      $upload_dir = (object) wp_upload_dir($time);
+      $path_img_145 = $upload_dir->path.'/' . $img_img_145;
+	  $path_img_515 = $upload_dir->path.'/' . $img_img_515;
+      upload_amazon ($path_img_145 , $img_img_145);
+      upload_amazon ($path_img_515 , $img_img_515);
 	}
-
     // send the uploaded file url in response
     echo $status['url'];
     exit;

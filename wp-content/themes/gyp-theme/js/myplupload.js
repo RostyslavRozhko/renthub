@@ -132,7 +132,7 @@ jQuery(document).ready(function($) {
 function UrlExists(url)
 {
     var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
+    http.open('HEAD', url, true);
     http.send();
     return http.status!=404;
 }
@@ -172,12 +172,12 @@ function plu_show_thumbs(imgId) {
 			  
 			if( imgId == 'img1' || imgId == 'img2' || imgId == 'img3' ) {
 			  var path = images[i].replace(/(.*)\/.*(\.(png|gif|jpe?g)$)/i, '$1/'+ filename +'_515X515$2');
-			  if (UrlExists(path)) images[i] = path;
+			  //if (UrlExists(path)) images[i] = path;
 			}
 			
 			if( imgId == 'ava' & images[i].indexOf(window.location.host) > -1) {
 			  var path = images[i].replace(/(.*)\/.*(\.(png|gif|jpe?g)$)/i, '$1/'+ filename +'_152X152$2');
-			  if (UrlExists(path)) images[i] = path;
+			  //if (UrlExists(path)) images[i] = path;
 			}
         
             thumb = jQuery('<div class="thumb" id="thumb' + imgId + i + '"><img src="' + images[i] + '" alt="" />' +
@@ -205,7 +205,7 @@ function plu_show_thumbs(imgId) {
 				if( imgId == 'img2' & saved_url_img2 == imagesS ) return false;
 				if( imgId == 'img3' & saved_url_img3 == imagesS ) return false;
 
-				  jQuery.ajax({
+				  /*jQuery.ajax({
                     type: 'POST',
                     dataType: 'json',
                     url: commonjs_object.ajaxurl,
@@ -217,7 +217,7 @@ function plu_show_thumbs(imgId) {
                     success: function (data) {
 				      //alert(data.message);
                     }
-                  });
+                  });*/
 
                 return false;
             });
