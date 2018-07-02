@@ -21,7 +21,7 @@ add_action('admin_menu', 'check_parser_admin');
 function check_parser_admin(){
  	$page_olx = add_menu_page('Парсинг контенту з сайту OLX', 'Парсер OLX', 'manage_options', 'parser-page', 'parser_admin', plugins_url( 'parser_olx/images/parse.png'),4);
  	add_action( 'admin_print_scripts-' . $page_olx, 'parser_olx_script' );
-	$amazon = add_submenu_page( 'parser-page', 'Загрузка фото на amazon', 'Загрузка фото на amazon', 'manage_options', 'amazon-page' , 'amazon_download', 4);
+	$amazon = add_submenu_page( 'parser-page', 'Загрузка фото на amazon', 'Загрузка фото на amazon', 'manage_options', 'amazon-page' , 'amazon_download', 4);	
 	add_action( 'admin_print_scripts-' . $amazon, 'parser_olx_script' );
 }
 

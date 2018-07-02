@@ -184,13 +184,13 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
 	           'From: ' . $blogname . ' <' . $admin_email . '>' . "\r\n",
               );
               
-			  $permalink = get_permalink( $post_id );
-			  $img_url = ad_thumbnail_url ( $post_id );
+			  $permalink = get_permalink($post_id);
+			  $img_url = ad_thumbnail_url($post_id);
 			  ob_start();
 	          include( get_stylesheet_directory() . '/email/complete_new.php');
 	          $message = ob_get_clean();
-              	  //wp_mail($current_user->user_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
-		  wp_mail($admin_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
+              wp_mail($current_user->user_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
+		      //wp_mail($admin_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
 			  // email to admin
 			  $message = admin_url('post.php?post=' . $post_id ) . '&action=edit';
 			  wp_mail($admin_email, __('New Ad', 'cc'), $message );
