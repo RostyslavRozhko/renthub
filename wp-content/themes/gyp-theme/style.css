@@ -5242,3 +5242,6 @@ label.error {
     z-index: -1;
     display: none;
 }
+.header__subcategory > .header__category-list > .header__list > .header__category-list__item {
+	text-decoration: none;
+}

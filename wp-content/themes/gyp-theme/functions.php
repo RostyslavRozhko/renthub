@@ -693,22 +693,12 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   
 /*Upload img to amazon*/
 	function upload_amazon($file_path,$file_name) {
-		$accessKey = 'AKIAJRPSL3LGIFILFIYA';
+	$accessKey = 'AKIAJRPSL3LGIFILFIYA';
         $secretKey = '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';
         $s3 = new S3($accessKey, $secretKey);
         $bucket = S3::listBuckets()[0];
         return S3::putObject(S3::inputFile($file_path, false), $bucket, $file_name , S3::ACL_PUBLIC_READ);
 	}
-
-
-	/*add_filter( 'wp_handle_upload', 'upload_amazon_media', 10, 2 );
-	function upload_amazon_media($upload , $context) {
-		$accessKey = 'AKIAJRPSL3LGIFILFIYA';
-        $secretKey = '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';
-        $s3 = new S3($accessKey, $secretKey);
-        $bucket = S3::listBuckets()[0];
-        return S3::putObject(S3::inputFile($upload, false), $bucket, $context , S3::ACL_PUBLIC_READ);
-	}*/
 
   function translit($s) {
     $s = (string) $s;

@@ -331,15 +331,13 @@
 					foreach ($images as $img) {
 						$name_img = basename($img);
 						echo 'Идет загрузка фото на amazon...';
-						//upload_amazon($img , $name_img);
+						upload_amazon($img , $name_img);
 					}
 				}?>
 				<div class="row">
 				<?php foreach ($get_url_imgs as $get_url_img) { ?>
-					<div class="col-md-2" style="text-align: center; margin: 20px 0;"><img src="<?=$get_url_img?>" width="100" height="100"></div>
+					<div class="col-md-2 img_center"><img class="img_amazon" src="<?=$get_url_img?>"></div>
 				<?php } ?>
 				</div>
-		<?php
-	} ?>
-	</div>
-<?php?>
+			</div>
+<?php  } ?>
