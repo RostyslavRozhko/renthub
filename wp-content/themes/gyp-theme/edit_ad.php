@@ -23,6 +23,8 @@
       'img1',
       'img2',
       'img3',
+      'manufacturer',
+      'manufacturer_id'
     );
 
     $filters = get_terms( array('taxonomy' => 'tags', 'hide_empty' => false));
@@ -57,6 +59,8 @@
       update_post_meta( $pid, 'cc_city_id', $posted['cc_city_id'] );
       update_post_meta( $pid, 'cc_locations', $posted['cc_locations'] );
 
+    update_post_meta($pid, 'cc_category', $posted['cc_category']);
+
     update_post_meta( $pid, 'cc_state', $posted['cc_state'] );
 
     foreach($filters as $filter) {
@@ -69,6 +73,12 @@
                 update_filter_values($term_id, $value);
             }
         }
+      }
+
+      if($posted['manufacturer']) {
+        $cate_id = $posted['manufacturer_id'];
+        update_post_meta($pid, 'manufacturer', $posted['manufacturer']);
+        update_man_list($cate_id, $posted['manufacturer']);
       }
 	
 	if( !$posted['img1'] ) {
@@ -184,20 +194,20 @@
                                     <div class="req form__title"><?php _e('Category', 'prokkat'); ?></div>                                        
                                     <span class="cats_error"></span>
                                     <?php
-                                    $cat_objs = $cats = array();
-                                    $cat_objs = wp_get_post_terms($pid, CUSTOM_CAT_TYPE);
-                                    foreach( $cat_objs as $cat_obj ){
-                                        $cats[] = $cat_obj->term_id;
-                                    }
-                                  
-                                  $terms = get_terms(array( 'taxonomy' => 'cate' ));
-                                  foreach( $terms as $term ) {
-                                      if( $term->parent ) $child_ids[] = $term->term_id;
-                                      else $ids[] = $term->term_id;
-                                  }
+                                    debug_to_console('dsadsadasd');
+                                        $terms = wp_get_post_terms($pid, CUSTOM_CAT_TYPE);
 
-                                  $id = array_shift( array_intersect( $ids, $cats ));
-                                  $child_id = array_shift( array_intersect( $child_ids, $cats ));
+                                        usort($terms, function($a, $b)
+                                        {
+                                            return strcmp($a->term_id, $b->term_id);
+                                        });
+
+                                        $parent = array_slice($terms, 0, 1)[0];
+                                        $subcat = array_slice($terms, 1, 1)[0];
+
+                                        $id = $parent->term_id;
+                                        $child_id = $subcat->term_id;
+
                                         ?>
                                     <div class="input-wrp input-wrp_block ">
                                       <?php my_dropdown_categories( 'maincat', __('Category', 'prokkat'), 0, $id  ); ?>
@@ -209,7 +219,7 @@
                                     <?php  if( $id != 98 ) my_dropdown_categories( 'subcat', __('Subcategory', 'prokkat'), $id, $child_id  ); ?>
                                 </div>
                                 </div>
-                                <input id="chosenCategory" name="cc_category" type="hidden" value="<?php echo implode(",",$cats); ?>"/>
+                                <input id="chosenCategory" name="cc_category" type="hidden" value="<?php echo get_post_meta($pid, 'cc_category', true) ?>"/>
                             </div>
                             <div id="add_filters">
                                 <?php echo my_filters_edit_list($child_id, $pid); ?>
