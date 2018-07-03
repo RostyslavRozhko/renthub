@@ -684,7 +684,8 @@ jQuery(document).ready(function () {
     $('.search-list__call').click(function() {
         const button = $(this)
         $('.call-feedback__author img').attr('src', button.find('input[name="image"]').val())
-        $('.call-feedback__name').text(button.find('input[name="author_name"]').val())
+        $('.call-feedback__name a').text(button.find('input[name="author_name"]').val())
+        $('.call-feedback__name span').text(button.find('input[name="city"]').val())
         $('.call-feedback__number a').attr('href', `tel:${button.find('input[name="phone"]').val()}`)
         $('.call-feedback__number a').text(button.find('input[name="phone"]').val())
         $('#post_id').val(button.find('input[name="post_id"]').val())

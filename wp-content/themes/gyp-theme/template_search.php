@@ -353,7 +353,10 @@
                     <?php 
                         $ava = get_the_author_meta( 'user_avatar', $author_id );
                         if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png'; 
+                        $city = get_the_author_meta('city_name', $author_id);
+                        $city = explode("," , $city);
                     ?>
+                    <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
                     <input type="hidden" name="image" value="<?php echo $ava; ?>">
                     <input type="hidden" name="author_name" value="<?php echo $author->display_name; ?>" >
                     <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
@@ -368,9 +371,12 @@
                 <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
                 <?php 
                     $ava = get_the_author_meta( 'user_avatar', $author_id );
-                    if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png'; 
+                    if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png';
+                    $city = get_the_author_meta('city_name', $author_id);
+                    $city = explode("," , $city); 
                 ?>
                 <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
                 <input type="hidden" name="author_name" value="<?php echo $author->display_name; ?>" >
                 <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
               </a>
