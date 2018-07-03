@@ -331,7 +331,7 @@
 					foreach ($images as $img) {
 						$name_img = basename($img);
 						echo 'Идет загрузка фото на amazon...';
-						//upload_amazon($img , $name_img);
+						upload_amazon($img , $name_img);
 					}
 				}?>
 				<div class="row">
@@ -340,6 +340,4 @@
 				<?php } ?>
 				</div>
 			</div>
-		<?php
-	} ?>
-<?php?>
+		<?php  } ?>
