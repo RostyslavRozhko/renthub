@@ -115,8 +115,9 @@
 }
 
 .call-feedback__text ul li {
-  color: black;
-  margin: 5px 0;
+  color: #363a42;
+  font-size: 14px;
+  margin: 7px 0;
 }
 
 .call-feedback__reasons ul li {
@@ -139,7 +140,7 @@
 
 .call-feedback__success-container div {
   margin-top: 20px;
-  color: black;
+  color: #363a42;
   font-size: 14px;
   text-align: center;
 }
@@ -147,6 +148,7 @@
 .call-feedback__success-container .bold-text {
   font-size: 24px;
   font-weight: bold;
+  color: #0a0f19;
 }
 
 .call-feedback__buttons {

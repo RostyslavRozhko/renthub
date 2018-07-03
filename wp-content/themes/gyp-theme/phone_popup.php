@@ -55,12 +55,18 @@
         </div>
     </div>
 
-    <div class="call-feedback__tab hide" id="successTab"> 
+    <div class="call-feedback__tab hide" id="successTabText"> 
         <div class="call-feedback__success-container">
         <img src="<?php echo get_stylesheet_directory_uri();?>/img/thx-icon.svg">
         <div class="bold-text"><?php _e('Thanks for the feedback!', 'prokkat') ?></div>
         <div class="additional-text"><?php _e('Your message has been sent and will</br> be reviewed shortly.', 'prokkat'); ?></div>
         </div>
+    </div>
+    <div class="call-feedback__tab hide" id="successTab"> 
+        <div class="call-feedback__success-container">
+        <img src="<?php echo get_stylesheet_directory_uri();?>/img/thx-icon.svg">
+        <div class="bold-text"><?php _e('Thanks for the feedback!', 'prokkat') ?></div>
+    </div>
     </div>
     <input type="hidden" id="post_id" value="<?php echo $post->ID ?>" >
 </div>

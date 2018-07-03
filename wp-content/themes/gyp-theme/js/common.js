@@ -588,7 +588,7 @@ jQuery(document).ready(function () {
             success: function(data) {
                 feedbackTabs.hide()
                 $('.additional-text').show()
-                $('#successTab').show()
+                $('#successTabText').show()
             }
         });
     }) 
