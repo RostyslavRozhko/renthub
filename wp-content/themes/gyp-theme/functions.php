@@ -887,9 +887,41 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     }
   }
 
+  function update_man_list($cate_id, $value) {
+    $cate_fields_id = 'cate_' . $cate_id;
+    $old_values = get_field('manufacturer', $cate_fields_id);
+    $pos = strpos($old_values, $value);
+    if($pos === false) {
+      update_field('manufacturer', $old_values . $value . ';', $cate_fields_id);
+    }
+  }
+
   function my_filters_edit_list($cat_id, $post_id) {
     $result = '';
-    $filters = get_field('filters', 'cate_' . $cat_id);
+    $cate_fields_id = 'cate_' . $cat_id;
+    $filters = get_field('filters', $cate_fields_id);
+    
+    $is_man = get_field('is_manufacturer', $cate_fields_id);
+
+    if($is_man) {
+      $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('manufacturer', $cate_fields_id))));
+      $meta = get_post_meta( $post_id, 'manufacturer', true);  
+
+      $result .= '<div class="input-wrp input-wrp_block add__block">';
+      
+      $result .= '<div class="req form__title">Производитель</div>
+      <div class="input-wrp input-wrp_block">
+      <input type="hidden" name="manufacturer_id" value="'. $cat_id .'">
+      <input value="'. $meta .'" type="text" name="manufacturer" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
+      <datalist class="input_add" id="select_options">';
+      
+      foreach($man_array as $man) {
+        $man = trim($man);
+        $result .= '<option value="'. $man .'">'. $man .'</option>';
+      }
+
+      $result .= '</datalist></div></div>';
+    }
     if($filters) {
       foreach ($filters as $filter) {
         $filter_id = $filter->term_id;
@@ -911,7 +943,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             <select class="select">';
             foreach($choices as $choice) {
               $choice = trim($choice);
-              $result .= '<option value="'. $choice .'" '. $selected .'>'. $choice .'</option>';
+              $result .= '<option value="'. $choice .'">'. $choice .'</option>';
             }
 
             $result .= '</select></datalist></div>';
@@ -966,7 +998,28 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   {
     $current_id = $_POST['catID'];
     $result = '';
-    $filters = get_field('filters', 'cate_' . $current_id);
+    $cate_fields_id = 'cate_' . $current_id;
+    $filters = get_field('filters', $cate_fields_id);
+    $is_man = get_field('is_manufacturer', $cate_fields_id);
+
+    if($is_man) {
+      $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('manufacturer', $cate_fields_id))));
+      $result .= '<div class="input-wrp input-wrp_block add__block">';
+      
+      $result .= '<div class="req form__title">Производитель</div>
+      <div class="input-wrp input-wrp_block">
+      <input type="hidden" name="manufacturer_id" value="'. $current_id .'">
+      <input type="text" name="manufacturer" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
+      <datalist class="input_add" id="select_options">';
+      
+      foreach($man_array as $man) {
+        $man = trim($man);
+        $result .= '<option value="'. $man .'">'. $man .'</option>';
+      }
+
+      $result .= '</datalist></div></div>';
+    }
+    
     if($filters) {
       foreach ($filters as $filter) {
         $filter_id = $filter->term_id;

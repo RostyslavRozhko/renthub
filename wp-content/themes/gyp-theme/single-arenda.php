@@ -185,10 +185,22 @@
                     <h3><?php _e('Description', 'prokkat'); ?></h3>
                     <?php the_content(); ?>
                 </div>
+
+                <div class="filters-values">
                 <?php 
+                $man = get_post_meta($post->ID, 'manufacturer', true);
+                if($man) : 
+                ?>
+                    <div class="filters-values__item">
+                        <div class="filters-values__item__name">Производитель</div>
+                        <div class="filters-values__item__value"><?php echo $man; ?></div>
+                    </div>
+                    
+                <?php endif; ?>
+
+                <?php
                 $filters = get_field('filters', 'cate_' . $subcat->term_id);
                 if($filters) : ?>
-                    <div class="filters-values">
                         <?php 
                             foreach ($filters as $filter) {
                                 $filter_name = $filter->name;
@@ -202,8 +214,9 @@
                             <?php 
                             endif;
                             } ?>
-                    </div>
                 <?php endif; ?>
+                </div>
+                
                 <div class="soc-wrap">
 				<?php echo do_shortcode('[supsystic-social-sharing id="1"]'); ?>
                 </div>

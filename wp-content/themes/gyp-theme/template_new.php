@@ -26,6 +26,8 @@ function cc_submit_form_process() {
         'img1',
         'img2',
         'img3',
+        'manufacturer',
+        'manufacturer_id'
     );
 
     $filters = get_terms( array('taxonomy' => 'tags', 'hide_empty' => false));
@@ -117,6 +119,12 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
                     }
                 }
               }
+              
+              if($posted['manufacturer']) {
+                $cate_id = $posted['manufacturer_id'];
+                add_post_meta($post_id, 'manufacturer', $posted['manufacturer'], true);
+                update_man_list($cate_id, $posted['manufacturer']);
+              }
 
               add_post_meta($post_id, 'cc_address_list', $posted['cc_address_list'], true);
                 add_post_meta($post_id, 'cc_city_id', $posted['cc_city_id'], true);
@@ -153,6 +161,7 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
               add_post_meta($post_id, 'img2', $url_amazon.$name_img2, true);
               add_post_meta($post_id, 'img3', $url_amazon.$name_img3, true);
   
+              add_post_meta($post_id, 'cc_category', $posted['cc_category'], true);
 
 			  if( !$posted['img1'] && $posted['img2'] ) {
 				  /*update_post_meta($post_id, 'img1', $posted['img2']);
@@ -235,7 +244,6 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
     </div>
 
 <?php else : ?>
-
     <div class="add">
         <div class="container">
             <div class="add__title text-center">

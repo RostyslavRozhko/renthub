@@ -5,6 +5,7 @@
   $s_to = isset( $_REQUEST['search_loc'] ) ? $_REQUEST['search_loc'] : '';
   $address = isset( $_REQUEST['address'] ) ? $_REQUEST['address'] : '';
   $order = isset( $_REQUEST['order'] ) ? $_REQUEST['order'] : '';
+  $man = isset( $_REQUEST['manufacturer'] ) ? $_REQUEST['manufacturer'] : '';
 
   $wp_query->query_vars[CUSTOM_CAT_TYPE];
   foreach ($wp_query as $query) {
@@ -100,6 +101,7 @@
     $arguments['orderby'] = 'meta_value_num';
   }
 
+  
   if($filters) {
     foreach($filter_params as $filter => $param) {
       if($param){
@@ -118,6 +120,23 @@
       $arguments['meta_query'][] = $filters_rel;
     }
   }
+
+  if($man) {
+    $selected_choices[] = $man;
+    $fields = explode(',', $man);
+    $man_rel = array();
+    $man_rel[] = array('relation' => 'OR');
+    foreach($fields as $field) {
+      $man_rel[] = array(
+        'key' => 'manufacturer',
+        'value' => $field,
+        'compare' => 'LIKE'
+      );
+    }
+    $arguments['meta_query'][] = $man_rel;
+  }
+
+  debug_to_console(json_encode($arguments));
 
   $the_query = new WP_Query($arguments);
   $all_query = new WP_Query($args);
@@ -344,8 +363,39 @@
                 <img class="header-category-img hide" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
               </div>
               <?php 
-                  $filter_inputs = '';
-                  
+                  $cate_fields_id = 'cate_' . $current_id;
+                  $is_man = get_field('is_manufacturer', $cate_fields_id);
+
+                  $filter_inputs = '';                  
+
+                  if($is_man) {
+                    echo '<div class="filters__container">';
+                    $name = 'Производитель';
+                    $slug = 'manufacturer';
+                    $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('manufacturer', $cate_fields_id))));
+                    
+                    echo '<div class="filters__show-btn">
+                        <div class="filters__title__top">'. $name .'</div>
+                        <img src="'. get_stylesheet_directory_uri() .'/img/arrow-down-sign-to-navigate.svg" class="filters__show-btn__arrow">
+                      </div>';
+                    
+                    echo '<div class="filters__vis-container">';
+                    foreach ($man_array as $value) {
+                      $value = trim($value);
+                      if($value) {
+                        echo '<label class="checkbox-container">';
+                        echo '<input type="checkbox" data-filter="'. $slug .'" value="'. $value .'">';
+                        echo '<span class="checkmark"></span>';
+                        echo '<div>'. $value .'</div>';
+                        echo '</label>';     
+                      } 
+                    }
+                    echo '</div>';
+                    $filter_inputs .= '<input type="hidden" class="'. $slug .' filter_value_field" name="'. $slug .'" value="">';
+                    echo '</div>';
+
+                  }
+
                   if($filters) {
                     foreach ($filters as $filter) {
                       $filter_id = $filter->term_id;                
