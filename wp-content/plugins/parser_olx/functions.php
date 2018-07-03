@@ -339,7 +339,7 @@
 					<div class="col-md-2" style="text-align: center; margin: 20px 0;"><img src="<?=$get_url_img?>" width="100" height="100"></div>
 				<?php } ?>
 				</div>
+			</div>
 		<?php
 	} ?>
-	</div>
 <?php?>
