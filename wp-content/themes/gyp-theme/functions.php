@@ -490,7 +490,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     $cats = array();
 
     if($parent) {
-      $children = get_term_children($term_id, 'cate');
+      $children = get_term_children($term_id, CUSTOM_CAT_TYPE);
       foreach($children as $child) {
         $id = pll_get_term($child, 'ru');
         if($id)
@@ -850,7 +850,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 	
     $args = array(
       'id' => $id,
-      'taxonomy' => 'cate',
+      'taxonomy' => CUSTOM_CAT_TYPE,
       'show_option_none' => __( $option_none, 'prokkat' ),
       'orderby' => 'name',
       'order' => 'ASC',
@@ -878,7 +878,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   }
 
   function update_man_list($cate_id, $value) {
-    $cate_fields_id = 'cate_' . $cate_id;
+    $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $cate_id;
     $old_values = get_field('manufacturer', $cate_fields_id);
     $pos = strpos($old_values, $value);
     if($pos === false) {
@@ -888,7 +888,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
   function my_filters_edit_list($cat_id, $post_id) {
     $result = '';
-    $cate_fields_id = 'cate_' . $cat_id;
+    $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $cat_id;
     $filters = get_field('filters', $cate_fields_id);
     
     $is_man = get_field('is_manufacturer', $cate_fields_id);
@@ -988,7 +988,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   {
     $current_id = $_POST['catID'];
     $result = '';
-    $cate_fields_id = 'cate_' . $current_id;
+    $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $current_id;
     $filters = get_field('filters', $cate_fields_id);
     $is_man = get_field('is_manufacturer', $cate_fields_id);
 

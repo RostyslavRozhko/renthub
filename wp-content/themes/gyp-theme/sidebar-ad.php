@@ -17,7 +17,7 @@
 			    'orderby' => 'name',
 			    'show_count' => 0,
 			    'hierarchical' => 1,
-			    'taxonomy' => 'cate',
+			    'taxonomy' => CUSTOM_CAT_TYPE,
 			    'hide_empty' => 0,
 				'style' => 'list',
 			    'title_li' => '',

@@ -15,9 +15,9 @@
       <div class="call-feedback__author">
             <img src="<?php echo $ava; ?>" />
             <div class="call-feedback__name">
-                <?php echo the_author_meta('nickname');?>
+                <a><?php echo the_author_meta('nickname');?></a>
                 <?php if (!empty($city[0])): ?>
-                      <span><?php echo 'м.&nbsp;'.$city[0];?></span>
+                      <span><?php echo $city[0];?></span>
                 <?php endif; ?>
             </div>
 

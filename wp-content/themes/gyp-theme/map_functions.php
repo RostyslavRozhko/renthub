@@ -36,7 +36,7 @@
             cat_address_search.value = place_s.formatted_address
         });
 		
-		<?php if( is_tax('cate') ) : ?>
+		<?php if( is_tax(CUSTOM_CAT_TYPE) ) : ?>
 
 		var input_cat = document.getElementById('cat_address');
 		

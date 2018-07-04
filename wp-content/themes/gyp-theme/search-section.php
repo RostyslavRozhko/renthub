@@ -26,7 +26,7 @@
                                       'parent' => $parent,
                                       'orderby' => 'name',
                                       'hierarchical' => 1,
-                                      'taxonomy' => 'cate',
+                                      'taxonomy' => CUSTOM_CAT_TYPE,
                                       'hide_empty' => 0,
                                       'style' => 'cat_list',
                                       'title_li' => '',
@@ -94,14 +94,14 @@
                         <div class="header__category__window header__category__window-small header__category__paddings hide">
                         <?php
                             $categories = get_categories(array(
-                                'taxonomy' => 'cate',
+                                'taxonomy' => CUSTOM_CAT_TYPE,
                                 'orderby' => 'ID',
                                 'hide_empty' => false,
                                 'parent'=>0,
                             ));
                             foreach ( $categories as $category ) {
                                 $termId = $category->term_id;
-                                $taxonomyName = 'cate';
+                                $taxonomyName = CUSTOM_CAT_TYPE;
                                 echo '
                                     <div class="header_switcher">
                                          <div class="header__category__btn">

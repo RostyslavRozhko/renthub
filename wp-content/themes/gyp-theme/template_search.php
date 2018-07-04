@@ -52,7 +52,7 @@
     		'tax_query' => array(
       			array(
           			'include_children' => false,
-          			'taxonomy' => 'cate',
+          			'taxonomy' => CUSTOM_CAT_TYPE,
           			'field' => 'term_taxonomy_id',
           			'terms' => $terms,
         		)
@@ -106,7 +106,7 @@
           $arguments['tax_query'] = array(
             array(
                 'include_children' => false,
-                'taxonomy' => 'cate',
+                'taxonomy' => CUSTOM_CAT_TYPE,
                 'field' => 'term_taxonomy_id',
                 'terms' => $cats,
               )

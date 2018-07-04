@@ -26,7 +26,7 @@
   $slug = $term->slug;
   $term_name = $term->name;
 
-  $filters = get_field('filters', 'cate_' . $current_id);
+  $filters = get_field('filters', CUSTOM_CAT_TYPE . '_' . $current_id);
 
 
   if($filters) {
@@ -57,7 +57,7 @@
     'tax_query' => array(
       array(
           'include_children' => false,
-          'taxonomy' => 'cate',
+          'taxonomy' => CUSTOM_CAT_TYPE,
           'field' => 'term_taxonomy_id',
           'terms' => $terms,
         )
@@ -71,7 +71,7 @@
     'tax_query' => array(
       array(
           'include_children' => false,
-          'taxonomy' => 'cate',
+          'taxonomy' => CUSTOM_CAT_TYPE,
           'field' => 'term_taxonomy_id',
           'terms' => $terms,
         )
@@ -170,7 +170,7 @@
                                     'parent' => $parent,
                                     'orderby' => 'name',
                                     'hierarchical' => 1,
-                                    'taxonomy' => 'cate',
+                                    'taxonomy' => CUSTOM_CAT_TYPE,
                                     'hide_empty' => 0,
                                     'style' => 'cat_list',
                                     'title_li' => '',
@@ -363,7 +363,7 @@
                 <img class="header-category-img hide" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
               </div>
               <?php 
-                  $cate_fields_id = 'cate_' . $current_id;
+                  $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $current_id;
                   $is_man = get_field('is_manufacturer', $cate_fields_id);
 
                   $filter_inputs = '';                  
@@ -448,27 +448,27 @@
             <div class="search-list__results">  
               <?php 
                 $categories = get_categories(array(
-                    'taxonomy' => 'cate',
+                    'taxonomy' => CUSTOM_CAT_TYPE,
                     'hide_empty' => false,
                     'parent'=> $parent,
                 )); 
                 $counter = 0;
                 foreach ( $categories as $category ) {
                   $cat_id = $category->term_id;
-                  $taxonomyName = 'cate';   
+                  $taxonomyName = CUSTOM_CAT_TYPE;   
                   $count = get_cate_count($cat_id);
                   if($count < 1)
                     continue;
               ?>
               <div class="search-list__cate-container">
-                  <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>">
+                  <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>">
                     <img src="<?php echo get_thumb(get_wp_term_image($cat_id), 200, 200); ?>" class="search-list__cate-img">
                   </a>
-                  <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
+                  <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
                   <div class="search-list__cate-price"><?php echo max_price($cat_id); ?> грн/день</div>
                   <div class="search-list__cate-num">Предложений (<?php echo $count; ?>)</div>
-                  <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-text">Подробнее</a>
-                  <a href="<?php echo get_term_link( $cat_id, 'cate' ); ?>" class="search-list__cate-details search-list__cate-details-arrow"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg"></a>
+                  <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-details search-list__cate-details-text">Подробнее</a>
+                  <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-details search-list__cate-details-arrow"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg"></a>
               </div>
               <?php if($counter == 2) : 
                   include('banner.php');
@@ -612,7 +612,7 @@
   <div class="cities-section-title"><?php _e('Rent and rent', 'prokkat'); echo ' ' . $term_name; ?></div>
             <div class="footer-text">
               <p>
-                <?php echo get_field('text', 'cate_'.$current_id); ?>
+                <?php echo get_field('text', CUSTOM_CAT_TYPE . '_'.$current_id); ?>
               </p>
             </div>
 </section>

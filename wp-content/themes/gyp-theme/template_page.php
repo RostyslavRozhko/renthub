@@ -12,14 +12,14 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
     <div class="container maincats__container">
     <?php
         $categories = get_categories(array(
-            'taxonomy' => 'cate',
+            'taxonomy' => CUSTOM_CAT_TYPE,
             'orderby' => 'ID',
             'hide_empty' => false,
             'parent'=>0,
         ));
         foreach ( $categories as $category ) {
             $termId = $category->term_id;
-            $taxonomyName = 'cate';
+            $taxonomyName = CUSTOM_CAT_TYPE;
             echo '
         <div class="maincat__item">
             <div class="maincat__top-container">
@@ -188,13 +188,13 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
         <div class="info-section__cats">
             <?php
                             $categories = get_categories(array(
-                                'taxonomy' => 'cate',
+                                'taxonomy' => CUSTOM_CAT_TYPE,
                                 'hide_empty' => false,
                                 'parent'=>0,
                             ));
                             foreach ( $categories as $category ) {
                                 $termId = $category->term_id;
-                                $taxonomyName = 'cate';
+                                $taxonomyName = CUSTOM_CAT_TYPE;
                                 echo '
                                         <div class="info-section__cat">
                                             <a class="info-section__cat-title" href="'.esc_url( get_category_link( $termId ) ).'">'.esc_html($category->name).'</a>

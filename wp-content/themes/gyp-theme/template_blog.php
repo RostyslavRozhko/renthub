@@ -27,14 +27,14 @@ get_header();
                         <div class="header__category__window header__category__window-small header__category__paddings hide">
                         <?php
                             $categories = get_categories(array(
-                                'taxonomy' => 'cate',
+                                'taxonomy' => CUSTOM_CAT_TYPE,
                                 'orderby' => 'ID',
                                 'hide_empty' => false,
                                 'parent'=>0,
                             ));
                             foreach ( $categories as $category ) {
                                 $termId = $category->term_id;
-                                $taxonomyName = 'cate';
+                                $taxonomyName = CUSTOM_CAT_TYPE;
                                 // <img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/cross-out.svg" >
                                 echo '
                                     <div class="header_switcher">
@@ -54,7 +54,7 @@ get_header();
                                             </div>
                                             <div class="header__subcategory">
                                                 <div class="header__category-list">
-                                                    <img src="'.get_field('big_banner', 'cate_' . $termId).'" >
+                                                    <img src="'.get_field('big_banner', CUSTOM_CAT_TYPE . '_' . $termId).'" >
                                                     <div class="header__list">';
                                                     $term_children = get_term_children( $termId, $taxonomyName );
                                                     $term_children = array_slice($term_children, 0, 5);

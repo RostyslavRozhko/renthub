@@ -23,14 +23,14 @@
         <div class="container footer-cats-container">
             <?php
                 $categories = get_categories(array(
-                    'taxonomy' => 'cate',
+                    'taxonomy' => CUSTOM_CAT_TYPE,
                     'orderby' => 'ID',
                     'hide_empty' => false,
                     'parent'=>0,
                 ));
                 foreach ( $categories as $category ) { 
                     $termId = $category->term_id;
-                    $taxonomyName = 'cate';
+                    $taxonomyName = CUSTOM_CAT_TYPE;
                     ?>
                         <div href="<?php echo get_term_link( $termId, $taxonomyName ); ?>" class="footer__cate-container">
                             <a href="<?php echo get_term_link( $termId, $taxonomyName ); ?>">

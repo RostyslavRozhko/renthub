@@ -62,7 +62,7 @@
                                     'parent' => $parent->term_id,
                                     'orderby' => 'name',
                                     'hierarchical' => 1,
-                                    'taxonomy' => 'cate',
+                                    'taxonomy' => CUSTOM_CAT_TYPE,
                                     'hide_empty' => 0,
                                     'style' => 'cat_list',
                                     'title_li' => '',
@@ -199,7 +199,7 @@
                 <?php endif; ?>
 
                 <?php
-                $filters = get_field('filters', 'cate_' . $subcat->term_id);
+                $filters = get_field('filters', CUSTOM_CAT_TYPE . '_' . $subcat->term_id);
                 if($filters) : ?>
                         <?php 
                             foreach ($filters as $filter) {
