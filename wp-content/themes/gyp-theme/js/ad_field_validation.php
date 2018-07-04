@@ -4,7 +4,7 @@
 	var adForm = jQuery("#newpost");
 	var editAdForm = jQuery("#edit_post_form");
 
-    var cc_title = jQuery("#title");   
+    // var cc_title = jQuery("#title");   
     var cc_desc = jQuery("#cc_desc");
     var cc_price = jQuery("#cc_price");
     var cc_price_week = jQuery("#cc_price_week");
@@ -98,27 +98,27 @@
         }
    
 		
-        function validate_title(){
-            if(cc_title.val() == ''){
-				cc_title.addClass("error");
-                cc_title.attr("placeholder", "<?php echo __( 'Please enter title', 'prokkat' ); ?>");
-                cc_title.css('border', 'solid 1px red');
-                cc_title.css('background-color', '#ffece8');
-                return false;
-            } else if(cc_title.val().length > 100) {
-				cc_title.addClass("error");
-                cc_title.attr("placeholder", "Максимум 100 символов");
-                cc_title.css('border', 'solid 1px red');
-                cc_title.css('background-color', '#ffece8');
-            }else{
-				cc_title.removeClass("error");
-                cc_title.css('border', 'none');
-                cc_title.css('background-color', '');
-                return true;
-            }
-        }
-        cc_title.blur(validate_title);
-        cc_title.keyup(validate_title);
+        // function validate_title(){
+        //     if(cc_title.val() == ''){
+		// 		cc_title.addClass("error");
+        //         cc_title.attr("placeholder", "<?php echo __( 'Please enter title', 'prokkat' ); ?>");
+        //         cc_title.css('border', 'solid 1px red');
+        //         cc_title.css('background-color', '#ffece8');
+        //         return false;
+        //     } else if(cc_title.val().length > 100) {
+		// 		cc_title.addClass("error");
+        //         cc_title.attr("placeholder", "Максимум 100 символов");
+        //         cc_title.css('border', 'solid 1px red');
+        //         cc_title.css('background-color', '#ffece8');
+        //     }else{
+		// 		cc_title.removeClass("error");
+        //         cc_title.css('border', 'none');
+        //         cc_title.css('background-color', '');
+        //         return true;
+        //     }
+        // }
+        // cc_title.blur(validate_title);
+        // cc_title.keyup(validate_title);
 
         const prices = [
                 cc_price,
@@ -181,6 +181,31 @@
   }
   cc_desc.blur(validate_desc);
   cc_desc.keyup(validate_desc);
+
+    function validate_fields() {
+        $('#add_filters .input-wrp').each(function(){
+            const field = $(this)
+            const is_req = field.find('.req')
+            if(is_req.html()) {
+                const input = field.find('input')
+                console.log(input.html())
+            }
+        })
+        // if(cc_desc.val() == "") {
+        //     cc_desc.addClass("error")
+        //     cc_desc.attr("placeholder", "<?php echo __( 'Please enter description', 'prokkat' ); ?>");
+        //     cc_desc.css('border', 'solid 1px red');
+        //     cc_desc.css('background-color', '#ffece8');
+        //     return false;
+        // } else {
+        //     cc_desc.removeClass("error");
+        //     cc_desc.css('border', 'none');
+        //     cc_desc.css('background-color', '');
+        //     return true;
+        // }
+        // cc_desc.blur(validate_desc);
+        // cc_desc.keyup(validate_desc);
+    }
 		
 		function validate_photo(){
             if( !jQuery("#img1").val() & !jQuery("#img2").val() & !jQuery("#img3").val() ) {
@@ -196,7 +221,7 @@
 
 
 		adForm.submit(function(){
-          if(validate_title() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
+          if(validate_fields() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
             return true;
           else {
 		    jQuery('html, body').animate({
@@ -207,7 +232,7 @@
         });
 		
 		editAdForm.submit(function(){
-          if(validate_title() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
+          if(validate_fields() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
             return true;
           else {
 		    jQuery('html, body').animate({

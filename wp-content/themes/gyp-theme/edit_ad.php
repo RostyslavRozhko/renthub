@@ -37,12 +37,13 @@
         }
     }
     
-	$category = array_map('intval', explode(',', $posted['cc_category']));
+    $category = array_map('intval', explode(',', $posted['cc_category']));
+    $post_title = create_title($_POST['manufacturer_id'], $_POST['manufacturer'], $_POST['model']);
 
     //$post_status = "pending";
     $post_status = "publish";
     $cc_my_post['ID'] = $pid;
-    $cc_my_post['post_title'] = esc_attr($posted['cc_title']);
+    $cc_my_post['post_title'] = $post_title;
     $cc_my_post['post_content'] = $posted['cc_description'];
     $cc_my_post['post_status'] = $post_status;
     $cc_my_post['post_author'] = $user_ID;
@@ -185,13 +186,6 @@
 
     <form name="edit_post_form" id="edit_post_form" method="post" enctype="multipart/form-data">
     <div class="add__step add__step__container">  
-    <div class="input-wrp input-wrp_block add__block">    
-          <div class="form__title req"><?php _e('Ad Title', 'prokkat'); ?></div>
-          <div class="input-wrp input-wrp_block">
-              <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
-              <input type="text" id="title" class="input_add" name="cc_title" placeholder="<?php _e('Please enter title', 'prokkat') ?>" value="<?php echo $ad->post_title; ?>" />
-          </div>
-      </div>
 
       <div class="input-wrp input-wrp_block add__block" id=ad-categories>                            
                                 <div class="col6 nopaddingl">

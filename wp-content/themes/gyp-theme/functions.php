@@ -877,6 +877,12 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     }
   }
 
+  function create_title($cate_id, $brand, $model) {
+    $term = get_term($cate_id, CUSTOM_CAT_TYPE);
+    $term_name = $term->name;
+    return 'Аренда ' . mb_strtolower($term_name) . ' ' . $brand . ' ' . $model;
+  }
+
   function update_man_list($cate_id, $value, $field_name) {
     $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $cate_id;
     $old_values = get_field($field_name, $cate_fields_id);
@@ -948,6 +954,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
           if($editable) {
             $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">
+            <span class="field_error"></span>
             <input type="hidden" name="filter_'.$filter_id.'" value="'. $filter_id .'">
             <input type="text" name="'. $filter->slug .'" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'" value="'. get_post_meta( $post_id, $filter->slug, true) .'">
             <datalist class="input_add" id="select_options">
@@ -961,6 +968,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
           } else {
             $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">
+            <span class="field_error"></span>
             <select name="'. $filter->slug .'" class="input_add">';
             
             foreach($choices as $choice) {
@@ -983,6 +991,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
               $value_arr = explode(',', $meta);
               $checked = in_array($choice, $value_arr) ? 'checked' : '';
               $result .= '<label class="checkbox-container">
+                <span class="field_error"></span>
                 <input '.$checked.' type="checkbox" data-filter="'. $filter->slug .'" value="'. $choice .'">
                 <span class="checkmark"></span>
                 <div>'. $choice .'</div>
@@ -996,6 +1005,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
           $meta = get_post_meta( $post_id, $filter->slug, true);
           $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
                       <div class="input-wrp input-wrp_block ">
+                      <span class="field_error"></span>
                       <input type="text" id="title" class="input_add"  value="'. $meta .'" name="'. $filter->slug .'" placeholder="'.__('Please enter title', 'prokkat').'">
                       </div>';
         }
@@ -1025,6 +1035,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         $result .= '<div class="req form__title">'. $name .'</div>
         <div class="input-wrp input-wrp_block">
         <input type="hidden" name="'. $slug .'_id" value="'. $current_id .'">
+        <span class="field_error"></span>
         <input type="text" name="'. $slug .'" list="select_'. $slug .'" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
         <datalist class="input_add" id="select_'. $slug .'">';
         
@@ -1035,9 +1046,6 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   
         $result .= '</datalist></div></div>';
       }
-    }
-
-    if($is_man) {
     }
 
     if($filters) {
@@ -1056,6 +1064,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
           $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">
             <input type="hidden" name="filter_'.$filter_id.'" value="'. $filter_id .'">
+            <span class="field_error"></span>
             <input type="text" name="'. $filter->slug .'" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
             <datalist class="input_add" id="select_options">';
             
@@ -1068,6 +1077,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
           } else {
             $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">
+            <span class="field_error"></span>
             <select name="'. $filter->slug .'" class="input_add">';
             
             foreach($choices as $choice) {
@@ -1085,6 +1095,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             foreach($choices as $choice) {
               $choice = trim($choice);
               $result .= '<label class="checkbox-container">
+                <span class="field_error"></span>
                 <input type="checkbox" data-filter="'. $filter->slug .'" value="'. $choice .'">
                 <span class="checkmark"></span>
                 <div>'. $choice .'</div>
@@ -1108,6 +1119,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         if($filter_type == 'input') {
           $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
                       <div class="input-wrp input-wrp_block ">
+                      <span class="field_error"></span>
                       <input type="text" id="title" class="input_add" name="'. $filter->slug .'" placeholder="'.__('Please enter title', 'prokkat').'">
                       </div>';
         }
