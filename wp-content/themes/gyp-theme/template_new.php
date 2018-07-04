@@ -25,9 +25,7 @@ function cc_submit_form_process() {
         'cc_state',
         'img1',
         'img2',
-        'img3',
-        'manufacturer',
-        'manufacturer_id'
+        'img3'
     );
 
     $filters = get_terms( array('taxonomy' => 'tags', 'hide_empty' => false));
@@ -119,11 +117,23 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
                     }
                 }
               }
-              
-              if($posted['manufacturer']) {
-                $cate_id = $posted['manufacturer_id'];
-                add_post_meta($post_id, 'manufacturer', $posted['manufacturer'], true);
-                update_man_list($cate_id, $posted['manufacturer']);
+
+              $additional_fields = get_additional_post_fields();
+
+              foreach($additional_fields as $field) {
+                $slug = $field['slug'];
+                $value = $_POST[$slug];
+                if(isset($value)) {
+                    $cate_id = $_POST['manufacturer_id'];
+                    add_post_meta($post_id, $slug, $value, true);
+                    update_man_list($cate_id, $value, $slug);
+                  }
+              }
+
+              if($posted['model']) {
+                $cate_id = $posted['model_id'];
+                add_post_meta($post_id, 'model', $posted['model'], true);
+                update_man_list($cate_id, $posted['model'], 'model');
               }
 
               add_post_meta($post_id, 'cc_address_list', $posted['cc_address_list'], true);

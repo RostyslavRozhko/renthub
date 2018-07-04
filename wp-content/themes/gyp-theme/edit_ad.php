@@ -22,9 +22,7 @@
       'cc_locations',
       'img1',
       'img2',
-      'img3',
-      'manufacturer',
-      'manufacturer_id'
+      'img3'
     );
 
     $filters = get_terms( array('taxonomy' => 'tags', 'hide_empty' => false));
@@ -75,10 +73,16 @@
         }
       }
 
-      if($posted['manufacturer']) {
-        $cate_id = $posted['manufacturer_id'];
-        update_post_meta($pid, 'manufacturer', $posted['manufacturer']);
-        update_man_list($cate_id, $posted['manufacturer']);
+      $additional_fields = get_additional_post_fields();
+
+      foreach($additional_fields as $field) {
+        $slug = $field['slug'];
+        $value = $_POST[$slug];
+        if(isset($value)) {
+            $cate_id = $_POST['manufacturer_id'];
+            update_post_meta($pid, $slug, $value);
+            update_man_list($cate_id, $value, $slug);
+          }
       }
 	
 	if( !$posted['img1'] ) {

@@ -877,41 +877,62 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     }
   }
 
-  function update_man_list($cate_id, $value) {
+  function update_man_list($cate_id, $value, $field_name) {
     $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $cate_id;
-    $old_values = get_field('manufacturer', $cate_fields_id);
+    $old_values = get_field($field_name, $cate_fields_id);
     $pos = strpos($old_values, $value);
     if($pos === false) {
-      update_field('manufacturer', $old_values . $value . ';', $cate_fields_id);
+      update_field($field_name, $old_values . $value . ';', $cate_fields_id);
     }
+  }
+
+  function get_additional_post_fields() {
+    return array(
+      array(
+        'name' => 'Производитель',
+        'slug' => 'manufacturer',
+        'check' => 'is_manufacturer'
+      ),
+      array(
+        'name' => 'Модель',
+        'slug' => 'model',
+        'check' => 'is_model'
+      )
+    );
   }
 
   function my_filters_edit_list($cat_id, $post_id) {
     $result = '';
     $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $cat_id;
     $filters = get_field('filters', $cate_fields_id);
-    
-    $is_man = get_field('is_manufacturer', $cate_fields_id);
 
-    if($is_man) {
-      $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('manufacturer', $cate_fields_id))));
-      $meta = get_post_meta( $post_id, 'manufacturer', true);  
-
-      $result .= '<div class="input-wrp input-wrp_block add__block">';
-      
-      $result .= '<div class="req form__title">Производитель</div>
-      <div class="input-wrp input-wrp_block">
-      <input type="hidden" name="manufacturer_id" value="'. $cat_id .'">
-      <input value="'. $meta .'" type="text" name="manufacturer" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
-      <datalist class="input_add" id="select_options">';
-      
-      foreach($man_array as $man) {
-        $man = trim($man);
-        $result .= '<option value="'. $man .'">'. $man .'</option>';
+    $additional_fields = get_additional_post_fields();
+    foreach($additional_fields as $field) {
+      $name = $field['name'];
+      $slug = $field['slug'];
+      $check = $field['check'];
+      $is_set = get_field($check , $cate_fields_id);
+      if($is_set) {
+        $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field($slug, $cate_fields_id))));
+        $meta = get_post_meta( $post_id, $slug, true);  
+  
+        $result .= '<div class="input-wrp input-wrp_block add__block">';
+        
+        $result .= '<div class="req form__title">'. $name .'</div>
+        <div class="input-wrp input-wrp_block">
+        <input type="hidden" name="'. $slug .'_id" value="'. $cat_id .'">
+        <input value="'. $meta .'" type="text" name="'. $slug .'" list="select_'. $slug .'" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
+        <datalist class="input_add" id="select_'. $slug .'">';
+        
+        foreach($man_array as $man) {
+          $man = trim($man);
+          $result .= '<option value="'. $man .'">'. $man .'</option>';
+        }
+  
+        $result .= '</datalist></div></div>';
       }
-
-      $result .= '</datalist></div></div>';
     }
+
     if($filters) {
       foreach ($filters as $filter) {
         $filter_id = $filter->term_id;
@@ -990,26 +1011,35 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
     $result = '';
     $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $current_id;
     $filters = get_field('filters', $cate_fields_id);
-    $is_man = get_field('is_manufacturer', $cate_fields_id);
+    
+    $additional_fields = get_additional_post_fields();
+    foreach($additional_fields as $field) {
+      $name = $field['name'];
+      $slug = $field['slug'];
+      $check = $field['check'];
+      $is_set = get_field($check , $cate_fields_id);
+      if($is_set) {
+        $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field($slug, $cate_fields_id))));
+        $result .= '<div class="input-wrp input-wrp_block add__block">';
+        
+        $result .= '<div class="req form__title">'. $name .'</div>
+        <div class="input-wrp input-wrp_block">
+        <input type="hidden" name="'. $slug .'_id" value="'. $current_id .'">
+        <input type="text" name="'. $slug .'" list="select_'. $slug .'" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
+        <datalist class="input_add" id="select_'. $slug .'">';
+        
+        foreach($man_array as $man) {
+          $man = trim($man);
+          $result .= '<option value="'. $man .'">'. $man .'</option>';
+        }
+  
+        $result .= '</datalist></div></div>';
+      }
+    }
 
     if($is_man) {
-      $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('manufacturer', $cate_fields_id))));
-      $result .= '<div class="input-wrp input-wrp_block add__block">';
-      
-      $result .= '<div class="req form__title">Производитель</div>
-      <div class="input-wrp input-wrp_block">
-      <input type="hidden" name="manufacturer_id" value="'. $current_id .'">
-      <input type="text" name="manufacturer" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
-      <datalist class="input_add" id="select_options">';
-      
-      foreach($man_array as $man) {
-        $man = trim($man);
-        $result .= '<option value="'. $man .'">'. $man .'</option>';
-      }
-
-      $result .= '</datalist></div></div>';
     }
-    
+
     if($filters) {
       foreach ($filters as $filter) {
         $filter_id = $filter->term_id;

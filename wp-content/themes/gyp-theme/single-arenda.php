@@ -188,16 +188,22 @@
 
                 <div class="filters-values">
                 <?php 
-                $man = get_post_meta($post->ID, 'manufacturer', true);
-                if($man) : 
-                ?>
-                    <div class="filters-values__item">
-                        <div class="filters-values__item__name">Производитель</div>
-                        <div class="filters-values__item__value"><?php echo $man; ?></div>
-                    </div>
-                    
-                <?php endif; ?>
 
+                $additional_fields = get_additional_post_fields();
+                foreach($additional_fields as $field) {
+                    $man = get_post_meta($post->ID, $field['slug'], true);
+                    if($man) : 
+                    ?>
+                        <div class="filters-values__item">
+                            <div class="filters-values__item__name"><?php echo $field['name'] ?></div>
+                            <div class="filters-values__item__value"><?php echo $man; ?></div>
+                        </div>
+                        
+                <?php 
+                    endif; 
+                    }
+                ?>
+    
                 <?php
                 $filters = get_field('filters', CUSTOM_CAT_TYPE . '_' . $subcat->term_id);
                 if($filters) : ?>

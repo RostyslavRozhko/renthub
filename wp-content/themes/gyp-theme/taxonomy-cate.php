@@ -6,6 +6,7 @@
   $address = isset( $_REQUEST['address'] ) ? $_REQUEST['address'] : '';
   $order = isset( $_REQUEST['order'] ) ? $_REQUEST['order'] : '';
   $man = isset( $_REQUEST['manufacturer'] ) ? $_REQUEST['manufacturer'] : '';
+  $model = isset( $_REQUEST['model'] ) ? $_REQUEST['model'] : '';
 
   $wp_query->query_vars[CUSTOM_CAT_TYPE];
   foreach ($wp_query as $query) {
@@ -136,7 +137,20 @@
     $arguments['meta_query'][] = $man_rel;
   }
 
-  debug_to_console(json_encode($arguments));
+  if($model) {
+    $selected_choices[] = $model;
+    $fields = explode(',', $model);
+    $model_rel = array();
+    $model_rel[] = array('relation' => 'OR');
+    foreach($fields as $field) {
+      $model_rel[] = array(
+        'key' => 'model',
+        'value' => $field,
+        'compare' => 'LIKE'
+      );
+    }
+    $arguments['meta_query'][] = $model_rel;
+  }
 
   $the_query = new WP_Query($arguments);
   $all_query = new WP_Query($args);
@@ -364,35 +378,40 @@
               </div>
               <?php 
                   $cate_fields_id = CUSTOM_CAT_TYPE . '_' . $current_id;
-                  $is_man = get_field('is_manufacturer', $cate_fields_id);
 
-                  $filter_inputs = '';                  
+                  $filter_inputs = '';  
 
-                  if($is_man) {
-                    echo '<div class="filters__container">';
-                    $name = 'Производитель';
-                    $slug = 'manufacturer';
-                    $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('manufacturer', $cate_fields_id))));
-                    
-                    echo '<div class="filters__show-btn">
-                        <div class="filters__title__top">'. $name .'</div>
-                        <img src="'. get_stylesheet_directory_uri() .'/img/arrow-down-sign-to-navigate.svg" class="filters__show-btn__arrow">
-                      </div>';
-                    
-                    echo '<div class="filters__vis-container">';
-                    foreach ($man_array as $value) {
-                      $value = trim($value);
-                      if($value) {
-                        echo '<label class="checkbox-container">';
-                        echo '<input type="checkbox" data-filter="'. $slug .'" value="'. $value .'">';
-                        echo '<span class="checkmark"></span>';
-                        echo '<div>'. $value .'</div>';
-                        echo '</label>';     
-                      } 
+                  $additional_fields = get_additional_post_fields();
+                  foreach($additional_fields as $field) {
+                    $name = $field['name'];
+                    $slug = $field['slug'];
+                    $check = $field['check'];
+                    $is_set = get_field($check , $cate_fields_id);
+                    if($is_set) {
+                      echo '<div class="filters__container">';
+                      $man_array = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field($slug, $cate_fields_id))));
+                      
+                      echo '<div class="filters__show-btn">
+                          <div class="filters__title__top">'. $name .'</div>
+                          <img src="'. get_stylesheet_directory_uri() .'/img/arrow-down-sign-to-navigate.svg" class="filters__show-btn__arrow">
+                        </div>';
+                      
+                      echo '<div class="filters__vis-container">';
+                      foreach ($man_array as $value) {
+                        $value = trim($value);
+                        if($value) {
+                          echo '<label class="checkbox-container">';
+                          echo '<input type="checkbox" data-filter="'. $slug .'" value="'. $value .'">';
+                          echo '<span class="checkmark"></span>';
+                          echo '<div>'. $value .'</div>';
+                          echo '</label>';     
+                        } 
+                      }
+                      echo '</div>';
+                      $filter_inputs .= '<input type="hidden" class="'. $slug .' filter_value_field" name="'. $slug .'" value="">';
+                      echo '</div>';
+  
                     }
-                    echo '</div>';
-                    $filter_inputs .= '<input type="hidden" class="'. $slug .' filter_value_field" name="'. $slug .'" value="">';
-                    echo '</div>';
 
                   }
 
