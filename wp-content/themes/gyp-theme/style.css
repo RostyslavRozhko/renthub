@@ -5209,7 +5209,7 @@ label.error {
 .infowindow__address {
     width: 80px;
     position: absolute;
-    right: 0;
+    right: 5px;
     bottom: 0px;
     font-weight: 500;
 }
