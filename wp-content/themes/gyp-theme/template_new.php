@@ -140,10 +140,6 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
               
               add_post_meta($post_id, 'cc_state', $posted['cc_state'], true);
 
-              /*add_post_meta($post_id, 'img1', $posted['img1'], true);
-			  add_post_meta($post_id, 'img2', $posted['img2'], true);
-			  add_post_meta($post_id, 'img3', $posted['img3'], true);*/
-
               $name_img1 = basename($posted["img1"]);
               $name_img2 = basename($posted["img2"]);
               $name_img3 = basename($posted["img3"]);
@@ -155,15 +151,11 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
   
 
 			  if( !$posted['img1'] && $posted['img2'] ) {
-				  /*update_post_meta($post_id, 'img1', $posted['img2']);
-			      update_post_meta($post_id, 'img2', '');*/
                   update_post_meta($post_id, 'img1', $url_amazon.$name_img2);
                   update_post_meta($post_id, 'img2', '');
 			  }
 
 			  if( !$posted['img1'] && !$posted['img2'] && $posted['img3'] ) {
-				  /*update_post_meta($post_id, 'img1', $posted['img3']);
-			      update_post_meta($post_id, 'img3', '');*/
                   update_post_meta($post_id, 'img1', $url_amazon.$name_img3);
                   update_post_meta($post_id, 'img3', '');
 			  }
@@ -190,7 +182,6 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
 	          include( get_stylesheet_directory() . '/email/complete_new.php');
 	          $message = ob_get_clean();
               wp_mail($current_user->user_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
-		      //wp_mail($admin_email, 'Вітаємо, Ваше оголошення опубліковане', $message, $headers);
 			  // email to admin
 			  $message = admin_url('post.php?post=' . $post_id ) . '&action=edit';
 			  wp_mail($admin_email, __('New Ad', 'cc'), $message );
@@ -252,7 +243,7 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
                             <div class="input-wrp input-wrp_block add__block">    
                                 <div class="form__title req"><?php _e('Ad Title', 'prokkat'); ?></div>
                                 <div class="input-wrp input-wrp_block">
-                                    <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
+                                <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
                                     <input type="text" id="title" class="input_add" name="cc_title" placeholder="<?php _e('Please enter title', 'prokkat') ?>">
                                 </div>
                             </div>
@@ -328,7 +319,6 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
                             </div> -->
                             <div class="req form__title"><?php echo __('Description', 'prokkat'); ?></div>
                             <div class="input-wrp input-wrp_block">
-                                <span class="max-text"><?php _e('Minimum', 'prokkat') ?> 150 <?php _e('characters', 'prokkat'); ?></span>
                                 <span class="desc_error"></span>
                                 <textarea name="cc_description" id="cc_desc" class="textarea textarea_mess" placeholder="<?php _e('Please enter description', 'prokkat') ?>"></textarea>
                             </div>
