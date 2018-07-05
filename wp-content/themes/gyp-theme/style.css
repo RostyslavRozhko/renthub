@@ -547,7 +547,7 @@ padding: 0 30px;
   background-color: #3c4457;
   color: #ffffff;
   margin-left: 10px;
-  padding: 0 20px;
+  padding: 0 17px;
   border-radius: 50%;
 }
 
@@ -4564,14 +4564,6 @@ label.error {
 }
 
 @media (max-width: 768px) {
-  .login-top {
-    padding: 0 20px;
-    border-radius: 50%
-  }
-
-  .login-top span{
-    display: none;
-  }
 
   .header__category__window-small {
     margin-bottom: 5px;
@@ -4744,6 +4736,15 @@ label.error {
 
 @media (max-width: 480px) {
 
+  .login-top {
+    padding: 0 14px;
+    border-radius: 50%
+  }
+
+  .login-top span{
+    display: none;
+  }
+
   .author-side__name {
     padding: 0 10px;
   }
@@ -4826,6 +4827,15 @@ label.error {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
+  }
+
+  #old-ad-button {
+    display: none;
+  }
+
+  #new-ad-button {
+    display: block !important;
+    padding-top: 13px;
   }
 
   .map {

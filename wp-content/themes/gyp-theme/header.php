@@ -81,11 +81,12 @@
                     </ul>-->
 					
                 <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow">
-                  <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>
-                  <span><?php echo __('Add Ad', 'prokkat'); ?></span>
+                    <i style="line-height: inherit" class="fa fa-plus" id="old-ad-button" aria-hidden="true"></i>
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/plus.svg" id="new-ad-button" style="display: none">
+                    <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
                     <?php if (!is_user_logged_in()) : ?>                
-                        <a href="<?php echo site_url('login'); ?>" class="login__item login__item__grey"><i style="line-height: inherit" class="fa fa-user" aria-hidden="true"></i></a>
+                        <a href="<?php echo site_url('login'); ?>" class="login__item login__item__grey"><i style="line-height: inherit; font-size: 1.3em" class="fa fa-user" aria-hidden="true"></i></a>
                         
 						<?php  else: ?>
 						    
