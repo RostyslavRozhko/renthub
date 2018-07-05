@@ -22,11 +22,22 @@ $site_name = mb_strtoupper(str_replace(array('https://' , 'http://') , '' , get_
             -ms-text-size-adjust: 100% !important;
             -webkit-font-smoothing: antialiased !important;
         }
+        .container_img {
+			  width: 800px;
+			  height: 70px;
+			  background-color: #f4f6f9;
+			  margin: 0 auto;
+			  position: relative;
+			  font-family: 'Fira Sans', sans-serif;
+			  box-shadow: 0px 0px 10px 0px rgba(0,0,0, 0.3);
+		}
 		.content {
 			      width: 660px;
     			  height: 260px;
     			  background-color: #ffffff;
     			  margin: 10px auto;
+    			  font-family: 'Fira Sans', sans-serif;
+    			  box-shadow: 0px 0px 10px 0px rgba(0,0,0, 0.3);
 		}
 		.name {
 			font-family: 'Fira Sans', sans-serif;
@@ -36,9 +47,17 @@ $site_name = mb_strtoupper(str_replace(array('https://' , 'http://') , '' , get_
 			width: 520px;
 			height: 60px;
 			display: block;
-			font-weight: 700;
+			font-weight: 900;
 			top: 20px;
     		position: relative;
+		}
+		.content_links {
+			width: 660px;
+    		height: 130px;
+    		background-color: #ffffff;
+    		margin: 10px auto;
+    		font-family: 'Fira Sans', sans-serif;
+    		box-shadow: 0px 0px 10px 0px rgba(0,0,0, 0.3);	
 		}
 		.your_ad {
 			font-family: 'Fira Sans', sans-serif;
@@ -66,6 +85,7 @@ $site_name = mb_strtoupper(str_replace(array('https://' , 'http://') , '' , get_
 		    display: block;
 		    width: 300px;
 		    margin: 40px auto;
+		    font-family: 'Fira Sans', sans-serif;
 		}
 		.content_links >.links {
 			font-family: 'Fira Sans',sans-serif;
@@ -74,16 +94,11 @@ $site_name = mb_strtoupper(str_replace(array('https://' , 'http://') , '' , get_
 		    color: black;
 		    font-weight: bold;
 		}
-		.content_links {
-			width: 660px;
-    		height: 130px;
-    		background-color: #ffffff;
-    		margin: 10px auto;
-		}
 		.content_links > a {
 			margin-right: 10px;
     		margin-left: 10px;
     		font-size: 16px;
+    		font-family: 'Fira Sans', sans-serif;
 		}
 		.message_content {
 			    margin-top: 50px;
@@ -93,19 +108,26 @@ $site_name = mb_strtoupper(str_replace(array('https://' , 'http://') , '' , get_
     			text-align: center;
     			font-size: 16px;
     			margin-top: 10px;
+    			font-family: 'Fira Sans', sans-serif;
+    			color: #63666c;
 		}
-		.container_img {
-			  width: 800px;
-			  height: 70px;
-			  background-color: #f4f6f9;
-			  margin: 0 auto;
-			  position: relative;
-		}
+		.link_url {
+			position: absolute;
+			left: 70px;
+		}	
 		.date {
 			display: block;
 		    text-align: center;
 		    font-size: 16px;
 		    margin-top: 20px;
+		    font-family: 'Fira Sans', sans-serif;
+		        position: absolute;
+		}
+		.sublogo{
+			line-height: 70px;
+			font-size: 16px; 
+			position: absolute; 
+			right: 150px;
 		}
 </style>
 </head>
@@ -114,14 +136,14 @@ $site_name = mb_strtoupper(str_replace(array('https://' , 'http://') , '' , get_
       offset="0" toppadding="0" leftpadding="0">
       <div class="container_img">
       	<div class="header__logo">
-            <a href="<?php echo site_url(); ?>" class="link_url" style="position: absolute;line-height: 70px; left: 70px;"><img src="<?php if (cc_get_option('cc_logo') != '') { ?><?php echo cc_get_option('cc_logo'); ?><?php } else { ?><?php echo get_template_directory_uri(); ?>/images/logo.png<?php } ?>" alt="<?php bloginfo('name'); ?>" class="logo__image" />
+            <a href="<?php echo site_url(); ?>" class="link_url" style="position: absolute; line-height: 70px; left: 70px;"><img src="<?php if (cc_get_option('cc_logo') != '') { ?><?php echo cc_get_option('cc_logo'); ?><?php } else { ?><?php echo get_template_directory_uri(); ?>/images/logo.png<?php } ?>" alt="<?php bloginfo('name'); ?>" class="logo__image" />
             </a>
             <span class="sublogo" style="line-height: 70px;font-size: 16px; position: absolute; right: 150px;"><?php _e('Rent', 'prokkat') ?></span>
         </div>
       </div>
 		<div class="content">
-			<span class="name">Здравствуйте,<?php echo $name;?></span>
-				<span class="your_ad">Ваше обьявление <b><?php echo $title;?></b> было успешно опубликовано</span>
+			<span class="name">Здравствуйте , <?php echo $name;?></span>
+				<span class="your_ad">Ваше объявление <b><?php echo $title;?></b> было успешно опубликовано</span>
 				<a href="<?php echo get_permalink($post_id); ?>" class="get_permalink">Перейти на страницу обьявления</a>
 		</div>
 		<div class="content_links">

@@ -188,7 +188,7 @@
             const is_req = field.find('.req')
             if(is_req.html()) {
                 const input = field.find('input')
-                console.log(input.html())
+                console.log(field.html())
             }
         })
         // if(cc_desc.val() == "") {

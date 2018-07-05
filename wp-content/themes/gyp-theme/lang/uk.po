@@ -97,8 +97,8 @@ msgstr "Перейти до оплати"
 msgid "Latest ads"
 msgstr "Останні оголошення"
 
-msgid "Please upload at least 1 photo."
-msgstr "Будь ласка, завантажте щонайменше 1 фото."
+msgid "Please upload at least 1 photo"
+msgstr "Будь ласка, завантажте щонайменше 1 фото"
 
 msgid "Check your email to continue activation!"
 msgstr "Перевірте свою пошту для продовження активації!"
@@ -624,6 +624,9 @@ msgstr "Будь ласка, введіть вартість "
 
 msgid "Please select category"
 msgstr "Будь ласка, оберіть категорію"
+
+msgid "Please select subcategory"
+msgstr "Будь ласка, оберіть підкатегорію"
 
 msgid "Pending for Approval"
 msgstr "Очікує перевірки"

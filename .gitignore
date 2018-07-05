@@ -16,6 +16,7 @@ wp-content/plugins/all-in-one-wp-migration/storage
 wp-content/debug.log
 
 /.htaccess
+/wp-content/themes/gyp-theme/.idea/
 /license.txt
 /readme.html
 /sitemap.xml
