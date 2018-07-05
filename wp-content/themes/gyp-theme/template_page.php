@@ -47,7 +47,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
     </div>
 </section>
 <section class="cat-section">
-    <div class="container">
+    <div class="container no-border">
         <div class="group-product group-product_top group-product_grid">
             <div class="group-product__title-container">
                 <h3 class="group-product__title"><?php echo __('New ads', 'prokkat'); ?> <?php echo ' ' . $city_name; ?></h3>
@@ -62,7 +62,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 					<?php
                         query_posts(array(
                         'post_type' => POST_TYPE,
-                        'showposts' => 10,
+                        'showposts' => 12,
                         'orderby' => 'date',
                         'meta_query' => array(
                             array(
@@ -176,7 +176,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
             <div class="info-section__title"><?php _e('How it is working?', 'prokkat') ?></div>
             <div class="info-section__text"><?php _e('RentHUB is', 'prokkat') ?></div>
             <div class="info-section__link-container">
-                <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
+                <a href="<?php echo site_url('new/'); ?>" class="login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
                   <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>
                   <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
@@ -213,7 +213,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                 ?>
             </div>
         </div>
-        <div class="container">
+        <div class="container no-border">
         <div class="info-section__title bottom-text"><?php _e('Rent', 'prokkat') ?></div>
             <div class="footer-text">
                 <p>

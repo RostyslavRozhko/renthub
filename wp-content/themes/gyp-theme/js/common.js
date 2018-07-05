@@ -652,7 +652,7 @@ jQuery(document).ready(function () {
         if($(window).width() > 480) {
             $('.header__category__right, .back__white').hide()
             $(node).find('.header__category__right, .back__white').show()
-            const leftWidth = $(node).width() + 10;
+            const leftWidth = $(node).width();
             const containerWidth = $('.form_srch-header').width()
             const height = $('.header__category__window').height()
     

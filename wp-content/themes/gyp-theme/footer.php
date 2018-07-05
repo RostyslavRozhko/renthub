@@ -7,7 +7,7 @@
                             class="img-responsive fleft"/></a>
 
                 <div class="footer__left">
-                <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
+                <a href="<?php echo site_url('new/'); ?>" class="login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
                     <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>
                     <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
