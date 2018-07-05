@@ -252,14 +252,6 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
 
                         <div class="add__form-item clearfix">
                         <div class="step__title"><?php _e('Ad description', 'prokkat') ?><span class="add__step-num">1</span></div>
-                            <div class="input-wrp input-wrp_block add__block">    
-                                <div class="form__title req"><?php _e('Ad Title', 'prokkat'); ?></div>
-                                <div class="input-wrp input-wrp_block">
-                                <span class="max-text"><?php _e('Maximum', 'prokkat') ?> 100 <?php _e('characters', 'prokkat'); ?></span>
-                                    <input type="text" id="title" class="input_add" name="cc_title" placeholder="<?php _e('Please enter title', 'prokkat') ?>">
-                                </div>
-                            </div>
-
                             <div class="input-wrp input-wrp_block add__block">
                                 <div id="ad-categories" >                                                            
                                     <div class="col6 nopaddingl">
@@ -495,5 +487,7 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
 </section>
 
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/package_price.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/libs/jquery-editable-select.js"></script>
+<link href="<?php echo get_stylesheet_directory_uri(); ?>/css/jquery-editable-select.css" rel="stylesheet">
 <?php edit_map(); ?>
 <?php get_footer(); ?>

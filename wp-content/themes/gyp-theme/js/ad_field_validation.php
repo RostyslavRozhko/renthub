@@ -221,7 +221,7 @@
 
 
 		adForm.submit(function(){
-          if(validate_fields() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
+          if(validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
             return true;
           else {
 		    jQuery('html, body').animate({
@@ -232,7 +232,7 @@
         });
 		
 		editAdForm.submit(function(){
-          if(validate_fields() & validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
+          if(validate_desc() & validate_cat() & validate_price() & validate_address() & validate_photo())
             return true;
           else {
 		    jQuery('html, body').animate({

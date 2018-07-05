@@ -4,10 +4,12 @@
  */
 auth_redirect_home();
 get_header();
-
 $id = 'ava';
 $svalue = get_user_meta($current_user->ID, 'user_avatar', true);
 ?>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/libs/jquery-editable-select.js"></script>
+<link href="<?php echo get_stylesheet_directory_uri(); ?>/css/jquery-editable-select.css" rel="stylesheet">
+
 <section class="profile_color">
     <div class="container">
         <div class="profile_col4 nopaddingl">
@@ -127,6 +129,4 @@ $svalue = get_user_meta($current_user->ID, 'user_avatar', true);
     <a href="#0" class="btn btn_flat btn_nodel"><?php echo __( 'Later', 'cc' ); ?></a>
   </div>
 </div>
-
-
 <?php get_footer(); ?>

@@ -927,16 +927,19 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         $result .= '<div class="req form__title">'. $name .'</div>
         <div class="input-wrp input-wrp_block">
         <input type="hidden" name="'. $slug .'_id" value="'. $cat_id .'">
-        <input value="'. $meta .'" type="text" name="'. $slug .'" list="select_'. $slug .'" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
-        <datalist class="input_add" id="select_'. $slug .'">';
+        <select class="input_add edit-select" style="background-color: #f4f4f4;" name="'. $slug .'" placeholder="'. __('Select one', 'prokkat') .'">';
         
         foreach($man_array as $man) {
           $man = trim($man);
-          $result .= '<option value="'. $man .'">'. $man .'</option>';
+          $selected = $meta && $meta == $man ? 'selected' : '';  
+          $result .= '<option value="'. $man .'" '. $selected .'>'. $man .'</option>';
         }
   
-        $result .= '</datalist></div></div>';
-      }
+        $result .= '</select></div></div>';
+        $result .= '<script>
+          $(".edit-select").editableSelect({ filter: false });
+        </script>';
+        }
     }
 
     if($filters) {
@@ -956,15 +959,18 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
             <div class="input-wrp input-wrp_block">
             <span class="field_error"></span>
             <input type="hidden" name="filter_'.$filter_id.'" value="'. $filter_id .'">
-            <input type="text" name="'. $filter->slug .'" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'" value="'. get_post_meta( $post_id, $filter->slug, true) .'">
-            <datalist class="input_add" id="select_options">
-            <select class="select">';
+            <select class="input_add edit-select" style="background-color: #f4f4f4;" name="'. $filter->slug .'" placeholder="'. __('Select one', 'prokkat') .'">';
             foreach($choices as $choice) {
               $choice = trim($choice);
-              $result .= '<option value="'. $choice .'">'. $choice .'</option>';
+              $meta = get_post_meta( $post_id, $filter->slug, true);  
+              $selected = $meta && $meta == $choice ? 'selected' : ''; 
+              $result .= '<option value="'. $choice .'" '. $selected .'>'. $choice .'</option>';
             }
 
-            $result .= '</select></datalist></div>';
+            $result .= '</select></div>';
+            $result .= '<script>
+              $(".edit-select").editableSelect({ filter: false });
+            </script>';
           } else {
             $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">
@@ -1036,15 +1042,17 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         <div class="input-wrp input-wrp_block">
         <input type="hidden" name="'. $slug .'_id" value="'. $current_id .'">
         <span class="field_error"></span>
-        <input type="text" name="'. $slug .'" list="select_'. $slug .'" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
-        <datalist class="input_add" id="select_'. $slug .'">';
+        <select class="input_add edit-select" style="background-color: #f4f4f4;" name="'. $slug .'" placeholder="'. __('Select one', 'prokkat') .'">';
         
         foreach($man_array as $man) {
           $man = trim($man);
           $result .= '<option value="'. $man .'">'. $man .'</option>';
         }
   
-        $result .= '</datalist></div></div>';
+        $result .= '</select></div></div>';
+        $result .= '<script>
+          $(".edit-select").editableSelect({ filter: false });
+        </script>';
       }
     }
 
@@ -1060,20 +1068,23 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         if($filter_type == 'select'){
           $editable = get_field('editable', $tag_id);
           $choices = array_filter(explode(';', str_replace(array("\n","\r"), '', get_field('choices', $tag_id))));
+
           if($editable) {
           $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">
             <input type="hidden" name="filter_'.$filter_id.'" value="'. $filter_id .'">
             <span class="field_error"></span>
-            <input type="text" name="'. $filter->slug .'" list="select_options" class="input_add" placeholder="'. __('Select one', 'prokkat') .'">
-            <datalist class="input_add" id="select_options">';
+            <select class="input_add edit-select" style="background-color: #f4f4f4;" name="'. $filter->slug .'" placeholder="'. __('Select one', 'prokkat') .'">';
             
             foreach($choices as $choice) {
               $choice = trim($choice);
               $result .= '<option value="'. $choice .'">'. $choice .'</option>';
             }
 
-            $result .= '</datalist></div>';
+            $result .= '</select></div>';
+            $result .= '<script>
+              $(".edit-select").editableSelect({ filter: false });
+            </script>';
           } else {
             $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
             <div class="input-wrp input-wrp_block">

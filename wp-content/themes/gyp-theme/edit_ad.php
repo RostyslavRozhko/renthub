@@ -192,7 +192,6 @@
                                     <div class="req form__title"><?php _e('Category', 'prokkat'); ?></div>                                        
                                     <span class="cats_error"></span>
                                     <?php
-                                    debug_to_console('dsadsadasd');
                                         $terms = wp_get_post_terms($pid, CUSTOM_CAT_TYPE);
 
                                         usort($terms, function($a, $b)
