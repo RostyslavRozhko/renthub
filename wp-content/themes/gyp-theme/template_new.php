@@ -261,7 +261,7 @@ require_once( get_stylesheet_directory().'/js/ad_field_validation.php' );
                                 <div id="ad-categories" >                                                            
                                     <div class="col6 nopaddingl">
                                         <div class="req form__title"><?php _e('Category', 'prokkat'); ?></div>                                        
-                                        <span class="cats_error"></span>
+                                        <span class="cats_error" style="padding-left: 6px"></span>
                                         <?php my_dropdown_categories( 'maincat', __('Category', 'prokkat')); ?>
                                     </div>
                                     <div class="col6 nopaddingr">
