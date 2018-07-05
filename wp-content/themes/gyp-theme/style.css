@@ -2078,6 +2078,7 @@ padding: 0 30px;
   height: 100%;
   background-color: white;
   top: -40px;
+  box-shadow: 0px 0px 40px rgba(0,0,0,0.1);
 }
 
 .chat {
@@ -5204,12 +5205,11 @@ label.error {
     bottom: 18px;
     font-weight: bold;
     width: 60px;
-    top: 80px;
 }
 .infowindow__address {
     width: 80px;
     position: absolute;
-    right: 0;
+    right: 5px;
     bottom: 0px;
     font-weight: 500;
 }
