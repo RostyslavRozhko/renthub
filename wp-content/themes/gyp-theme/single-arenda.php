@@ -28,7 +28,7 @@
 
 
       $ava = get_the_author_meta('user_avatar', $author_id);
-      if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png';
+      if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
 
       $user = get_userdata($author_id);
       $user_reg = $user->get('user_registered');
@@ -148,39 +148,141 @@
                 </div>
 				
 				<?php endif; ?>
-				
-                <div class="advert__tags">
-                    <div class="advert__tags advert__tags_grid">
-                        <h3 class="advert__tags-title"><?php _e('State', 'prokkat') ?></h3>
-                        <div class="single__state" data-state="<?php echo $state; ?>"></div>
+
+            <div class="info">
+                <div class="contact-info">
+			        <?php if( get_post_meta( $post->ID, 'cc_price', true )) { ?>
+                        <div class="price-container">
+					        <?php
+					        $price = get_post_meta( $post->ID, 'cc_price', true );
+					        $price_week = get_post_meta( $post->ID, 'cc_price_week', true );
+					        $price_more = get_post_meta( $post->ID, 'cc_price_more', true );
+					        ?>
+                            <div class="price-container__block">
+                                <div class="price-container__block-top price-container__block-green">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar.svg">
+                                    <div class="price-container__block-text">1 <?php _e('day', 'prokkat'); ?></div>
+                                </div>
+                                <div class="price-container__block-bot">
+                                    <div class="price-container__price"><?php echo $price; ?></div>
+                                </div>
+                            </div>
+                            <div class="price-container__block">
+                                <div class="price-container__block-top price-container__block-green">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar.svg">
+                                    <div class="price-container__block-text">7 <?php _e('days', 'prokkat'); ?></div>
+                                </div>
+                                <div class="price-container__block-bot">
+                                    <div class="price-container__price"><?php if($price_week) { echo $price_week; } else { echo $price; } ?></div>
+                                </div>
+                            </div>
+                            <div class="price-container__block">
+                                <div class="price-container__block-top price-container__block-green">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar.svg">
+                                    <div class="price-container__block-text">1 <?php _e('month', 'prokkat'); ?></div>
+                                </div>
+                                <div class="price-container__block-bot">
+                                    <div class="price-container__price"><?php if($price_more) { echo $price_more; } else { echo $price; } ?></div>
+                                </div>
+                            </div>
+                            <div class="price-container__block nomargin">
+                                <div class="price-container__block-top price-container__block-red">
+                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/protection.svg">
+                                    <div class="price-container__block-text"><?php _e('Deposit', 'prokkat'); ?></div>
+                                </div>
+                                <div class="price-container__block-bot">
+                                    <div class="price-container__price"><?php echo get_post_meta( $post->ID, 'cc_price_deposit', true ); ?></div>
+                                </div>
+                            </div>
+                        </div>
+			        <?php } else { ?>
+                        <div class="contact-ad__container nomargin"><?php echo price_output(); ?></div>
+			        <?php } ?>
+
+                    <div class="contact-ad__container">
+                        <div class="author-side__name">
+                            <img class="contact-ad__author-photo" src="<?php echo $ava; ?>" />
+                            <div class="contact-ad__author-text">
+                                <a href="<?php echo get_author_posts_url($author_id);?>"><?php echo the_author_meta('nickname');?></a>
+                                <span class="date_registered">Дата регистрации: <?php echo $date_registered;?></span>
+                                <span>
+                                    <a class="single__state" data-state="<?php echo $state; ?>"></a>
+                                    <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="advert__tags advert__tags_grid">
-                        <h3 class="advert__tags-title"><?php _e('Category', 'prokkat'); ?></h3>
-                        <?php
-                                $term = end($terms);
-                                $pll_term_id = pll_get_term($term->term_id);
-                                if($pll_term_id == false || $pll_term_id == $term->term_id) {
-                                    echo '<a href="'.esc_url( get_term_link( $term->term_id )) .'">'.$term->name.'</a>';
-                                } else {
-                                    $term = get_term($pll_term_id, CUSTOM_CAT_TYPE);
-                                    $name = $term->name;
-                                    echo '<a href="'.esc_url( get_term_link( $pll_term_id)) .'">'.$name.'</a>';
-                                }
-                        ?>
-                    </div>
-					<div class="advert__tags advert__tags_grid">
-                        <h3 class="advert__tags-title"><?php _e('Added', 'prokkat') ?></h3>
-						<span class="advert_bot-text"><?php the_time(); ?>, </span>
-						<span class="advert_bot-text"><?php the_date(); ?></span>
-                    </div>
-                    <div class="advert__tags advert__tags_grid">
-					
-					<?php if( $author_id != $user_ID ) cc_setPostViews(get_the_ID());advert_bot-text ?>
-					
-                        <h3 class="advert__tags-title"><?php _e('Views: ', 'prokkat'); ?></h3>
-                        <span class="advert_bot-text"><?php echo cc_getPostViews(get_the_ID()); ?></span>
+
+			        <?php if ($author_id != $user_ID) : ?>
+                        <a href="#write">
+                            <a class="contact__write fancybox-send-msg" href="#send-msg">
+                                <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
+                                <input type="hidden" id="user_id" value="<?php echo $user_ID; ?>">
+                                <input type="hidden" id="user_name" value="<?php echo $current_user->nickname; ?>">
+                                <i class="fas fa-envelope" style="color: white; padding-right: 15px"></i>
+                                <span class="contact__text"><?php _e('Ask the manufacturer', 'prokkat'); ?></span>
+                            </a>
+                        </a>
+			        <?php endif ?>
+
+			        <?php if ( $phone ) : ?>
+                        <div class="tel">
+                            <div class="phone-container">
+                                <i class="fas fa-phone" style="padding-right: 15px"></i>
+                                <a>
+                                    <span id="tel<?php echo $post->ID; ?>" class="nuber-tel nuber-tel_big"></span>
+                                </a>
+                                <span id="phonenumhid" style="display:none"><?php echo $phone; ?></span>
+                            </div>
+                            <a href="#callFeedback" class="btn btn_view fancybox-feedback" style="text-decoration: underline;
+" id="viewbtn2" ><?php _e('Show', 'prokkat'); ?></a>
+                        </div>
+			        <?php endif; ?>
+
+                </div>
+                <div class="maps-wrp">
+                    <div id='address_list' style="padding: 25px 25px 0 25px"></div>
+                    <input id="cc_address_list" type="hidden" value='<?php echo get_post_meta($post->ID, 'cc_address_list', true); ?>' />
+                    <div class="maps">
+                        <div id="map_canvas" style="height: 250px;"></div>
                     </div>
                 </div>
+            </div>
+
+            <div class="advert__tags">
+                <div class="advert__tags advert__tags_grid">
+                    <h3 class="advert__tags-title"><?php _e('State', 'prokkat') ?></h3>
+                    <div class="single__state" data-state="<?php echo $state; ?>"></div>
+                </div>
+                <div class="advert__tags advert__tags_grid">
+                    <h3 class="advert__tags-title"><?php _e('Category', 'prokkat'); ?></h3>
+			        <?php
+			        $term = end($terms);
+			        $pll_term_id = pll_get_term($term->term_id);
+			        if($pll_term_id == false || $pll_term_id == $term->term_id) {
+				        echo '<a href="'.esc_url( get_term_link( $term->term_id )) .'">'.$term->name.'</a>';
+			        } else {
+				        $term = get_term($pll_term_id, CUSTOM_CAT_TYPE);
+				        $name = $term->name;
+				        echo '<a href="'.esc_url( get_term_link( $pll_term_id)) .'">'.$name.'</a>';
+			        }
+			        ?>
+                </div>
+                <div class="advert__tags advert__tags_grid">
+                    <h3 class="advert__tags-title"><?php _e('Added', 'prokkat') ?></h3>
+                    <span class="advert_bot-text"><?php the_time(); ?>, </span>
+                    <span class="advert_bot-text"><?php the_date(); ?></span>
+                </div>
+                <div class="advert__tags advert__tags_grid">
+
+			        <?php if( $author_id != $user_ID ) cc_setPostViews(get_the_ID());advert_bot-text ?>
+
+                    <h3 class="advert__tags-title"><?php _e('Views: ', 'prokkat'); ?></h3>
+                    <span class="advert_bot-text"><?php echo cc_getPostViews(get_the_ID()); ?></span>
+                </div>
+            </div>
+
+
                 <div class="advert__descr">
                     <h3><?php _e('Description', 'prokkat'); ?></h3>
                     <?php the_content(); ?>
@@ -232,100 +334,6 @@
                     <?php include_once( get_stylesheet_directory() . '/sweet_leads.php'); ?>
                 </div>
 				<?php endif; ?>
-                    <div class="info">
-                    <div class="contact-info">
-                    <?php if( get_post_meta( $post->ID, 'cc_price', true )) { ?>
-                    <div class="price-container">
-                    <?php 
-                        $price = get_post_meta( $post->ID, 'cc_price', true );
-                        $price_week = get_post_meta( $post->ID, 'cc_price_week', true );
-                        $price_more = get_post_meta( $post->ID, 'cc_price_more', true );
-                    ?>
-                        <div class="price-container__block">
-                            <div class="price-container__block-top price-container__block-green">
-                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar.svg">
-                                <div class="price-container__block-text">1 <?php _e('day', 'prokkat'); ?></div>
-                            </div>
-                            <div class="price-container__block-bot">
-                                <div class="price-container__price"><?php echo $price; ?></div>
-                            </div>
-                        </div>
-                        <div class="price-container__block">
-                            <div class="price-container__block-top price-container__block-green">
-                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar.svg">
-                                <div class="price-container__block-text">7 <?php _e('days', 'prokkat'); ?></div>
-                            </div>
-                            <div class="price-container__block-bot">
-                                <div class="price-container__price"><?php if($price_week) { echo $price_week; } else { echo $price; } ?></div>
-                            </div>
-                        </div>
-                        <div class="price-container__block">
-                            <div class="price-container__block-top price-container__block-green">
-                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar.svg">
-                                <div class="price-container__block-text">1 <?php _e('month', 'prokkat'); ?></div>
-                            </div>
-                            <div class="price-container__block-bot">
-                                <div class="price-container__price"><?php if($price_more) { echo $price_more; } else { echo $price; } ?></div>
-                            </div>
-                        </div>
-                        <div class="price-container__block nomargin">
-                            <div class="price-container__block-top price-container__block-red">
-                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/protection.svg">
-                                <div class="price-container__block-text"><?php _e('Deposit', 'prokkat'); ?></div>
-                            </div>
-                            <div class="price-container__block-bot">
-                                <div class="price-container__price"><?php echo get_post_meta( $post->ID, 'cc_price_deposit', true ); ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } else { ?>
-                    <div class="contact-ad__container nomargin"><?php echo price_output(); ?></div>
-                    <?php } ?>
-
-                    <div class="contact-ad__container">
-                        <div class="author-side__name">
-                            <img class="contact-ad__author-photo" src="<?php echo $ava; ?>" />
-			    <div class="contact-ad__author-text">
-				<a href="<?php echo get_author_posts_url($author_id);?>"><?php echo the_author_meta('nickname');?></a>
-                <span class="date_registered">Дата регистрации: <?php echo $date_registered;?></span>
-                                <a class="single__state" data-state="<?php echo $state; ?>"></a>
-                                <a style="font-weight: lighter; font-size: 14px; color:#63666c;">(512)</a>
-                            </div>
-                        </div>
-                    </div>
-				
-					<?php if ( $phone ) : ?>
-                    <div class="tel">
-                        <div class="phone-container">
-                            <img class="tel-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/img/call-answer-black.svg" />
-                            <a>
-                                <span id="tel<?php echo $post->ID; ?>" class="nuber-tel nuber-tel_big"></span>
-                            </a>
-                            <span id="phonenumhid" style="display:none"><?php echo $phone; ?></span>
-                        </div>
-                        <a href="#callFeedback" class="btn btn_view fancybox-feedback" id="viewbtn2" ><?php _e('Show', 'prokkat'); ?></a>
-                    </div>
-					<?php endif; ?>
-                    <?php if ($author_id != $user_ID) : ?>
-                        <a href="#write">
-                            <a class="contact__write fancybox-send-msg" href="#send-msg">
-                                <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
-                                <input type="hidden" id="user_id" value="<?php echo $user_ID; ?>">
-                                <input type="hidden" id="user_name" value="<?php echo $current_user->nickname; ?>">
-                                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/speech-bubbles.svg" class="tel-icon" />
-                                <span class="contact__text"><?php _e('Ask the manufacturer', 'prokkat'); ?></span>
-                            </a>
-                        </a>
-                    <?php endif ?>
-                    </div>
-                    <div class="maps-wrp">
-		<div id='address_list' style="padding: 25px 25px 0 25px"></div>
-		<input id="cc_address_list" type="hidden" value='<?php echo get_post_meta($post->ID, 'cc_address_list', true); ?>' />
-                    <div class="maps">
-			<div id="map_canvas" style="height: 250px;"></div>
-                        </div>
-                    </div>
-                    </div>
 
         </div>
     </div>
@@ -343,7 +351,7 @@
   if (have_posts()) : while (have_posts()) { the_post(); $count++; }
   if ( $count > 1 ) :
 ?>
-<section class="carousel-products padding-top">
+<section class="carousel-products padding-top" style="background-color: #f4f6f9;">
     <div class="container">
         <div class="group-product group-product_grid">
             <h3 class="group-product__title"><?php _e('Other ads from this manufacturer', 'prokkat'); ?></h3>

@@ -2434,6 +2434,9 @@ msgstr "RentHUB - это открытая платформа, которая с�
 msgid "How it is working?"
 msgstr "Как это работает?"
 
+msgid "How we are working?"
+msgstr "Как мы работаем?"
+
 msgid "visitors everyday"
 msgstr "посетителей ежедневно"
 

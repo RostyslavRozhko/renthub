@@ -690,8 +690,8 @@ padding: 0 30px;
 .group-product__title {
   font-size: 36px;
   text-align: left;
-  color: #0a0f19;
   font-weight: bold;
+  color: #0a0f19;
   margin: 0;
 }
 
@@ -4283,7 +4283,7 @@ label.error {
   display: grid;
   grid-template-columns: 65% 33%;
   grid-column-gap: 2%;
-  grid-template-areas: 
+  grid-template-areas:
     "title  title"
     "image info"
     "stat info"
@@ -4306,6 +4306,9 @@ label.error {
 
 .advert__descr {
   grid-area: description;
+  border-style: solid;
+  border-color: #e6e6e6;
+  border-top-width: 1px;
 }
 
 .soc-wrap {
@@ -4708,13 +4711,14 @@ label.error {
     display: none;
   }
 
-  .nuber-tel, .contact__text {
+  .nuber-tel .contact__text{
     font-size: 18px;
   }
 
   .aside_grid {
     width: 40%;
   }
+
 }
 
 @media (max-width: 700px) {
@@ -4739,12 +4743,17 @@ label.error {
 }
 
 @media (max-width: 480px) {
-  .group-product__title {
-    font-size: 16px;
+
+  .author-side__name {
+    padding: 0 10px;
   }
 
-  .group-product__title-link {
-    font-size: 12px;
+  .contact__text {
+    font-size: 15px;
+  }
+
+  .group-product__title {
+    font-size: 18px;
   }
 
 	.maincat__subs-list {
@@ -4984,7 +4993,7 @@ label.error {
   .container {
     padding: 0 20px;
     padding-bottom: 30px;
-    border-bottom: solid 1px #e6e6e6;
+    /*border-bottom: solid 1px #e6e6e6;*/
   }
 
   .call-feedback__buttons button {
@@ -5177,9 +5186,15 @@ label.error {
     width: 50%;
     padding: 0 15px;
   }
+
+  .filters-values__item {
+    display: block;
+    padding: 10px 10px 10px 0px;
+  }
+
   .filters-values__item__name, .filters-values__item__value {
-    height: 55px;
-    line-height: 20px;
+    height: 30px;
+    line-height: 30px;
   }
 
   .bot-nav .logo {
@@ -5217,9 +5232,9 @@ label.error {
       "title"
       "image"
       "info"
+      "stat"
       "description"
       "filters-values"
-      "stat"      
       "social"
   }
 
@@ -5297,6 +5312,7 @@ label.error {
     font-weight: 100;
     font-size: 14px;
     padding: 5px 0;
+    color: #63666c;
 }
 .infowindow__name {
     position: absolute;

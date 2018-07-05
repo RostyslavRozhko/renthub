@@ -92,7 +92,7 @@
                         <div class="dropopen">
                             <?php
                                 $ava = get_the_author_meta( 'user_avatar', get_current_user_id() );
-                                if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png';
+                                if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
                             ?>
                             <img class="header__user-image dropopen_link" id="dashDrop" src="<?php echo $ava; ?>" />
                              
