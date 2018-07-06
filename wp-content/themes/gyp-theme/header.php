@@ -86,7 +86,7 @@
                     <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
                     <?php if (!is_user_logged_in()) : ?>                
-                        <a href="<?php echo site_url('login'); ?>" class="login__item login__item__grey"><i style="line-height: inherit; font-size: 1.3em" class="fa fa-user" aria-hidden="true"></i></a>
+                        <a href="<?php echo site_url('login'); ?>" class="login__item login__item__grey"><i style="line-height: inherit; font-size: 1.4em" class="fa fa-user" aria-hidden="true"></i></a>
                         
 						<?php  else: ?>
 						    

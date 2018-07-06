@@ -245,7 +245,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 
 <section class="cities-section">
     <div class="container">
-        <div class="cities-section-title"><?php _e('Ukraine cities', 'prokkat'); ?></div>
+        <div class="cities-section-title"><?php _e('Rent', 'prokkat') ?></div>
         <?php
             wp_nav_menu( array( 
                 'theme_location' => 'cities_menu',
