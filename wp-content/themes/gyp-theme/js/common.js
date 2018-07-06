@@ -693,7 +693,7 @@ jQuery(document).ready(function () {
 
     $('.filters__title-mobile , .button_filter_circle , .button_filter').click(function() {
         if($('.filters__container').css('display') == 'none'){
-            $('.filters__containeri , .save-btn').show()
+            $('.filters__container , .save-btn').show()
         } else {
             $('.filters__container , .save-btn').hide()
         }
