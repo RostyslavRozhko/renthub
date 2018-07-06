@@ -38,7 +38,7 @@
     }
     
     $category = array_map('intval', explode(',', $posted['cc_category']));
-    $post_title = create_title($_POST['manufacturer_id'], $_POST['manufacturer'], $_POST['model']);
+    $post_title = create_title($_POST['cat'], $_POST['manufacturer'], $_POST['model']);
 
     //$post_status = "pending";
     $post_status = "publish";
