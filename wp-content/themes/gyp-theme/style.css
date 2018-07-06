@@ -4899,6 +4899,7 @@ label.error {
     display: unset;
   }
   .text_btn {
+    font-weight: bold;
     color: black;
     line-height: 50px;
     text-align: center;
