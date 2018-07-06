@@ -85,7 +85,7 @@ if ($errors && sizeof($errors) > 0 && $errors->get_error_code()) {
                 }
             }
 
-			$post_title = create_title($_POST['manufacturer_id'], $_POST['manufacturer'], $_POST['model']);
+			$post_title = create_title($_POST['cat'], $_POST['manufacturer'], $_POST['model']);
 
             ## Create Post
             $category = array_map('intval', explode(',', $posted['cc_category']));

@@ -105,7 +105,7 @@
                                 echo '
                                     <div class="header_switcher">
                                          <div class="header__category__btn">
-                                            <button class="header__category__btn" type="button" onclick="window.location=\''.get_term_link( $termId, $taxonomyName ).' \'">
+                                            <button class="header__category__btn" type="button">
                                                 <div class="header__category__text-container">
                                                     <img style="padding: 0 15px" class="header__category__text-container-img" src="'. get_wp_term_image($termId) .'">
                                                     <b>'.esc_html($category->name).'</b>
