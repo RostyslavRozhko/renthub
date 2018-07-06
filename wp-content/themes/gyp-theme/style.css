@@ -547,11 +547,7 @@ padding: 0 30px;
   background-color: #3c4457;
   color: #ffffff;
   margin-left: 10px;
-<<<<<<< HEAD
-  padding: 0 18px;
-=======
   padding: 0 16.5px;
->>>>>>> 1befaeaf642eb10ba7c28920fdd0cabbb5415345
   border-radius: 50%;
 }
 
@@ -3991,6 +3987,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .advert__descr p {
+  color: #63666c;
   word-wrap: break-word;
 }
 
@@ -4793,6 +4790,11 @@ label.error {
 }
 
 @media (max-width: 480px) {
+
+  .advert__tags {
+    margin-top: 0;
+  }
+
   .hrn , .day {
     margin-left: 35px;
   }
@@ -4946,11 +4948,7 @@ label.error {
 	  overflow: hidden;
 	}
   .login-top {
-<<<<<<< HEAD
-    padding: 0 14px;
-=======
     padding: 0 16.5px;
->>>>>>> 1befaeaf642eb10ba7c28920fdd0cabbb5415345
     border-radius: 50%
   }
 
@@ -5484,6 +5482,8 @@ label.error {
   .advert__tags_grid {
     width: 50%;
     padding: 0 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 
   .filters-values__item {
