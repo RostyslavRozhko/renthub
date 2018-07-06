@@ -1156,9 +1156,13 @@ padding: 0 30px;
   font-size: 14px;
   text-align: left;
   color: #ffffff;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   font-weight: 300;
   padding: 0;
+}
+
+.footer__column-text {
+  margin-bottom: 20px;
 }
 
 .bold {
@@ -4793,6 +4797,10 @@ label.error {
 
   .advert__tags {
     margin-top: 0;
+  }
+
+  .footer_padding {
+    padding-top: 0;
   }
 
   .hrn , .day {
