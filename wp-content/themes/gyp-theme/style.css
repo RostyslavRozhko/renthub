@@ -547,7 +547,7 @@ padding: 0 30px;
   background-color: #3c4457;
   color: #ffffff;
   margin-left: 10px;
-  padding: 0 15px;
+  padding: 0 16.5px;
   border-radius: 50%;
 }
 
@@ -4917,7 +4917,7 @@ label.error {
 	  overflow: hidden;
 	}
   .login-top {
-    padding: 0 15px;
+    padding: 0 16.5px;
     border-radius: 50%
   }
 
@@ -5045,7 +5045,7 @@ label.error {
 
   #new-ad-button {
     display: block !important;
-    padding-top: 14px;
+    padding-top: 15px;
   }
 
   .map {
@@ -5189,6 +5189,9 @@ label.error {
   }
   .search-list__desc, .search-list__button__grey, .search-list__button__yellow, .filters__container, .filters__title {
     display: none;
+  }
+  .supsystic-social-sharing .sharer-flat.sharer-flat-6, .supsystic-social-sharing .sharer-flat.sharer-flat-7, .supsystic-social-sharing .sharer-flat.sharer-flat-8, .supsystic-social-sharing .sharer-flat.sharer-flat-9 {
+    width: 6.5em!important;
   }
 
   .filters__title-mobile {
