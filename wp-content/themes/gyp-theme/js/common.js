@@ -691,7 +691,7 @@ jQuery(document).ready(function () {
         $('#post_id').val(button.find('input[name="post_id"]').val())
     })
 
-    $('.filters__title-mobile , .button_filter_circlei , .button_filter').click(function() {
+    $('.filters__title-mobile , .button_filter_circle , .button_filter').click(function() {
         if($('.filters__container').css('display') == 'none'){
             $('.filters__containeri , .save-btn').show()
         } else {
