@@ -681,7 +681,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         ),
         'main_img_caption' => __('Main image', 'prokkat'),
         'make_main_text' => __( 'Make the main', 'prokkat' ),
-		'no-avatar' => get_stylesheet_directory_uri() .'/img/no-avatar.png',
+		'no-avatar' => get_stylesheet_directory_uri() .'/img/no-avatar.svg',
     );
     ?>
     <script type="text/javascript">

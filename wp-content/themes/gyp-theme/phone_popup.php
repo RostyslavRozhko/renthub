@@ -1,6 +1,6 @@
 <?php 
     $ava = get_the_author_meta('user_avatar', $author_id);
-    if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png';
+    if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
     $city = get_the_author_meta('city_name', $author_id);
     $city = explode("," , $city);
 ?>

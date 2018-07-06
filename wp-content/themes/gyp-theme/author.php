@@ -14,7 +14,7 @@
 	$skype = get_the_author_meta('skype', $curauth->ID);
 	$awards = get_the_author_meta( 'awards', $curauth->ID );
 	$ava = get_the_author_meta( 'user_avatar', $curauth->ID );
-	if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.png';
+	if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
    
     get_header();
 ?>

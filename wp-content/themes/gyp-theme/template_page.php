@@ -47,7 +47,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
     </div>
 </section>
 <section class="cat-section">
-    <div class="container">
+    <div class="container no-border">
         <div class="group-product group-product_top group-product_grid">
             <div class="group-product__title-container">
                 <h3 class="group-product__title"><?php echo __('New ads', 'prokkat'); ?> <?php echo ' ' . $city_name; ?></h3>
@@ -62,7 +62,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 					<?php
                         query_posts(array(
                         'post_type' => POST_TYPE,
-                        'showposts' => 10,
+                        'showposts' => 12,
                         'orderby' => 'date',
                         'meta_query' => array(
                             array(
@@ -177,7 +177,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
             <div class="info-section__title"><?php _e('How it is working?', 'prokkat') ?></div>
             <div class="info-section__text"><?php _e('RentHUB is', 'prokkat') ?></div>
             <div class="info-section__link-container">
-                <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
+                <a href="<?php echo site_url('new/'); ?>" class="login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
                   <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>
                   <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
@@ -214,18 +214,18 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                 ?>
             </div>
         </div>
-        <div class="container">
+        <div class="container no-border">
         <div class="info-section__title bottom-text"><?php _e('Rent', 'prokkat') ?></div>
             <div class="footer-text">
                 <p>
-                Рады приветствовать вас на главном портале аренды техники и вещей в Украине. Наш портал предлагает вам размещать объявления о прокате и аренде различной техники в любой точке Украины. ГУП - это аренда всего, от коляски, авто, бура на перфоратор до комбайна.
+                Рады приветствовать вас на главном портале аренды техники и вещей в Украине. Наш портал предлагает вам размещать объявления о прокате и аренде различной техники в любой точке Украины. ГУП - это аренда всего, от коляски, авто, бура, перфоратора до комбайна.
                 </p>
                 <p>
                 "Главный Украинский Прокат" помогает своим клиентам экономить, поскольку аренда спецтехники в Украине будет всегда оправданной. Содержание собственного инструмента далеко не всем по карману, а необходимость в строительной технике растет постоянно.
 Большинство компаний, предлагающих услуги по аренде строительной техники в Украине берут непомерно большую цену, предоставляя при этом не проверенное, старое оборудование, у нас на портале вы сможете самостоятельно выбрать инструмент в качестве и количестве которое вам необходимо.
                 </p>
                 <p>
-                Как мы работаем?
+                <div class="info-section__title bottom-text"><?php _e('How we are working?', 'prokkat') ?></div>
                 </p>
                 <p>
                 Если вы компания которая сдает инструмент в аренду, то вам необходимо зарегистрироваться, при этом указав цену, состояние и местоположение инструмента (спецтехники), который вы сдаете в аренду. После этого ждете звонков или заявок с сайта на прокат строительной техники по территории Украины.
@@ -235,10 +235,10 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                 </p>
                 <p>
                 Для удобства мы создали для вас множество категорий инструмента и спецтехники, с помощью которых вы сможете выбрать именно тот инструмент, который вам нужен, а именно:
-Аренда Виброплиты
-Аренда Вибротрамбовки
-Аренда дорожного катка
-Аренда клинингового оборудования
+Аренда виброплиты,
+Аренда вибротрамбовки,
+Аренда дорожного катка,
+Аренда клинингового оборудования.
                 </p>
             </div>
         </div>
@@ -246,7 +246,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 
 <section class="cities-section">
     <div class="container">
-        <div class="cities-section-title"><?php _e('Ukraine cities', 'prokkat'); ?></div>
+        <div class="cities-section-title"><?php _e('Rent', 'prokkat') ?></div>
         <?php
             wp_nav_menu( array( 
                 'theme_location' => 'cities_menu',

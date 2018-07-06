@@ -115,6 +115,7 @@
                                         </div>
                                         <div class="back__white"></div>
                                         <div class="header__category__right hide">
+                                            <div class="header__category__shadow">
                                             <div class="header__category__topbar">
 						                                <img class="close-categories" src="'.get_stylesheet_directory_uri().'/img/cross-out.svg" >
                                                 <a href="'.get_term_link( $termId, $taxonomyName ).'">Все объявления в <b>'.esc_html($category->name).'</b></a>
@@ -128,6 +129,7 @@
                                                         echo '
                                                             <a class="header__category-list__item" href="'.get_term_link( $child, $taxonomyName ).'">'.$term->name.'</a>';
                                                     } ?>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>

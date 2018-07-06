@@ -2510,6 +2510,9 @@ msgstr "RentHUB - це відкрита платформа, яка спеціа�
 msgid "How it is working?"
 msgstr "Як це працює?"
 
+msgid "How we are working?"
+msgstr "Як ми працюємо?"
+
 msgid "visitors everyday"
 msgstr "відвідувачів щодня"
 
