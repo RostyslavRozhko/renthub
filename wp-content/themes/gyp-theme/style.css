@@ -4911,9 +4911,9 @@ label.error {
   .show_phone:hover {
     text-decoration: none;
   }
-  .footer__left {
+  /*.footer__left {
     display: none;
-  }
+  }*/
   .text_ads {
     width: 130px;
     height: 13px;
