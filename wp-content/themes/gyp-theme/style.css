@@ -547,7 +547,7 @@ padding: 0 30px;
   background-color: #3c4457;
   color: #ffffff;
   margin-left: 10px;
-  padding: 0 15px;
+  padding: 0 18px;
   border-radius: 50%;
 }
 
@@ -4766,6 +4766,10 @@ label.error {
 }
 
 @media (max-width: 480px) {
+  .hrn , .day {
+    margin-left: 35px;
+  }
+
   html {
     margin-top: 0px !important;
   }
@@ -4917,7 +4921,7 @@ label.error {
 	  overflow: hidden;
 	}
   .login-top {
-    padding: 0 15px;
+    padding: 0 14px;
     border-radius: 50%
   }
 
@@ -4953,7 +4957,7 @@ label.error {
 
   /*.product-item__img {*/
     /*width: 80px;*/
-    /*height: 80px;*/
+    /*height: 216px;*/
   /*}*/
 
   .wrap-carousel .gallery-item {
