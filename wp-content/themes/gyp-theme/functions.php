@@ -30,6 +30,7 @@ add_action('init','add_cors_http_header');
 
   function theme_enqueue_styles()
   {
+    show_admin_bar(false);
 	$scriptsrc = get_stylesheet_directory_uri() . '/js/';
     $libsrc = get_stylesheet_directory_uri() . '/libs/';
 	
@@ -693,7 +694,7 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
   
 /*Upload img to amazon*/
 	function upload_amazon($file_path,$file_name) {
-	$accessKey = 'AKIAJRPSL3LGIFILFIYA';
+	      $accessKey = 'AKIAJRPSL3LGIFILFIYA';
         $secretKey = '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';
         $s3 = new S3($accessKey, $secretKey);
         $bucket = S3::listBuckets()[0];
@@ -756,13 +757,13 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
 	}
     else {
-	  $img_url_515 = get_thumb($status['url'], 515, 515);
-	  $img_url_145 = get_thumb($status['url'], 145, 86);
+  	  $img_url_515 = get_thumb($status['url'], 515, 515);
+  	  $img_url_145 = get_thumb($status['url'], 145, 86);
       $img_img_515 = basename($img_url_515);
       $img_img_145 = basename($img_url_145);
       $upload_dir = (object) wp_upload_dir($time);
       $path_img_145 = $upload_dir->path.'/' . $img_img_145;
-	  $path_img_515 = $upload_dir->path.'/' . $img_img_515;
+  	  $path_img_515 = $upload_dir->path.'/' . $img_img_515;
       upload_amazon ($path_img_145 , $img_img_145);
       upload_amazon ($path_img_515 , $img_img_515);
 	}
@@ -1222,6 +1223,7 @@ add_action('wp_ajax_nopriv_activate_account', 'activate_account' );
         'title' => get_the_title($id),
         'img' => ad_thumbnail_url($id),
         'link' => get_permalink($id),
+        'state' => $state,
         'address' => $address,
         'name' => $name,
         'price' => price_output($id),
@@ -1320,7 +1322,7 @@ function pll_title($post_id=false) {
   }
   
     if( get_post_meta( $post_id, 'cc_price', true )) {
-      $output = get_post_meta( $post_id, 'cc_price', true ) . ' грн / день';
+      $output = get_post_meta( $post_id, 'cc_price', true ) . '&nbsp;<span class="hrn">грн</span><span class="day">день</span>';
     }
     else {
       $output = __('Price by agreement', 'prokkat');
@@ -1737,16 +1739,16 @@ function pll_title($post_id=false) {
           $town = explode("," , $data['results'][0]['formatted_address']);
           $type = implode(' ' , $data['results'][0]['address_components'][0]['types']);
           if ($data['results'][0]['address_components'][2]['long_name'] == 'Київ' || $data['results'][0]['address_component'][2] == 'Киев'){
-            return $town[0].'<br>'. $town[1];
+            return '<span class="town_ad">'.$town[1].',</span>'. $town[0].'</span>';
           }
           if (($data['results'][0]['address_components'][2]['long_name'] != 'Київ' || $data['results'][0]['address_component'][2] != 'Киев') &&  $type != 'route' && $type != 'premise') {
-            return $town[0].'&nbsp;'. $town[1] . '<br>' . $town[2];
+            return '<span class="town_ad">'.$town[2].',</span><span class="street">'. $town[0] . ' ' . $town[1].'</span>';
           }
           if($type == 'route'){
-            return $town[0].'<br>'. $town[1];
+            return '<span class="town_ad">'.$town[1].',</span><span class="street">'. $town[0].'</span>';
           }
           if($type == 'premise'){
-            return $town[1] . ' , ' . $town[2] . '<br>' . $town[3];
+            return '<span class="town_ad">'.$town[3] . ',</span><span class="street">' . $town[2] . '  ' . $town[3].'</span>';
           }
         }
     }
@@ -1771,4 +1773,11 @@ update_option( 'admin_email', $value );
 add_action( 'add_option_new_admin_email', 'wpdocs_update_option_new_admin_email', 10, 2 );
 add_action( 'update_option_new_admin_email', 'wpdocs_update_option_new_admin_email', 10, 2 );
 
+function debug ($parameters){
+    return '<pre>' . print_r($parameters , true) . '</pre>';
+}
+
+function get_tel($author_id){
+    return get_the_author_meta('phone' , $author_id);
+}
 ?>

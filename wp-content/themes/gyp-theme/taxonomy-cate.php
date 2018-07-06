@@ -221,7 +221,7 @@
 <div style="position: relative">
 <?php
       if ($the_query->have_posts()) :   ?>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDumu-d4N1FXsPcewuVrm4C5y-IZ3eg-5M&libraries=places&language=ru" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=ru" type="text/javascript"></script>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
           <script>
               function initMap() {
@@ -239,6 +239,8 @@
 
                       const data = <?php echo json_encode(getSearchResults($the_query->posts)); ?>;
 
+                      console.log(data);
+
                       let prevWindow;
 
                       var markers = [];
@@ -252,11 +254,21 @@
                           <div class="infowindow__container">
                             <img src="${data[i].img}" class="infowindow__img">
                             <div class="infowindow__text-container">
-                              <div class="infowindow__title">${data[i].title}</div>
+                              <a href="${data[i].link}" class="infowindow__details"><div class="infowindow__title">${data[i].title}</div></a>
                               <div class="infowindow__price">${data[i].price}</div>
                               <div class="infowindow__name">${data[i].name}</div>
                               <div class="infowindow__address">${data[i].address}</div>
-                              <a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></a>
+                              <div class="stars">
+                              <a class="single__state" data-state="${data[i].state}">
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                              </a>
+                                <a style="font-weight: lighter; font-size: 11px; color:#63666c;top: -2px;position: relative;">(512)</a>
+                              </div>
+                              <!--<a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></a>-->
                               <a class="search-list__button search-list__button__grey fancybox-send-msg" id="mess_author" href="#send-msg">
                                 <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
                                 <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
@@ -354,7 +366,7 @@
 
 <div class="container">
 
-<div class="breadcrumbs breadcrumbs-cat">
+<div class="breadcrumbs breadcrumbs-cat hide_bread">
     <a href="<?php echo site_url(); ?>">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/house.svg" >
     </a>
@@ -363,8 +375,18 @@
       <a href="<?php echo esc_url( get_term_link( $current_id ))?>"><?php echo get_term($current_id)->name ?></a>
     <?php endif; ?>
   </div>
-
-  <div class="active-title"><span><?php single_cat_title(); ?></span><span class="items-count"> <?php $count = get_cate_count($current_id, $main_cat); if($count) { echo '('.$count.')'; } ?></span></div>
+  <div class="active-title">
+  <?php if (!$main_cat){?>
+      <a href="<?php echo esc_url( get_term_link( $parent ))?>" class="link_parent">
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg" class="back_parent">
+  </a><?php }?>
+      <span class="cate_name"><?php single_cat_title(); ?></span>
+      <span class="items-count"> <?php $count = get_cate_count($current_id, $main_cat); if($count) { echo '('.$count.')'; } ?></span>
+  <?php if (!$main_cat){?>
+  <div class="button_filter_circle">
+      <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/filter.png" class="icon_filter_circle">
+  </div><?php }?>
+  </div>
   <div class="container-results">
     <?php if(!$main_cat && $filters) : ?>
       <div class="menu-cat_grid">
@@ -463,7 +485,7 @@
       <?php
       if($main_cat) { 
         ?>
-          <div class="search-list__container"> 
+          <div class="search-list__container">
             <div class="search-list__results">  
               <?php 
                 $categories = get_categories(array(
@@ -506,8 +528,8 @@
       if ($the_query->have_posts()) :   ?>
         <div style="position:relative">
           <div class="map" id="search-map"></div>
-          <div class="hide-map hide"><?php _e('Hide map', 'prokkat'); ?></div>
-          <div class="show-map"><?php _e('Show map', 'prokkat'); ?></div>
+          <div class="hide-map hide">Аренда&nbsp;<?php echo single_cat_title();?></div>
+          <div class="show-map">Аренда&nbsp;<?php echo single_cat_title();?></div>
         </div>
 
           <div class="search-list__container">
@@ -525,8 +547,9 @@
                 <div class="cats__city-title"><?php _e('City', 'prokkat'); ?>: </div>
                 <a href="" class="cats__city-name"><?php if($address) { echo $address; } else { echo __('All Ukraine', 'prokkat'); } ?></a>
               </div>
-            </div>  
-            <div class="search-list__results">            
+            </div>
+            <div class="search-list__results">
+            <div class="button_filter"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/filter.png" class="icon_filter_button">Фильтры</div>            
           <?php 
             while ($the_query->have_posts()) : 
               $arr[] = $the_query->the_post();
@@ -547,13 +570,19 @@
               </a>
             </div>
             <div class="search-list__title">
-              <a href="<?php the_permalink() ?>"><?php echo pll_title($post_id); ?></a>
+              <a href="<?php the_permalink() ?>"><?php echo mb_strtoupper(pll_title($post_id)); ?></a>
               <div class="search-list__desc"><?php echo content_excerpt(); ?></div>
               <div class="search-list__title-city">
                 <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >
               </div>
             </div>
             <div class="town"><?php echo $get_address;?></div>
+            <div class="search-list__price-container">
+              <div class="search-list__price">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
+                <?php echo price_output($post_id); ?>
+              </div>
+            </div>
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
               <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
@@ -626,15 +655,6 @@
 	  
 	</div>
 </div>
-<section>
-<div class="container">
-  <div class="cities-section-title"><?php _e('Rent and rent', 'prokkat'); echo ' ' . $term_name; ?></div>
-            <div class="footer-text">
-              <p>
-                <?php echo get_field('text', CUSTOM_CAT_TYPE . '_'.$current_id); ?>
-              </p>
-            </div>
-</section>
 
 <?php 
 include_once('phone_popup.php');

@@ -729,11 +729,11 @@ jQuery(document).ready(function () {
         $('#post_id').val(button.find('input[name="post_id"]').val())
     })
 
-    $('.filters__title-mobile').click(function() {
+    $('.filters__title-mobile , .button_filter_circle , .button_filter').click(function() {
         if($('.filters__container').css('display') == 'none'){
-            $('.filters__container').show()
+            $('.filters__container , .save-btn').show()
         } else {
-            $('.filters__container').hide()
+            $('.filters__container , .save-btn').hide()
         }
     })
 
