@@ -547,7 +547,7 @@ padding: 0 30px;
   background-color: #3c4457;
   color: #ffffff;
   margin-left: 10px;
-  padding: 0 18px;
+  padding: 0 15px;
   border-radius: 50%;
 }
 
@@ -4917,7 +4917,7 @@ label.error {
 	  overflow: hidden;
 	}
   .login-top {
-    padding: 0 14px;
+    padding: 0 15px;
     border-radius: 50%
   }
 
@@ -4953,7 +4953,7 @@ label.error {
 
   /*.product-item__img {*/
     /*width: 80px;*/
-    /*height: 216px;*/
+    /*height: 80px;*/
   /*}*/
 
   .wrap-carousel .gallery-item {
