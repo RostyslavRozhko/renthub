@@ -24,7 +24,7 @@
         $children = array();
 
         $address = isset( $_REQUEST['address'] ) ? stripslashes( $_REQUEST['address'] ) : '';
-        $search_text = $s_for ? '"' . $s_for . '" ' : '';
+        $search_text = $s_for ? '' . $s_for . '' : '';
         $search_header =  __('Search result: ', 'prokkat') . $search_text;
 
         $limit = get_option('posts_per_page');
@@ -166,11 +166,21 @@
                           <div class="infowindow__container">
                             <img src="${data[i].img}" class="infowindow__img">
                             <div class="infowindow__text-container">
-                              <div class="infowindow__title">${data[i].title}</div>
+                              <a href="${data[i].link}" class="infowindow__details"><div class="infowindow__title">${data[i].title}</div></a>
                               <div class="infowindow__price">${data[i].price}</div>
                               <div class="infowindow__name">${data[i].name}</div>
                               <div class="infowindow__address">${data[i].address}</div>
-                              <a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></a>
+                              <div class="stars">
+                              <a class="single__state" data-state="${data[i].state}">
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                                <span class="state__arrow">★ </span>
+                              </a>
+                                <a style="font-weight: lighter; font-size: 11px; color:#63666c;top: -2px;position: relative;">(512)</a>
+                              </div>
+                              <!--<a href="${data[i].link}" class="infowindow__details"><?php _e('Details', 'prokkat'); ?></a>-->
                               <a class="search-list__button search-list__button__grey fancybox-send-msg" id="mess_author" href="#send-msg">
                                 <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
                                 <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
@@ -264,7 +274,7 @@
 </div>
 
     <div class="container">
-      <div class="active-title"><span><?php echo $search_header; ?></span></div>
+  <div class="active-title"><span><?php echo $search_header; ?> (<?php echo $search_count = isset($_REQUEST['address']) ? $wp_query->found_posts : ''; ?>)</span></div>
     </div>
 
       <div class="container">
@@ -274,8 +284,8 @@
       if ($the_query->have_posts()) :   ?>
           <div style="position:relative">
             <div class="map" id="search-map"></div>
-            <div class="hide-map hide"><?php _e('Hide map', 'prokkat'); ?></div>
-            <div class="show-map"><?php _e('Show map', 'prokkat'); ?></div>
+             <div class="hide-map hide">Аренда&nbsp;<?php echo lcfirst(single_cat_title())?></div>
+          <div class="show-map">Аренда&nbsp;<?php echo lcfirst(single_cat_title())?></div>
           </div>
 
           <div class="search-list__container">
@@ -323,13 +333,19 @@
               </a>
             </div>
             <div class="search-list__title">
-              <a href="<?php the_permalink() ?>"><?php echo pll_title($post_id); ?></a>
+              <a href="<?php the_permalink() ?>"><?php echo mb_strtoupper(pll_title($post_id)); ?></a>
               <div class="search-list__desc"><?php echo content_excerpt(); ?></div>
               <div class="search-list__title-city">
                 <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >
               </div>
             </div>
 		        <div class="town"><?php echo $get_address;?></div>
+             <div class="search-list__price-container">
+              <div class="search-list__price">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
+                <?php echo price_output($post_id); ?>
+              </div>
+            </div>
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
               <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
@@ -386,7 +402,6 @@
           endwhile;
 	    ?>
                     </div>
-		   <?php if(count($arr) > 9 && $all_query->post_count > 9) { ?>
                     <div class="paginator">
                       <?php
                         echo paginate_links( array(
@@ -397,7 +412,6 @@
                         wp_reset_postdata();
                       ?>
                     </div>
-		   <?php } ?>
                   </div>
       <?php else : ?>
 

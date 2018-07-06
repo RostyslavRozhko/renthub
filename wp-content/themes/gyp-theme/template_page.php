@@ -105,8 +105,9 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                         <div class="carousel" id="authorSlick">
                     <?php if (have_posts()) :                   
                             while (have_posts()) : the_post();
+                            $author_id = $post->post_author;
 				    ?>
-                                <div class = "carousel__item">
+                                <div class ="carousel__item">
                                     <div class="gallery-item">
                                         <div class="product-item">
                                             <div class="product-item__img">
@@ -115,11 +116,11 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                                             <a href="<?php the_permalink() ?>" class="product-item__container-title">
                                             <div class="product-item__title">
                                                 <?php echo title_excerpt(); ?>
-                                            </div>
+                                            </div></a>
+                                            <span class="phone_carousel"><?=get_tel($author_id);?></span>
                                             <div class="product-item__price">
                                                     <?php echo price_output(); ?>
                                                 </div>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>

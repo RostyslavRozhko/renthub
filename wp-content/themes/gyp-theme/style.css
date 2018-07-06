@@ -513,8 +513,8 @@ padding: 0 30px;
 .login__item {
   display: inline-block;
   box-sizing: border-box;  
-  height: 50px;
-  line-height: 50px;
+  height: 53px;
+  line-height: 53px;
   vertical-align: middle;
   border-radius: 25px;
   border:none;
@@ -921,7 +921,7 @@ padding: 0 30px;
   margin-bottom: 10px;
   text-align: left;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   color: #295fcc;
   text-decoration: underline;
 }
@@ -1046,6 +1046,7 @@ padding: 0 30px;
 .footer__left {
   flex: 1 1 100%;
   text-align: right;
+  display: block;
 }
 
 .footer__copyright {
@@ -1054,7 +1055,9 @@ padding: 0 30px;
   display: flex;
   align-items: center;
 }
-
+.logo {
+  display: none;
+}
 .footer__copyright .container {
   display: flex;
   align-items: center;
@@ -2340,6 +2343,7 @@ padding: 0 30px;
   text-align: center;
   border: none;
   padding: 0 25px;
+  display: block;
 }
 
 .btn-container {
@@ -2866,7 +2870,6 @@ b {
 .maincat__subs-list {
   display: flex;
   flex-wrap: wrap;
-  height: 55px;
   overflow: hidden;
 }
 
@@ -2887,6 +2890,7 @@ b {
   text-decoration: none;
   margin: 0 4px;
   color: #0a0f19;
+  width: 5px;
 }
 
 .maincat__subs-text:last-child:after  {
@@ -3116,7 +3120,7 @@ b {
   grid-template-columns: 60px auto 100px 160px 60px;
   grid-template-columns:70px auto 140px 200px 60px;*/
   grid-template-columns: 70px auto 200px 100px 60px;
-  grid-template-areas: "image title town message call";
+  grid-template-areas: "image title town price message call";
 }
 
 .search-list__price-container {
@@ -3163,13 +3167,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .search-list__title-city {
-  font-size: 14px;
+  font-size: 12px;
   color: #295fcc;
   text-decoration: underline;
 }
 
 .search-list__title a {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   color: black;
 }
@@ -3184,13 +3188,19 @@ input[type=number]::-webkit-outer-spin-button {
 .search-list__phone {
   flex: 0 1 135px;
 }
-
-.search-list__price, .search-list__deposit , .town {
+/* .town*/
+.search-list__price, .search-list__deposit  {
   font-size: 14px;
   font-weight: bold;
   color: #0a0f19;
   flex: 1 1 110px;
   text-align: left;  
+}
+.town {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0a0f19;
+  text-align: left;
 }
 
 .search-list__button {
@@ -3762,12 +3772,13 @@ input[type=number]::-webkit-outer-spin-button {
   height: 60px;
   width: 60px;
   margin-right: 25px;
+  border: solid 1px #e6e6e6;
 }
 
 .infowindow__text-container {
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between;*/
   margin-right: 30px;
 }
 
@@ -3778,10 +3789,16 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .infowindow__price {
-  font-size: 14px;
+  /*font-size: 14px;
   font-weight: bold;
   color: #00396b;
-  text-align: left;
+  text-align: left;*/
+    font-size: 14px;
+    font-weight: bold;
+    color: #00396b;
+    text-align: left;
+    top: 30px;
+    position: relative;
 }
 
 .infowindow__details {
@@ -3789,6 +3806,7 @@ input[type=number]::-webkit-outer-spin-button {
   color: #010001;
   text-decoration: underline;
   text-align: left;
+  text-decoration: none;
 }
 
 .phone-link {
@@ -4380,6 +4398,19 @@ label.error {
 .mobile-only {
   display: none;
 }
+.back_parent {
+  display: none;
+}
+.button_filter, .button_filter_circle {
+  display: none;
+}
+
+#mobile_size , #mobile_size_user {
+    font-size: 20px;
+  }
+  .hide_ads , .btn_ads {
+    display: none;
+  }
 
 @media (max-width: 1024px) {
   .search-list__cate-container, .search-list__banner {
@@ -4713,12 +4744,168 @@ label.error {
 }
 
 @media (max-width: 480px) {
+  html {
+    margin-top: 0px !important;
+  }
+  .items-count {
+    display: none;
+  }
+  .hide_bread {
+    display: none;
+  }
+
+  .back_parent {
+    transform: rotate(180deg); 
+    width: 5%; 
+    margin-right: 10px;
+    display: block;
+  }
+  .cate_name {
+    margin-left: 20px;
+  }
+  .link_parent {
+    top: 21px;
+    position: relative;
+  }
+  .button_filter {
+    width: 110px;
+    height: 34px;
+    border-radius: 17px;
+    background-color: #ffd400;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    line-height: 34px;
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    top: -18px;
+    position: relative;
+  }
+  .button_filter_circle {
+    width: 50px;
+    height: 50px;
+    background-color: #ffd400;
+    position: absolute;
+    border-radius: 50px;
+    top: 25px;
+    right: 0px;
+    display: block;
+  }
+  .button_filter:hover , .button_filter_circle:hover {
+    cursor: pointer;
+    background-color: #ff9500;
+  }
+  .icon_filter_circle {
+    width: 18px;
+    height: 18px;
+    font-family: FontAwesome5FreeSolid;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #0a0f19;
+    left: 17px;
+    top: 16px;
+    position: absolute;
+  }
+  .icon_filter_button {
+    width: 18px;
+    height: 18px;
+    font-family: FontAwesome5FreeSolid;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: #0a0f19;
+    top: 4px;
+  }
+  .save-btn {
+    display: none;
+  }
+  .maincat__item {
+    display: unset;
+  }
+  .town {
+    font-size: 12px;
+    font-weight: bold;
+    color: #0a0f19;
+    text-align: left;
+    width: 150px;
+    top: -40px;
+    position: relative;
+    left: 74px;
+    padding: 10px 0px;
+  }
+  .town_ad {
+    display: unset;
+  }
+  .text_btn {
+    color: black;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+  }
+  .show_phone {
+    font-size: 12px;
+  }
+  .show_phone:hover {
+    text-decoration: none;
+  }
+  .footer__left {
+    display: none;
+  }
+  .text_ads {
+    width: 130px;
+    height: 13px;
+    font-family: 'FiraSans' sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.86;
+    letter-spacing: normal;
+    text-align: center;
+    color: #0a0f19;
+    color: var(--almost-black);
+  }
+  .search-list__results {
+    background-color: #F2F5F7;
+    padding: 0px 40px 18px 40px;
+  }
+  .search-list__container  {
+    margin-left: -30px;
+    padding: 0 0;
+    margin-right: -30px;
+  }
+  .search-list__deposit {
+    border: solid 1px #e6e6e6;
+  }
+  .search-list_phone-number {
+    font-size: 12px;
+  }
 	.maincat__subs-list {
 	  display: flex;
 	  flex-wrap: wrap;
-	  height: 140px;
 	  overflow: hidden;
 	}
+  .group-product__title-link {
+    text-decoration: none;
+  }
+  .group-product__title {
+    font-size: 18px;
+  }
+  .phone_carousel {
+    top: 250px;
+    position: absolute;
+    font-size: 12px;
+    left: 15px;
+  }
   .mobile-only {
     display: block;
   }
@@ -4777,7 +4964,7 @@ label.error {
   }
 
   .footer__cate-container {
-    flex: 0 0 100%;
+    flex: 0 0 50%;
   }
 
   .map {
@@ -4823,6 +5010,7 @@ label.error {
 
   .search-list__cate-title {
     font-size: 14px;
+    line-height: 10px;
   }
 
   .search-list__cate-price {
@@ -4852,7 +5040,7 @@ label.error {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    margin: 0;
+    margin: 0;  
   }
 
   .menu-cat li a {
@@ -4867,16 +5055,31 @@ label.error {
     border-top: none;
     grid-template-columns: 60px auto;
     grid-template-rows: auto;
+    background: white;
+    margin-top: 0px;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 10px 0;
     /*grid-template-areas: 
       "image title"
       "image call"
       "price price"*/
-      grid-template-areas: 
+      /*grid-template-areas: 
       "image title town"
       "image call town"
       "price price town"
+      grid-template-areas: 
+      "image title ." 
+      ". town town" 
+      "price price price";*/
+      grid-template-areas: 
+      "image title title" 
+      ". town town" 
+      "price price price";
   }
-
+  .search-list__price {
+    border-top: solid 1px #e6e6e6;
+  }
   .search-list__price, .search-list__deposit {
     height: 50px;
     display: flex;
@@ -4884,22 +5087,38 @@ label.error {
     justify-content: center;
     border-top: solid 1px #e6e6e6;
   }
-
-  .search-list__price {
-    border-right: solid 1px #e6e6e6;
+  .cats__sort {
+    margin-right: 10%;
+    margin-left: 10%;
+    display: inline-block;
   }
-
+   .cats__city-title , .cats__city-name {
+    display: inline-block;
+  }
+  .cats__city {
+    position: relative;
+    right: 40px;
+    display: inline-block;
+  }
+  .cats__city-title, .cats__sort-title {
+    font-size: 12px;
+  }
+  .cats__city a, .cats__sort a {
+    font-size: 12px;
+  }
   .search-list__desc, .search-list__button__grey, .search-list__button__yellow, .filters__container, .filters__title {
     display: none;
   }
 
   .filters__title-mobile {
-    display: flex;
+    /*display: flex;*/
+    display: none;
   }
 
   .active-title, .items-count {
     font-size: 24px;
     text-align: left;
+    position: relative;
   }
 
   .menu-cat_grid {
@@ -4914,7 +5133,7 @@ label.error {
   .search-list__phone-mobile {
     display: flex;
     padding: 0 15px;
-    justify-content: space-between;    
+    justify-content: space-between;  
   }
 
   .search-list__title {
@@ -5020,6 +5239,16 @@ label.error {
     padding-right: 10px;
   }
 
+  .btn_ads {
+    width: 330px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #ffd400;
+    display: block;
+  }
+  .btn_ads:hover {
+    background-color: #ff9500;
+  }
   .login {
     bottom: -60px;
     height: 60px;
@@ -5220,11 +5449,11 @@ label.error {
     height: 30px;
     flex: 0 0 30px;
     position: absolute;
-    right: 33px;
+    right: 40px;
     top: 50px;
 }
 #call_author {
-  right: 0px;
+  right: 10px;
 }
 #mess_author > .search-list__button img {
     height: 12px;
@@ -5246,4 +5475,33 @@ label.error {
 }
 .header__subcategory > .header__category-list > .header__list > .header__category-list__item {
 	text-decoration: none;
+}
+.hrn {
+    position: absolute;
+    margin-top: -4px;
+    border-bottom: 1px solid black;
+    font-size: 10px;
+    font-weight: 400;
+}
+.day {
+    margin-top: 8px;
+    position: absolute;
+    font-size: 10px;
+    font-weight: 400;
+}
+.town_ad {
+    display: block;
+    color: #0a0f19;
+}
+.street {
+    font-weight: 300;
+    color: #63666c;
+}
+.stars {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+}
+.stars > .single__state > .state__arrow {
+  font-size: 16px;
 }

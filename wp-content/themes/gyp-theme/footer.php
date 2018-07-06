@@ -2,18 +2,16 @@
     <section>
         <div class="container">
             <div class="top-nav bot-nav">
-                <a class="logo" href="<?php echo site_url(); ?>"><img
-                            src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png"
-                            class="img-responsive fleft"/></a>
-
+            <a class="logo" href="<?php echo site_url(); ?>">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" class="img-responsive fleft"/></a>
                 <div class="footer__left">
-                <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
+            <a href="<?php echo site_url('new/'); ?>" class="login-top login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
                     <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>
                     <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
                 </div>
-
-
+                <a href="<?php echo site_url('new/'); ?>" class="btn_ads"><i style="line-height: inherit" class="fa fa-plus hide_ads" aria-hidden="true"></i>
+                    <span class="text_btn"><?php echo __('Add Ad', 'prokkat'); ?></span></a>
             </div>
         </div>
         </div>
