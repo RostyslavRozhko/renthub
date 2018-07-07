@@ -826,10 +826,6 @@ padding: 0 30px;
 
 #category-btn-arrow {
   padding: 0 20px;
-  color: #e7e7e7;
-}
-
-.header__category__btn:hover #category-btn-arrow{
   color: #0a0f19;
 }
 

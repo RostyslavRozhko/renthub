@@ -209,7 +209,7 @@
 		
 		function validate_photo(){
             if( !jQuery("#img1").val() & !jQuery("#img2").val() & !jQuery("#img3").val() ) {
-                photo_error.text("<?php echo __( 'Please upload at least 1 photo.', 'prokkat' ); ?>");
+                photo_error.text("<?php echo __( 'Please upload at least 1 photo', 'prokkat' ); ?>");
 				photo_error.addClass("error");
                 return false;
             }else{
