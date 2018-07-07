@@ -103,7 +103,6 @@ jQuery(document).ready(function () {
         }
     });
 
-
     $('.moblink').click(function (e) {
         e.preventDefault();
        
@@ -737,6 +736,8 @@ jQuery(document).ready(function () {
         }
     })
 
+
+
     $('.header__search-show-btn').click(function() {
         $(this).hide()
         $('.form_srch-header').show()
@@ -859,5 +860,21 @@ jQuery(document).ready(function () {
 
         $('.header-category-cities').hide()
     })
+    /*Hide item filters if count more 5*/
+    $.each($('.filters__container'), function () { 
+             if($(this).find('.checkbox-container').length > 5){
+                $(this).children('.filters__vis-container').hide();
+        }
+    });
+    /*Truncate title text in mobile version*/
+    if ($(window).width() <= 480){
+        $('.search-list__title').each(function(){
+            if($(this).children('a').text().length > 40){
+                var text = $(this).children('a').text();
+                var shorttext = $.trim(text).substring(0, 30) + '...';
+                $(this).children('a').text(shorttext);
+            }
+        });
+    }
 
 });

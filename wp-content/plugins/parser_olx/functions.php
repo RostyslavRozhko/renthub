@@ -94,9 +94,9 @@
 	              $new_img = str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img);
 	              $upload_dir = (object) wp_upload_dir($time);
 	              $path = $upload_dir->path.'/' . $new_img;
-	              //upload_amazon($path , $new_img);
 	              if (!file_exists($path)) {
 	                  copy($img, $path);
+	                  upload_amazon($path , $new_img);
 	              } 
 	          }
 	          /*Ім'я власника оголошення*/
@@ -123,9 +123,10 @@
 	            $get_post_parse = get_one_post($ad_name);
 	            if ($get_post_parse->post_title !== $ad_name && !empty($new_tel)) {
 	                    $post_id = wp_insert_post($post_ads, $wp_error);
-	                    wp_set_post_terms($post_id, $category, 'cate' , false);
+	                    wp_set_post_terms($post_id, $category, CUSTOM_CAT_TYPE , false);
 
 	                    foreach ($img_array as $img) {
+	                    	$new_img = str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img);
 	                        $attachment = array(
 	                            'post_author' => $user_id,
 	                            'post_mime_type' => 'image/jpeg',
@@ -177,9 +178,10 @@
 	              $get_post_parse_author = get_one_post_author_exists($ad_name , $user_exists->ID);
 	              if (!empty($new_tel) && !$get_post_parse_author->post_author) {
 	                    $post_id = wp_insert_post($post_ads, $wp_error);
-	                    wp_set_post_terms($post_id, $category, 'cate' , false);
+	                    wp_set_post_terms($post_id, $category, CUSTOM_CAT_TYPE , false);
 
 	                    foreach ($img_array as $img) {
+	                    	$new_img = str_replace('https://img01-olxua.akamaized.net/img-olxua/' , "" , $img);	
 	                         $attachment = array(
 	                            'post_author' => $user_exists->ID,
 	                            'post_mime_type' => 'image/jpeg',
@@ -190,7 +192,7 @@
 	                        );
 	                        $attachment_id = wp_insert_attachment($attachment, $upload_dir->url.'/' . $new_img);
 	                        require_once(ABSPATH . 'wp-admin/includes/image.php');
-	                        $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' . $new_img);
+	                       $attachment_data = wp_generate_attachment_metadata($attachment_id, $upload_dir->path.'/' . $new_img);
 	                        wp_update_attachment_metadata($attachment_id, $attachment_data);
 	                    }
 	                    if (count($img_array) == 1) {

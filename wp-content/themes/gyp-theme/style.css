@@ -35,6 +35,14 @@
   display: inline-block;
 }
 
+.slick-prev {
+  left: -20px;
+}
+
+.slick-next {
+  right: -20px;
+}
+
 .lang-item a {
   font-size: 14px;
   color: #295fcc;
@@ -826,8 +834,14 @@ padding: 0 30px;
 
 #category-btn-arrow {
   padding: 0 20px;
-  color: #e7e7e7;
+  color: #e6e6e6;
 }
+#category-btn-arrow_back {
+    padding: 0 0px;
+    color: black;
+    top: -2px;
+    position: relative;
+} 
 
 .header__category__btn:hover #category-btn-arrow{
   color: #0a0f19;
@@ -1156,9 +1170,13 @@ padding: 0 30px;
   font-size: 14px;
   text-align: left;
   color: #ffffff;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   font-weight: 300;
   padding: 0;
+}
+
+.footer__column-text {
+  margin-bottom: 20px;
 }
 
 .bold {
@@ -3188,10 +3206,11 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: underline;
 }
 
-.search-list__title a {
+.search-list__title a , .search-list__title_main a{
   font-size: 12px;
   font-weight: bold;
   color: black;
+  margin-bottom: 10px;
 }
 
 .search-list__desc {
@@ -3204,7 +3223,6 @@ input[type=number]::-webkit-outer-spin-button {
 .search-list__phone {
   flex: 0 1 135px;
 }
-/* .town*/
 .search-list__price, .search-list__deposit  {
   font-size: 14px;
   font-weight: bold;
@@ -3987,6 +4005,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .advert__descr p {
+  color: #63666c;
   word-wrap: break-word;
 }
 
@@ -4441,6 +4460,11 @@ label.error {
   width: 25%;
 }
 
+.town_ad {
+    display: block;
+    color: #0a0f19;
+}
+
 @media (max-width: 1024px) {
   .search-list__cate-container, .search-list__banner {
     width: 32%;
@@ -4670,7 +4694,7 @@ label.error {
   .header__category__window-small {
     padding: 0;
     position: relative;
-    top: 0;
+    top: -5px;
   }
 
   .header__popup__container {
@@ -4789,6 +4813,21 @@ label.error {
 }
 
 @media (max-width: 480px) {
+
+  .advert__tags {
+    margin-top: 0;
+  }
+
+  .footer_padding {
+    padding-top: 0;
+  }
+
+  .hrn , .day {
+    margin-left: 35px;
+  }
+  .search-list__cate-price {
+    margin: 40px 0;
+  }
   html {
     margin-top: 0px !important;
   }
@@ -4807,6 +4846,10 @@ label.error {
   }
   .cate_name {
     margin-left: 20px;
+    top: -10px;
+    position: relative;
+    display: block;
+    font-size: 24px;
   }
   .link_parent {
     top: 21px;
@@ -4825,6 +4868,7 @@ label.error {
     display: block;
     top: -18px;
     position: relative;
+    z-index: 1000;
   }
   .button_filter_circle {
     width: 50px;
@@ -4840,6 +4884,11 @@ label.error {
     cursor: pointer;
     background-color: #ff9500;
   }
+
+  #category-btn-arrow {
+    color: #0a0f19;
+  }
+
   .icon_filter_circle {
     width: 18px;
     height: 18px;
@@ -4891,6 +4940,7 @@ label.error {
     display: unset;
   }
   .text_btn {
+    font-weight: bold;
     color: black;
     line-height: 50px;
     text-align: center;
@@ -4901,9 +4951,6 @@ label.error {
   }
   .show_phone:hover {
     text-decoration: none;
-  }
-  .footer__left {
-    display: none;
   }
   .text_ads {
     width: 130px;
@@ -4933,6 +4980,7 @@ label.error {
   }
   .search-list_phone-number {
     font-size: 12px;
+    margin-right: 15px;
   }
 	.maincat__subs-list {
 	  display: flex;
@@ -4960,13 +5008,6 @@ label.error {
     font-size: 18px;
   }
 
-  .slick-prev {
-    left: -20px;
-  }
-
-  .slick-next {
-    right: -20px;
-  }
 
  /*.product-item__title img {*/
     /*width: 80px;*/
@@ -4976,7 +5017,7 @@ label.error {
 
   /*.product-item__img {*/
     /*width: 80px;*/
-    /*height: 80px;*/
+    /*height: 216px;*/
   /*}*/
 
   .wrap-carousel .gallery-item {
@@ -5114,7 +5155,7 @@ label.error {
 
   .search-list__cate-title {
     font-size: 14px;
-    line-height: 10px;
+    line-height: 20px;
   }
 
   .search-list__cate-price {
@@ -5240,14 +5281,22 @@ label.error {
   .search-list__phone-mobile {
     display: flex;
     padding: 0 15px;
-    justify-content: space-between;  
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 20px;  
   }
 
   .search-list__title {
     height: 100%;
     align-items: flex-start;
   }
-
+  .search-list__title_main {
+    height: 100%;
+    align-items: flex-start;
+    position: relative;
+    top: -40px;
+    margin-left: 50px;
+  }
   .search-list__price img, .search-list__deposit img, .search-list__phone-image {
     display: block;
   }
@@ -5474,6 +5523,8 @@ label.error {
   .advert__tags_grid {
     width: 50%;
     padding: 0 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 
   .filters-values__item {
@@ -5662,10 +5713,6 @@ label.error {
     font-size: 10px;
     font-weight: 400;
 }
-.town_ad {
-    display: block;
-    color: #0a0f19;
-}
 .street {
     font-weight: 300;
     color: #63666c;
@@ -5677,4 +5724,10 @@ label.error {
 }
 .stars > .single__state > .state__arrow {
   font-size: 16px;
+}
+.filters__container:hover {
+  cursor: pointer;
+}
+.menu-cat > li > a.menu-cat__item_title {
+  text-decoration: none;
 }

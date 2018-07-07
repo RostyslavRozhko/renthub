@@ -10,8 +10,6 @@
                     <span><?php echo __('Add Ad', 'prokkat'); ?></span>
                 </a>
                 </div>
-                <a href="<?php echo site_url('new/'); ?>" class="btn_ads"><i style="line-height: inherit" class="fa fa-plus hide_ads" aria-hidden="true"></i>
-                    <span class="text_btn"><?php echo __('Add Ad', 'prokkat'); ?></span></a>
             </div>
         </div>
         </div>
