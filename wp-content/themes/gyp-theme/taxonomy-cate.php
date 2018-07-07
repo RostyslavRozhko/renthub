@@ -378,7 +378,7 @@
   <div class="active-title">
   <?php if (!$main_cat){?>
       <a href="<?php echo esc_url( get_term_link( $parent ))?>" class="link_parent">
-      <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg" class="back_parent">
+      <i id="category-btn-arrow_back" class="fa fa-angle-left"></i>
   </a><?php }?>
       <span class="cate_name"><?php single_cat_title(); ?></span>
       <span class="items-count"> <?php $count = get_cate_count($current_id, $main_cat); if($count) { echo '('.$count.')'; } ?></span>
