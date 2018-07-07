@@ -233,7 +233,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
         </div>
         <div class="col6 nopaddingr">
             <div class="info-section__title"><?php _e('How it is working?', 'prokkat') ?></div>
-            <div class="info-section__text"><?php _e('RentHUB is', 'prokkat') ?></div>
+            <div class="info-section__text"><?php _e('Every man', 'prokkat') ?></div>
             <div class="info-section__link-container">
                 <a href="<?php echo site_url('new/'); ?>" class="login__item login__item__yellow <?php if (!is_user_logged_in()) echo 'btnModal' ?>">
                   <i style="line-height: inherit" class="fa fa-plus" aria-hidden="true"></i>
