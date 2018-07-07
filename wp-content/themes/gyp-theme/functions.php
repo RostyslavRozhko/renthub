@@ -1198,7 +1198,7 @@ add_action('wp_ajax_nopriv_activate_account', 'activate_account' );
     $parentCat = $_POST['catID'];
     $result = '';
     if ($parentCat < 1) die('');
-    if (get_categories('taxonomy=cate&child_of=' . $parentCat . '&hide_empty=0')) {
+    if (get_categories('taxonomy=' . CUSTOM_CAT_TYPE . '&child_of=' . $parentCat . '&hide_empty=0')) {
 	  $result = wp_dropdown_categories('id=subcat&show_option_none=' . __('Subcategory', 'prokkat') . '&orderby=name&order=ASC&hide_empty=0&hierarchical=1&taxonomy=' . CUSTOM_CAT_TYPE . '&depth=1&echo=0&child_of='.$parentCat);
 	  echo json_encode( $result );
 	  die();
@@ -1780,4 +1780,5 @@ function debug ($parameters){
 function get_tel($author_id){
     return get_the_author_meta('phone' , $author_id);
 }
+flush_rewrite_rules();
 ?>
