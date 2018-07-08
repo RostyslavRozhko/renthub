@@ -158,65 +158,7 @@
 
  ?>
 
- <section class="header-section">
-    <div class="container">
-        <?php 
-            $lang = ( pll_current_language() != 'uk' ) ? '-'.pll_current_language() : ''; ?>
-        
-        <div class="search-grp search-grp_header">
-                <div class="header__search-show-btn hide">
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg">
-                  <?php _e('Search', 'prokkat'); ?>
-                </div>
-                <form action="<?php echo site_url('search'.$lang.'/'); ?>" method="get" class="form_srch-header">
-                    <div class="header__popup__container">
-                      <div class="input-wrp input-wrp_grid header__category__container" style="padding: 0 15px">
-                          <div class="header__category__text-container">
-                              <img class="header__category__text-container-img" src="<?php echo get_stylesheet_directory_uri(); ?>/img/bookmark.svg">
-                              <div><?php echo get_term($parent)->name; ?></div>
-                          </div>
-                          <img class="header-category-img" src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-down-sign-to-navigate.svg">
-                      </div>  
-                      <div class="header__category__window header__category__window-small hide">
-                                <ul class="menu-cat">
-                                  <?php
-                                    $cat_args = array(
-                                    'parent' => $parent,
-                                    'orderby' => 'name',
-                                    'hierarchical' => 1,
-                                    'taxonomy' => CUSTOM_CAT_TYPE,
-                                    'hide_empty' => 0,
-                                    'style' => 'cat_list',
-                                    'title_li' => '',
-                                    'walker' => new Custom_Walker_Category(),
-                                    'selected' => $current_id
-                                    );
-                                    
-                                    wp_list_categories($cat_args);
-                                  ?>
-                                </ul>
-                          <div class="return-to-main-cat">
-                              <a href="<?php echo get_site_url(); ?>" ><i class="fa fa-arrow-left"></i><?php _e('Return to the main categories', 'prokkat'); ?></a>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="input-wrp input-wrp_grid">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/flag.svg" class="input-wrp__ico search-icon-input">
-                        <input type="text" id="s_address" class="input input_srch-header" placeholder="<?php echo __('All Ukraine', 'prokkat'); ?>" name="address" value="" />
-                        <input type="hidden" id="s_city_id" class="input input_add" name="search_loc" value="" />
-                    </div>
-                    <div class="input-wrp input-wrp_grid header__search-input">
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg" class="input-wrp__ico search-icon-input">
-                        <input type="text" class="input input_srch-header" placeholder="<?php _e('Search', 'prokkat'); ?>" name="search_for" value="" id="autocomplete-field" />
-                    </div>
-                    <div class="input-wrp input-wrp_btn header__search-btn_container">
-                        <input type="submit" class="header__search-btn" value="<?php _e('Find', 'prokkat') ?>"/>
-                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg">
-                    </div>
-                </form>
-        </div>
-    </div>
-</section>
+ <?php search_header_cate($parent, $address, $s_to) ?>
 
 <div style="position: relative">
 <?php
@@ -545,7 +487,20 @@
                 </div>
               <div class="cats__city">
                 <div class="cats__city-title"><?php _e('City', 'prokkat'); ?>: </div>
-                <a href="" class="cats__city-name"><?php if($address) { echo $address; } else { echo __('All Ukraine', 'prokkat'); } ?></a>
+                <div style="position: relative">
+                  <a href="" class="cats__city-name"><?php if($address) { echo $address; } else { echo __('All Ukraine', 'prokkat'); } ?></a>
+                  <div class="cats__city-list hide">
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJBUVa4U7P1EAR_kYBF9IxSXY', 'address' => 'Киев' ), $url); ?>" data-id="ChIJBUVa4U7P1EAR_kYBF9IxSXY">Киев</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJiw-rY5-gJ0ERCr6kGmgYTC0', 'address' => 'Харьков' ), $url); ?>"  data-id="ChIJiw-rY5-gJ0ERCr6kGmgYTC0">Харьков</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJQ0yGC4oxxkARbBfyjOKPnxI', 'address' => 'Одесса' ), $url); ?>" data-id="ChIJQ0yGC4oxxkARbBfyjOKPnxI">Одесса</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJLZqRAJWQ4EARhG-Fxf1eMzY', 'address' => 'Донецк' ), $url); ?>" data-id="ChIJLZqRAJWQ4EARhG-Fxf1eMzY">Донецк</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJA7uF-j1n3EARSj9NB9lcZ34', 'address' => 'Запорожье' ), $url); ?>" data-id="ChIJA7uF-j1n3EARSj9NB9lcZ34">Запорожье</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJV5oQCXzdOkcR4ngjARfFI0I', 'address' => 'Львов' ), $url); ?>" data-id="ChIJV5oQCXzdOkcR4ngjARfFI0I">Львов</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJe6tUMeDf2kARbhhrfRc6-rA', 'address' => 'Кривой рог' ), $url); ?>" data-id="ChIJe6tUMeDf2kARbhhrfRc6-rA">Кривой рог</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJ1RNy-4nLxUARgFbgufo5Dpc', 'address' => 'Николаев' ), $url); ?>" data-id="ChIJ1RNy-4nLxUARgFbgufo5Dpc">Николаев</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJK1jnvqfm5kARzrV1CjAY0aU', 'address' => 'Мариуполь' ), $url); ?>" data-id="ChIJK1jnvqfm5kARzrV1CjAY0aU">Мариуполь</a>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="search-list__results">
@@ -606,8 +561,11 @@
                     <?php 
                         $ava = get_the_author_meta( 'user_avatar', $author_id );
                         if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
+                        $city = get_the_author_meta('city_name', $author_id);
+                        $city = explode("," , $city);
                     ?>
                     <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                    <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
                     <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname');?>" >
                     <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
                   </a>
@@ -622,8 +580,11 @@
                 <?php 
                     $ava = get_the_author_meta( 'user_avatar', $author_id );
                     if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
+                    $city = get_the_author_meta('city_name', $author_id);
+                    $city = explode("," , $city);
                 ?>
                 <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
                 <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname'); ?>" >
                 <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
               </a>

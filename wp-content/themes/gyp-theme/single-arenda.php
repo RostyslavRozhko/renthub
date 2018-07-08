@@ -369,7 +369,7 @@
 <?php
   query_posts(array(
     'post_type' => POST_TYPE,
-    'posts_per_page' => 10,
+    'posts_per_page' => 4,
     'author' => $author_id
   ));
   $count = 0;
@@ -383,13 +383,10 @@
             <div class="row">
                 <div class="content">
                     <div class="gallery text-center">
-                        <div class="wrap-carousel wrap-carousel_other wrap-carousel_advert">
-                            <div class="carousel" id="authorSlick">
 							    <?php
 						            while (have_posts()): the_post();
 									  if( $current_post_id == $post->ID) continue;
                                 ?>
-								<div class = "carousel__item">
                                     <div class="gallery-item">
                                         <div class="product-item">
                                             <div class="product-item__img">
@@ -405,10 +402,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
 								<?php endwhile; ?>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
