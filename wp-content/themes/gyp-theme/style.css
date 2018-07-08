@@ -1317,11 +1317,14 @@ padding: 0 30px;
     "cate-details";
 }
 
+.cate-img__container {
+  grid-area: cate-img;
+}
+
 .search-list__cate-img {
   /*width: 100%;*/
   width: 60%;
   object-fit: cover;
-  grid-area: cate-img;
 }
 
 .search-list__cate-title {
@@ -4889,9 +4892,6 @@ label.error {
   /*.hrn , .day {
     margin-left: 35px;
   }*/
-  .search-list__cate-price {
-    margin: 40px 0;
-  }
   html {
     margin-top: 0px !important;
   }
@@ -5027,8 +5027,13 @@ label.error {
   }
   .search-list__results {
     background-color: #F2F5F7;
-    padding: 0px 40px 18px 40px;
+    padding: 0px 30px 18px 30px;
   }
+
+  .main_cat {
+    background-color: white;
+  }
+
   .search-list__container  {
     margin-left: -30px;
     padding: 0 0;
@@ -5184,8 +5189,7 @@ label.error {
     margin-bottom: 30px;
     padding: 20px;
     text-align: left;
-    /*grid-template-columns: 70px auto 30px;*/
-    grid-template-columns: 45px auto 5px;
+    grid-template-columns: 60px auto 30px;
     grid-template-rows: 16px auto auto;
     grid-template-areas: 
       "cate-img cate-title cate-details"
