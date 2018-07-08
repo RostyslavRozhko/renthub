@@ -428,7 +428,7 @@
       if($main_cat) { 
         ?>
           <div class="search-list__container">
-            <div class="search-list__results">  
+            <div class="search-list__results main_cat">  
               <?php 
                 $categories = get_categories(array(
                     'taxonomy' => CUSTOM_CAT_TYPE,
@@ -444,7 +444,7 @@
                     continue;
               ?>
               <div class="search-list__cate-container">
-                  <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>">
+                  <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="cate-img__container">
                     <img src="<?php echo get_thumb(get_wp_term_image($cat_id), 200, 200); ?>" class="search-list__cate-img">
                   </a>
                   <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
