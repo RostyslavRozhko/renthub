@@ -555,7 +555,7 @@
                     <img class="search-list__phone-image" src="<?php echo get_stylesheet_directory_uri(); ?>/img/call-answer-black.svg">
                     <div id="tel<?php echo $post_id; ?>" class="shownum search-list_phone-number"></div>
                   </a>
-                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback">
+                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback" id="view_none">
                     <?php _e('Show', 'prokkat'); ?>
                     <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
                     <?php 
