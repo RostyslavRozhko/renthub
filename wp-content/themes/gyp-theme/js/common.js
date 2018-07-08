@@ -634,6 +634,7 @@ jQuery(document).ready(function () {
     $('.header__category__container').click(function() {
         if($('.header__category__window').css('display') == 'none'){
             $('.header__category__window').show()
+            $('.hover_dark').show();
             const firstElement = $('.header_switcher').first()
             showCategoty(firstElement, true)
         } else {
