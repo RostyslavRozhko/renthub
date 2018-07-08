@@ -830,7 +830,7 @@ padding: 0 30px;
 
 #category-btn-arrow {
   padding: 0 20px;
-  color: #e7e7e7;
+  color: black;
 }
 #category-btn-arrow_back {
     padding: 0 0px;
@@ -4808,6 +4808,9 @@ label.error {
 }
 
 @media (max-width: 480px) {
+  .slick-next, .slick-prev {
+    top: 60%;
+  }
   .advert__img-wrap {
     display: none;
   }
