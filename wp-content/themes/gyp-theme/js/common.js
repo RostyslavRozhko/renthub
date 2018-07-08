@@ -648,7 +648,6 @@ jQuery(document).ready(function () {
             } else {
                 $('.header__category__window').hide()
                 $('.header__category__right, .back__white').hide()
-                $('.hover_dark').hide();
             }
         }
     })
@@ -742,6 +741,7 @@ jQuery(document).ready(function () {
 
     $('.header__search-show-btn').click(function() {
         $(this).hide()
+        $('.hover_dark').show();
         $('.form_srch-header').show()
     })
 

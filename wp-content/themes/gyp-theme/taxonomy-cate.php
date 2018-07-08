@@ -528,8 +528,8 @@
       if ($the_query->have_posts()) :   ?>
         <div style="position:relative">
           <div class="map" id="search-map"></div>
-          <div class="hide-map hide">Аренда&nbsp;<?php echo single_cat_title();?></div>
-          <div class="show-map">Аренда&nbsp;<?php echo single_cat_title();?></div>
+          <div class="hide-map hide">Аренда&nbsp;<?php echo single_cat_title();?>&nbsp;на карте</div>
+          <div class="show-map">Аренда&nbsp;<?php echo single_cat_title();?>&nbsp;на карте</div>
         </div>
 
           <div class="search-list__container">
