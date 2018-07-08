@@ -273,6 +273,11 @@
   font-family: 'Fira Sans', sans-serif;
 }
 
+.author__adv {
+  margin-left: 0;
+  width: 100%;
+}
+
 h3, p {
   font-family: 'Fira Sans', sans-serif;
 }
