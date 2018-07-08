@@ -383,6 +383,8 @@
             <div class="row">
                 <div class="content">
                     <div class="gallery text-center">
+                        <div class="wrap-carousel wrap-carousel_other wrap-carousel_advert">
+                            <div class="carousel" id="authorSlick">
 							    <?php
 						            while (have_posts()): the_post();
 									  if( $current_post_id == $post->ID) continue;
@@ -473,6 +475,8 @@
                         </div>
                         </div>
 								<?php endwhile; ?>
+                                 </div>
+                                 </div>
                     </div>
                 </div>
             </div>
