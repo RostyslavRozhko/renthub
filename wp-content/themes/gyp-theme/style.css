@@ -1386,7 +1386,7 @@ padding: 0 30px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;  
-  margin: 25px 0;
+  margin: 15px 0;
   font-family: 'Fira Sans', sans-serif;
   font-size: 24px;
   font-weight: bold;
@@ -2506,7 +2506,7 @@ padding: 0 30px;
  display: flex;
  margin: 0;
  padding: 0;
- margin-bottom: 25px;
+ margin-bottom: 15px;
  margin-top: 5px;
 }
 
