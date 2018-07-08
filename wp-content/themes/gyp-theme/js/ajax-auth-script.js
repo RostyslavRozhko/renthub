@@ -2,9 +2,11 @@ jQuery(document).ready(function ($) {
 
     const modal = $('.fancybox-error');
 
-    let returnCode = Math.floor(Math.random() * 999999) + 100000
+    let returnCode = 0;
 
-    let smsCounter = Cookies.get("smscounter") || 0
+    const date = new Date();
+    const hour = date.setTime(date.getTime() + (60 * 60 * 1000));
+
 
     var a = {"Ё":"YO","Й":"I","Ц":"TS","У":"U","К":"K","Е":"E","Н":"N","Г":"G","Ш":"SH","Щ":"SCH","З":"Z","Х":"H","Ъ":"'","ё":"yo","й":"i","ц":"ts","у":"u","к":"k","е":"e","н":"n","г":"g","ш":"sh","щ":"sch","з":"z","х":"h","ъ":"'","Ф":"F","Ы":"I","В":"V","А":"a","П":"P","Р":"R","О":"O","Л":"L","Д":"D","Ж":"ZH","Э":"E","ф":"f","ы":"i","в":"v","а":"a","п":"p","р":"r","о":"o","л":"l","д":"d","ж":"zh","э":"e","Я":"Ya","Ч":"CH","С":"S","М":"M","И":"I","Т":"T","Ь":"'","Б":"B","Ю":"YU","я":"ya","ч":"ch","с":"s","м":"m","и":"i","т":"t","ь":"'","б":"b","ю":"yu"};
 
@@ -143,12 +145,16 @@ jQuery(document).ready(function ($) {
     });
 
     jQuery('form#phone_login').on('submit', function (e) {
+        e.preventDefault();
+        
+        const phone_number = $('#phone_number').val()
+        const smsCounter = Cookies.get(phone_number, Number) || 0
         if(smsCounter > 2) {
-            sms_block(smsCounter)
+            openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
             return
         }
-        const phone_number = $('#phone_number').val()
         const security = jQuery('form#phone_login #securityphone').val();
+        returnCode = Math.floor(Math.random() * 999999) + 100000;
         jQuery.ajax({
             type: 'POST',
             dataType: 'json',
@@ -172,9 +178,10 @@ jQuery(document).ready(function ($) {
 
                 $('.resend-sms').click(function(e) {
                     e.preventDefault()
-                    smsCounter++
-                    if(smsCounter > 2) {
-                        sms_block(smsCounter)
+                    const counter = Cookies.get(phone_number, Number) ? Cookies.get(phone_number, Number) + 1 : 1
+                    Cookies.set(phone_number, counter, { expires: hour });
+                    if(counter > 2) {
+                        openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
                     } else {
                         returnCode = Math.floor(Math.random() * 999999) + 100000
                         resendSMS(phone_number, returnCode)
@@ -182,7 +189,6 @@ jQuery(document).ready(function ($) {
                 })
             }
         })
-        e.preventDefault();
     });
 
     function resendSMS(phone_number, returnCode) {
@@ -271,13 +277,6 @@ jQuery(document).ready(function ($) {
                 }
             }
         });
-    }
-
-    function sms_block(counter) {
-        openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
-        var date = new Date();
-        date.setTime(date.getTime() + (60 * 60 * 1000));
-        Cookies.set("smscounter", counter, { expires: date });
     }
 
     function openBox(content) {
