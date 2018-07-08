@@ -353,12 +353,18 @@
               </div>
             </div>
 		        <div class="town"><?php echo $get_address;?></div>
-             <div class="search-list__price-container">
+            <div class="search-list__price-container">
               <div class="search-list__price">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
                 <?php echo price_output($post_id); ?>
               </div>
-            </div>
+              <?php if(get_post_meta( $post_id, 'cc_price_deposit', true )) : ?>
+                <div class="search-list__deposit">
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/protection-black.svg">
+                  <?php echo get_post_meta( $post_id, 'cc_price_deposit', true ); ?> грн
+                </div>
+              <?php endif ?>
+              </div>
             <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
               <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
               <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">

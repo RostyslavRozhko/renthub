@@ -70,6 +70,7 @@
           </div>
       </div>
   </section>
+  <div class="hover_dark"></div>
 <?php } ?>
 
 <?php function search_header_main($selected_city_name = '', $selected_city_id = '') { ?>

@@ -751,6 +751,7 @@ jQuery(document).ready(function () {
 
     $('.header__search-show-btn').click(function() {
         $(this).hide()
+        $('.hover_dark').show();
         $('.form_srch-header').show()
         $('.hover_dark').show()
     })
