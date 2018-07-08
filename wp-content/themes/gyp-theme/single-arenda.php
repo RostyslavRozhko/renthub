@@ -383,7 +383,29 @@
             <div class="row">
                 <div class="content">
                     <div class="gallery text-center">
-                        <div class="wrap-carousel wrap-carousel_other wrap-carousel_advert">
+                    <div class="desktop-only">
+                    
+                    <?php if (have_posts()) :                   
+                            while (have_posts()) : the_post();
+                    ?>
+                        <div class="gallery-item">
+                            <div class="product-item">
+                                <div class="product-item__img">
+                                    <?php echo ad_thumbnail(); ?>
+                                </div>
+                                <a href="<?php the_permalink() ?>" class="product-item__container-title">
+                                <div class="product-item__title">
+                                    <?php echo title_excerpt(); ?>
+                                </div>
+                                <div class="product-item__price">
+                                        <?php echo price_output(); ?>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endwhile; endif; ?>
+                    </div>
+                        <div class="wrap-carousel wrap-carousel_other wrap-carousel_advert mobile-only">
                             <div class="carousel" id="mobileSlick">
 							    <?php
 						            while (have_posts()): the_post();
