@@ -146,6 +146,31 @@
 					<?php endif; ?>
 				  </ul>
                 </div>
+
+                <div class="wrap-carousel wrap-carousel_other wrap-carousel_advert mobile-only">
+                    <div class="carousel" id="mobileSlick">
+                        <?php $arr_img = array($main_img , $img2 , $img3); ?>
+                        <?php if( $img2 && file_url_exists($img2) && $img3 && file_url_exists($img3)) : ?>
+                            <?php foreach ($arr_img as $img): ?>
+                                <div class = "carousel__item">
+                                    <div class="gallery-item">
+                                        <div class="product-item">
+                                            <div class="product-item__img">
+                                                <a href="<?php echo $img; ?>" class="fancybox"  title="" rel="gallery1">
+                                                    <img src="<?php echo $img; ?>" alt="adv" class="advert__img-big" >
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                            <?php else: ?>
+                                    <a href="<?php echo $main_img; ?>" class="fancybox"  title="" rel="gallery1">
+                                        <img src="<?php echo $main_img; ?>" alt="adv" class="advert__img-big" >
+                                    </a>
+                            <?php endif; ?>
+                    </div>
+                </div>
 				
 				<?php endif; ?>
 

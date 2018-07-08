@@ -101,16 +101,15 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
                     <?php endwhile; endif; ?>
                     </div>
 
-					<div class="wrap-carousel wrap-carousel_other1 wrap-carousel_advert1 mobile-only">
+					<div class="wrap-carousel wrap-carousel_other wrap-carousel_advert mobile-only">
                         <div class="carousel" id="authorSlick">
-                    <?php if (have_posts()) :                   
-                            while (have_posts()) : the_post();
-                            //$author_id = $post->post_author;
-                            $coordinates = get_post_meta($post->ID , 'cc_locations',true);
-                            $coordinates = explode("},{" , $coordinates)[0];
-                            $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
-                            $get_address = trim(get_address($coordinates));
-				    ?>
+                        <?php if (have_posts()) :                   
+                                while (have_posts()) : the_post();
+                                $coordinates = get_post_meta($post->ID , 'cc_locations',true);
+                                $coordinates = explode("},{" , $coordinates)[0];
+                                $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
+                                $get_address = trim(get_address($coordinates));
+    				    ?>
                         <div class="search-list__result">
                             <div class="search-list__img">
                               <a href="<?php the_permalink() ?>">
@@ -315,5 +314,5 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
 </section>
 
 <!--End Cotent Wrapper-->
-<?php include_once('phone_popup.php'); ?>
+<?php include_once('phone_popup.php'); ?>   
 <?php get_footer(); ?>

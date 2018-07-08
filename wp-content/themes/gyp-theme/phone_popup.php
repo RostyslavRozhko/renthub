@@ -12,7 +12,7 @@
             <div class="call-feedback__name">
                 <a><?php echo the_author_meta('nickname');?></a>
                 <?php if (!empty($city[0])): ?>
-                      <span><?php echo 'м.&nbsp;'.$city[0];?></span>
+                      <span><?php echo $city[0];?></span>
                 <?php endif; ?>
             </div>
         </div> 
@@ -38,9 +38,8 @@
             <div class="call-feedback__name">
                 <a><?php echo the_author_meta('nickname');?></a>
                 <?php if (!empty($city[0])): ?>
-                      <span><?php echo 'м.&nbsp;'.$city[0];?></span>
+                      <span><?php echo $city[0];?></span>
                 <?php endif; ?>
-                <!-- <div class="contact-ad__author-city" id="city"></div> -->
             </div>
         </div> 
         <div class="call-feedback__number call-feedback__red"><?php _e('Complain', 'prokkat'); ?></div>

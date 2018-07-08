@@ -229,6 +229,9 @@ msgstr "Введіть відповідь"
 msgid "Ask the manufacturer"
 msgstr "Задати запитання власнику"
 
+msgid "Date of registration:"
+msgstr "Дата реєстрації:"
+
 msgid "I agree to the terms of the <a target='_blank' href='%s'>license</a>."
 msgstr "Я погоджуюсь на умови <a target='_blank' href='%s'>ліцензії</a>."
 

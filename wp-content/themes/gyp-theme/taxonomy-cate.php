@@ -221,7 +221,7 @@
 <div style="position: relative">
 <?php
       if ($the_query->have_posts()) :   ?>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=ru" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpRFvYomx8_jJ2e2R6sCsGEUVkrpfohLc&libraries=places&language=<?php echo pll_current_language('slug'); ?>" type="text/javascript"></script>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
           <script>
               function initMap() {
@@ -289,10 +289,9 @@
                             </div>
                           </div>
                         `
-
                         const infowindow = new google.maps.InfoWindow({
-                          content: content
-                        });
+                            content: content
+                          });
 
                       	var marker = new google.maps.Marker({
 	                              map: map,
@@ -365,14 +364,13 @@
 </div>
 
 <div class="container">
-
 <div class="breadcrumbs breadcrumbs-cat hide_bread">
     <a href="<?php echo site_url(); ?>">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/house.svg" >
     </a>
-    <a href="<?php echo esc_url( get_term_link( $parent ))?>"><?php echo get_term($parent)->name ?></a>
+    <a href="<?php echo esc_url( get_term_link($parent))?>"><?php echo get_term($parent)->name ?></a>
     <?php if($parent != $current_id) : ?>
-      <a href="<?php echo esc_url( get_term_link( $current_id ))?>"><?php echo get_term($current_id)->name ?></a>
+      <a href="<?php echo esc_url(get_term_link($current_id))?>"><?php echo get_term($current_id)->name ?></a>
     <?php endif; ?>
   </div>
   <div class="active-title">
@@ -381,7 +379,9 @@
       <i id="category-btn-arrow_back" class="fa fa-angle-left"></i>
   </a><?php }?>
       <span class="cate_name"><?php single_cat_title(); ?></span>
+      <?php if ($main_cat){ ?>
       <span class="items-count"> <?php $count = get_cate_count($current_id, $main_cat); if($count) { echo '('.$count.')'; } ?></span>
+      <?php } ?>
   <?php if (!$main_cat){?>
   <div class="button_filter_circle">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/filter.png" class="icon_filter_circle">
@@ -507,7 +507,7 @@
                   </a>
                   <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-title"><?php echo $category->name ?></a>
                   <div class="search-list__cate-price"><?php echo max_price($cat_id); ?> грн/день</div>
-                  <div class="search-list__cate-num">Предложений (<?php echo $count; ?>)</div>
+                  <div class="search-list__cate-num">Предложений (<b><?php echo $count; ?></b>)</div>
                   <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-details search-list__cate-details-text">Подробнее</a>
                   <a href="<?php echo get_term_link( $cat_id, CUSTOM_CAT_TYPE ); ?>" class="search-list__cate-details search-list__cate-details-arrow"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/arrow-right.svg"></a>
               </div>

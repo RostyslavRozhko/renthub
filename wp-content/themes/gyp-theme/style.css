@@ -35,14 +35,6 @@
   display: inline-block;
 }
 
-.slick-prev {
-  left: -20px;
-}
-
-.slick-next {
-  right: -20px;
-}
-
 .lang-item a {
   font-size: 14px;
   color: #295fcc;
@@ -242,11 +234,11 @@
   content:"";
 }
 
-.breadcrumbs a:last-child {
+/*.breadcrumbs a:last-child {
   text-decoration: none;
   pointer-events: none;
   color: #0a0f19;
-}
+}*/
 
 .breadcrumbs a:last-child:after {
   content: "";
@@ -555,7 +547,11 @@ padding: 0 30px;
   background-color: #3c4457;
   color: #ffffff;
   margin-left: 10px;
+<<<<<<< HEAD
+  padding: 0 18px;
+=======
   padding: 0 16.5px;
+>>>>>>> 1befaeaf642eb10ba7c28920fdd0cabbb5415345
   border-radius: 50%;
 }
 
@@ -834,12 +830,11 @@ padding: 0 30px;
 
 #category-btn-arrow {
   padding: 0 20px;
-  color: #e6e6e6;
+  color: #e7e7e7;
 }
 #category-btn-arrow_back {
     padding: 0 0px;
     color: black;
-    top: -2px;
     position: relative;
 } 
 
@@ -1170,13 +1165,9 @@ padding: 0 30px;
   font-size: 14px;
   text-align: left;
   color: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   font-weight: 300;
   padding: 0;
-}
-
-.footer__column-text {
-  margin-bottom: 20px;
 }
 
 .bold {
@@ -4005,7 +3996,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .advert__descr p {
-  color: #63666c;
   word-wrap: break-word;
 }
 
@@ -4628,7 +4618,12 @@ label.error {
     text-align: left;
     padding: 0 20px;
   }
-
+  .cats__city {
+    margin-right: unset;
+  }
+  .#category-btn-arrow_back {
+    top: 0;
+  }
   .header__category__right {
     z-index: 100;
     height: 100%;
@@ -4813,27 +4808,51 @@ label.error {
 }
 
 @media (max-width: 480px) {
-
-  .advert__tags {
-    margin-top: 0;
+  .advert__img-wrap {
+    display: none;
   }
-
-  .footer_padding {
-    padding-top: 0;
+  .hover_dark {
+    width: 100%;
+    height: 9894px;
+    background: rgba(0,0,0, 0.5);
+    position: absolute;
+    display: none;
+    z-index: 500;
   }
-
-  .hrn , .day {
+  .infowindow__container {
+    display: flex;
+    padding: 0px;
+    justify-content: space-between;
+    height: 130px;
+    box-sizing: border-box;
+    width: 220px;
+  }
+  .infowindow__price {
+    top: 10px;
+  }
+  .infowindow__address {
+    bottom: 10px;
+  }
+  .infowindow__name {
+    left: 0px;
+    bottom: 40px;
+  }
+  .stars {
+    bottom: 20px;
+    left: 0px;
+  }
+  /*.hrn , .day {
     margin-left: 35px;
-  }
+  }*/
   .search-list__cate-price {
     margin: 40px 0;
   }
   html {
     margin-top: 0px !important;
   }
-  .items-count {
+  /*.items-count {
     display: none;
-  }
+  }*/
   .hide_bread {
     display: none;
   }
@@ -4847,12 +4866,12 @@ label.error {
   .cate_name {
     margin-left: 20px;
     top: -10px;
-    position: relative;
-    display: block;
+    /*position: relative;
+    display: block;*/
     font-size: 24px;
+    margin: 0 auto;
   }
   .link_parent {
-    top: 21px;
     position: relative;
   }
   .button_filter {
@@ -4876,7 +4895,7 @@ label.error {
     background-color: #ffd400;
     position: absolute;
     border-radius: 50px;
-    top: 25px;
+    top: 10px;
     right: 0px;
     display: block;
   }
@@ -4884,11 +4903,6 @@ label.error {
     cursor: pointer;
     background-color: #ff9500;
   }
-
-  #category-btn-arrow {
-    color: #0a0f19;
-  }
-
   .icon_filter_circle {
     width: 18px;
     height: 18px;
@@ -5008,6 +5022,13 @@ label.error {
     font-size: 18px;
   }
 
+  .slick-prev {
+    left: -20px;
+  }
+
+  .slick-next {
+    right: -20px;
+  }
 
  /*.product-item__title img {*/
     /*width: 80px;*/
@@ -5126,7 +5147,8 @@ label.error {
     margin-bottom: 30px;
     padding: 20px;
     text-align: left;
-    grid-template-columns: 70px auto 30px;
+    /*grid-template-columns: 70px auto 30px;*/
+    grid-template-columns: 45px auto 5px;
     grid-template-rows: 16px auto auto;
     grid-template-areas: 
       "cate-img cate-title cate-details"
@@ -5147,7 +5169,9 @@ label.error {
   .search-list__cate-details, .search-list__cate-img {
     margin: auto 0;
   }
-
+  .search-list__cate-img {
+      width: 60px;
+  }
   .search-list__cate-title, .search-list__cate-price, .search-list__cate-num {
     text-align: left;
     padding-left: 20px;
@@ -5244,6 +5268,7 @@ label.error {
     position: relative;
     right: 40px;
     display: inline-block;
+    margin-left: 20px;
   }
   .cats__city-title, .cats__sort-title {
     font-size: 12px;
@@ -5523,8 +5548,6 @@ label.error {
   .advert__tags_grid {
     width: 50%;
     padding: 0 15px;
-    margin-top: 30px;
-    margin-bottom: 20px;
   }
 
   .filters-values__item {

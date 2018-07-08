@@ -228,6 +228,9 @@ msgstr "Ответ неправильный."
 msgid "Ask the manufacturer"
 msgstr "Задайте вопрос производителю"
 
+msgid "Date of registration:"
+msgstr "Дата регистрации:"
+
 msgid "I agree to the terms of the <a target='_blank' href='%s'>license</a>."
 msgstr "Я согласен c <a target='_blank' href='%s'>правилами</a>."
 

@@ -1220,7 +1220,7 @@ add_action('wp_ajax_nopriv_activate_account', 'activate_account' );
       $state = get_post_meta($id, 'cc_state', true);
 
       $result[] = array(
-        'title' => get_the_title($id),
+        'title' => title_excerpt($id),
         'img' => ad_thumbnail_url($id),
         'link' => get_permalink($id),
         'state' => $state,
