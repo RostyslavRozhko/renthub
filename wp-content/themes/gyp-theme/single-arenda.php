@@ -391,21 +391,6 @@
                                       $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
                                       $get_address = trim(get_address($coordinates));
                                 ?>
-                                    <!--<div class="gallery-item">
-                                        <div class="product-item">
-                                            <div class="product-item__img">
-                                                <?php echo ad_thumbnail(); ?>
-                                            </div>
-                                            <a href="<?php the_permalink() ?>" class="product-item__container-title">
-                                            <div class="product-item__title">
-                                                <?php echo title_excerpt(); ?>
-                                            </div>
-                                            <div class="product-item__price">
-                                                <?php echo price_output(); ?>
-                                            </div>
-                                            </a>
-                                        </div>
-                                    </div>-->
                                               <div class="search-list__result">
             <div class="search-list__img">
               <a href="<?php the_permalink() ?>">

@@ -470,8 +470,8 @@
       if ($the_query->have_posts()) :   ?>
         <div style="position:relative">
           <div class="map" id="search-map"></div>
-          <div class="hide-map hide">Аренда&nbsp;<?php echo single_cat_title();?></div>
-          <div class="show-map">Аренда&nbsp;<?php echo single_cat_title();?></div>
+          <div class="hide-map hide">Аренда&nbsp;<?php echo single_cat_title();?>&nbsp;на карте</div>
+          <div class="show-map">Аренда&nbsp;<?php echo single_cat_title();?>&nbsp;на карте</div>
         </div>
 
           <div class="search-list__container">
@@ -551,11 +551,22 @@
                   if($phone) {
                 ?>
                   <span class="telnumber hide"><?php echo $phone; ?></span>
-                  <a>
+                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback">
                     <img class="search-list__phone-image" src="<?php echo get_stylesheet_directory_uri(); ?>/img/call-answer-black.svg">
                     <div id="tel<?php echo $post_id; ?>" class="shownum search-list_phone-number"></div>
+                    <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
+                    <?php 
+                        $ava = get_the_author_meta( 'user_avatar', $author_id );
+                        if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
+                        $city = get_the_author_meta('city_name', $author_id);
+                        $city = explode("," , $city);
+                    ?>
+                    <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                    <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
+                    <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname');?>" >
+                    <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
                   </a>
-                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback">
+                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback" id="view_none">
                     <?php _e('Show', 'prokkat'); ?>
                     <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
                     <?php 
