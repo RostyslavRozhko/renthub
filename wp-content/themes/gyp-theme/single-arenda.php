@@ -386,8 +386,12 @@
 							    <?php
 						            while (have_posts()): the_post();
 									  if( $current_post_id == $post->ID) continue;
+                                      $coordinates = get_post_meta($post->ID , 'cc_locations',true);
+                                      $coordinates = explode("},{" , $coordinates)[0];
+                                      $coordinates = preg_replace ("/[^0-9\s\,\.]/","", $coordinates);
+                                      $get_address = trim(get_address($coordinates));
                                 ?>
-                                    <div class="gallery-item">
+                                    <!--<div class="gallery-item">
                                         <div class="product-item">
                                             <div class="product-item__img">
                                                 <?php echo ad_thumbnail(); ?>
@@ -401,7 +405,90 @@
                                             </div>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div>-->
+                                              <div class="search-list__result">
+            <div class="search-list__img">
+              <a href="<?php the_permalink() ?>">
+                <img src="<?php echo ad_thumbnail_url(); ?>">
+              </a>
+            </div>
+            <div class="search-list__title">
+              <a href="<?php the_permalink() ?>"><?php echo mb_strtoupper(pll_title($post->ID)); ?></a>
+              <div class="search-list__desc"><?php echo content_excerpt(); ?></div>
+              <div class="search-list__title-city">
+                <input type="hidden" value='<?php echo get_post_meta($post_id, 'cc_city_id', true) ?>' >
+              </div>
+            </div>
+            <div class="town"><?php echo $get_address;?></div>
+            <div class="search-list__price-container">
+              <div class="search-list__price">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/calendar-black.svg">
+                <?php echo price_output($post->ID); ?>
+              </div>
+            </div>
+            <a class="search-list__button search-list__button__grey fancybox-send-msg" href="#send-msg">
+              <input type="hidden" id="author_id" value="<?php echo $author_id; ?>">
+              <input type="hidden" id="user_id" value="<?php echo get_current_user_id(); ?>">
+              <input type="hidden" id="user_name" value="<?php the_author_meta('nickname');?>">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/envelope.svg">
+            </a>
+            <div class="search-list__phone-container">
+              <div class="search-list__phone-mobile hide">
+                <?php 
+                  $phone = get_the_author_meta('phone', $s_post->post_author);
+                  if($phone) {
+                ?>
+                  <span class="telnumber hide"><?php echo $phone; ?></span>
+                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback">
+                    <img class="search-list__phone-image" src="<?php echo get_stylesheet_directory_uri(); ?>/img/call-answer-black.svg">
+                    <div id="tel<?php echo $post_id; ?>" class="shownum search-list_phone-number"></div>
+                    <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
+                    <?php 
+                        $ava = get_the_author_meta( 'user_avatar', $author_id );
+                        if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
+                        $city = get_the_author_meta('city_name', $author_id);
+                        $city = explode("," , $city);
+                    ?>
+                    <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                    <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
+                    <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname');?>" >
+                    <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
+                  </a>
+                  <a href="#callFeedback"  class="btn btn_view show_phone search-list__call fancybox-feedback" id="view_none">
+                    <?php _e('Show', 'prokkat'); ?>
+                    <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
+                    <?php 
+                        $ava = get_the_author_meta( 'user_avatar', $author_id );
+                        if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
+                        $city = get_the_author_meta('city_name', $author_id);
+                        $city = explode("," , $city);
+                    ?>
+                    <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                    <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
+                    <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname');?>" >
+                    <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
+                  </a>
+                    <?php } else { ?>
+                  <div class="search-list_phone-number"><?php _e('No phone number', 'prokkat'); ?></div>
+                <?php } ?>
+              </div>
+
+              <a href="#callFeedback" class="search-list__call search-list__button search-list__button__yellow fancybox-feedback">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/call-answer-black.svg">
+                <input type="hidden" name="post_id" value="<?php echo $post_id; ?>" >
+                <?php 
+                    $ava = get_the_author_meta( 'user_avatar', $author_id );
+                    if( !$ava ) $ava = get_stylesheet_directory_uri() .'/img/no-avatar.svg';
+                    $city = get_the_author_meta('city_name', $author_id);
+                    $city = explode("," , $city);
+                ?>
+                <input type="hidden" name="image" value="<?php echo $ava; ?>">
+                <input type="hidden" name="city" value="<?php echo $city[0]; ?>">
+                <input type="hidden" name="author_name" value="<?php echo the_author_meta('nickname'); ?>" >
+                <input type="hidden" name="phone" value="<?php echo get_the_author_meta('phone'); ?>">
+              </a>
+              </div>
+          </div>
 								<?php endwhile; ?>
                     </div>
                 </div>

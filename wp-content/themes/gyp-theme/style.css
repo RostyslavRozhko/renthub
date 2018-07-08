@@ -3219,6 +3219,9 @@ input[type=number]::-webkit-outer-spin-button {
   padding-left: 15px;
   grid-area: title;
 }
+.town {
+  grid-area: town;
+}
 
 .search-list__title-city {
   font-size: 12px;
@@ -4842,6 +4845,9 @@ label.error {
 }
 
 @media (max-width: 480px) {
+  #view_none {
+   display: none;
+  }
   .slick-next, .slick-prev {
     top: 60%;
   }
@@ -4988,15 +4994,8 @@ label.error {
     display: unset;
   }
   .town {
-    font-size: 12px;
-    font-weight: bold;
-    color: #0a0f19;
-    text-align: left;
-    width: 150px;
-    top: -40px;
-    position: relative;
-    left: 74px;
-    padding: 10px 0px;
+    padding-left: 14px;
+    display: flex;
   }
   .town_ad {
     display: unset;
@@ -5263,7 +5262,7 @@ label.error {
     text-decoration: none;
   }
 
-  .search-list__result {
+  /*.search-list__result {
     width: 100%;
     border-top: none;
     grid-template-columns: 60px auto;
@@ -5285,11 +5284,29 @@ label.error {
       "image title ." 
       ". town town" 
       "price price price";*/
-      grid-template-areas: 
+      /*grid-template-areas: 
       "image title title" 
       ". town town" 
       "price price price";
+  }*/
+
+  .search-list__result {
+    width: 100%;
+    border-top: none;
+    grid-template-columns: 60px auto;
+    grid-template-rows: auto;
+    background: white;
+    margin-top: 0px;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 10px 0;
+    grid-template-areas: "image title" "image town" "call price ";
+    /*grid-template-areas: 
+      "image title"
+      "image call"
+      "price price";*/
   }
+
   .search-list__price {
     border-top: solid 1px #e6e6e6;
   }
