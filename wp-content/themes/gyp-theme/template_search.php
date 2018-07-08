@@ -298,7 +298,20 @@
                 </div>
               <div class="cats__city">
                 <div class="cats__city-title"><?php _e('City', 'prokkat'); ?>: </div>
-                <a href="" class="cats__city-name"><?php if($address) { echo $address; } else { echo __('All Ukraine', 'prokkat'); } ?></a>
+                <div style="position: relative">
+                  <a href="" class="cats__city-name"><?php if($address) { echo $address; } else { echo __('All Ukraine', 'prokkat'); } ?></a>
+                  <div class="cats__city-list hide">
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJBUVa4U7P1EAR_kYBF9IxSXY', 'address' => 'Киев' ), $url); ?>" data-id="ChIJBUVa4U7P1EAR_kYBF9IxSXY">Киев</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJiw-rY5-gJ0ERCr6kGmgYTC0', 'address' => 'Харьков' ), $url); ?>"  data-id="ChIJiw-rY5-gJ0ERCr6kGmgYTC0">Харьков</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJQ0yGC4oxxkARbBfyjOKPnxI', 'address' => 'Одесса' ), $url); ?>" data-id="ChIJQ0yGC4oxxkARbBfyjOKPnxI">Одесса</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJLZqRAJWQ4EARhG-Fxf1eMzY', 'address' => 'Донецк' ), $url); ?>" data-id="ChIJLZqRAJWQ4EARhG-Fxf1eMzY">Донецк</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJA7uF-j1n3EARSj9NB9lcZ34', 'address' => 'Запорожье' ), $url); ?>" data-id="ChIJA7uF-j1n3EARSj9NB9lcZ34">Запорожье</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJV5oQCXzdOkcR4ngjARfFI0I', 'address' => 'Львов' ), $url); ?>" data-id="ChIJV5oQCXzdOkcR4ngjARfFI0I">Львов</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJe6tUMeDf2kARbhhrfRc6-rA', 'address' => 'Кривой рог' ), $url); ?>" data-id="ChIJe6tUMeDf2kARbhhrfRc6-rA">Кривой рог</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJ1RNy-4nLxUARgFbgufo5Dpc', 'address' => 'Николаев' ), $url); ?>" data-id="ChIJ1RNy-4nLxUARgFbgufo5Dpc">Николаев</a>
+                    <a href="<?php echo add_query_arg( array( 'search_loc'=>'ChIJK1jnvqfm5kARzrV1CjAY0aU', 'address' => 'Мариуполь' ), $url); ?>" data-id="ChIJK1jnvqfm5kARzrV1CjAY0aU">Мариуполь</a>
+                  </div>
+                </div>
               </div>
             </div>  
             <div class="search-list__results">            

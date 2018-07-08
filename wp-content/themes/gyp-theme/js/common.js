@@ -653,6 +653,16 @@ jQuery(document).ready(function () {
         }
     })
 
+    $('.cats__city-name').click(function(e) {
+        e.preventDefault()
+        const list = $('.cats__city-list')
+        if(list.css('display') == 'none'){
+            list.show()
+        } else {    
+            list.hide()
+        }
+    })
+
     // $('.close-categories').click(function() {
     //     $('.header__category__right').hide()        
     //     $('.header__category__window').hide()

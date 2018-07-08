@@ -269,7 +269,7 @@ h3, p {
   font-family: 'Fira Sans', sans-serif;
 }
 
-.header-category-cities {
+.header-category-cities, .cats__city-list {
   width: calc(100% - 2px);
   position: absolute;
   background-color: white;
@@ -281,7 +281,7 @@ h3, p {
   box-sizing: border-box;
 }
 
-.header-category-city {
+.header-category-city, .cats__city-list a {
   font-size: 14px;
   font-weight: 300;
   font-style: normal;
@@ -2404,6 +2404,12 @@ padding: 0 30px;
     "big-img small-bot";
 }
 
+.cats__city-list {
+  width: 100px;
+  padding: 0 10px;
+  padding-top: 5px;
+}
+
 .btn_add-img {
   height: 60px;
   width: 60px;
@@ -3018,6 +3024,10 @@ b {
   color: #295fcc;
   text-decoration: underline;
   margin-left: 10px;
+}
+
+.cats__city-list a {
+  margin: 0;
 }
 
 .cats__sort .active {
@@ -4085,6 +4095,10 @@ input[list="select_options"] {
   display: flex;
   border-bottom: 1px solid  #ebebeb;
   padding: 20px 0;
+}
+
+.cats__city-list .header-category-city {
+  margin: 0;
 }
 
 .post__title__container img {
