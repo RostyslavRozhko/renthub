@@ -285,7 +285,7 @@ h3, p {
   padding: 20px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  z-index: 30;
+  z-index: 501;
   box-sizing: border-box;
 }
 

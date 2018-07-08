@@ -12,8 +12,6 @@
   get_header();
   ajax_auth_init();
 ?>
-<?php search_header_main(); ?>
-
 <section class="login-section">
   <div class="container login-container">
     <div class="login-container__text">

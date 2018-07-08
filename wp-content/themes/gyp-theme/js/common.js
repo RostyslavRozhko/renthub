@@ -634,7 +634,6 @@ jQuery(document).ready(function () {
     $('.header__category__container').click(function() {
         if($('.header__category__window').css('display') == 'none'){
             $('.header__category__window').show()
-            $('.hover_dark').show();
             const firstElement = $('.header_switcher').first()
             showCategoty(firstElement, true)
         } else {
@@ -648,7 +647,6 @@ jQuery(document).ready(function () {
             } else {
                 $('.header__category__window').hide()
                 $('.header__category__right, .back__white').hide()
-                $('.hover_dark').hide();
             }
         }
     })
@@ -753,6 +751,15 @@ jQuery(document).ready(function () {
     $('.header__search-show-btn').click(function() {
         $(this).hide()
         $('.form_srch-header').show()
+        $('.hover_dark').show()
+    })
+
+    $('.hover_dark').click(function() {
+        $('.form_srch-header').hide()
+        $(this).hide()
+        $('.header-category-cities').hide()
+        $('.header__category__window').hide()
+        $('.header__search-show-btn').show()
     })
 
     function updateCats() {
