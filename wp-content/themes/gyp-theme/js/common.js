@@ -888,8 +888,11 @@ jQuery(document).ready(function () {
     $.each($('.filters__container'), function () { 
              if($(this).find('.checkbox-container').length > 5){
                 $(this).children('.filters__vis-container').hide();
-        }
+            }
     });
+    if(!$('.filters__container').html()){
+                $('.button_filter_circle , .button_filter').hide();
+    }
     /*Truncate title text in mobile version*/
     if ($(window).width() <= 480){
         $('.search-list__title').each(function(){

@@ -321,10 +321,10 @@
       <i id="category-btn-arrow_back" class="fa fa-angle-left"></i>
   </a><?php }?>
       <span class="cate_name"><?php single_cat_title(); ?></span>
-      <?php if ($main_cat){ ?>
+      <?php if ($main_cat && $filters){ ?>
       <span class="items-count"> <?php $count = get_cate_count($current_id, $main_cat); if($count) { echo '('.$count.')'; } ?></span>
       <?php } ?>
-  <?php if (!$main_cat){?>
+  <?php if (!$main_cat && $filters){?>
   <div class="button_filter_circle">
       <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/filter.png" class="icon_filter_circle">
   </div><?php }?>
@@ -504,7 +504,9 @@
               </div>
             </div>
             <div class="search-list__results">
-            <div class="button_filter"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/filter.png" class="icon_filter_button">Фильтры</div>            
+            <?php if ($filters) { ?>
+            <div class="button_filter"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/filter.png" class="icon_filter_button">Фильтры</div>
+            <?php } ?>            
           <?php 
             while ($the_query->have_posts()) : 
               $arr[] = $the_query->the_post();
