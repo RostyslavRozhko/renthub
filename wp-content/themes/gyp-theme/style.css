@@ -4340,7 +4340,7 @@ input[list="select_options"] {
 
 .error-mess .fancybox-inner {
   text-align: center;
-  color: #ff4c4c;
+  color: black;
   font-size: 16px;
   height: 40px !important;
 }
