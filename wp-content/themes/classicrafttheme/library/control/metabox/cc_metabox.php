@@ -364,19 +364,30 @@ function cc_save_custommeta_box($post_id) {
         update_post_meta($pid, 'cc_price_more', $_POST['cc_price_more']);
         update_post_meta($pid, 'cc_price_deposit', $_POST['cc_price_deposit']);
     }
-    
-	/*update_post_meta( $post_id, 'img1', $_POST['img1'] );
-    update_post_meta( $post_id, 'img2', $_POST['img2'] );
-    update_post_meta( $post_id, 'img3', $_POST['img3'] );*/
 
     $name_img1 = basename($_POST['img1']);
     $name_img2 = basename($_POST['img2']);
     $name_img3 = basename($_POST['img3']);
     $url_amazon = 'https://s3-us-west-1.amazonaws.com/storage-renthub/';
 
-    update_post_meta($post_id, 'img1', $url_amazon.$name_img1);
-    update_post_meta($post_id, 'img2', $url_amazon.$name_img2);
-    update_post_meta($post_id, 'img3', $url_amazon.$name_img3);
+    if($name_img1){
+        update_post_meta($post_id, 'img1', $url_amazon.$name_img1);
+    }
+    else {
+        update_post_meta($post_id, 'img1', '');
+    }
+    if($name_img2){
+        update_post_meta($post_id, 'img2', $url_amazon.$name_img2);
+    }
+    else {
+        update_post_meta($post_id, 'img2', '');
+    }
+    if($name_img3){
+        update_post_meta($post_id, 'img3', $url_amazon.$name_img3);
+    }
+    else {
+        update_post_meta($post_id, 'img3', '');
+    }
 
     update_post_meta( $pid, 'cc_address_list', $_POST['cc_address_list'] );
     update_post_meta( $pid, 'cc_city_id', $_POST['cc_city_id'] );

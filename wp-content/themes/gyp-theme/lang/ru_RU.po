@@ -2399,7 +2399,7 @@ msgid "Rent price for 5 to 7 days, UAH"
 msgstr "Цена аренди 7 дней, грн"
 
 msgid "Rent price for 10+ days, UAH"
-msgstr "Цена аренди 1 месяць, грн"
+msgstr "Цена аренди 1 месяц, грн"
 
 msgid "Available on locations"
 msgstr "Достутно в локациях"

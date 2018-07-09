@@ -48,7 +48,9 @@
 .slick-next {
   right: -20px;
 }
-
+.author_ads {
+    width: 300px;
+  }
 .current-lang a {
   text-decoration: none;
   color: #63666c;
@@ -5380,8 +5382,8 @@ label.error {
 
   .container {
     padding: 0 20px;
-    padding-bottom: 30px;
-    /*border-bottom: solid 1px #e6e6e6;*/
+    /*padding-bottom: 30px;
+    border-bottom: solid 1px #e6e6e6;*/
   }
 
   .call-feedback__buttons button {

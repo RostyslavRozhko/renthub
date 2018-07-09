@@ -113,7 +113,7 @@
             <div class="title title_grid">
                 <div class="title_advert"><?php echo the_title(); ?></div>
             </div>
-	        <?php  if( $main_img && file_url_exists( $main_img )) : ?>		
+	        <?php  if($main_img && file_url_exists( $main_img )) : ?>		
                 <div class="advert__img-wrap">
                   <a href="<?php echo $main_img; ?>" class="fancybox"  title="" rel="gallery1">
 				    <img src="<?php echo $main_img; ?>" alt="adv" class="advert__img-big" style="display:block;">
