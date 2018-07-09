@@ -66,6 +66,10 @@
                           <input type="submit" class="header__search-btn" value="<?php _e('Find', 'prokkat') ?>"/>
                           <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/magnifying-glass-2.svg">
                       </div>
+                      <div class="hide-btn">
+                        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/cancel-black.svg">
+                        <span>Спрятать</span>
+                      </div>
                   </form>
           </div>
       </div>
