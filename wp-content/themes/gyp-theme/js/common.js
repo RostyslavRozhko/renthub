@@ -756,13 +756,16 @@ jQuery(document).ready(function () {
         $('.hover_dark').show()
     })
 
-    $('.hover_dark').click(function() {
+    $('.hover_dark').click(closeMobileMenu)
+    $('.hide-btn').click(closeMobileMenu)
+
+    function closeMobileMenu() {
         $('.form_srch-header').hide()
-        $(this).hide()
+        $('.hover_dark').hide()
         $('.header-category-cities').hide()
         $('.header__category__window').hide()
         $('.header__search-show-btn').show()
-    })
+    }
 
     function updateCats() {
         const values = {}

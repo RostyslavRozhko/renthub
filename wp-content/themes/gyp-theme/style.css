@@ -3947,6 +3947,24 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 5px;
 }
 
+.hide-btn {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  display: none;
+  text-align: center;
+}
+
+.hide-btn img {
+  width: 14px;
+  margin-right: 5px;
+}
+
+.hide-btn span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0a0f19;
+}
+
 .menu-cat__item_title {
   font-weight: normal;
 }
@@ -4864,6 +4882,19 @@ label.error {
 }
 
 @media (max-width: 480px) {
+  .list__item__title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100px;
+  }
+
+  .hide-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   #view_none {
    display: none;
   }

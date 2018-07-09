@@ -1010,10 +1010,11 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
 
         if($filter_type == 'input') {
           $meta = get_post_meta( $post_id, $filter->slug, true);
+          $input_type = get_field('input_type', $tag_id);
           $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
                       <div class="input-wrp input-wrp_block ">
                       <span class="field_error"></span>
-                      <input type="text" id="title" class="input_add"  value="'. $meta .'" name="'. $filter->slug .'" placeholder="'.__('Please enter title', 'prokkat').'">
+                      <input type="'. $input_type .'" id="title" class="input_add"  value="'. $meta .'" name="'. $filter->slug .'" placeholder="'.__('Please enter title', 'prokkat').'">
                       </div>';
         }
         $result .= '</div>';
@@ -1129,10 +1130,11 @@ if ( ! function_exists( 'ipt_kb_total_cat_post_count' ) ) :
         }
 
         if($filter_type == 'input') {
+          $input_type = get_field('input_type', $tag_id);
           $result .= '<div class="'. $required .' form__title">'. $filter->name .'</div>
                       <div class="input-wrp input-wrp_block ">
                       <span class="field_error"></span>
-                      <input type="text" id="title" class="input_add" name="'. $filter->slug .'" placeholder="'.__('Please enter title', 'prokkat').'">
+                      <input type="'. $input_type .'" id="title" class="input_add" name="'. $filter->slug .'" placeholder="'.__('Please enter title', 'prokkat').'">
                       </div>';
         }
         $result .= '</div>';
