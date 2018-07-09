@@ -5730,6 +5730,7 @@ label.error {
     right: 5px;
     bottom: 0px;
     font-weight: 500;
+    word-break: break-word;
 }
 #mess_author , #call_author {
     width: 30px;

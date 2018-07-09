@@ -1323,7 +1323,7 @@ function pll_title($post_id=false) {
   
     if( get_post_meta( $post_id, 'cc_price', true )) {
       $meta = get_post_meta( $post_id, 'cc_price', true );
-      $output =  '<span class="prc">'. $meta .'</span><span class="price-output"><span class="hrn">грн</span><span class="day">день</span></span>';
+      $output = $meta . ' грн / день';
     }
     else {
       $output = __('Price by agreement', 'prokkat');
