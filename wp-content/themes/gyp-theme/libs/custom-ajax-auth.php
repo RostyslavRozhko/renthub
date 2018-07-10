@@ -75,7 +75,14 @@ function ajax_register(){
 	$user = get_user_by('login', $tel );
 
   	if ($old_users_arr || $user) {
-		echo json_encode(array('loggedin' => false, 'phone_exist' => true, 'message' => 'Это номер телефона уже зарегистрирован.'));
+		echo json_encode(array('loggedin' => false, 'phone_exist' => true, 'message' => 'Этот номер телефона уже зарегистрирован.'));
+		die();
+	}
+
+	preg_match_all('/\d+/', $phone, $result_array);
+	$phone_operators = ["039", "050", "063", "066", "067", "068", "091", "092", "093", "094", "095", "096", "097", "098", "099"];
+	if (!array_search($result_array[0][1], $phone_operators)) {
+		echo json_encode(array('loggedin' => false, 'phone_error' => true, 'message' => 'Неверный код оператора. Пожалуйста, введите номер телефона.'));
 		die();
 	}
 	

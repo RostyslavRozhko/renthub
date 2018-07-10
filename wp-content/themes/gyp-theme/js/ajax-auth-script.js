@@ -138,6 +138,10 @@ jQuery(document).ready(function ($) {
                         jQuery('#phone').removeClass('valid')
                         jQuery('#phone').addClass('error')
                     }
+                    if(data.phone_error) {
+                        jQuery('#phone').removeClass('valid')
+                        jQuery('#phone').addClass('error')
+                    }
                 }
             }
         });
