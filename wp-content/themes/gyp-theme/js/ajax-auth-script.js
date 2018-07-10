@@ -148,47 +148,60 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         
         const phone_number = $('#phone_number').val()
-        const smsCounter = Cookies.get(phone_number, Number) || 0
-        if(smsCounter > 2) {
-            openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
-            return
-        }
-        const security = jQuery('form#phone_login #securityphone').val();
-        returnCode = Math.floor(Math.random() * 999999) + 100000;
-        jQuery.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: ajax_auth_object.ajaxurl,
-            data: {
-                'action': 'sendSMS',
-                'code': returnCode,
-                'number': phone_number,
-            },
-            success: function (data) {
-                showTab('#phone-login-tab', phone_number)
-                $('form#phone-login-conf').submit(function(e) {
-                    e.preventDefault()
-                    const code = $('#phone-code').val()
-                    if(returnCode == code) {
-                        login_phone(phone_number, security)
-                    } else {
-                        openBox('Вы ввели неправильный код. Попробуйте еще раз.')
-                    }
-                })
+        var result_arr = phone_number.match(/\d+/g);
+        if (phone_number) {
+            var phone_operators = ["039", "050", "063", "066", "067", "068", "091", "092", "093", "094", "095", "096", "097", "098", "099"];
+            if (phone_operators.indexOf(result_arr[1]) != -1) {
+                const smsCounter = Cookies.get(phone_number, Number) || 0
+                if(smsCounter > 2) {
+                    openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
+                    return
+                }
+                const security = jQuery('form#phone_login #securityphone').val();
+                returnCode = Math.floor(Math.random() * 999999) + 100000;
+                jQuery.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: ajax_auth_object.ajaxurl,
+                    data: {
+                        'action': 'sendSMS',
+                        'code': returnCode,
+                        'number': phone_number,
+                    },
+                    success: function (data) {
+                        showTab('#phone-login-tab', phone_number)
+                        $('form#phone-login-conf').submit(function(e) {
+                            e.preventDefault()
+                            const code = $('#phone-code').val()
+                            if(returnCode == code) {
+                                login_phone(phone_number, security)
+                            } else {
+                                openBox('Вы ввели неправильный код. Попробуйте еще раз.')
+                            }
+                        })
 
-                $('.resend-sms').click(function(e) {
-                    e.preventDefault()
-                    const counter = Cookies.get(phone_number, Number) ? Cookies.get(phone_number, Number) + 1 : 1
-                    Cookies.set(phone_number, counter, { expires: hour });
-                    if(counter > 2) {
-                        openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
-                    } else {
-                        returnCode = Math.floor(Math.random() * 999999) + 100000
-                        resendSMS(phone_number, returnCode)
+                        $('.resend-sms').click(function(e) {
+                            e.preventDefault()
+                            const counter = Cookies.get(phone_number, Number) ? Cookies.get(phone_number, Number) + 1 : 1
+                            Cookies.set(phone_number, counter, { expires: hour });
+                            if(counter > 2) {
+                                openBox("Вы исчерпали лимит SMS сообщений, попробуйте через час")
+                            } else {
+                                returnCode = Math.floor(Math.random() * 999999) + 100000
+                                resendSMS(phone_number, returnCode)
+                            }
+                        })
                     }
                 })
             }
-        })
+            else {
+                openBox('Вы ввели неверный номер. Попробуйте еще раз.')
+            }
+
+        } else {
+            openBox('Введите, пожалуйста, номер телефона.')
+        }
+
     });
 
     function resendSMS(phone_number, returnCode) {
