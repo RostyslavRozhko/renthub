@@ -80,7 +80,7 @@ function ajax_register(){
 	}
 
 	preg_match_all('/\d+/', $phone, $result_array);
-	$phone_operators = ["039", "050", "063", "066", "067", "068", "091", "092", "093", "094", "095", "096", "097", "098", "099"];
+	$phone_operators = ["039", "050", "063", "066", "067", "068", "073" ,"091", "092", "093", "094", "095", "096", "097", "098", "099"];
 	if (!array_search($result_array[0][1], $phone_operators)) {
 		echo json_encode(array('loggedin' => false, 'phone_error' => true, 'message' => 'Неверный код оператора. Пожалуйста, введите номер телефона.'));
 		die();

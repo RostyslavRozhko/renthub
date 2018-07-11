@@ -154,7 +154,7 @@ jQuery(document).ready(function ($) {
         const phone_number = $('#phone_number').val()
         var result_arr = phone_number.match(/\d+/g);
         if (phone_number) {
-            var phone_operators = ["039", "050", "063", "066", "067", "068", "091", "092", "093", "094", "095", "096", "097", "098", "099"];
+            var phone_operators = ["039", "050", "063", "066", "067", "068", "073", "091", "092", "093", "094", "095", "096", "097", "098", "099"];
             if (phone_operators.indexOf(result_arr[1]) != -1) {
                 const smsCounter = Cookies.get(phone_number, Number) || 0
                 if(smsCounter > 2) {
