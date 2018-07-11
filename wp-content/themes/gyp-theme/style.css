@@ -3297,9 +3297,11 @@ input[type=number]::-webkit-outer-spin-button {
 .hide-map {
   position: absolute;
   bottom: 0;
-  left: calc(50% - 85px);
+  /*left: calc(50% - 85px);*/
+  left: calc(50% - 130px);
   height: 50px;
-  width: 170px;
+  /*width: 170px;*/
+  width: 260px;
   line-height: 50px;
   vertical-align: middle;
   text-align: center;
@@ -3307,7 +3309,8 @@ input[type=number]::-webkit-outer-spin-button {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   color: white;
-  font-size: 16px;
+  /*font-size: 16px;*/
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
 }
