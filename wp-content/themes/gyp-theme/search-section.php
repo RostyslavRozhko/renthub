@@ -112,7 +112,7 @@
                                          <div class="header__category__btn">
                                             <button class="header__category__btn" type="button">
                                                 <div class="header__category__text-container">
-                                                    <img style="padding: 0 15px" class="header__category__text-container-img" src="'. get_wp_term_image($termId) .'">
+                                                    <img style="padding: 0 15px" class="header__category__text-container-img" src="'. get_image_with_size(get_wp_term_image($termId), '-36x36') .'">
                                                     <b>'.esc_html($category->name).'</b>
                                                 </div> 
                                                 <i id="category-btn-arrow" class="fa fa-angle-right"></i>

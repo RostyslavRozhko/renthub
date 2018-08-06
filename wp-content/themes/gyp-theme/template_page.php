@@ -23,7 +23,7 @@ $city_name = get_field('city_name') ? get_field('city_name') : 'Киев';
             echo '
         <div class="maincat__item">
             <div class="maincat__top-container">
-                <a href="'.esc_url( get_category_link( $termId ) ).'"><img src="'. get_wp_term_image($termId) .'"></a>
+                <a href="'.esc_url( get_category_link( $termId ) ).'"><img src="'. get_image_with_size(get_wp_term_image($termId), '-48x48') .'"></a>
                 <div class="maincat__top-cats">
                     <div class="maincat__text">
                         <a class="maincat__text" href="'.esc_url( get_category_link( $termId ) ).'">'.esc_html($category->name).'</a>

@@ -30,7 +30,7 @@
                     ?>
                         <div href="<?php echo get_term_link( $termId, $taxonomyName ); ?>" class="footer__cate-container">
                             <a href="<?php echo get_term_link( $termId, $taxonomyName ); ?>">
-                                <img src="<?php echo get_wp_term_image($termId); ?>" class="footer__cate-img">
+                                <img src="<?php echo get_image_with_size(get_wp_term_image($termId), '-36x36'); ?>" class="footer__cate-img">
                             </a>
                             <a href="<?php echo get_term_link( $termId, $taxonomyName ); ?>" class="footer__cate-name">
                                 <?php echo esc_html($category->name); ?>

@@ -86,14 +86,15 @@ add_action('init','add_cors_http_header');
   }
   
   function plupload_scripts() {
-    if( !is_user_logged_in() )
+    if( !is_user_logged_in() || !is_page_template('template_dashboard.php') || !is_page_template('template_new.php'))
       return;
+    
     wp_enqueue_script('plupload-all');
 
     wp_register_script('myplupload', get_stylesheet_directory_uri() .'/js/myplupload.js', array('jquery'), '1.4', true );
     wp_enqueue_script('myplupload');
 
-	if( is_admin() ) {
+	  if( is_admin() ) {
       wp_register_style('myplupload', get_stylesheet_directory_uri() .'/css/myplupload.css');
       wp_enqueue_style('myplupload');
     }
@@ -202,6 +203,23 @@ add_action('init','add_cors_http_header');
     $atts['class'] = 'submenu__link';
     return $atts; 
   }
+
+  function get_image_with_size($image_url, $size) {
+    $rep_str = preg_replace('/(-300x300|-150x150)/', '', $image_url);
+    $pos = strpos($rep_str, '.jpg');
+    if($pos) {
+      return substr_replace($rep_str, $size, $pos, 0);
+    }
+    $pos = strpos($rep_str, '.png');
+    if($pos) {
+      return substr_replace($rep_str, $size, $pos, 0);
+    }
+    $pos = strpos($rep_str, '.jpeg');
+    if($pos) {
+      return substr_replace($rep_str, $size, $pos, 0);
+    }
+    return $image_url;
+  }
   
   class Popular_Walker_Nav_Menu extends Walker_Nav_Menu {
     private $city_name;
@@ -231,7 +249,7 @@ add_action('init','add_cors_http_header');
 
       $item_output .= '<li>';
       $item_output .= '<a href="'.$item->url.'">';
-      $item_output .= '<img src="'. get_wp_term_image($item->object_id) .'" >';
+      $item_output .= '<img src="'. get_image_with_size(get_wp_term_image($item->object_id), '-150x150') .'" >';
       $item_output .= '<span>' . $city_title . '</span>';
       $item_output .= '</a>';
       $item_output .= '</li>';
@@ -418,14 +436,14 @@ add_action('init','add_cors_http_header');
     	echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
   }	
   
-  function autocomplete() {
-    wp_enqueue_script('autocomplete', get_stylesheet_directory_uri().'/js/autocomplete.js', array('jquery'));
+  // function autocomplete() {
+  //   wp_enqueue_script('autocomplete', get_stylesheet_directory_uri().'/js/autocomplete.js', array('jquery'));
 
-    wp_enqueue_style('autocomplete.css', get_stylesheet_directory_uri().'/css/jquery.auto-complete.css');
+  //   wp_enqueue_style('autocomplete.css', get_stylesheet_directory_uri().'/css/jquery.auto-complete.css');
 
-    wp_enqueue_script('jq_autocomplete', get_stylesheet_directory_uri().'/js/jquery.auto-complete.min.js', array('jquery'));
-  }
-  add_action('wp_enqueue_scripts', 'autocomplete');
+  //   wp_enqueue_script('jq_autocomplete', get_stylesheet_directory_uri().'/js/jquery.auto-complete.min.js', array('jquery'));
+  // }
+  // add_action('wp_enqueue_scripts', 'autocomplete');
 
   add_action('wp_ajax_nopriv_get_listing_names', 'ajax_listings');
 add_action('wp_ajax_get_listing_names', 'ajax_listings');
